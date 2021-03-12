@@ -47,7 +47,7 @@ class HomeController extends Controller
         // auth()->user()->givePermissionTo('edit doctor');
 
 
-        // auth()->user()->assignRole('admin');
+        auth()->user()->assignRole('doctor');
         // auth()->user()->givePermissionTo('edit_doctor');
         // auth()->user()->givePermissionTo('show_doctor');
         // auth()->user()->givePermissionTo('remove_doctor');
