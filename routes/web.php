@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
+
+
+// Guest/PageController
+
+Route::get('/', 'Guest\PageController@index');
+
+// Dashboard
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

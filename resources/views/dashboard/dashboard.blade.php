@@ -21,7 +21,7 @@
         </div>
         @endrole
         @role('doctor')
-        <p>diocane la madonna 8 ore per capire na cazzata</p>
+        <p>You are a doctor</p>
         @endrole
 
     </div>
