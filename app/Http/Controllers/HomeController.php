@@ -38,7 +38,6 @@ class HomeController extends Controller
         // Permission::create(['name' => 'create_doctor']);
 
 
-        // $role = Role::findById(2);
         // $permission = Permission::findById(8);
         // $permission = Permission::findById(9);
 
@@ -47,23 +46,53 @@ class HomeController extends Controller
         // auth()->user()->givePermissionTo('edit doctor');
 
 
-        auth()->user()->assignRole('doctor');
+        // auth()->user()->assignRole('doctor');
+        // dd(auth()->user()->roles);        
+        //  dd($value['name']);
+
+        // $role = Role::findById(2);
+        // auth()->user()->assignRole($role);
+
         // auth()->user()->givePermissionTo('edit_doctor');
         // auth()->user()->givePermissionTo('show_doctor');
         // auth()->user()->givePermissionTo('remove_doctor');
+
+
+        // dd(auth()->user()->roles[0]->name);
+        // return view('doctor.dashboard');
+
+        // $role = Role::findById(2);
+        // dd($role);
+        // $user = auth()->user()->assignRole($role);
+
+
+
+        if(auth()->user()->roles[0]->name == 'admin'){
+
+            return view('home');
+
+        }
+
+        elseif(auth()->user()->roles[0]->name == 'doctor'){
+            return view('doctor.dashboard');
+        }
+
+
+
+    
+
+        
         // auth()->user()->givePermissionTo('create_doctor');
-
-
-
 
         // return auth()->user()->getPermissionsViaRoles();
 
         // to check which permission the user has
-        // return auth()->user()->permissions;
-        // return User::role('admin')->get();
+        // return auth()->user()->roles;
+        // return User::role('doctor')->get();
         // return User::permission('edit doctor')->get();
+    
 
-
-        return view('home');
     }
+
+
 }
