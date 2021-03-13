@@ -6,5 +6,5 @@
 
 
 @section('content')
-<h1>Homepage -> views.guest.home</h1>
+<h1>Advanced_search -> views.guest.advanced_search</h1>
 @endsection
