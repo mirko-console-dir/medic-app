@@ -26,12 +26,40 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ 'Lastname' }}</label>
+
+                            <div class="col-md-6">
+                                <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+
+                                @error('lastname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="register_number_doc" class="col-md-4 col-form-label text-md-right">{{ 'Register Doctor Number' }}</label>
+
+                            <div class="col-md-6">
+                                <input id="register_number_doc" type="text" class="form-control @error('register_number_doc') is-invalid @enderror" name="register_number_doc" value="{{ old('register_number_doc') }}" required autocomplete="register_number_doc" autofocus>
+
+                                @error('register_number_doc')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
