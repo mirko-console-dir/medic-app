@@ -3,6 +3,11 @@
 use Illuminate\Database\Seeder;
 use App\Specialization;
 
+// use Illuminate\Database\Seeder;
+// use Faker\Generator as Faker;
+// use App\Article;
+// use Illuminate\Support\Str;
+
 class SpecializationSeeder extends Seeder
 {
     /**

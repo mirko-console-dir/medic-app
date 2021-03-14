@@ -68,7 +68,17 @@ class User extends Authenticatable
 
         return $this->belongsToMany('App\Sponsorship');
     }
+    //manyToOne
+    public function reviews()
+    {
 
+        return $this->hasMany('App\Review');
+    }
+    public function messages()
+    {
+
+        return $this->hasMany('App\Message');
+    }
 
     // OneToMany
 
