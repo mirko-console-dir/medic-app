@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'address', 'register_number_doc', 'cv_img', 'profile_img', 'phone_number', 'slug'
     ];
 
     /**
@@ -38,4 +38,46 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    //Relationship
+
+
+    // ManyToMany
+
+    public function clinics()
+    {
+
+        return $this->belongsToMany('App\Clinic');
+    }
+
+    public function specializations()
+    {
+
+        return $this->belongsToMany('App\Specialization');
+    }
+
+    public function services()
+    {
+
+        return $this->belongsToMany('App\Service');
+    }
+    public function sponsorships()
+    {
+
+        return $this->belongsToMany('App\Sponsorship');
+    }
+
+
+    // OneToMany
+
+
+    public function prefixes()
+    {
+
+        return $this->belongsTo('App\Prefix');
+    }
+
+
 }
