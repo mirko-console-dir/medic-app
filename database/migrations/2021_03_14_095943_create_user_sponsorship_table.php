@@ -19,7 +19,7 @@ class CreateUserSponsorshipTable extends Migration
             $table->unsignedBigInteger('sponsorship_id');
             $table->foreign('sponsorship_id')->references('id')->on('sponsorships');
 
-            $table->timestamp('finish_date');
+            $table->timestamps();
         });
     }
 

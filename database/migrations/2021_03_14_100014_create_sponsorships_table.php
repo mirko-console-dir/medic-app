@@ -17,9 +17,9 @@ class CreateSponsorshipsTable extends Migration
             // avremo 4 sponsorizzazioni, ogni doc di default avra quella relativa all'id 1, che sarà type_sponsorship = non è sponsorizzato.
             $table->id();
             $table->string('name');
-            $table->string('type_sponsorship');
-            $table->timestamp('start_date');
-            $table->timestamp('finish_date');
+            $table->string('type');
+            $table->float('price');
+            $table->integer('duration')->nullable();
             $table->timestamps();
         });
     }
