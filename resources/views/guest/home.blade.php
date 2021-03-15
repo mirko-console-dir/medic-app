@@ -11,6 +11,10 @@ Home
 <main>
   @include('guest.partials.boxes_features_home')
 
+  @include('guest.partials.sponsored_doctors')
+
 </main>
+
+@include('guest.partials.footer')
 
 @endsection
