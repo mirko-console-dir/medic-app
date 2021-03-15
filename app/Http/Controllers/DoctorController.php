@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 
 
@@ -75,7 +77,9 @@ class DoctorController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // dd($request);
+        // dd($request->all());
+        Storage::delete('cv_img', $user->cv_img);
+        Storage::delete('profile_img', $user->profile_img);
 
 
         $validatedData = $request->validate([
@@ -87,12 +91,23 @@ class DoctorController extends Controller
             'cv_img' => '',
             'phone_number' => 'required',
             'profile_img' => '',
+            'cv_img' => 'nullable | image ',
+            'profile_img' => 'nullable | image '
+
         ]);
 
         // dd($validatedData);
 
+        $cv_img = Storage::put('cv_img', $request->cv_img);
+        $profile_img = Storage::put('profile_img', $request->profile_img);
+
+        $validatedData['cv_img'] = $cv_img;
+        $validatedData['profile_img'] = $profile_img;
+
+
+
         $user = Auth::user();
-        
+
         $user->update($validatedData);
         // dd($user);
 

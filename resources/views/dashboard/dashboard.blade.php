@@ -26,11 +26,11 @@
                     <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
-                    <h3>{{$user->cv_img}}</h3>
+                    <img src="{{ asset('storage/' . $user->cv_img) }}" alt="">
                     <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
-                    <h3>{{$user->profile_img}}</h3>
+                    <img src="{{ asset('storage/' . $user->profile_img) }}" alt="">
                     <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
