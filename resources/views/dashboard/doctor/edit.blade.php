@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container d_flex" id="dashboard">
 
         @include('dashboard.partials.sidebar')
 
-        <div class="col-md-9">
+        <div class="d_flex_column detail" id="account">
             @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -66,7 +65,7 @@
 
                     <!-- Phone_number -->
                     <label for="phone_number">Phone Number</label>
-                    <input type="tel" name="phone_number" class="form-control">
+                    <input type="tel" name="phone_number" class="form-control" value="{{$user->phone_number}}">
                     <br>
 
                     <button type="submit" class="btn btn-success">Edit</button>
@@ -82,6 +81,5 @@
         </div>
 
 
-    </div>
 </div>
 @endsection
