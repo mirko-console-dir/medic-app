@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 
@@ -18,6 +19,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +28,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.dashboard');
+
+        $user = Auth::user();
+        // dd($user);
+        return view('dashboard.dashboard', compact('user'));
     }
 
     /**
@@ -67,9 +72,9 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+
     }
 
     /**
@@ -81,7 +86,6 @@ class DashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**

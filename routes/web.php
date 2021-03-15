@@ -23,4 +23,11 @@ Auth::routes();
 Route::get('/', 'Guest\PageController@index');
 
 // Dashboard
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
+
+
+    Route::get('/', 'DashboardController@index');
+    Route::resource('doctors', 'DoctorController');
+
+});
