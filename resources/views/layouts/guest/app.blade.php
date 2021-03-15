@@ -22,16 +22,13 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-
 </head>
 
 <body>
-
+  <div id="app">
     {{-- @include('layouts.guest.partials.navbar') --}}
     @yield('content')
     @include('layouts.guest.partials.footer')
-
+  </div>
 </body>
-
 </html>

@@ -1,3 +1,51 @@
+
+$xsmall: 12px;
+$small: 14px;
+$medium: 20px;
+$large: 36px;
+$xlarge: 50px;
+
+h1,h2,h3,h4,h5{
+    line-height: 1.5;
+}
+
+h1{
+    font-size: $xlarge;
+    margin-bottom: $xlarge;
+    margin-top: $large;
+}
+h2{
+    font-size: $large;
+    margin-bottom: $large;
+    margin-top: $medium;
+}
+h3{
+    font-size: $medium;
+    margin-bottom: $medium;
+    margin-top: $small;
+}
+h4{
+    font-size: $small;
+    margin-bottom: $small;
+    margin-top: $xsmall;
+}
+h5{
+    font-size: $xsmall;
+    margin-bottom: $xsmall;
+}
+
 #sponsored_doctors{
-  
+    color: map-get($color-map, $key:'primary_color_dark');
+    padding: 50px 0;
+    h3{
+        text-transform: uppercase;
+    }
+    #slideshow{
+        display: flex;
+        .card{
+            width: calc(100% / 3);
+            min-height: 350px;
+            padding: 20px;
+        }
+    }
 }

@@ -11006,6 +11006,26 @@ input {
   height: 100%;
 }
 
+.btn_blue {
+  background: #00aeef;
+  color: white;
+}
+
+.btn_blue:hover {
+  background: #0083b3;
+  color: white;
+}
+
+.btn_white {
+  background: white;
+  color: #00aeef;
+}
+
+.btn_white:hover {
+  background: #dddddd;
+  color: #00aeef;
+}
+
 #dashboard {
   background-color: #f5f5f5;
   padding: 30px;
@@ -11076,29 +11096,6 @@ input {
 #dashboard .crud button {
   width: 100px;
   margin: 0px 20px;
-}
-
-#navbar {
-  height: 70px;
-  margin-bottom: 10px;
-.btn_blue {
-  background: #00aeef;
-  color: white;
-}
-
-.btn_blue:hover {
-  background: #0083b3;
-  color: white;
-}
-
-.btn_white {
-  background: white;
-  color: #00aeef;
-}
-
-.btn_white:hover {
-  background: #dddddd;
-  color: #00aeef;
 }
 
 #navbar {
@@ -11195,6 +11192,62 @@ input {
   height: 320px;
   right: 0;
   background-color: #141430;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 50px;
+  margin-top: 36px;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 36px;
+  margin-top: 20px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-top: 14px;
+}
+
+h4 {
+  font-size: 14px;
+  margin-bottom: 14px;
+  margin-top: 12px;
+}
+
+h5 {
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+#sponsored_doctors {
+  color: #141430;
+  padding: 50px 0;
+}
+
+#sponsored_doctors h3 {
+  text-transform: uppercase;
+}
+
+#sponsored_doctors #slideshow {
+  display: flex;
+}
+
+#sponsored_doctors #slideshow .card {
+  width: calc(100% / 3);
+  min-height: 350px;
+  padding: 20px;
 }
 
 body {
