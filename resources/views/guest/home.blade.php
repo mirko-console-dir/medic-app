@@ -1,10 +1,10 @@
 @extends('layouts.guest.app')
 
 @section('title')
-
+Home
 @endsection
 
 
 @section('content')
-<h1>Homepage -> views.guest.home</h1>
+@include('guest.partials.jumbo_home')
 @endsection
