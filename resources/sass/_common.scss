@@ -1,9 +1,14 @@
-// Container
+// Containers
 
 .container_80 {
     max-width: 1170px;
     width: 80%;
     margin: auto;
+}
+
+[class*="col-"] {
+  padding: 0;
+  margin: 0;
 }
 
 .card{
@@ -60,4 +65,23 @@ button, input{
 
 .h100{
 height: 100%;
+}
+
+// buttons
+.btn_blue{
+  background: map-get($color-map, primary_color_light);
+  color: white;
+  &:hover{
+    background: map-get($color-map, button_blue_hover);
+    color:  white;
+  }
+}
+
+.btn_white{
+    background: white;
+    color:  map-get($color-map, primary_color_light);
+    &:hover{
+      background: map-get($color-map, primary_gray_light);
+      color:  map-get($color-map, primary_color_light);
+    }
 }
