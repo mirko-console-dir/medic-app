@@ -4,7 +4,7 @@ return [
   [
     'name' => 'free',
     'type' => 0,
-    'price' => null,
+    'price' => 0,
     'duration' => null,
   ],
   [
