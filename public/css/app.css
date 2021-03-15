@@ -11211,24 +11211,29 @@ h1 {
 h2 {
   font-size: 36px;
   margin-bottom: 36px;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 h3 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  margin-top: 14px;
+  font-size: 24px;
+  margin-bottom: 24px;
+  margin-top: 18px;
 }
 
 h4 {
-  font-size: 14px;
-  margin-bottom: 14px;
-  margin-top: 12px;
+  font-size: 18px;
+  margin-bottom: 18px;
+  margin-top: 14px;
 }
 
 h5 {
-  font-size: 12px;
-  margin-bottom: 12px;
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+p {
+  font-size: 14px;
+  margin-bottom: 14px;
 }
 
 #sponsored_doctors {
@@ -11236,18 +11241,48 @@ h5 {
   padding: 50px 0;
 }
 
-#sponsored_doctors h3 {
+#sponsored_doctors h3.staff {
   text-transform: uppercase;
 }
 
-#sponsored_doctors #slideshow {
+#slideshow {
   display: flex;
+  flex-direction: row;
 }
 
-#sponsored_doctors #slideshow .card {
+#slideshow i {
+  width: 5%;
+  font-size: 30px;
+  align-self: center;
+  cursor: pointer;
+}
+
+#slideshow .card_container {
+  display: flex;
+  width: 90%;
+}
+
+#slideshow .card_container .card {
+  display: flex;
+  align-items: flex-start;
   width: calc(100% / 3);
   min-height: 350px;
+  border: none;
   padding: 20px;
+  text-align: center;
+}
+
+#slideshow .card_container .card .avatar {
+  width: 150px;
+  height: 150px;
+}
+
+#slideshow .card_container .card .info {
+  margin-bottom: 1px;
+}
+
+#slideshow .card_container .card .presentation {
+  text-align: left;
 }
 
 body {

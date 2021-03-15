@@ -1,7 +1,6 @@
-
-$xsmall: 12px;
-$small: 14px;
-$medium: 20px;
+$xsmall: 14px;
+$small: 18px;
+$medium: 24px;
 $large: 36px;
 $xlarge: 50px;
 
@@ -33,19 +32,50 @@ h5{
     font-size: $xsmall;
     margin-bottom: $xsmall;
 }
+p{
+    font-size: $xsmall;
+    margin-bottom: $xsmall;
+}
 
 #sponsored_doctors{
     color: map-get($color-map, $key:'primary_color_dark');
     padding: 50px 0;
-    h3{
+    h3.staff{
         text-transform: uppercase;
     }
-    #slideshow{
+}
+
+#slideshow{
+    display: flex;
+    flex-direction: row;
+    i{
+        width: 5%;
+        font-size: 30px;
+        align-self: center;
+        cursor: pointer;
+    }
+    .card_container{
         display: flex;
+        width: 90%;
         .card{
+            display: flex;
+            //flex-direction: column;
+            align-items: flex-start;
             width: calc(100% / 3);
             min-height: 350px;
+            border: none;
             padding: 20px;
+            text-align: center;
+            .avatar{
+                width: 150px;    
+                height: 150px;    
+            }
+            .info{
+                margin-bottom: 1px;
+            }
+            .presentation{
+                text-align: left;
+            }
         }
     }
 }

@@ -1997,38 +1997,112 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 module.exports = {
   data: function data() {
     return {
+      show: 3,
+      i: 0,
       profiles: [{
         image: 'img/avatar.png',
-        name: 'Gino Pasticcino',
+        name: 'Massimo',
+        lastname: '1',
         specialization: 'Ginecologo',
-        presentation: 'agif al aviv!'
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
       }, {
         image: 'img/avatar.png',
-        name: 'Gino Pasticcino',
+        name: 'Lupo',
+        lastname: '2',
         specialization: 'Ginecologo',
-        presentation: 'agif al aviv!'
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
       }, {
         image: 'img/avatar.png',
-        name: 'Gino Pasticcino',
+        name: 'Natale',
+        lastname: '3',
         specialization: 'Ginecologo',
-        presentation: 'agif al aviv!'
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
       }, {
         image: 'img/avatar.png',
-        name: 'Gino Pasticcino',
+        name: 'Massimo',
+        lastname: '4',
         specialization: 'Ginecologo',
-        presentation: 'agif al aviv!'
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
       }, {
         image: 'img/avatar.png',
-        name: 'Gino Pasticcino',
+        name: 'Ultimo',
+        lastname: '5',
         specialization: 'Ginecologo',
-        presentation: 'agif al aviv!'
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Massimo',
+        lastname: '6',
+        specialization: 'Ginecologo',
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Ultimo',
+        lastname: '7',
+        specialization: 'Ginecologo',
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Massimo',
+        lastname: '8',
+        specialization: 'Ginecologo',
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Ultimo',
+        lastname: '9',
+        specialization: 'Ginecologo',
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Ultimo',
+        lastname: '10',
+        specialization: 'Ginecologo',
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
       }]
     };
   },
+  methods: {
+    prev: function prev() {
+      var i = this.i;
+      i--;
+
+      if (i < 0) {
+        return this.i = this.profiles.length - this.show;
+      }
+
+      return this.i = i;
+    },
+    next: function next() {
+      var i = this.i;
+      i++;
+
+      if (i > this.profiles.length - this.show) {
+        return this.i = 0;
+      }
+
+      return this.i = i;
+    }
+  },
   mounted: function mounted() {
+    console.log(this.profiles.length);
     console.log('Component mounted.');
   }
 };
@@ -37743,29 +37817,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container_100 w_100" },
-    _vm._l(_vm.profiles, function(profile) {
-      return _c("div", { staticClass: "card" }, [
-        _c("img", {
-          staticClass: "avatar",
-          attrs: { src: profile.image, alt: "profile doctor image" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "name" }, [_vm._v(_vm._s(profile.name))]),
-        _vm._v(" "),
-        _c("div", { staticClass: "specialization" }, [
-          _vm._v(_vm._s(profile.specialization))
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "presentation" }, [
-          _vm._v(_vm._s(profile.presentation))
+  return _c("div", { attrs: { id: "slideshow" } }, [
+    _c("i", { staticClass: "fa fa-chevron-left", on: { click: _vm.prev } }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "card_container" },
+      _vm._l(_vm.profiles.slice(_vm.i, _vm.i + _vm.show), function(
+        profile,
+        index
+      ) {
+        return _c("div", { staticClass: "card" }, [
+          _c("img", {
+            staticClass: "info avatar",
+            attrs: { src: profile.image, alt: "profile doctor image" }
+          }),
+          _vm._v(" "),
+          _c("h4", { staticClass: "info name" }, [
+            _vm._v(
+              _vm._s(profile.sex === "m" ? "Dott." : "Dott.ssa") +
+                " " +
+                _vm._s(profile.name) +
+                " "
+            ),
+            _c("br"),
+            _vm._v(" " + _vm._s(profile.lastname))
+          ]),
+          _vm._v(" "),
+          _c("h4", { staticClass: "info specialization" }, [
+            _vm._v(_vm._s(profile.specialization))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "info presentation" }, [
+            _vm._v(_vm._s(profile.presentation))
+          ])
         ])
-      ])
-    }),
-    0
-  )
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("i", { staticClass: "fa fa-chevron-right", on: { click: _vm.next } })
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
