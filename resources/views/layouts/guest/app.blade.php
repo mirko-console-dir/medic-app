@@ -28,7 +28,7 @@
 
 <body>
 
-    @include('layouts.guest.partials.navbar')
+    {{-- @include('layouts.guest.partials.navbar') --}}
     @yield('content')
     @include('layouts.guest.partials.footer')
 
