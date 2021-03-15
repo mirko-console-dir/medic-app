@@ -3,24 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 
-class DashboardController extends Controller
+
+class DoctorController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        
-    }
     /**
      * Display a listing of the resource.
      *
@@ -28,10 +18,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-
-        $user = Auth::user();
-        // dd($user);
-        return view('dashboard.dashboard', compact('user'));
+        //
     }
 
     /**
@@ -72,9 +59,11 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $user, $id)
     {
-
+        $user = User::find($id);
+        // dd($user);
+        return view('dashboard.doctor.edit', compact('user'));
     }
 
     /**
@@ -84,8 +73,32 @@ class DashboardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
+        // dd($request);
+
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'lastname' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'register_number_doc' => 'required',
+            'cv_img' => '',
+            'phone_number' => 'required',
+            'profile_img' => '',
+        ]);
+
+        // dd($validatedData);
+
+        $user = Auth::user();
+        
+        $user->update($validatedData);
+        // dd($user);
+
+        return redirect()->route('dashboard.');
+
+        
     }
 
     /**

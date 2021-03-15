@@ -6,45 +6,36 @@
 
         @role('doctor')
 
-        <div class="col-md-3">
-            <ul class="list-unstyled">
-                <li><a href="">Edit Profile</a></li>
-                <li><a href="">My Messages</a></li>
-                <li><a href="">My Reviews</a></li>
-                <li><a href="">Analytics</a></li>
-
-
-            </ul>
-        </div>
+        @include('dashboard.partials.sidebar')
         <div class="col-md-9">
             <div class="my_profile d_flex_column">
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
                     <h3>Hi {{$user->name}} {{$user->lastname}}!</h3>
-                    <a href=""><i class="fas fa-marker"></i></a>
+                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
                     <h3>{{$user->email}}</h3>
-                    <a href=""><i class="fas fa-marker"></i></a>
+                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
                     <h3>{{$user->address}}</h3>
-                    <a href=""><i class="fas fa-marker"></i></a>
+                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
                     <h3>{{$user->register_number_doc}}</h3>
-                    <a href=""><i class="fas fa-marker"></i></a>
+                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
                     <h3>{{$user->cv_img}}</h3>
-                    <a href=""><i class="fas fa-marker"></i></a>
+                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
                     <h3>{{$user->profile_img}}</h3>
-                    <a href=""><i class="fas fa-marker"></i></a>
+                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
                 <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
                     <h3>{{$user->phone_number}}</h3>
-                    <a href=""><i class="fas fa-marker"></i></a>
+                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
                 </div>
             </div>
 
