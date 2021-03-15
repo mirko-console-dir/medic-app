@@ -7,4 +7,10 @@ Home
 
 @section('content')
 @include('guest.partials.jumbo_home')
+
+<main>
+  @include('guest.partials.boxes_features_home')
+
+</main>
+
 @endsection

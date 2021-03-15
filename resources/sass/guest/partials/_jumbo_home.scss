@@ -1,5 +1,5 @@
 #jumbo_home{
-  height: 500px;
+  height: 100vh;
   background: rgb(2,61,113);
   background: linear-gradient(180deg, rgba(2,61,113,1) 0%, rgba(74,149,217,1) 100%);
   .overlay{
@@ -8,7 +8,7 @@
     background-position: 100% 130%;
     background-repeat: no-repeat;
     background-size: calc(1000px * 0.7) calc(510px * 0.7);
-    
+
     .container_80{
       height: calc(100% - 80px);
       .searchbar{
@@ -34,7 +34,7 @@
             &:hover{
               background-color: map-get($color-map, element_color_dark);
             }
-          } 
+          }
         }
       }
     }
