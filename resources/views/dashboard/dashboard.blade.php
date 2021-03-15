@@ -1,73 +1,117 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container d_flex" id="dashboard">
 
-        @role('doctor')
+    @role('doctor')
 
-        @include('dashboard.partials.sidebar')
-        <div class="col-md-9">
-            <div class="my_profile d_flex_column">
-                <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
-                    <h3>Hi {{$user->name}} {{$user->lastname}}!</h3>
-                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
-                </div>
-                <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
-                    <h3>{{$user->email}}</h3>
-                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
-                </div>
-                <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
-                    <h3>{{$user->address}}</h3>
-                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
-                </div>
-                <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
-                    <h3>{{$user->register_number_doc}}</h3>
-                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
-                </div>
-                <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
-                    <img src="{{ asset('storage/' . $user->cv_img) }}" alt="">
-                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
-                </div>
-                <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
-                    <img src="{{ asset('storage/' . $user->profile_img) }}" alt="">
-                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
-                </div>
-                <div class="detail d_flex" style="justify-content: space-between; align-items: center;">
-                    <h3>{{$user->phone_number}}</h3>
-                    <a href="{{route('dashboard.doctors.edit', $user->id)}}"><i class="fas fa-pen"></i></a>
+    @include('dashboard.partials.sidebar')
+    <div class="d_flex_column detail" id="account">
+        <div class="my_profile d_flex_column">
+            <div class="detail d_flex_column">
+                <h2>Profile information</h2>
+
+                <div class="detail d_flex info">
+                    <img src="{{ asset('storage/' . $user->profile_img) }}" style="width:200px" alt="">
+
+                    <div class="d_flex_column">
+                        <h4>Full Name: {{$user->name}} {{$user->lastname}}</h4>
+                        <h4>Email: {{$user->email}}</h4>
+                    </div>
                 </div>
             </div>
 
+            <div class="detail d_flex_column">
+                <h2>Account information</h2>
+                <h4>Address: {{$user->address}}</h4>
+                <h4>Register Doctor Number: {{$user->register_number_doc}}</h4>
+                <h4>Phone Number: {{$user->phone_number}}</h4>
+            </div>
+
+            <div class="detail d_flex_column">
+                <h2>Curriculum Vitae</h2>
+                @if($user->cv_img == "")
+                <h4>Curriculum Vitae not found</h4>
+                @else
+                <iframe src="{{asset('storage/' . $user->cv_img)}}" frameborder="0" width="500px" height="400px" allow="fullscreen" scroll="no"></iframe>
+            </div>
+            @endif
+
+
+            <div class="crud d_flex">
+
+
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#destroy-{{ $user->id }}"><i class="fas fa-trash"></i></button>
+                {{-- Start Add Modal -  --}}
+                <div class="modal fade" id="destroy-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="post-destroy-{{ $user->id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="#destroy-{{ $user->id }} title">Delete Profile</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                &#x1F6A8; This action is IRREVERSIBLE. <br> Are you sure you want to delete this Profile?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <form action="{{ route('dashboard.doctors.destroy', $user->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- End Add Model --}}
+
+                <button class="btn btn-warning"><a href="{{route('dashboard.doctors.edit', $user->id)}}"> <i class="fas fa-pencil-alt"></i></a></button>
+
+
+            </div>
+
+            <!-- ModalDelete Crud -->
+
         </div>
-        @endrole
 
 
 
 
-
-
-
-
-        @role('admin')
-        <div class="col-md-3">
-            <ul class="list-unstyled">
-                <li><a href="">Doctors</a></li>
-                <li><a href="">Clinics</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Sponsorships</a></li>
-                <li><a href="">Specializations</a></li>
-                <li><a href="">Messages</a></li>
-                <li><a href="">Reviews</a></li>
-                <li><a href="">Analytics</a></li>
-
-            </ul>
-        </div>
-        <div class="col-md-9">
-            @yield('content')
-        </div>
-        @endrole
 
     </div>
+
+</div>
+@endrole
+
+
+
+
+
+
+
+
+@role('admin')
+<div class="col-md-3">
+    <ul class="list-unstyled">
+        <li><a href="">Doctors</a></li>
+        <li><a href="">Clinics</a></li>
+        <li><a href="">Services</a></li>
+        <li><a href="">Sponsorships</a></li>
+        <li><a href="">Specializations</a></li>
+        <li><a href="">Messages</a></li>
+        <li><a href="">Reviews</a></li>
+        <li><a href="">Analytics</a></li>
+
+    </ul>
+</div>
+<div class="col-md-9">
+    @yield('content')
+</div>
+@endrole
+
+</div>
 </div>
 @endsection

@@ -91,7 +91,7 @@ class DoctorController extends Controller
             'cv_img' => '',
             'phone_number' => 'required',
             'profile_img' => '',
-            'cv_img' => 'nullable | image ',
+            'cv_img' => 'nullable | file ',
             'profile_img' => 'nullable | image '
 
         ]);
@@ -124,6 +124,8 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('dashboard.');
     }
 }
