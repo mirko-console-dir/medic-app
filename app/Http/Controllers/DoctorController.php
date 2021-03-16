@@ -130,6 +130,8 @@ class DoctorController extends Controller
     public function destroy($slug)
     {
         $user = User::where('slug', $slug)->first();
+        Storage::delete('cv_img', $user->cv_img);
+        Storage::delete('profile_img', $user->profile_img);
         $user->delete();
         return redirect()->route('dashboard.');
     }
