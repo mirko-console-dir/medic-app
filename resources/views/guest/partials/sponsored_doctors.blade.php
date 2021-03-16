@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8 col-md-12 col-sm-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <slideshow></slideshow>   
             </div>
             <div class="col-lg-5 col-md-12 col-sm-12"></div>

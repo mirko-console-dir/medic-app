@@ -2,7 +2,7 @@
     <div id="slideshow">
         <i class="fa fa-chevron-left" @click="prev"></i>
         <div class="card_container">
-            <div class="card" v-for="(profile, index) in profiles.slice(i,i+show)">
+            <div class="card" :style="{width: cardWidth}" v-for="(profile, index) in profiles.slice(i,i+show)">
                 <img class="info avatar" :src="profile.image" alt="profile doctor image">
                 <h4 class="info name">{{profile.sex === 'm'?'Dott.':'Dott.ssa'}} {{profile.name}} <br> {{profile.lastname}}</h4>
                 <h4 class="info specialization">{{profile.specialization}}</h4>
@@ -12,13 +12,24 @@
         <i class="fa fa-chevron-right" @click="next"></i>
     </div>
 </template>
-
 <script>
+
 module.exports = {
     data: function () {
         return {
-            show: 3,
-            i: 0,
+            
+            show: 4,
+            size: {
+                sm: 1,
+                md: 2,
+                lg: 4
+            },        // card mostrate contemporaneamente
+            i: 0,           // puntatore nell'array profiles
+            window: {       // dichiarazione iniziale per la variabile window
+                width: 0,
+                height: 0,
+            },
+            cardWidth: 1,
             profiles: [
                 {
                 image: 'img/avatar.png',
@@ -103,7 +114,7 @@ module.exports = {
             ],
         }
     },
-
+   
     methods: {
         prev: function() {
             let i = this.i;
@@ -115,6 +126,7 @@ module.exports = {
             
         },
         next: function() {
+            console.log(this.$vssWidth);
             let i = this.i;
             i++;
             if(i > this.profiles.length - this.show){
@@ -122,13 +134,42 @@ module.exports = {
             }
             return this.i = i;
         },
+        /** Shows the window width and height 
+        *   
+        */
+        handleResize: function() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
+        },
+        cardMediaQuery: function() {
+            if(window.innerWidth < 991 && window.innerWidth > 768) {
+                this.show = this.size.md;
+            }
+            else if(window.innerWidth  > 992){
+                this.show = this.size.lg;
+            }
+            else{
+                this.show = this.size.sm;
+            }
+            this.cardWidth = (1/this.show);
+        }
+
+
+    },
+    created() {
+        window.addEventListener('resize', this.handleResize);
+        window.addEventListener('resize', this.cardMediaQuery);
+        this.handleResize();
+        this.cardMediaQuery();
 
     },
     mounted() {
-        console.log(this.profiles.length);
-        console.log('Component mounted.')
-    }
+        console.log('Component Slideshow');
+    },
+
+    distroyed() {
+        window.removeEventListener('resize', this.handleResize);
+        window.removeEventListener('resize', this.cardMediaQuery);
+    },
 }
 </script>
-
-

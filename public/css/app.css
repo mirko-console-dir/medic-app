@@ -11372,7 +11372,6 @@ input {
 #slideshow .card_container .card {
   display: flex;
   align-items: flex-start;
-  width: calc(100% / 3);
   min-height: 350px;
   border: none;
   padding: 20px;

@@ -2000,12 +2000,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 module.exports = {
   data: function data() {
     return {
-      show: 3,
+      show: 4,
+      size: {
+        sm: 1,
+        md: 2,
+        lg: 4
+      },
+      // card mostrate contemporaneamente
       i: 0,
+      // puntatore nell'array profiles
+      window: {
+        // dichiarazione iniziale per la variabile window
+        width: 0,
+        height: 0
+      },
+      cardWidth: 1,
       profiles: [{
         image: 'img/avatar.png',
         name: 'Massimo',
@@ -2091,6 +2103,7 @@ module.exports = {
       return this.i = i;
     },
     next: function next() {
+      console.log(this.$vssWidth);
       var i = this.i;
       i++;
 
@@ -2099,11 +2112,39 @@ module.exports = {
       }
 
       return this.i = i;
+    },
+
+    /** Shows the window width and height 
+    *   
+    */
+    handleResize: function handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight;
+    },
+    cardMediaQuery: function cardMediaQuery() {
+      if (window.innerWidth < 991 && window.innerWidth > 768) {
+        this.show = this.size.md;
+      } else if (window.innerWidth > 992) {
+        this.show = this.size.lg;
+      } else {
+        this.show = this.size.sm;
+      }
+
+      this.cardWidth = 1 / this.show;
     }
   },
+  created: function created() {
+    window.addEventListener('resize', this.handleResize);
+    window.addEventListener('resize', this.cardMediaQuery);
+    this.handleResize();
+    this.cardMediaQuery();
+  },
   mounted: function mounted() {
-    console.log(this.profiles.length);
-    console.log('Component mounted.');
+    console.log('Component Slideshow');
+  },
+  distroyed: function distroyed() {
+    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('resize', this.cardMediaQuery);
   }
 };
 
@@ -37827,31 +37868,35 @@ var render = function() {
         profile,
         index
       ) {
-        return _c("div", { staticClass: "card" }, [
-          _c("img", {
-            staticClass: "info avatar",
-            attrs: { src: profile.image, alt: "profile doctor image" }
-          }),
-          _vm._v(" "),
-          _c("h4", { staticClass: "info name" }, [
-            _vm._v(
-              _vm._s(profile.sex === "m" ? "Dott." : "Dott.ssa") +
-                " " +
-                _vm._s(profile.name) +
-                " "
-            ),
-            _c("br"),
-            _vm._v(" " + _vm._s(profile.lastname))
-          ]),
-          _vm._v(" "),
-          _c("h4", { staticClass: "info specialization" }, [
-            _vm._v(_vm._s(profile.specialization))
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "info presentation" }, [
-            _vm._v(_vm._s(profile.presentation))
-          ])
-        ])
+        return _c(
+          "div",
+          { staticClass: "card", style: { width: _vm.cardWidth } },
+          [
+            _c("img", {
+              staticClass: "info avatar",
+              attrs: { src: profile.image, alt: "profile doctor image" }
+            }),
+            _vm._v(" "),
+            _c("h4", { staticClass: "info name" }, [
+              _vm._v(
+                _vm._s(profile.sex === "m" ? "Dott." : "Dott.ssa") +
+                  " " +
+                  _vm._s(profile.name) +
+                  " "
+              ),
+              _c("br"),
+              _vm._v(" " + _vm._s(profile.lastname))
+            ]),
+            _vm._v(" "),
+            _c("h4", { staticClass: "info specialization" }, [
+              _vm._v(_vm._s(profile.specialization))
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "info presentation" }, [
+              _vm._v(_vm._s(profile.presentation))
+            ])
+          ]
+        )
       }),
       0
     ),
@@ -50271,8 +50316,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
