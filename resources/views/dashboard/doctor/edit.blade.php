@@ -67,12 +67,11 @@
 
                 <label for="prefix_id">Country prefix</label>
                 <select name="prefix_id" id="prefix_id">
-                <option value="NULL"></option>
                     @foreach($prefixes as $prefix)
                     <option value="{{$prefix->id}}" name="prefix_id">{{$prefix->name}} {{$prefix->dial_code}}</option>
                     @endforeach
                 </select>
-
+                <br>
 
 
                 <!-- Phone_number -->
