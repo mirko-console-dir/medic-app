@@ -11281,6 +11281,7 @@ input {
   background-color: #141430;
 }
 
+<<<<<<< HEAD
 footer {
   height: 350px;
   background-color: #141430;
@@ -11384,6 +11385,97 @@ footer .container_80 .second_row .col-lg-5 .social {
 
 footer .container_80 .second_row .col-lg-5 .social i {
   margin-right: 10px;
+=======
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 50px;
+  margin-bottom: 50px;
+  margin-top: 36px;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 36px;
+  margin-top: 24px;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 24px;
+  margin-top: 18px;
+}
+
+h4 {
+  font-size: 18px;
+  margin-bottom: 18px;
+  margin-top: 14px;
+}
+
+h5 {
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+p {
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+#sponsored_doctors {
+  color: #141430;
+  padding: 50px 0;
+}
+
+#sponsored_doctors h3.staff {
+  text-transform: uppercase;
+}
+
+#slideshow {
+  display: flex;
+  flex-direction: row;
+}
+
+#slideshow i {
+  width: 5%;
+  font-size: 30px;
+  align-self: center;
+  cursor: pointer;
+}
+
+#slideshow .card_container {
+  display: flex;
+  width: 90%;
+}
+
+#slideshow .card_container .card {
+  display: flex;
+  align-items: flex-start;
+  width: calc(100% / 3);
+  min-height: 350px;
+  border: none;
+  padding: 20px;
+  text-align: center;
+}
+
+#slideshow .card_container .card .avatar {
+  width: 150px;
+  height: 150px;
+}
+
+#slideshow .card_container .card .info {
+  margin-bottom: 1px;
+}
+
+#slideshow .card_container .card .presentation {
+  text-align: left;
+>>>>>>> AM-sponsored_doctors
 }
 
 body {

@@ -1979,6 +1979,136 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/slideshow.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/slideshow.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+module.exports = {
+  data: function data() {
+    return {
+      show: 3,
+      i: 0,
+      profiles: [{
+        image: 'img/avatar.png',
+        name: 'Massimo',
+        lastname: '1',
+        specialization: 'Ginecologo',
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Lupo',
+        lastname: '2',
+        specialization: 'Ginecologo',
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Natale',
+        lastname: '3',
+        specialization: 'Ginecologo',
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Massimo',
+        lastname: '4',
+        specialization: 'Ginecologo',
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Ultimo',
+        lastname: '5',
+        specialization: 'Ginecologo',
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Massimo',
+        lastname: '6',
+        specialization: 'Ginecologo',
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Ultimo',
+        lastname: '7',
+        specialization: 'Ginecologo',
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Massimo',
+        lastname: '8',
+        specialization: 'Ginecologo',
+        sex: 'm',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Ultimo',
+        lastname: '9',
+        specialization: 'Ginecologo',
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }, {
+        image: 'img/avatar.png',
+        name: 'Ultimo',
+        lastname: '10',
+        specialization: 'Ginecologo',
+        sex: 'f',
+        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+      }]
+    };
+  },
+  methods: {
+    prev: function prev() {
+      var i = this.i;
+      i--;
+
+      if (i < 0) {
+        return this.i = this.profiles.length - this.show;
+      }
+
+      return this.i = i;
+    },
+    next: function next() {
+      var i = this.i;
+      i++;
+
+      if (i > this.profiles.length - this.show) {
+        return this.i = 0;
+      }
+
+      return this.i = i;
+    }
+  },
+  mounted: function mounted() {
+    console.log(this.profiles.length);
+    console.log('Component mounted.');
+  }
+};
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -37672,6 +37802,70 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/slideshow.vue?vue&type=template&id=4b348b73&":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/slideshow.vue?vue&type=template&id=4b348b73& ***!
+  \************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "slideshow" } }, [
+    _c("i", { staticClass: "fa fa-chevron-left", on: { click: _vm.prev } }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "card_container" },
+      _vm._l(_vm.profiles.slice(_vm.i, _vm.i + _vm.show), function(
+        profile,
+        index
+      ) {
+        return _c("div", { staticClass: "card" }, [
+          _c("img", {
+            staticClass: "info avatar",
+            attrs: { src: profile.image, alt: "profile doctor image" }
+          }),
+          _vm._v(" "),
+          _c("h4", { staticClass: "info name" }, [
+            _vm._v(
+              _vm._s(profile.sex === "m" ? "Dott." : "Dott.ssa") +
+                " " +
+                _vm._s(profile.name) +
+                " "
+            ),
+            _c("br"),
+            _vm._v(" " + _vm._s(profile.lastname))
+          ]),
+          _vm._v(" "),
+          _c("h4", { staticClass: "info specialization" }, [
+            _vm._v(_vm._s(profile.specialization))
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "info presentation" }, [
+            _vm._v(_vm._s(profile.presentation))
+          ])
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c("i", { staticClass: "fa fa-chevron-right", on: { click: _vm.next } })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -49860,6 +50054,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('slideshow', __webpack_require__(/*! ./components/slideshow.vue */ "./resources/js/components/slideshow.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49986,6 +50181,78 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/slideshow.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/slideshow.vue ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _slideshow_vue_vue_type_template_id_4b348b73___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slideshow.vue?vue&type=template&id=4b348b73& */ "./resources/js/components/slideshow.vue?vue&type=template&id=4b348b73&");
+/* harmony import */ var _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slideshow.vue?vue&type=script&lang=js& */ "./resources/js/components/slideshow.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _slideshow_vue_vue_type_template_id_4b348b73___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _slideshow_vue_vue_type_template_id_4b348b73___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/slideshow.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/slideshow.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/slideshow.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./slideshow.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/slideshow.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/slideshow.vue?vue&type=template&id=4b348b73&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/slideshow.vue?vue&type=template&id=4b348b73& ***!
+  \******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_template_id_4b348b73___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./slideshow.vue?vue&type=template&id=4b348b73& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/slideshow.vue?vue&type=template&id=4b348b73&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_template_id_4b348b73___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_template_id_4b348b73___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -50005,12 +50272,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 =======
 __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 >>>>>>> TF-NavbarJumbo
+=======
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> AM-sponsored_doctors
 
 
 /***/ })
