@@ -11156,6 +11156,7 @@ input {
   background-color: #141430;
   height: 100px;
   width: 80%;
+  max-width: 1200px;
   margin: auto;
   margin-bottom: 10px;
   border-radius: 7px;
@@ -11254,7 +11255,7 @@ input {
   background-image: url("/img/doc_jumbo.png");
   background-repeat: no-repeat;
   background-size: calc(0.6 * 790px) calc(0.6 * 1000px);
-  background-position: 75% 86%;
+  background-position: 80% 86%;
 }
 
 #jumbo_home .container_searchbar {
@@ -11523,7 +11524,7 @@ footer .container_80 .second_row .col-lg-5 .social i {
 
 @media (min-width: 1700px) {
   #jumbo_home .overlay_doc_image {
-    background-size: calc(0.9 * 790px) calc(0.9 * 1000px);
+    background-size: calc(0.8 * 790px) calc(0.8 * 1000px);
     background-position: 80% 100%;
   }
 
