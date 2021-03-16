@@ -20,7 +20,8 @@ Auth::routes();
 
 // Guest/PageController
 
-Route::get('/', 'Guest\PageController@index');
+Route::get('/', 'Guest\PageController@index')->name('home');
+Route::get('/search', 'Guest\PageController@search')->name('search');
 
 // Dashboard
 
