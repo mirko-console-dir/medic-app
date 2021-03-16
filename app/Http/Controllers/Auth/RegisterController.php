@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -49,6 +50,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        //dd($data['name']);
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
@@ -66,16 +69,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $slug = $data['name'] . '-' . $data['lastname'];
+        
         $user =  User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'register_number_doc' => $data['register_number_doc'],
+            'slug' => $slug,
         ]);
+    
+        //dd($user);
 
         $user->assignRole('doctor');
-        $user->givePermissionTo(['edit_doctor', 'show_doctor', 'remove_doctor']);
+        $user->givePermissionTo(['edit_doctor', 'show_doctor', 'remove_doctor',]);
 //assign role to user
 
         // dd($user); 
