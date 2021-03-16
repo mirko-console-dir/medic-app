@@ -15,7 +15,7 @@
         <li class="link">
 
           {{-- INSERIRE {{route('nomehome')}} --}}
-          <a href="/">
+          <a href="{{route('home')}}">
             <i class="fas fa-caret-right"></i>
             Home
             <div class="hr">
@@ -25,7 +25,7 @@
         </li>
 
         <li class="link">
-          <a href="#">
+          <a href="{{route('search')}}">
             <i class="fas fa-caret-right"></i>
             Search
             <div class="hr">
