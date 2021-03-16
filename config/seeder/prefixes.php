@@ -344,7 +344,7 @@ return [
     ],
     [
     "name" => "Falkland Islands (Malvinas)",
-    "dial_code" => "+500",
+    "dial_code" => "+5+",
     "code" => "FK"
     ],
     [
@@ -1009,7 +1009,7 @@ return [
     ],
     [
     "name" => "South Georgia and the South Sandwich Islands",
-    "dial_code" => "+500",
+    "dial_code" => "+5+",
     "code" => "GS"
     ],
     [
