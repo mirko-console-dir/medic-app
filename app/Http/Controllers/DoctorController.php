@@ -61,9 +61,10 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user, $id)
+    public function edit(User $user, $slug)
     {
-        $user = User::find($id);
+        //dd($slug);
+        $user = User::where('slug', $slug)->first();
         // dd($user);
         return view('dashboard.doctor.edit', compact('user'));
     }
@@ -75,12 +76,13 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user, $slug)
     {
         // dd($request->all());
         Storage::delete('cv_img', $user->cv_img);
         Storage::delete('profile_img', $user->profile_img);
-
+        $slug = $request->name . '-' . $request ->lastname;
+        //dd($slug);
 
         $validatedData = $request->validate([
             'name' => 'required',
@@ -92,7 +94,8 @@ class DoctorController extends Controller
             'phone_number' => 'required',
             'profile_img' => '',
             'cv_img' => 'nullable | file ',
-            'profile_img' => 'nullable | image '
+            'profile_img' => 'nullable | image ',
+            // 'slug' => 'required'
 
         ]);
 
@@ -101,6 +104,8 @@ class DoctorController extends Controller
         $cv_img = Storage::put('cv_img', $request->cv_img);
         $profile_img = Storage::put('profile_img', $request->profile_img);
 
+        // $user = User::where('slug', $slug)->first();
+        $validatedData['slug'] = $slug;
         $validatedData['cv_img'] = $cv_img;
         $validatedData['profile_img'] = $profile_img;
 
@@ -109,7 +114,7 @@ class DoctorController extends Controller
         $user = Auth::user();
 
         $user->update($validatedData);
-        // dd($user);
+        // dd($slug);
 
         return redirect()->route('dashboard.');
 
@@ -122,9 +127,9 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        $user = User::find($id);
+        $user = User::where('slug', $slug)->first();
         $user->delete();
         return redirect()->route('dashboard.');
     }

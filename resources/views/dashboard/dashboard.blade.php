@@ -41,13 +41,13 @@
             <div class="crud d_flex">
 
 
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#destroy-{{ $user->id }}"><i class="fas fa-trash"></i></button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#destroy-{{ $user->slug }}"><i class="fas fa-trash"></i></button>
                 {{-- Start Add Modal -  --}}
-                <div class="modal fade" id="destroy-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="post-destroy-{{ $user->id }}" aria-hidden="true">
+                <div class="modal fade" id="destroy-{{ $user->slug }}" tabindex="-1" role="dialog" aria-labelledby="post-destroy-{{ $user->slug }}" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="#destroy-{{ $user->id }} title">Delete Profile</h5>
+                                <h5 class="modal-title" id="#destroy-{{ $user->slug }} title">Delete Profile</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <form action="{{ route('dashboard.doctors.destroy', $user->id)}}" method="post">
+                                <form action="{{ route('dashboard.doctors.destroy', $user->slug)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">Delete</button>
@@ -68,7 +68,7 @@
                 </div>
                 {{-- End Add Model --}}
 
-                <button class="btn btn-warning"><a href="{{route('dashboard.doctors.edit', $user->id)}}"> <i class="fas fa-pencil-alt"></i></a></button>
+                <button class="btn btn-warning"><a href="{{route('dashboard.doctors.edit', $user->slug)}}"> <i class="fas fa-pencil-alt"></i></a></button>
 
 
             </div>

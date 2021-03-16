@@ -15,7 +15,7 @@
                 </ul>
             </div><br />
             @endif
-            <form method="post" action="{{ route('dashboard.doctors.update', $user->id) }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('dashboard.doctors.update', $user->slug) }}" enctype="multipart/form-data">
 
                 @METHOD('PATCH')
                 @csrf
