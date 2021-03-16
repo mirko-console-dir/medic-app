@@ -23,13 +23,13 @@ module.exports = {
                 sm: 1,
                 md: 2,
                 lg: 4
-            },        // card mostrate contemporaneamente
+            },              // card mostrate contemporaneamente
+            cardWidth: 1,   // larghezza card in percentuale 
             i: 0,           // puntatore nell'array profiles
             window: {       // dichiarazione iniziale per la variabile window
                 width: 0,
                 height: 0,
             },
-            cardWidth: 1,
             profiles: [
                 {
                 image: 'img/avatar.png',
@@ -126,7 +126,6 @@ module.exports = {
             
         },
         next: function() {
-            console.log(this.$vssWidth);
             let i = this.i;
             i++;
             if(i > this.profiles.length - this.show){
@@ -153,7 +152,6 @@ module.exports = {
             }
             this.cardWidth = (1/this.show);
         }
-
 
     },
     created() {
