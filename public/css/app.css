@@ -11141,6 +11141,7 @@ input {
 
 #dashboard #account .info img {
   margin-right: 40px;
+  width: 200px;
 }
 
 #dashboard .crud button {

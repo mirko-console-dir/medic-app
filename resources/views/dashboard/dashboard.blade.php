@@ -15,7 +15,7 @@
                 @if($user->profile_img == '')
                 <img src="{{asset('img/user-default.jpg')}}" alt="">
                 @else
-                    <img src="{{ asset('storage/' . $user->profile_img)}}" style="width:200px" alt="">
+                    <img src="{{ asset('storage/' . $user->profile_img)}}" alt="">
                 @endif
                     <div class="d_flex_column">
                         <h4>Full Name: {{$user->name}} {{$user->lastname}}</h4>
@@ -28,7 +28,7 @@
                 <h2>Account information</h2>
                 <h4>Address: {{$user->address}}</h4>
                 <h4>Register Doctor Number: {{$user->register_number_doc}}</h4>
-                <h4>Phone Number: {{$user->phone_number}}</h4>
+                 <h4>Phone Number:{{$user->prefix_id}} {{$user->phone_number}}</h4>
             </div>
 
             <div class="detail d_flex_column">
