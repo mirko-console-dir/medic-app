@@ -8,7 +8,7 @@
       <div class="col-lg-4">
         <div class="details_footer d_flex_center">
           <p class="title_footer"> Vestibulum dapibus <br> mauris nec malesuada <br> fames ac tupis velit </p>
-          <a href=""class="buttons btn_blue">View more details</a>
+          <a href="" class="buttons btn_blue">View more details</a>
         </div>
       </div>
 
@@ -62,11 +62,11 @@
 
       <div class="col-lg-5">
         <div class="social d_flex_center">
-          <i class="fab fa-facebook-square"></i>
-          <i class="fab fa-twitter-square"></i>
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-youtube"></i>
-          <i class="fab fa-linkedin"></i>
+        <a href=""> <i class="fab fa-facebook-square"></i> </a>
+        <a href=""> <i class="fab fa-twitter-square"></i> </a>
+        <a href=""> <i class="fab fa-instagram"></i> </a>
+        <a href=""> <i class="fab fa-youtube"></i> </a>
+        <a href=""> <i class="fab fa-linkedin"></i> </a>
         </div>
       </div>
     </div>

@@ -11410,7 +11410,7 @@ footer .container_80 .first_row .col-lg-4 .details_footer a {
 }
 
 footer .container_80 .first_row .col-lg-4 .details_footer a:hover {
-  color: #313131;
+  background-color: #313131;
 }
 
 footer .container_80 .first_row .col-lg-3 {
@@ -11429,7 +11429,7 @@ footer .container_80 .first_row .col-lg-3 .links_footer div {
 
 footer .container_80 .first_row .col-lg-3 .links_footer .fa-chevron-right {
   margin-right: 15px;
-  margin-left: 20px;
+  margin-left: 25px;
 }
 
 footer .container_80 .first_row .col-lg-3 .links_footer a {
@@ -11475,6 +11475,7 @@ footer .container_80 .second_row .col-lg-5 .social {
 }
 
 footer .container_80 .second_row .col-lg-5 .social i {
+  color: #00aeef;
   margin-right: 10px;
 }
 
