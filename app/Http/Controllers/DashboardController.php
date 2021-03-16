@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Prefix;
 
 
 class DashboardController extends Controller
@@ -26,12 +27,12 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Prefix $prefix)
     {
-
+        $prefixes = Prefix::all();
         $user = Auth::user();
         // dd($user);
-        return view('dashboard.dashboard', compact('user'));
+        return view('dashboard.dashboard', compact('user','prefixes'));
     }
 
     /**

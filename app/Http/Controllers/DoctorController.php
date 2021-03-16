@@ -120,7 +120,7 @@ class DoctorController extends Controller
 
         $user->update($validatedData);
         // dd($slug);
-        dd($user);
+        // dd($user);
         return redirect()->route('dashboard.');
 
         
