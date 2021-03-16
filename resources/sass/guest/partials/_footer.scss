@@ -28,7 +28,7 @@ footer {
           & a {
             @include button();
             &:hover {
-              color: map-get($color-map, primary_gray_dark);
+              background-color: map-get($color-map, primary_gray_dark);
             }
           }
         }
@@ -51,7 +51,7 @@ footer {
             
           .fa-chevron-right {
             margin-right: 15px;
-            margin-left: 20px;
+            margin-left: 25px;
           }
           
           a {
@@ -102,6 +102,7 @@ footer {
         .social {
           width: 95%;
           i {
+            color: #00aeef;
             margin-right: 10px;
         
           }
