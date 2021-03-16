@@ -9,17 +9,25 @@
     background-image: url("/img/doc_jumbo.png");
     background-repeat: no-repeat;
     background-size: calc(0.6 * 790px) calc(0.6 * 1000px);
-    background-position: 75% 75%;
+    background-position: 75% 86%;
   }
   .container_searchbar{
     height: 100%;
     width: 80%;
     margin: auto;
     position: relative;
+    position: absolute;
+    top: 38%;
+    left: 10%;
+    .text_jumbo{
+      color: white;
+      // margin: auto;
+      h2{
+        font-size: 50px;
+      }
+    }
     form{
-      position: absolute;
-      top: 38%;
-      left: 5%;
+
       input{
         width: 75%;
         height: 45px;
