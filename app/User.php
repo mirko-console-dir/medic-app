@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name', 'lastname', 'email', 'password', 'address', 'register_number_doc', 'cv_img', 'profile_img', 'phone_number', 'slug'
     ];
 
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
+
     /**
      * The attributes that should be hidden for arrays.
      *
