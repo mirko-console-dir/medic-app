@@ -12,8 +12,11 @@
                 <h2>Profile information</h2>
 
                 <div class="detail d_flex info">
-                    <img src="{{ asset('storage/' . $user->profile_img) }}" style="width:200px" alt="">
-
+                @if($user->profile_img == '')
+                <img src="{{asset('img/user-default.jpg')}}" alt="">
+                @else
+                    <img src="{{ asset('storage/' . $user->profile_img)}}" style="width:200px" alt="">
+                @endif
                     <div class="d_flex_column">
                         <h4>Full Name: {{$user->name}} {{$user->lastname}}</h4>
                         <h4>Email: {{$user->email}}</h4>
