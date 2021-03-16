@@ -8,15 +8,21 @@
 // Common
 @import 'common';
 
-//  ADMIN
+/***************************
+*********  ADMIN  **********
+****************************/
 
 @import 'admin/dashboard';
 
-// DOCTOR
+/***************************
+********  DOCTOR  **********
+****************************/
 
 @import 'doctor/dashboard';
 
-// GUEST
+/***************************
+*********  GUEST  **********
+****************************/
 
 @import 'guest/partials/navbar';
 @import 'guest/partials/jumbo_home';
@@ -24,8 +30,10 @@
 @import 'guest/partials/sponsored_doctors';
 @import 'guest/partials/footer';
 @import 'guest/home';
+// Mediaqueries
+@import "guest/partials/mediaqueries/navbar";
 
-// FONT
+// Font
 
 body{
     font-family: 'poppins', sans-serif;

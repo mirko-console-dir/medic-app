@@ -26,10 +26,8 @@
 
 <body>
   <div id="app">
-    {{-- @include('layouts.guest.partials.navbar') --}}
     @yield('content')
     @include('layouts.guest.partials.footer')
   </div>
 </body>
 </html>
-
