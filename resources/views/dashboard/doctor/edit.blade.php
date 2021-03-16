@@ -69,7 +69,7 @@
                 <select name="prefix_id" id="prefix_id">
                 <option value="NULL"></option>
                     @foreach($prefixes as $prefix)
-                    <option value="{{$prefix->dial_code}}" name="prefix_id">{{$prefix->name}} {{$prefix->dial_code}}</option>
+                    <option value="{{$prefix->id}}" name="prefix_id">{{$prefix->name}} {{$prefix->dial_code}}</option>
                     @endforeach
                 </select>
 
