@@ -11155,6 +11155,8 @@ input {
 #navbar {
   background-color: #141430;
   height: 100px;
+  width: 80%;
+  margin: auto;
   margin-bottom: 10px;
   border-radius: 7px;
 }
@@ -11251,8 +11253,8 @@ input {
   height: 100%;
   background-image: url("/img/doc_jumbo.png");
   background-repeat: no-repeat;
-  background-size: calc(0.7 * 790px) calc(0.7 * 1000px);
-  background-position: 80% 100%;
+  background-size: calc(0.6 * 790px) calc(0.6 * 1000px);
+  background-position: 75% 75%;
 }
 
 #jumbo_home .container_searchbar {
@@ -11489,6 +11491,13 @@ footer .container_80 .second_row .col-lg-5 .social {
 footer .container_80 .second_row .col-lg-5 .social i {
   color: #00aeef;
   margin-right: 10px;
+}
+
+@media (min-width: 1700px) {
+  #jumbo_home .overlay_doc_image {
+    background-size: calc(0.9 * 790px) calc(0.9 * 1000px);
+    background-position: 75% 100%;
+  }
 }
 
 body {

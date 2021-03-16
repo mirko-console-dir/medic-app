@@ -1,0 +1,26 @@
+@media (min-width: 1700px){
+  #jumbo_home{
+    .overlay_doc_image{
+        background-size: calc(0.9 * 790px) calc(0.9 * 1000px);
+      background-position: 75% 100%;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  #jumbo_home{
+    .overlay_doc_image{
+
+
+    }
+  }
+}
+
+// MD - Medium devices (tablets, 992px and down)
+@media (max-width: 991.98px) {
+
+}
+
+// SM - Small devices (landscape phones, 768 and down)
+@media (max-width: 767.98px) {
+}
