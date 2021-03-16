@@ -1,4 +1,4 @@
-<div id="navbar" class="container_80">
+<div id="navbar" class="">
   <div class="row">
 
     <div class="col-lg-3">

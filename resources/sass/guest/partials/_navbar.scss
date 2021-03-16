@@ -1,6 +1,8 @@
 #navbar{
   background-color: map-get($color-map, primary_color_dark);
   height: 100px;
+  width: 80%;
+  margin: auto;
   margin-bottom: 10px;
   border-radius: 7px;
   .row{
