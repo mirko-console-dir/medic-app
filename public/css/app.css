@@ -11006,6 +11006,26 @@ input {
   height: 100%;
 }
 
+.btn_blue {
+  background: #00aeef;
+  color: white;
+}
+
+.btn_blue:hover {
+  background: #0083b3;
+  color: white;
+}
+
+.btn_white {
+  background: white;
+  color: #00aeef;
+}
+
+.btn_white:hover {
+  background: #dddddd;
+  color: #00aeef;
+}
+
 #dashboard {
   background-color: #f5f5f5;
   padding: 30px;
@@ -11079,29 +11099,6 @@ input {
 }
 
 #navbar {
-  height: 70px;
-  margin-bottom: 10px;
-.btn_blue {
-  background: #00aeef;
-  color: white;
-}
-
-.btn_blue:hover {
-  background: #0083b3;
-  color: white;
-}
-
-.btn_white {
-  background: white;
-  color: #00aeef;
-}
-
-.btn_white:hover {
-  background: #dddddd;
-  color: #00aeef;
-}
-
-#navbar {
   background-color: #141430;
   height: 100px;
   margin-bottom: 10px;
@@ -11109,26 +11106,69 @@ input {
 }
 
 #navbar .row #logo {
+  align-items: center;
+}
+
+#navbar .row #logo img {
   height: 100px;
-  margin: auto;
+  margin-left: 10px;
+}
+
+#navbar .row #logo .title {
+  color: white;
+  font-size: 2em;
 }
 
 #navbar .links {
+  display: flex;
   height: 100%;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
-  padding-left: 0;
   margin-bottom: 0;
 }
 
-#navbar .links li {
-  text-transform: uppercase;
+#navbar .links .link {
+  height: 100%;
+  text-transform: capitalize;
+  margin: 0 2em;
+  position: relative;
 }
 
-#navbar .links li a {
-  color: black;
+#navbar .links .link a {
+  display: block;
+  color: white;
   font-size: 20px;
   font-weight: 500;
+  font-size: 17px;
+  margin-top: 40px;
+  height: 17px;
+}
+
+#navbar .links .link a .hr {
+  width: 0px;
+  margin: auto;
+  transition: width 0.3s ease;
+}
+
+#navbar .links .link a hr {
+  position: relative;
+  transition: all 0.3s ease;
+  border-top: 5px solid #00aeef;
+  border-radius: 2px;
+  top: 12px;
+}
+
+#navbar .links .link a:hover .hr {
+  width: 100%;
+}
+
+#navbar .links .link a i {
+  color: #00aeef;
+  margin-right: 3px;
+}
+
+#navbar .links .link hr {
+  border-top: 0;
 }
 
 #navbar .buttons {
@@ -11147,7 +11187,51 @@ input {
 #jumbo_home {
   padding-top: 50px;
   height: calc(100vh + 80px);
-  background-color: #37396c;
+  background-image: url("/img/bg_jumbo.jpg");
+  background-size: cover;
+}
+
+#jumbo_home .overlay_doc_image {
+  width: 100%;
+  height: 100%;
+  background-image: url("/img/doc_jumbo2.png");
+  background-repeat: no-repeat;
+  background-size: 37%;
+  background-position: 80% 100%;
+}
+
+#jumbo_home .container_searchbar {
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  position: relative;
+}
+
+#jumbo_home .container_searchbar form {
+  position: absolute;
+  top: 38%;
+  left: 5%;
+}
+
+#jumbo_home .container_searchbar form input {
+  width: 75%;
+  height: 45px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  padding: 0 20px;
+}
+
+#jumbo_home .container_searchbar form button {
+  width: 15%;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  color: white;
+  background: #141430;
+  transition: background-color 0.4s ease;
+}
+
+#jumbo_home .container_searchbar form button:hover {
+  background: #00aeef;
 }
 
 #boxes_features_home .first_row .intro_description {
