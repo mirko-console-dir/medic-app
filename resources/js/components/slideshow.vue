@@ -1,20 +1,23 @@
 <template>
     <div id="slideshow">
-        <i class="fa fa-chevron-left" @click="prev"></i>
+        <i class="fa fa-chevron-left" @click="prev()"></i>
         <div class="card_container">
-            <div class="card" :style="{width: cardWidth}" v-for="(profile, index) in profiles.slice(i,i+show)">
-                <img class="info avatar" :src="profile.image" alt="profile doctor image">
-                <h4 class="info name">{{profile.sex === 'm'?'Dott.':'Dott.ssa'}} {{profile.name}} <br> {{profile.lastname}}</h4>
+            <div class="card" :style="{'width': cardWidth}" v-for="(profile, index) in profiles.slice(i,i+show)">
+                <div class="info avatar" :style="{ 'background-image': 'url('+image.path+profile.id+image.ext+')' }"></div>
+                <h4 class="info name">{{profile.sex === 'm'?'Dott.':'Dott.ssa'}} {{profile.name}} {{profile.lastname}}</h4>
                 <h4 class="info specialization">{{profile.specialization}}</h4>
                 <p class="info presentation">{{profile.presentation}}</p>
+                <a class="info presentation" href="/dashboard/doctors/{doctor}">link</a>
+
             </div>
         </div>
-        <i class="fa fa-chevron-right" @click="next"></i>
+        <i class="fa fa-chevron-right" @click="next()"></i>
     </div>
 </template>
 <script>
 
 module.exports = {
+    props: ['homeRoute'],
     data: function () {
         return {
             
@@ -22,7 +25,7 @@ module.exports = {
             size: {
                 sm: 1,
                 md: 2,
-                lg: 4
+                lg: 3
             },              // card mostrate contemporaneamente
             cardWidth: 1,   // larghezza card in percentuale 
             i: 0,           // puntatore nell'array profiles
@@ -30,87 +33,109 @@ module.exports = {
                 width: 0,
                 height: 0,
             },
+            image:{
+                path: 'img/sponsored/profile_',
+                ext: '.jpg'
+                },
             profiles: [
                 {
-                image: 'img/avatar.png',
-                name: 'Massimo',
-                lastname: '1',
+                id: '01',
+                name: 'laura',
+                lastname: 'sforza',
+                specialization: 'Neurologo',
+                sex: 'f',
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+                },
+                {
+                id: '02',
+                name: 'Luca',
+                lastname: 'Giurato',
+                specialization: 'Logopedista',
+                sex: 'm',
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+                },
+                {
+                id: '03',
+                name: 'Paolo',
+                lastname: 'Muti',
+                specialization: 'Dermatologo',
+                sex: 'm',
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+                },
+                {
+                id: '04',
+                name: 'Mister',
+                lastname: 'Tee',
+                specialization: 'Osteopata',
+                sex: 'm',
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+                },
+                {
+                id: '05',
+                name: 'laura',
+                lastname: 'Impegno',
                 specialization: 'Ginecologo',
                 sex: 'm',
                 presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
                 },
                 {
-                image: 'img/avatar.png',
-                name: 'Lupo',
-                lastname: '2',
+                id: '06',
+                name: 'Gianluca',
+                lastname: 'Vacchi',
+                specialization: 'Esperto in tricologia',
+                sex: 'm',
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+                },
+                {
+                id: '07',
+                name: 'Alfiero',
+                lastname: 'Marzi',
+                specialization: 'Psichiatra',
+                sex: 'm',
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+                },
+                {
+                id: '08',
+                name: 'Maarishi',
+                lastname: 'Ajeje',
                 specialization: 'Ginecologo',
                 sex: 'm',
-                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
                 },
                 {
-                image: 'img/avatar.png',
-                name: 'Natale',
-                lastname: '3',
-                specialization: 'Ginecologo',
+                id: '09',
+                name: 'Gina',
+                lastname: 'Cugini',
+                specialization: 'Pediatra',
                 sex: 'f',
-                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
                 },
                 {
-                image: 'img/avatar.png',
-                name: 'Massimo',
-                lastname: '4',
+                id: '10',
+                name: 'Marco',
+                lastname: 'Mitici',
                 specialization: 'Ginecologo',
                 sex: 'm',
-                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
                 },
                 {
-                image: 'img/avatar.png',
-                name: 'Ultimo',
-                lastname: '5',
-                specialization: 'Ginecologo',
+                id: '11',
+                name: 'Marta',
+                lastname: 'Formicola',
+                specialization: 'Sensitiva',
                 sex: 'f',
-                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
                 },
                 {
-                image: 'img/avatar.png',
-                name: 'Massimo',
-                lastname: '6',
-                specialization: 'Ginecologo',
-                sex: 'm',
-                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
-                },
-                {
-                image: 'img/avatar.png',
-                name: 'Ultimo',
-                lastname: '7',
-                specialization: 'Ginecologo',
+                id: '12',
+                name: 'Laura',
+                lastname: 'Dinotte',
+                specialization: 'Oculista',
                 sex: 'f',
-                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
+                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
                 },
-                {
-                image: 'img/avatar.png',
-                name: 'Massimo',
-                lastname: '8',
-                specialization: 'Ginecologo',
-                sex: 'm',
-                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
-                },
-                {
-                image: 'img/avatar.png',
-                name: 'Ultimo',
-                lastname: '9',
-                specialization: 'Ginecologo',
-                sex: 'f',
-                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
-                },
-                {
-                image: 'img/avatar.png',
-                name: 'Ultimo',
-                lastname: '10',
-                specialization: 'Ginecologo',
-                sex: 'f',
-                presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?'
-                },
+
+                
             ],
         }
     },
@@ -141,7 +166,7 @@ module.exports = {
             this.window.height = window.innerHeight;
         },
         cardMediaQuery: function() {
-            if(window.innerWidth < 991 && window.innerWidth > 768) {
+            if(window.innerWidth < 991.98 && window.innerWidth > 768) {
                 this.show = this.size.md;
             }
             else if(window.innerWidth  > 992){

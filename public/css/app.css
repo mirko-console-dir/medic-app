@@ -10985,7 +10985,6 @@ p {
 }
 
 .container_80 {
-  max-width: 1170px;
   width: 80%;
   margin: auto;
 }
@@ -11344,6 +11343,7 @@ input {
 }
 
 #sponsored_doctors {
+  height: calc(100vh -35px);
   color: #141430;
   padding: 50px 0;
 }
@@ -11371,24 +11371,35 @@ input {
 
 #slideshow .card_container .card {
   display: flex;
-  align-items: flex-start;
-  min-height: 350px;
+  align-items: center;
   border: none;
   padding: 20px;
-  text-align: center;
+  border-right: 1px solid #ddd;
+  transition: display 0.5s;
 }
 
 #slideshow .card_container .card .avatar {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center top;
+}
+
+#slideshow .card_container .card .name {
+  text-transform: capitalize;
 }
 
 #slideshow .card_container .card .info {
-  margin-bottom: 1px;
+  margin-bottom: 5px;
 }
 
 #slideshow .card_container .card .presentation {
-  text-align: left;
+  text-align: justify;
+}
+
+#slideshow .card_container .card:last-child {
+  border: none;
 }
 
 #info_centre {
@@ -11707,6 +11718,13 @@ footer .container_80 .second_row .col-lg-5 .social i {
 
   #boxes_features_home .second_row .empty {
     display: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #slideshow .card_container .card .avatar {
+    width: 250px;
+    height: 250px;
   }
 }
 
