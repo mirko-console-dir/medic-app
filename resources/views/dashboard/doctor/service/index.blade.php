@@ -15,17 +15,34 @@
                 @foreach($services as $service)
 
                 @if($service->user_id == $user->id)
-                <div class="d_flex service" style="justify-content: space-around;">
+                <div class="d_flex_column card_service" style="justify-content: space-around;">
                     <h4>{{$service->name}}</h4>
                     <h4>{{$service->description}}</h4>
                     <h4>&euro; {{$service->price}}</h4>
+                   
+                    <button class="btn btn-dark">
+                        <a href="{{route('dashboard.services.edit', $service->id)}}"> Edit
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </button>
+
+                    <form action="{{route('dashboard.services.destroy', $service->id)}}" method="post">
+                        @METHOD('DELETE')
+                        @csrf
+                        <button class="btn btn-danger" type="submit"><i class="fas fa-trash fa-xs fa-fw"></i></button>
+                    </form>
+
+
 
                 </div>
+
+
+
 
                 @endif
                 @endforeach
 
-                <button class="btn btn-success" style="">
+                <button class="btn btn-success add_service" style="">
                     <a href="{{route('dashboard.services.create')}}">Add Service</a>
                 </button>
                 <div class="d_flex_column">

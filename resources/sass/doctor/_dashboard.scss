@@ -9,6 +9,7 @@
     .detail {
 
         padding: 20px 0px;
+        position: relative;
 
         * {
             padding: 10px 0px;
@@ -65,15 +66,30 @@
             }
         }
 
-        
+        .card_service {
+            padding: 0px 10px;
+            border: 2px solid black;
+            margin: 5px 0px;
+
+        }
+        .add_service {
+             width: 100px;
+             margin: 0px 20px;
+             position: absolute;
+             right: 0;
+             top: 25px;
+             a {
+                 color: white;
+             }
+        }
 
     }
     
     .crud {
         
         button {
-            width: 100px;
-            margin: 0px 20px;
+           width: 100px;
+           margin: 0px 20px;
         }
     }
     

@@ -81,9 +81,11 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, User $user)
     {
-        //
+        $user = Auth::user();
+        $service = Service::find($id);
+        return view('dashboard.doctor.service.edit', compact('service','user'));
     }
 
     /**
@@ -93,9 +95,20 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Service $service)
     {
-        //
+
+        
+       $validatedData = $request->validate([
+           'name' => 'required',
+           'description' => 'nullable',
+           'price' => 'nullable',
+
+       ]);
+
+       $service->update($validatedData);
+       return redirect()->route('dashboard.services.index');
+
     }
 
     /**
@@ -104,8 +117,10 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        
+        return redirect()->route('dashboard.services.index');
     }
 }

@@ -11087,6 +11087,7 @@ input {
 
 #dashboard .detail {
   padding: 20px 0px;
+  position: relative;
 }
 
 #dashboard .detail * {
@@ -11141,6 +11142,24 @@ input {
 #dashboard #account .info img {
   margin-right: 40px;
   width: 200px;
+}
+
+#dashboard #account .card_service {
+  padding: 0px 10px;
+  border: 2px solid black;
+  margin: 5px 0px;
+}
+
+#dashboard #account .add_service {
+  width: 100px;
+  margin: 0px 20px;
+  position: absolute;
+  right: 0;
+  top: 25px;
+}
+
+#dashboard #account .add_service a {
+  color: white;
 }
 
 #dashboard .crud button {
