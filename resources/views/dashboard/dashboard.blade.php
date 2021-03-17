@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container d_flex" id="dashboard">
+@role('doctor')
 
-    @role('doctor')
+<div class="container d_flex" id="dashboard">
 
     @include('dashboard.partials.sidebar')
     <div class="d_flex_column detail" id="account">
@@ -126,24 +126,16 @@
 
 
 @role('admin')
-<div class="col-md-3">
-    <ul class="list-unstyled">
-        <li><a href="">Doctors</a></li>
-        <li><a href="">Clinics</a></li>
-        <li><a href="">Services</a></li>
-        <li><a href="">Sponsorships</a></li>
-        <li><a href="">Specializations</a></li>
-        <li><a href="">Messages</a></li>
-        <li><a href="">Reviews</a></li>
-        <li><a href="">Analytics</a></li>
+<div class="container d_flex" id="dashboard">
 
-    </ul>
-</div>
-<div class="col-md-9">
-    @yield('content')
+    @include('dashboard.partials.sidebar')
+
+    <div class="col-md-9">
+        
+        
+    </div>
 </div>
 @endrole
 
-</div>
-</div>
+
 @endsection

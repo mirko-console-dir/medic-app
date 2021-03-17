@@ -4,7 +4,6 @@
 
 <div class="container d_flex" id="dashboard">
 
-    @role('doctor')
     @include('dashboard.partials.sidebar')
 
     <div class="d_flex_column detail" id="account">
@@ -55,7 +54,5 @@
 </div>
 
 
-
-@endrole
 </div>
 @endsection

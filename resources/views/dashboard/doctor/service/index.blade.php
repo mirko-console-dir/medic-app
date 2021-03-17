@@ -4,7 +4,6 @@
 
 <div class="container d_flex" id="dashboard">
 
-    @role('doctor')
     @include('dashboard.partials.sidebar')
 
     <div class="d_flex_column detail" id="account">
@@ -42,14 +41,11 @@
                 @endif
                 @endforeach
 
+                @role('doctor')
                 <button class="btn btn-success add_service" style="">
                     <a href="{{route('dashboard.services.create')}}">Add Service</a>
                 </button>
-                <div class="d_flex_column">
-
-
-                </div>
-
+                @endrole
 
             </div>
 
@@ -61,8 +57,5 @@
 
 </div>
 
-
-
-@endrole
 </div>
 @endsection

@@ -32,5 +32,8 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::resource('doctors', 'DoctorController');
     Route::resource('services', 'ServiceController');
     Route::resource('clinics', 'ClinicController');
+    Route::resource('analytics', 'AnalyticController');
+
+
 
 });
