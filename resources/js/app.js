@@ -21,6 +21,8 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('slideshow', require('./components/slideshow.vue').default);
+Vue.component('searchome', require('./components/navbar.vue').default);
+Vue.component('searchome', require('./components/searchome.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

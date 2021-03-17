@@ -11,8 +11,13 @@
     top: 0;
     width: 100%;
     border-radius: 0;
-    #logo{
-      height: 70px;
+    .row{
+      #logo{
+        align-items: center;
+        img{
+          height: 70px;
+        }
+      }  
     }
     .row{
       .links{

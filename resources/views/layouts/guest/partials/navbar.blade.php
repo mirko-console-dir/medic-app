@@ -1,7 +1,7 @@
 <div id="navbar" class="">
   <div class="row">
 
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-sm-6">
 
       <a href="/" class="d_flex" id="logo">
         <img src="{{asset('img/logo.png')}}" alt="MedicUs logo">
