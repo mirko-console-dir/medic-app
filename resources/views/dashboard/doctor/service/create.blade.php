@@ -31,7 +31,7 @@
                         <br>
 
 
-                        <!-- address -->
+                        <!-- description -->
                         <label for="description">Description</label>
                         <input type="text" name="description" id="description" class="form-control" placeholder="Insert your description" value="" >
                         <br>

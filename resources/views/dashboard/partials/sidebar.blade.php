@@ -5,6 +5,12 @@
               <i class="fas fa-user"></i>
               My Profile</a></li>
               <li><a href="{{route('dashboard.doctors.edit', $user->slug)}}"> <i class="fas fa-pencil-alt"></i>Edit Profile</a></li>
+              <li>
+                  <a href="{{route('dashboard.clinics.index')}}">
+                  <i class="fas fa-hospital"></i>
+                      All Clinics
+                  </a>
+              </li>
               <li><a href=""> <i class="far fa-envelope"></i>My Messages</a></li>
               <li><a href=""> <i class="far fa-comment-dots"></i>My Reviews</a></li>
               <li><a href="{{route('dashboard.services.index')}}"> <i class="fas fa-notes-medical"></i>My Services</a></li>

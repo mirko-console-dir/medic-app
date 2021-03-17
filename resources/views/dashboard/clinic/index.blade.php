@@ -10,52 +10,45 @@
     <div class="d_flex_column detail" id="account">
         <div class="my_profile d_flex_column">
             <div class="detail d_flex_column">
-                <h2>My Service</h2>
+                <h2>All Clinics</h2>
+                <button class="btn btn-success add_service" style="">
+                    <a href="{{route('dashboard.clinics.create')}}">Add Clinic</a>
+                </button>
+                @foreach($clinics as $clinic)
 
-                @foreach($services as $service)
 
-                @if($service->user_id == $user->id)
                 <div class="d_flex_column card_service">
-                    <h4>{{$service->name}}</h4>
-                    <h4>{{$service->description}}</h4>
-                    <h4>&euro; {{$service->price}}</h4>
-                   
+                    <h4>{{$clinic->name}}</h4>
+                    <h4>{{$clinic->address}} {{$clinic->city}}</h4>
+                    <h4> <i class="fas fa-phone"> </i> {{$clinic->phone_clinic}}</h4>
+
                     <button class="btn btn-dark">
-                        <a href="{{route('dashboard.services.edit', $service->id)}}"> Edit
+                        <a href="{{route('dashboard.clinics.edit', $clinic->id)}}"> Edit
                             <i class="fas fa-edit"></i>
                         </a>
                     </button>
 
-                    <form action="{{route('dashboard.services.destroy', $service->id)}}" method="post">
+                    <form action="{{route('dashboard.clinics.destroy', $clinic->id)}}" method="post">
                         @METHOD('DELETE')
                         @csrf
                         <button class="btn btn-danger" type="submit"><i class="fas fa-trash fa-xs fa-fw"></i></button>
                     </form>
-
-
-
                 </div>
 
 
 
-
-                @endif
                 @endforeach
 
-                <button class="btn btn-success add_service" style="">
-                    <a href="{{route('dashboard.services.create')}}">Add Service</a>
-                </button>
-                <div class="d_flex_column">
-
-
-                </div>
 
 
             </div>
 
+
         </div>
 
     </div>
+
+</div>
 
 
 
