@@ -63,11 +63,6 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Specialization');
     }
 
-    public function services()
-    {
-
-        return $this->belongsToMany('App\Service', 'user_service');
-    }
     public function sponsorships()
     {
 
@@ -92,6 +87,12 @@ class User extends Authenticatable
     {
 
         return $this->belongsTo('App\Prefix');
+    }
+
+    public function services()
+    {
+
+        return $this->hasMany('App\Service');
     }
 
 

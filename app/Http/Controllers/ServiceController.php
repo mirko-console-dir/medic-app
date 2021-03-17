@@ -19,11 +19,10 @@ class ServiceController extends Controller
     {
         
         $user = Auth::user();
-        $user_service = User::with('services')->get();
-        // dd($user_service);
+        // dd($user);
         $services = Service::all();
         // dd($services);
-        return view('dashboard.doctor.service.index', compact('user','services','user_service'));
+        return view('dashboard.doctor.service.index', compact('user','services'));
     }
 
     /**
@@ -31,9 +30,11 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
-        //
+        $user = Auth::user();
+        // dd($user);
+        return view('dashboard.doctor.service.create', compact('user'));
     }
 
     /**
@@ -42,9 +43,25 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+        // dd($request->all());
+
+        $validatedData = $request->validate([
+
+            'name'=>'required',
+            'description' => 'nullable',
+            'price' => 'nullable',
+        ]);
+
+            $user_id = Auth::user()->id;
+            // dd($user_id);
+        $validatedData['user_id'] = $user_id; 
+        // dd($validatedData);
+        Service::create($validatedData);
+            
+        return redirect()->route('dashboard.services.index');
+
     }
 
     /**

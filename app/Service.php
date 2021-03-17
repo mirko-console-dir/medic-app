@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
-    protected $fillable = ['name', 'description', 'price'];
+    protected $fillable = ['name', 'description', 'price', 'user_id'];
 
     public function users()
     {
 
-        return $this->belongsToMany('App\User', 'user_service');
+        return $this->belongsTo('App\User');
     }
 }

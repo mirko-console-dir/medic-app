@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Prefix;
-use App\Service;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -63,15 +62,15 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user, $slug, Prefix $prefix, Service $service)
+    public function edit(User $user, $slug, Prefix $prefix)
     {
 
         $prefixes = Prefix::all();
         //dd($slug);
-        $services = Service::all();
+
         $user = User::where('slug', $slug)->first();
         // dd($user);
-        return view('dashboard.doctor.edit', compact('user','prefixes','services'));
+        return view('dashboard.doctor.edit', compact('user','prefixes'));
     }
 
     /**
@@ -121,7 +120,6 @@ class DoctorController extends Controller
         // $validatedData['prefix_id'] = $prefix_id;
 
         $user = Auth::user();
-        $user->services()->sync($request->service_id);
         $user->update($validatedData);
         // dd($slug);
         // dd($user);
