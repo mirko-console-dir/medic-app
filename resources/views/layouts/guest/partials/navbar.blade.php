@@ -2,7 +2,7 @@
   <div class="row">
 
     <div class="col-lg-3">
-      {{-- INSERIRE {{route('nomehome')}} --}}
+
       <a href="/" class="d_flex" id="logo">
         <img src="{{asset('img/logo.png')}}" alt="MedicUs logo">
         <h1 class="title">MedicUs</h1>
@@ -14,7 +14,6 @@
       <ul class="links">
         <li class="link">
 
-          {{-- INSERIRE {{route('nomehome')}} --}}
           <a href="{{route('home')}}">
             <i class="fas fa-caret-right"></i>
             Home

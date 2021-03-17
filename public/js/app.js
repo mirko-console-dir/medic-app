@@ -2010,6 +2010,8 @@ module.exports = {
         lg: 4
       },
       // card mostrate contemporaneamente
+      cardWidth: 1,
+      // larghezza card in percentuale 
       i: 0,
       // puntatore nell'array profiles
       window: {
@@ -2017,7 +2019,6 @@ module.exports = {
         width: 0,
         height: 0
       },
-      cardWidth: 1,
       profiles: [{
         image: 'img/avatar.png',
         name: 'Massimo',
@@ -2103,7 +2104,6 @@ module.exports = {
       return this.i = i;
     },
     next: function next() {
-      console.log(this.$vssWidth);
       var i = this.i;
       i++;
 
@@ -50316,13 +50316,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> AM-Slideshow
+__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

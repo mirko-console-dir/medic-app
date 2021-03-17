@@ -1,0 +1,40 @@
+// MD - Medium devices (tablets, 992px and down)
+@media (max-width: 991.98px) {
+}
+
+// SM - Small devices (landscape phones, 768 and down)
+@media (max-width: 767.98px) {
+  #boxes_features_home{
+    .first_row{
+      display: block;
+      .intro_description{
+        width: 100%;
+        height: calc(50vh - 35px);
+      }
+      .site_services{
+        width: 100%;
+        height: calc(50vh - 35px);
+        position: static;
+      }
+    }
+    .second_row{
+      height: max-content;
+      display: block;
+      .call_to_action{
+        position: static;
+        width: 100%;
+        height: calc(50vh - 35px);
+        top: 0;
+        left: 0;
+        transform: translateX(0px);
+        .card{
+          width: 60%;
+          left: 4%;
+        }
+      }
+      .empty{
+        display: none;
+      }
+    }
+  }
+}

@@ -3,11 +3,9 @@
   <div class="first_row position_relative d_flex">
 
     <div class="box intro_description">
-
     </div>
 
     <div class="box site_services position_absolute">
-
     </div>
 
   </div>
