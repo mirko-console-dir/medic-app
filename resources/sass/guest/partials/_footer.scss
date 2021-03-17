@@ -1,5 +1,5 @@
 footer {
-  height: 350px;
+  height: 340px;
   background-color: #141430;
   border-top: 1px solid #68677E;
   border-bottom: 1px solid #68677E;
@@ -10,8 +10,8 @@ footer {
 
     // Row 1 
     & .first_row {
-      height: 270px;
-      margin-bottom: 40px;
+      height: 300px;
+      margin: 0;
 
       // First column
       .col-lg-4 {
@@ -19,16 +19,17 @@ footer {
 
         & .details_footer {
           flex-direction: column;
+          justify-content: left;
           & p {
             margin-top: 25px;
-            margin-left: 15px;
             padding-bottom: 25px;
           }
             
           & a {
             @include button();
+            width: max-content;
             &:hover {
-              background-color: map-get($color-map, primary_gray_dark);
+              background-color: #0083b3;
             }
           }
         }
@@ -57,7 +58,7 @@ footer {
           a {
             color: white;
             &:hover {
-              color: map-get($color-map, primary_link_color);
+              color: #00aeef;
             }
           }
             
@@ -82,6 +83,7 @@ footer {
     // Row 2
     & .second_row {
       height: 40px;
+      margin: 0;
       
       // First column
       .col-lg-4 {
@@ -90,7 +92,7 @@ footer {
 
       .copyright {
         font-size: 0.8rem;
-        margin-left: 18px;
+        justify-content: left;
       }
         
     
@@ -98,13 +100,11 @@ footer {
       // Third column
       .col-lg-5 {
         height: 100%;
-        margin-right: -18px;
         .social {
-          width: 95%;
+          margin-left: 15px;
           i {
             color: #00aeef;
             margin-right: 10px;
-        
           }
         }
       }

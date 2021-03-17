@@ -6,7 +6,7 @@
     <div class="row first_row">
       
       <div class="col-lg-4">
-        <div class="details_footer d_flex_center">
+        <div class="details_footer d_flex">
           <p class="title_footer"> Vestibulum dapibus <br> mauris nec malesuada <br> fames ac tupis velit </p>
           <a href="" class="buttons btn_blue">View more details</a>
         </div>
@@ -53,7 +53,7 @@
 
     <!-- Second footer row -->
     <div class="row second_row">
-      <div class="col-lg-4 copyright d_flex_center">
+      <div class="col-lg-4 copyright d_flex">
         <small> Copyright 2021 Medical Clinic - Team 5 <br> All right reserved</small>
       </div>
 
@@ -61,12 +61,14 @@
       </div>
 
       <div class="col-lg-5">
-        <div class="social d_flex_center">
-        <a href=""> <i class="fab fa-facebook-square"></i> </a>
-        <a href=""> <i class="fab fa-twitter-square"></i> </a>
-        <a href=""> <i class="fab fa-instagram"></i> </a>
-        <a href=""> <i class="fab fa-youtube"></i> </a>
-        <a href=""> <i class="fab fa-linkedin"></i> </a>
+        <div class="d_flex_center social">
+          <div class="d_flex">
+            <a href=""> <i class="fab fa-facebook-square"></i> </a>
+            <a href=""> <i class="fab fa-twitter-square"></i> </a>
+            <a href=""> <i class="fab fa-instagram"></i> </a>
+            <a href=""> <i class="fab fa-youtube"></i> </a>
+            <a href=""> <i class="fab fa-linkedin"></i> </a>
+          </div>
         </div>
       </div>
     </div>
