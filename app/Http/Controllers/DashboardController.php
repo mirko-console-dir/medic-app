@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Prefix;
 use App\Clinic;
+use App\Specialization;
+
 
 class DashboardController extends Controller
 {
@@ -27,15 +29,17 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Prefix $prefix, Clinic $clinic)
+    public function index(Prefix $prefix, Clinic $clinic, Specialization $specialization)
     {
         $prefixes = Prefix::all();
         $user = Auth::user();
         // dd($user);
         $user_clinic = User::with('clinics')->get();
+        $user_specialization = User::with('specializations')->get();
+
 
         $clinics = Clinic::all();
-        return view('dashboard.dashboard', compact('user','prefixes','clinics', 'user_clinic'));
+        return view('dashboard.dashboard', compact('user','prefixes','clinics', 'user_clinic','user_specialization'));
     }
 
     /**

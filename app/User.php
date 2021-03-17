@@ -60,7 +60,7 @@ class User extends Authenticatable
     public function specializations()
     {
 
-        return $this->belongsToMany('App\Specialization');
+        return $this->belongsToMany('App\Specialization', 'user_specialization');
     }
 
     public function sponsorships()

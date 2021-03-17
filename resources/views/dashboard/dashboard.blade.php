@@ -37,13 +37,23 @@
 
                 </h4>
                 <div class="d_flex_column">
-                    <h4>Clinics where operate:</h4>
+                    <h4>Clinics where you operate:</h4>
                     @foreach($user_clinic as $clinic)
-                        @if($clinic->id == $user->id)
-                            @foreach($clinic->clinics as $user_has_clinic)
-                                <h4>{{$user_has_clinic->name}}</h4>
-                            @endforeach
-                        @endif
+                    @if($clinic->id == $user->id)
+                    @foreach($clinic->clinics as $user_has_clinic)
+                    <h4>{{$user_has_clinic->name}}</h4>
+                    @endforeach
+                    @endif
+                    @endforeach
+                </div>
+                <div class="d_flex_column">
+                    <h4>Specializations:</h4>
+                    @foreach($user_specialization as $specialization)
+                    @if($specialization->id == $user->id)
+                    @foreach($specialization->specializations as $user_has_specialization)
+                    <h4>{{$user_has_specialization->name}}</h4>
+                    @endforeach
+                    @endif
                     @endforeach
                 </div>
 

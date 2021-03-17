@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Prefix;
 use App\Clinic;
+use App\Specialization;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -63,14 +64,15 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user, $slug, Prefix $prefix, Clinic $clinic)
+    public function edit(User $user, $slug, Prefix $prefix, Clinic $clinic, Specialization $specialization)
     {
         $clinics = Clinic::all();
         $prefixes = Prefix::all();
+        $specializations = Specialization::all();
         //dd($slug);
         $user = User::where('slug', $slug)->first();
         // dd($user);
-        return view('dashboard.doctor.edit', compact('user','prefixes','clinics'));
+        return view('dashboard.doctor.edit', compact('user','prefixes','clinics','specializations'));
     }
 
     /**
@@ -121,6 +123,8 @@ class DoctorController extends Controller
 
         $user = Auth::user();
         $user->clinics()->sync($request->clinic_id);
+        $user->specializations()->sync($request->specialization_id);
+
         $user->update($validatedData);
         // dd($slug);
         // dd($user);

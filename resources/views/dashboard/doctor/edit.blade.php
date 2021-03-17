@@ -55,12 +55,24 @@
                 <label for="clinic_id">Clinics where you want to operate </label>
                 <select name="clinic_id[]" id="" multiple>
                     @foreach($clinics as $clinic)
-                        <option value="{{$clinic->id}}" name="clinic_id">
-                            {{$clinic->name}}
-                        </option>
+                    <option value="{{$clinic->id}}" name="clinic_id">
+                        {{$clinic->name}}
+                    </option>
                     @endforeach
                 </select>
                 <br>
+
+                <!-- ManyToMany Specialization -->
+                <label for="specialization_id">Specializations </label>
+                <select name="specialization_id[]" id="" multiple>
+                    @foreach($specializations as $specialization)
+                    <option value="{{$specialization->id}}" name="specialization_id">
+                        {{$specialization->name}}
+                    </option>
+                    @endforeach
+                </select>
+                <br>
+
                 <!-- CV -->
                 <label for="cv_img">Curriculum Vitae</label>
                 <input type="file" name="cv_img" class="form-control-file">
