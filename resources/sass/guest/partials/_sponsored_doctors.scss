@@ -1,4 +1,5 @@
 #sponsored_doctors{
+    height: calc(100vh -35px);
     color: map-get($color-map, $key:'primary_color_dark');
     padding: 50px 0;
     h3.staff{
@@ -20,21 +21,32 @@
         width: 90%;
         .card{
             display: flex;
-            align-items: flex-start;
-            min-height: 350px;
+            align-items: center;
             border: none;
             padding: 20px;
-            text-align: center;
+            border-right: 1px solid #ddd;
+            transition: display 0.5s;
             .avatar{
-                width: 150px;    
-                height: 150px;    
+                width: 200px;    
+                height: 200px;
+                border-radius: 50%;
+                background-size: cover; 
+                background-position: center top;   
+            }
+            .name{
+                text-transform: capitalize;
             }
             .info{
-                margin-bottom: 1px;
+                margin-bottom: 5px;
             }
             .presentation{
-                text-align: left;
+                text-align: justify;
             }
+        }
+        .card:last-child{
+            border: none;
         }
     }
 }
+
+
