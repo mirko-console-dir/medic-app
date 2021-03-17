@@ -6,10 +6,12 @@
 @media (max-width: 767.98px) {
     #slideshow{
         .card_container{
-            .card{
-                .avatar{
-                    width: 250px;    
-                    height: 250px;
+            #card-complete{
+                .card-complete-item{
+                    .avatar{
+                        width: 250px;    
+                        height: 250px;
+                    }
                 }
             }
         }
