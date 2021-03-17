@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Prefix;
+use App\Clinic;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -62,15 +63,14 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user, $slug, Prefix $prefix)
+    public function edit(User $user, $slug, Prefix $prefix, Clinic $clinic)
     {
-
+        $clinics = Clinic::all();
         $prefixes = Prefix::all();
         //dd($slug);
-
         $user = User::where('slug', $slug)->first();
         // dd($user);
-        return view('dashboard.doctor.edit', compact('user','prefixes'));
+        return view('dashboard.doctor.edit', compact('user','prefixes','clinics'));
     }
 
     /**
@@ -80,7 +80,7 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user, $slug)
+    public function update(Request $request, User $user, $slug, Clinic $clinic)
     {
         // dd($request->all());
         Storage::delete('cv_img', $user->cv_img);
@@ -120,6 +120,7 @@ class DoctorController extends Controller
         // $validatedData['prefix_id'] = $prefix_id;
 
         $user = Auth::user();
+        $user->clinics()->sync($request->clinic_id);
         $user->update($validatedData);
         // dd($slug);
         // dd($user);

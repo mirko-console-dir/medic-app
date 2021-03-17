@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Prefix;
-
+use App\Clinic;
 
 class DashboardController extends Controller
 {
@@ -27,12 +27,15 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Prefix $prefix)
+    public function index(Prefix $prefix, Clinic $clinic)
     {
         $prefixes = Prefix::all();
         $user = Auth::user();
         // dd($user);
-        return view('dashboard.dashboard', compact('user','prefixes'));
+        $user_clinic = User::with('clinics')->get();
+
+        $clinics = Clinic::all();
+        return view('dashboard.dashboard', compact('user','prefixes','clinics', 'user_clinic'));
     }
 
     /**

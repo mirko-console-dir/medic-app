@@ -36,6 +36,16 @@
                     @endforeach
 
                 </h4>
+                <div class="d_flex_column">
+                    <h4>Clinics where operate:</h4>
+                    @foreach($user_clinic as $clinic)
+                        @if($clinic->id == $user->id)
+                            @foreach($clinic->clinics as $user_has_clinic)
+                                <h4>{{$user_has_clinic->name}}</h4>
+                            @endforeach
+                        @endif
+                    @endforeach
+                </div>
 
 
             </div>

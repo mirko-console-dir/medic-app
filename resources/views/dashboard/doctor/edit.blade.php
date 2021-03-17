@@ -51,7 +51,16 @@
                 <input type="text" name="address" id="address" class="form-control" placeholder="Insert your address" value="{{$user->address}}" required>
                 <br>
 
-
+                <!-- ManyToMany Service -->
+                <label for="clinic_id">Clinics where you want to operate </label>
+                <select name="clinic_id[]" id="" multiple>
+                    @foreach($clinics as $clinic)
+                        <option value="{{$clinic->id}}" name="clinic_id">
+                            {{$clinic->name}}
+                        </option>
+                    @endforeach
+                </select>
+                <br>
                 <!-- CV -->
                 <label for="cv_img">Curriculum Vitae</label>
                 <input type="file" name="cv_img" class="form-control-file">

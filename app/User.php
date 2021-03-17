@@ -54,7 +54,7 @@ class User extends Authenticatable
     public function clinics()
     {
 
-        return $this->belongsToMany('App\Clinic');
+        return $this->belongsToMany('App\Clinic','user_clinic');
     }
 
     public function specializations()
