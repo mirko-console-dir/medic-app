@@ -13,6 +13,8 @@ Home
 
   @include('guest.partials.sponsored_doctors')
 
+  @include('guest.partials.info_centre')
+
 </main>
 
 @include('guest.partials.footer')
