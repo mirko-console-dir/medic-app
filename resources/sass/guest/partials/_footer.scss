@@ -40,27 +40,33 @@ footer {
         height: 100%;
         
         & .links_footer {
-          .title_footer {
-            margin-top: 25px;
-            margin-left: 20px;
-          } 
+          height: 275px;
           
-          & div {
-            font-size: 0.6rem;
-            line-height: 1.5rem;
-          }
-            
-          .fa-chevron-right {
-            margin-right: 15px;
-            margin-left: 25px;
-          }
+            .title_footer {
+              margin-top: 25px;
+              margin-left: 20px;
+            } 
           
-          a {
-            color: white;
-            &:hover {
-              color: #00aeef;
+            & div {
+              font-size: 0.6rem;
+              line-height: 1.5rem;
             }
-          }
+
+            .visibility_second {
+              visibility: hidden;
+            }
+
+            .fa-chevron-right {
+              margin-right: 15px;
+              margin-left: 25px;
+            }
+          
+            a {
+              color: white;
+              &:hover {
+                color: #00aeef;
+              }
+            }
             
         }
       }
@@ -95,7 +101,6 @@ footer {
         justify-content: left;
       }
         
-    
 
       // Third column
       .col-lg-5 {
