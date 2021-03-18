@@ -18,6 +18,7 @@ window.addEventListener('scroll', (event) => {
     document.getElementById('links_container').classList.remove('menuclose');
     document.getElementById('links_container').classList.add('menuopen');
     document.getElementById('links_container').style.left = "0";
+    document.getElementById('button_hamburger').style.display = "none";
   }
 
 // Chiusura da tasto x
@@ -25,6 +26,7 @@ window.addEventListener('scroll', (event) => {
     document.getElementById('links_container').classList.remove('menuopen');
     document.getElementById('links_container').classList.add('menuclose');
     document.getElementById('links_container').style.left = "100vw";
+    document.getElementById('button_hamburger').style.display = "block";
   }
 
   //Riapparizione della navbar in desktop
@@ -39,6 +41,7 @@ window.addEventListener('scroll', (event) => {
       document.getElementById('links_container').style.left = '100vw';
       document.getElementById('links_container').classList.remove('menuclose');
       document.getElementById('links_container').classList.remove('menuopen');
+      document.getElementById('button_hamburger').style.display = "block";
     }
   }
 
