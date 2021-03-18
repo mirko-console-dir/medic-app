@@ -11195,7 +11195,12 @@ input {
   margin: 0;
 }
 
-#navbar .links {
+#navbar #links_container .close_icon_hamburger {
+  display: none;
+  color: white;
+}
+
+#navbar #links_container .links {
   display: flex;
   height: 100%;
   justify-content: flex-end;
@@ -11203,14 +11208,14 @@ input {
   margin-bottom: 0;
 }
 
-#navbar .links .link {
+#navbar #links_container .links .link {
   height: 100%;
   text-transform: capitalize;
   margin: 0 2em;
   position: relative;
 }
 
-#navbar .links .link a {
+#navbar #links_container .links .link a {
   display: block;
   color: white;
   font-size: 20px;
@@ -11220,13 +11225,13 @@ input {
   height: 17px;
 }
 
-#navbar .links .link a .hr {
+#navbar #links_container .links .link a .hr {
   width: 0px;
   margin: auto;
   transition: width 0.3s ease;
 }
 
-#navbar .links .link a hr {
+#navbar #links_container .links .link a hr {
   position: relative;
   transition: all 0.3s ease;
   border-top: 5px solid #00aeef;
@@ -11234,16 +11239,16 @@ input {
   top: 12px;
 }
 
-#navbar .links .link a:hover .hr {
+#navbar #links_container .links .link a:hover .hr {
   width: 100%;
 }
 
-#navbar .links .link a i {
+#navbar #links_container .links .link a i {
   color: #00aeef;
   margin-right: 3px;
 }
 
-#navbar .links .link hr {
+#navbar #links_container .links .link hr {
   border-top: 0;
 }
 
@@ -11258,6 +11263,42 @@ input {
 #navbar .buttons a {
   padding: 5px 15px;
   border-radius: 7px;
+}
+
+#navbar .buttons #button_hamburger {
+  display: none;
+}
+
+@-webkit-keyframes navopen {
+  from {
+    top: -100px;
+  }
+
+  to {
+    top: 0;
+  }
+}
+
+@keyframes navopen {
+  from {
+    top: -100px;
+  }
+
+  to {
+    top: 0;
+  }
+}
+
+#navbar.fixed_top {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  border-radius: 0;
+  -webkit-animation-name: navopen;
+          animation-name: navopen;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 #jumbo_home {
@@ -11611,21 +11652,138 @@ footer .container_80 .second_row .col-lg-5 .social i {
     border-radius: 0;
   }
 
-  #navbar .row #logo {
-    align-items: center;
+  #navbar .row .col-sm-6 {
+    width: 50%;
   }
 
-  #navbar .row #logo img {
+  #navbar .row .col-sm-6 #logo img {
     height: 70px;
   }
 
-  #navbar .row .links {
+  #navbar .row #links_container {
+    display: none;
+    padding-top: 30px;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100vw;
+    height: 65vh;
+    background-color: #141430;
+  }
+
+  #navbar .row #links_container .close_icon_hamburger {
+    display: block;
+    color: red;
+    position: absolute;
+    right: 7%;
+    top: 3%;
+    font-size: 25px;
+  }
+
+  #navbar .row #links_container .links {
+    display: block;
+    padding-left: 15px;
+  }
+
+  #navbar .row #links_container .links li {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+
+  #navbar .row #links_container .links li a {
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+
+  #navbar .row #links_container .links li hr {
     display: none;
   }
 
   #navbar .row .buttons {
-    display: none;
+    justify-content: flex-end;
   }
+
+  #navbar .row .buttons a {
+    display: none;
+    height: 100%;
+  }
+
+  #navbar .row .buttons #button_hamburger {
+    display: block;
+    cursor: pointer;
+    color: white;
+    font-size: 27px;
+  }
+
+  #navbar.fixed_top {
+    -webkit-animation-name: none;
+            animation-name: none;
+  }
+
+  .menuopen {
+    -webkit-animation-name: menuopen;
+            animation-name: menuopen;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+  }
+
+  .menuclose {
+    -webkit-animation-name: menuclose;
+            animation-name: menuclose;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+  }
+
+@-webkit-keyframes menuopen {
+    from {
+      left: 100vw;
+    }
+
+    to {
+      left: 0;
+    }
+}
+
+@keyframes menuopen {
+    from {
+      left: 100vw;
+    }
+
+    to {
+      left: 0;
+    }
+}
+
+@-webkit-keyframes menuclose {
+    from {
+      left: 0;
+    }
+
+    to {
+      left: 100vw;
+    }
+}
+
+@keyframes menuclose {
+    from {
+      left: 0;
+    }
+
+    to {
+      left: 100vw;
+    }
+}
 }
 
 @media (min-width: 1700px) {

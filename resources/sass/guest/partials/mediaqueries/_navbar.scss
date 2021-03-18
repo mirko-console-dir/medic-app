@@ -12,20 +12,91 @@
     width: 100%;
     border-radius: 0;
     .row{
-      #logo{
-        align-items: center;
-        img{
-          height: 70px;
+      .col-sm-6{
+        width: 50%;
+        #logo{
+          img{
+            height: 70px;
+          }
         }
-      }  
-    }
-    .row{
-      .links{
+      }
+      #links_container{
         display: none;
+        padding-top: 30px;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100vw;
+        height: 65vh;
+        background-color: map-get($color-map, primary_color_dark);
+        // animation-name: menuopen;
+        // animation-duration: 0.5s;
+        .close_icon_hamburger{
+          display: block;
+          color: red;
+          position: absolute;
+          right: 7%;
+          top: 3%;
+          font-size: 25px;
+        }
+        .links{
+          display: block;
+          padding-left: 15px;
+          li{
+            height: max-content;
+            width: max-content;
+            a{
+              height: 50px;
+              line-height: 50px;
+              display: block;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              font-size: 22px;
+              width: max-content;
+            }
+            hr{
+              display: none;
+            }
+          }
+        }
       }
       .buttons{
-        display: none;
+        justify-content: flex-end;
+        a{
+          display: none;
+          height: 100%;
+        }
+        #button_hamburger{
+          display: block;
+          cursor: pointer;
+          color: white;
+          font-size: 27px;
+        }
       }
     }
+}
+
+#navbar.fixed_top{
+    animation-name: none;
+  }
+
+  .menuopen{
+    animation-name: menuopen;
+    animation-duration: 0.5s;
+  }
+
+  .menuclose{
+    animation-name: menuclose;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes menuopen {
+    from {left: 100vw;}
+    to {left: 0;}
+  }
+
+  @keyframes menuclose {
+    from {left: 0;}
+    to {left: 100vw;}
   }
 }
