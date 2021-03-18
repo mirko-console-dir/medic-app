@@ -1,16 +1,11 @@
 // MD - Medium devices (tablets, 992px and down)
 @media (max-width: 991.98px) {
     footer {
-
-        .adjustement {
-            height: 258px;
-        }
-
-        .visibility {
+        .visibility_double {
             display: none;
         }
 
-        .visibility_second {
+        .visibility_single {
             visibility: visible !important;
             flex-direction: column;
             line-height: 1.2rem !important;
@@ -20,18 +15,59 @@
 
 // SM - Small devices (landscape phones, 768 and down)
 @media (max-width: 767.98px) {
-    
-    .adjustement {
-        height: 258px;
+    footer {
+        .logo_row {
+            img {
+              height: 100px !important;
+            }
+        }
+
+        .menu_footer {
+            .title_footer {
+                margin-top: 0 !important;
+            }
+
+            .adjustment {
+                max-width: 275px;
+                
+
+            }
+
+            .visibility_double {
+                display: block;
+            }
+
+            .visibility_single {
+                visibility: hidden !important;
+            }
+        }
+
     }
 
-    .visibility {
-        display: none;
-    }
+}
 
-    .visibility_second {
-        visibility: visible !important;
-        flex-direction: column;
-        line-height: 1.2rem !important;
+
+// XS - Extra Small devices (phones, 572 and down)
+
+@media (max-width: 572px) {
+    footer {
+
+        .visibility_double {
+            display: none;
+        }
+
+        .visibility_single {
+            visibility: visible !important;
+            justify-content: center;
+            line-height: 1.2rem !important;
+        }
+       
+
+        
     }
 }
+
+
+
+
+
