@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('slideshow', require('./components/slideshow.vue').default);
 Vue.component('searchome', require('./components/navbar.vue').default);
 Vue.component('searchome', require('./components/searchome.vue').default);
+Vue.component('doctors_api', require('./components/doctors_api.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -23,6 +23,9 @@ Auth::routes();
 Route::get('/', 'Guest\PageController@index')->name('home');
 Route::get('/search', 'Guest\PageController@search')->name('search');
 
+// Guest/PageController route API
+Route::get('/doctors_api', 'Guest\PageController@doctors_api')->name('doctors_api');
+
 // Dashboard
 
 Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {

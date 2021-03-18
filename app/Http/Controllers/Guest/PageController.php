@@ -15,4 +15,9 @@ class PageController extends Controller
     {
         return view('guest.search');
     }
+
+    public function doctors_api()
+    {
+        return view('spa.doctors');
+    }
 }
