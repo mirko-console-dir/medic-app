@@ -27,7 +27,7 @@ function openHamburger() {
     document.getElementById('links_container').classList.remove('menuopen');
     document.getElementById('links_container').classList.add('menuclose');
     document.getElementById('links_container').style.left = "100vw" ;
-    document.getElementById('button_hamburger').style.display = "block";
+    document.getElementById('button_hamburger').style.display = "flex";
   }
 
 </script>

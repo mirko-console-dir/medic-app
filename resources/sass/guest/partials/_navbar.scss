@@ -19,6 +19,12 @@
       }
     }
   }
+  #button_hamburger{
+    display: none;
+    color: white;
+    justify-content: center;
+    align-items: center;
+  }
   #links_container{
     .close_icon_hamburger{
       display: none;
@@ -30,10 +36,14 @@
       justify-content: flex-end;
       align-items: center;
       margin-bottom: 0;
+      .button_nav{
+        @include button();
+        margin-right: 15px;
+      }
       .link{
         height: 100%;
         text-transform: capitalize;
-        margin: 0 2em;
+        margin: 0 1.5em;
         position:relative;
         a{
           display: block;
@@ -70,19 +80,7 @@
     }
   }
 
-  .buttons{
-    justify-content: space-around;
-    align-items: center;
-    padding-right: 20px;
-    padding-left: 20px;
-    border-radius: 7px;
-    a{
-      @include button();
-    }
-    #button_hamburger{
-      display: none;
-    }
-  }
+
 }
 
 // ANIMATIONS

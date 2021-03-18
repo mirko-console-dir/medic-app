@@ -15,6 +15,21 @@
           }
         }
       }
+      #button_hamburger{
+        width: max-content;
+        display: flex;
+        cursor: pointer;
+        color: white;
+        font-size: 27px;
+        position: absolute;
+        right: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+
+        i{
+          text-align: center;
+        }
+      }
       #links_container{
         display: none;
         padding-top: 30px;
@@ -24,8 +39,6 @@
         width: 100vw;
         height: 100vh;
         background-color: map-get($color-map, primary_color_dark);
-        // animation-name: menuopen;
-        // animation-duration: 0.5s;
         .close_icon_hamburger{
           display: block;
           color: red;
@@ -40,6 +53,13 @@
           li{
             height: max-content;
             width: max-content;
+            .button{
+              padding: 20px;
+              margin: 0 15px;
+              height: 40px;
+              width: 100px;
+              text-align: center;
+            }
             a{
               height: 50px;
               line-height: 50px;
@@ -53,21 +73,6 @@
               display: none;
             }
           }
-        }
-      }
-      .buttons{
-        justify-content: flex-end;
-        a{
-          margin: 0 15px;
-          height: 40px;
-          width: 100px;
-          text-align: center;
-        }
-        #button_hamburger{
-          display: block;
-          cursor: pointer;
-          color: white;
-          font-size: 27px;
         }
       }
     }
@@ -108,7 +113,7 @@
     width: 100%;
     border-radius: 0;
     .row{
-      .col-sm-6{
+      .logo_container{
         width: 50%;
         #logo{
           img{
@@ -125,8 +130,12 @@
         width: 100vw;
         height: 100vh;
         background-color: map-get($color-map, primary_color_dark);
-        // animation-name: menuopen;
-        // animation-duration: 0.5s;
+        #button_hamburger{
+          display: block;
+          cursor: pointer;
+          color: white;
+          font-size: 27px;
+        }
         .close_icon_hamburger{
           display: block;
           color: red;
@@ -154,19 +163,6 @@
               display: none;
             }
           }
-        }
-      }
-      .buttons{
-        justify-content: flex-end;
-        a{
-          display: none;
-          height: 100%;
-        }
-        #button_hamburger{
-          display: block;
-          cursor: pointer;
-          color: white;
-          font-size: 27px;
         }
       }
     }
