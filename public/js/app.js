@@ -2284,17 +2284,17 @@ module.exports = {
       this.window.width = window.innerWidth;
       this.window.height = window.innerHeight; //tablet
 
-      if (window.innerWidth < 991.98 && window.innerWidth > 768) {
+      if (window.innerWidth <= 992 && window.innerWidth > 768) {
         this.next(true);
-        this.show = this.size.md;
+        this.show = this.size.md; //2
       } //mobile
-      else if (window.innerWidth < 767.98) {
+      else if (window.innerWidth <= 768) {
           this.next(true);
-          this.show = this.size.sm;
+          this.show = this.size.sm; //1
         } //desktop
         else if (window.innerWidth > 992) {
             this.next(true);
-            this.show = this.size.lg;
+            this.show = this.size.lg; //3
           }
 
       return this.cardWidth = 1 / this.show;
@@ -50732,13 +50732,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> TF-TabletsQueryNav
 
 
 /***/ })
