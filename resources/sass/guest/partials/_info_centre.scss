@@ -1,5 +1,4 @@
 #info_centre {
-    height: 600px;
     background-color: white;
 
     .first_info_row {
@@ -8,48 +7,40 @@
             text-align: center;
             p:nth-child(2) {
                 font-size: 1.4rem;
+                margin: 0;
             }
         }
     }
 
     .second_info_row {
-        margin: 30px 0 0 0;
-        .box_area {
-            width: 100%;
-            flex-direction: column;
+        margin: 15px 0 0 0;
+        
+        .info_box {
+            min-height: 100px;
 
-            .info_row {
-                width: 100%;
-                margin: 0 0 20px 0;
-            
-                .info_box {
-                    min-height: 100px;
+            .info_text {
+                padding: 20px;
+                flex-direction: column;
 
-                    .info_text {
-                        flex-direction: column;
-                        padding: 20px;
+                &:hover {
+                    background-color: map-get($color-map, button_blue_hover);
+                }
 
-                        &:hover {
-                            background-color: map-get($color-map, button_blue_hover);
-                        }
-
-                        p:nth-child(1) {
-                            color: map-get($color-map, primary_color_light);
-                            font-weight: 600;
-                            margin-bottom: 10px;
-                        }
-                        
-                        p:nth-child(2) {
-                            color: map-get($color-map, primary_color_grey);
-                            margin: 0;
-                        }
-                    }
-
+                p:nth-child(1) {
+                    color: map-get($color-map, primary_color_light);
+                    font-weight: 600;
+                    margin-bottom: 10px;
+                }
+                
+                p:nth-child(2) {
+                    color: map-get($color-map, primary_color_grey);
+                    margin: 0;
                 }
             }
+
         }
-    
-    }
+        
+    }   
 
     .third_info_row {
         margin: 0;

@@ -35,7 +35,7 @@
               <a href=""> <i class="fas fa-chevron-right"></i> Morbi accusam </a> 
             </div>
 
-            <div class="col-md-12 col-sm-12 visibility_second d_flex">
+            <div class="col-md-12 col-sm-12 col-xs-12 visibility_second d_flex">
               <a href=""> <i class="fas fa-chevron-right"></i> Aenean solli </a>  
               <a href=""> <i class="fas fa-chevron-right"></i> Mauris in erat </a> 
               <a href=""> <i class="fas fa-chevron-right"></i> Nam nec tellus </a> 
@@ -54,7 +54,7 @@
       
       </div>
 
-      <div class="col-lg-5 col-md-5 col-sm-5">
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
         <div class="logo_footer d_flex_center">
           <img src="{{asset('img/logo.png')}}" alt="logo brutto" id="logo">
         </div>
@@ -65,14 +65,14 @@
 
     <!-- Second footer row -->
     <div class="row second_row">
-      <div class="col-lg-4 col-md-4 col-sm-4 copyright d_flex">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 copyright d_flex">
         <small> Copyright 2021 Medical Clinic - Team 5 <br> All right reserved</small>
       </div>
 
-      <div class="col-lg-3 col-md-3 col-sm-3">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
       </div>
 
-      <div class="col-lg-5 col-md-5 col-sm-5">
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
         <div class="social d_flex_center">
           <div class="d_flex">
             <a href=""> <i class="fab fa-facebook-square"></i> </a>

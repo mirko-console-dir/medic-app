@@ -1,18 +1,17 @@
 // MD - Medium devices (tablets, 992px and down)
 @media (max-width: 991.98px) {
     #info_centre {
+        .first_info_row {
+            margin-bottom: 15px;
+        }
         .second_info_row {
             margin-top: -5px;
             width: 100%;
             
-            .box_area {
-                width: 100%;
-
                 .info_row {
-                    flex-wrap: nowrap;
                     width: 100%;
                 }
-            }
+            
            
         }
     }
@@ -21,20 +20,30 @@
 // SM - Small devices (landscape phones, 768 and down)
 @media (max-width: 767.98px) {
     #info_centre {
+        .first_info_row {
+            margin-bottom: 15px;
+        }
 
         .second_info_row {
             margin-top: -5px;
             width: 100%;
-             
-            .box_area {
+            .info_row {
                 width: 100%;
-                 
-                .info_row {
-                    flex-wrap: nowrap;
-                    width: 100%;
-                }
             }
-            
         }
+            
+    }
+}
+
+// XS - Extra Small devices (phones, 572 and down)
+
+@media (max-width: 572px) {
+    #info_centre {
+       .logo_footer {
+           img {
+               width: 50%;
+           }
+       }
+            
     }
 }
