@@ -2,14 +2,15 @@
     <div id="slideshow">
         <i class="fa fa-chevron-left" @click="prev()"></i>
         <div class="card_container">
-            <div class="card" :style="{'width': cardWidth}" v-for="(profile, index) in profiles.slice(i,i+show)">
-                <div class="info avatar" :style="{ 'background-image': 'url('+image.path+profile.id+image.ext+')' }"></div>
-                <h4 class="info name">{{profile.sex === 'm'?'Dott.':'Dott.ssa'}} {{profile.name}} {{profile.lastname}}</h4>
-                <h4 class="info specialization">{{profile.specialization}}</h4>
-                <p class="info presentation">{{profile.presentation}}</p>
-                <a class="info presentation" href="/dashboard/doctors/{doctor}">link</a>
-
-            </div>
+            <transition-group id="card-complete" name="card-complete" tag="div">
+                <div class="card-complete-item"  :style="{'width': cardWidth}" v-for="profile in profiles.slice(i,i+show)" :key="profile.id">
+                    <div class="info avatar" :style="{ 'background-image': 'url('+image.path+profile.id+image.ext+')' }"></div>
+                    <h4 class="info name">{{profile.sex === 'm'?'Dott.':'Dott.ssa'}} {{profile.name}} {{profile.lastname}}</h4>
+                    <h4 class="info specialization">{{profile.specialization}}</h4>
+                    <p class="info presentation">{{profile.presentation}}</p>
+                    <!-- <a class="info presentation" href="/dashboard/doctors/{doctor}">link</a> -->
+                </div>
+            </transition-group>
         </div>
         <i class="fa fa-chevron-right" @click="next()"></i>
     </div>
@@ -25,7 +26,8 @@ module.exports = {
             size: {
                 sm: 1,
                 md: 2,
-                lg: 3
+                lg: 3,
+                xl: 4,
             },              // card mostrate contemporaneamente
             cardWidth: 1,   // larghezza card in percentuale 
             i: 0,           // puntatore nell'array profiles
@@ -64,8 +66,8 @@ module.exports = {
                 },
                 {
                 id: '04',
-                name: 'Mister',
-                lastname: 'Tee',
+                name: 'Mr.',
+                lastname: 'T',
                 specialization: 'Osteopata',
                 sex: 'm',
                 presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
@@ -169,11 +171,14 @@ module.exports = {
             if(window.innerWidth < 991.98 && window.innerWidth > 768) {
                 this.show = this.size.md;
             }
-            else if(window.innerWidth  > 992){
+            else if(window.innerWidth  > 992 && window.innerWidth  < 1199.98){
                 this.show = this.size.lg;
             }
-            else{
+            else if(window.innerWidth  < 767.98){
                 this.show = this.size.sm;
+            }
+            else if(window.innerWidth  > 1200){
+                this.show = this.size.xl;
             }
             this.cardWidth = (1/this.show);
         }

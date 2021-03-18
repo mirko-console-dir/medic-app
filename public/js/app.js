@@ -2049,6 +2049,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 module.exports = {
   props: ['homeRoute'],
   data: function data() {
@@ -2057,7 +2058,8 @@ module.exports = {
       size: {
         sm: 1,
         md: 2,
-        lg: 3
+        lg: 3,
+        xl: 4
       },
       // card mostrate contemporaneamente
       cardWidth: 1,
@@ -2096,8 +2098,8 @@ module.exports = {
         presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
       }, {
         id: '04',
-        name: 'Mister',
-        lastname: 'Tee',
+        name: 'Mr.',
+        lastname: 'T',
         specialization: 'Osteopata',
         sex: 'm',
         presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
@@ -2192,10 +2194,12 @@ module.exports = {
     cardMediaQuery: function cardMediaQuery() {
       if (window.innerWidth < 991.98 && window.innerWidth > 768) {
         this.show = this.size.md;
-      } else if (window.innerWidth > 992) {
+      } else if (window.innerWidth > 992 && window.innerWidth < 1199.98) {
         this.show = this.size.lg;
-      } else {
+      } else if (window.innerWidth < 767.98) {
         this.show = this.size.sm;
+      } else if (window.innerWidth > 1200) {
+        this.show = this.size.xl;
       }
 
       this.cardWidth = 1 / this.show;
@@ -38013,52 +38017,53 @@ var render = function() {
     _c(
       "div",
       { staticClass: "card_container" },
-      _vm._l(_vm.profiles.slice(_vm.i, _vm.i + _vm.show), function(
-        profile,
-        index
-      ) {
-        return _c(
-          "div",
-          { staticClass: "card", style: { width: _vm.cardWidth } },
-          [
-            _c("div", {
-              staticClass: "info avatar",
-              style: {
-                "background-image":
-                  "url(" + _vm.image.path + profile.id + _vm.image.ext + ")"
-              }
-            }),
-            _vm._v(" "),
-            _c("h4", { staticClass: "info name" }, [
-              _vm._v(
-                _vm._s(profile.sex === "m" ? "Dott." : "Dott.ssa") +
-                  " " +
-                  _vm._s(profile.name) +
-                  " " +
-                  _vm._s(profile.lastname)
-              )
-            ]),
-            _vm._v(" "),
-            _c("h4", { staticClass: "info specialization" }, [
-              _vm._v(_vm._s(profile.specialization))
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "info presentation" }, [
-              _vm._v(_vm._s(profile.presentation))
-            ]),
-            _vm._v(" "),
-            _c(
-              "a",
+      [
+        _c(
+          "transition-group",
+          { attrs: { id: "card-complete", name: "card-complete", tag: "div" } },
+          _vm._l(_vm.profiles.slice(_vm.i, _vm.i + _vm.show), function(
+            profile
+          ) {
+            return _c(
+              "div",
               {
-                staticClass: "info presentation",
-                attrs: { href: "/dashboard/doctors/{doctor}" }
+                key: profile.id,
+                staticClass: "card-complete-item",
+                style: { width: _vm.cardWidth }
               },
-              [_vm._v("link")]
+              [
+                _c("div", {
+                  staticClass: "info avatar",
+                  style: {
+                    "background-image":
+                      "url(" + _vm.image.path + profile.id + _vm.image.ext + ")"
+                  }
+                }),
+                _vm._v(" "),
+                _c("h4", { staticClass: "info name" }, [
+                  _vm._v(
+                    _vm._s(profile.sex === "m" ? "Dott." : "Dott.ssa") +
+                      " " +
+                      _vm._s(profile.name) +
+                      " " +
+                      _vm._s(profile.lastname)
+                  )
+                ]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "info specialization" }, [
+                  _vm._v(_vm._s(profile.specialization))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "info presentation" }, [
+                  _vm._v(_vm._s(profile.presentation))
+                ])
+              ]
             )
-          ]
+          }),
+          0
         )
-      }),
-      0
+      ],
+      1
     ),
     _vm._v(" "),
     _c("i", {
