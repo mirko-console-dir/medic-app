@@ -1,19 +1,67 @@
 footer {
+  height: 340px;
   background-color: #141430;
-  border-top: 1px solid #68677E;
-  border-bottom: 1px solid #68677E;
   color: white;
   
   .container_80 {
     margin: 0 auto;
+    flex-direction: column;
 
     // Row 1 
     & .first_row {
       margin: 0;
+      padding-bottom: 50px;
 
       // First column
-      .col-lg-4 {
-        height: 100%;
+      .logo_row {
+        
+        img {
+          height: 120px;
+        }
+      } 
+    } 
+  
+
+      // Second column
+      .menu_footer {
+        
+        & .links_footer {
+          
+            .title_footer {
+              margin-top: 25px;
+              margin-left: 20px;
+            } 
+
+            .adjustment {
+              max-width: 300px;
+              & div {
+                font-size: 0.8rem;
+                line-height: 1.5rem;
+              }
+
+            }
+
+            .visibility_single {
+              visibility: hidden;
+            }
+
+            .fa-chevron-right {
+              margin-right: 10px;
+              margin-left: 20px;
+            }
+          
+            a {
+              color: white;
+              &:hover {
+                color: #00aeef;
+              }
+            }
+            
+        }
+      }
+
+      // Third column
+      .details {
 
         & .details_footer {
           flex-direction: column;
@@ -32,77 +80,19 @@ footer {
           }
         }
       }
-
-      // Second column
-      .col-lg-3 {
-        height: 100%;
-        
-        & .links_footer {
-          height: 275px;
-          
-            .title_footer {
-              margin-top: 25px;
-              margin-left: 20px;
-            } 
-          
-            & div {
-              font-size: 0.6rem;
-              line-height: 1.5rem;
-            }
-
-            .visibility_second {
-              visibility: hidden;
-            }
-
-            .fa-chevron-right {
-              margin-right: 15px;
-              margin-left: 25px;
-            }
-          
-            a {
-              color: white;
-              &:hover {
-                color: #00aeef;
-              }
-            }
-            
-        }
-      }
-
-      // Third column
-      .col-lg-5 {
-        height: 100%;
       
-        & .logo_footer {
-          height: 100%;
-        
-          img {
-            width: 80%;
-          }
-        } 
-      } 
     
-    }
+  }
     
     // Row 2
     & .second_row {
-      height: 40px;
+      overflow: hidden;
+
       margin: 0;
       
       // First column
-      .col-lg-4 {
-        height: 100%;
-      }
+      .social_icons {
 
-      .copyright {
-        font-size: 0.8rem;
-        justify-content: left;
-      }
-        
-
-      // Third column
-      .col-lg-5 {
-        height: 100%;
         .social {
           margin-left: 15px;
           i {
@@ -111,9 +101,19 @@ footer {
           }
         }
       }
+      
+
+      // Third column
+      .copyright {
+
+        font-size: 0.8rem;
+        justify-content: left;
+      }
+        
+      
 
     }
-  } 
+  
 }
 
 
