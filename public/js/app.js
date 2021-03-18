@@ -2050,11 +2050,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
+/** Il carosello così impostato può visualizzare fino a un massimo di 4 card.
+*
+*/
 module.exports = {
   props: ['homeRoute'],
   data: function data() {
     return {
-      show: 4,
+      show: 0,
       size: {
         sm: 1,
         md: 2,
@@ -2065,6 +2070,9 @@ module.exports = {
       cardWidth: 1,
       // larghezza card in percentuale 
       i: 0,
+      j: 0,
+      k: 0,
+      l: 0,
       // puntatore nell'array profiles
       window: {
         // dichiarazione iniziale per la variabile window
@@ -2075,6 +2083,7 @@ module.exports = {
         path: 'img/sponsored/profile_',
         ext: '.jpg'
       },
+      activeProfiles: [],
       profiles: [{
         id: '01',
         name: 'laura',
@@ -2163,59 +2172,147 @@ module.exports = {
     };
   },
   methods: {
-    prev: function prev() {
+    prev: function prev(initial) {
       var i = this.i;
-      i--;
+      var j = this.j;
+      var k = this.k;
+      var l = this.l;
+      var show = this.show;
+      var activeProfiles = this.profiles;
+      var profilesLength = this.profiles.length;
+
+      if (!initial) {
+        i--;
+        j--;
+        k--;
+        l--;
+      }
 
       if (i < 0) {
-        return this.i = this.profiles.length - this.show;
+        i = profilesLength - 1;
       }
 
-      return this.i = i;
+      if (j < 0) {
+        j = profilesLength - 1;
+      }
+
+      if (k < 0) {
+        k = profilesLength - 1;
+      }
+
+      if (l < 0) {
+        l = profilesLength - 1;
+      }
+
+      if (show === 1) {
+        activeProfiles = [activeProfiles[i]];
+      } else if (show === 2) {
+        activeProfiles = [activeProfiles[i], activeProfiles[j]];
+      } else if (show === 3) {
+        activeProfiles = [activeProfiles[i], activeProfiles[j], activeProfiles[k]];
+      } else if (show === 4) {
+        activeProfiles = [activeProfiles[i], activeProfiles[j], activeProfiles[k], activeProfiles[l]];
+      } // console.log("l = ", l);
+      // console.log("k = ", k);
+      // console.log("j = ", j);
+      // console.log("i = ", i);
+
+
+      this.i = i;
+      this.j = j;
+      this.k = k;
+      this.l = l;
+      return this.activeProfiles = activeProfiles;
     },
-    next: function next() {
+    next: function next(initial) {
       var i = this.i;
-      i++;
+      var j = this.j;
+      var k = this.k;
+      var l = this.l;
+      var show = this.show;
+      var activeProfiles = this.profiles;
+      var profilesLength = this.profiles.length;
 
-      if (i > this.profiles.length - this.show) {
-        return this.i = 0;
+      if (!initial) {
+        i++;
+        j++;
+        k++;
+        l++;
       }
 
-      return this.i = i;
+      if (l > profilesLength - 1) {
+        l = 0;
+      }
+
+      if (k > profilesLength - 1) {
+        k = 0;
+      }
+
+      if (j > profilesLength - 1) {
+        j = 0;
+      }
+
+      if (i > profilesLength - 1) {
+        i = 0;
+      }
+
+      if (show === 1) {
+        activeProfiles = [activeProfiles[i]];
+      } else if (show === 2) {
+        activeProfiles = [activeProfiles[i], activeProfiles[j]];
+      } else if (show === 3) {
+        activeProfiles = [activeProfiles[i], activeProfiles[j], activeProfiles[k]];
+      } else if (show === 4) {
+        activeProfiles = [activeProfiles[i], activeProfiles[j], activeProfiles[k], activeProfiles[l]];
+      } // console.log("l = ", l);
+      // console.log("k = ", k);
+      // console.log("j = ", j);
+      // console.log("i = ", i);
+
+
+      this.i = i;
+      this.j = j;
+      this.k = k;
+      this.l = l;
+      return this.activeProfiles = activeProfiles;
     },
 
     /** Shows the window width and height 
     *   
     */
-    handleResize: function handleResize() {
-      this.window.width = window.innerWidth;
-      this.window.height = window.innerHeight;
-    },
     cardMediaQuery: function cardMediaQuery() {
-      if (window.innerWidth < 991.98 && window.innerWidth > 768) {
-        this.show = this.size.md;
-      } else if (window.innerWidth > 992 && window.innerWidth < 1199.98) {
-        this.show = this.size.lg;
-      } else if (window.innerWidth < 767.98) {
-        this.show = this.size.sm;
-      } else if (window.innerWidth > 1200) {
-        this.show = this.size.xl;
-      }
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight; //tablet
 
-      this.cardWidth = 1 / this.show;
+      if (window.innerWidth < 991.98 && window.innerWidth > 768) {
+        this.next(true);
+        this.show = this.size.md;
+      } //mobile
+      else if (window.innerWidth < 767.98) {
+          this.next(true);
+          this.show = this.size.sm;
+        } //desktop
+        else if (window.innerWidth > 992) {
+            this.next(true);
+            this.show = this.size.lg;
+          }
+
+      return this.cardWidth = 1 / this.show;
     }
   },
   created: function created() {
-    window.addEventListener('resize', this.handleResize);
     window.addEventListener('resize', this.cardMediaQuery);
-    this.handleResize();
     this.cardMediaQuery();
   },
   mounted: function mounted() {
-    console.log('Component Slideshow');
+    console.log('Component "Slideshow" mounted');
+    this.i = 0;
+    this.j = this.i + 1;
+    this.k = this.i + 2;
+    this.l = this.i + 3;
+    this.next(true);
   },
   distroyed: function distroyed() {
-    window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('resize', this.cardMediaQuery);
   }
 };
@@ -38021,9 +38118,7 @@ var render = function() {
         _c(
           "transition-group",
           { attrs: { id: "card-complete", name: "card-complete", tag: "div" } },
-          _vm._l(_vm.profiles.slice(_vm.i, _vm.i + _vm.show), function(
-            profile
-          ) {
+          _vm._l(_vm.activeProfiles, function(profile) {
             return _c(
               "div",
               {
@@ -38056,7 +38151,16 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", { staticClass: "info presentation" }, [
                   _vm._v(_vm._s(profile.presentation))
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "info presentation",
+                    attrs: { href: "/dashboard/doctors/{doctor}" }
+                  },
+                  [_vm._v("ID: " + _vm._s(profile.id))]
+                )
               ]
             )
           }),
@@ -50628,8 +50732,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
