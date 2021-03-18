@@ -21,11 +21,10 @@
   }
   #button_hamburger{
     display: none;
-    color: white;
-    justify-content: center;
-    align-items: center;
+    opacity: 0;
   }
   #links_container{
+    // left: 0;
     .close_icon_hamburger{
       display: none;
       color: white;

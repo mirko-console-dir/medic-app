@@ -11197,9 +11197,7 @@ input {
 
 #navbar #button_hamburger {
   display: none;
-  color: white;
-  justify-content: center;
-  align-items: center;
+  opacity: 0;
 }
 
 #navbar #links_container .close_icon_hamburger {
@@ -11664,6 +11662,7 @@ footer .container_80 .second_row .col-lg-5 .social i {
   }
 
   #navbar .row #button_hamburger {
+    opacity: 1;
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
@@ -11743,60 +11742,6 @@ footer .container_80 .second_row .col-lg-5 .social i {
     -webkit-animation-name: none;
             animation-name: none;
   }
-
-  .menuopen {
-    -webkit-animation-name: menuopen;
-            animation-name: menuopen;
-    -webkit-animation-duration: 0.5s;
-            animation-duration: 0.5s;
-  }
-
-  .menuclose {
-    -webkit-animation-name: menuclose;
-            animation-name: menuclose;
-    -webkit-animation-duration: 0.5s;
-            animation-duration: 0.5s;
-  }
-
-@-webkit-keyframes menuopen {
-    from {
-      left: 100vw;
-    }
-
-    to {
-      left: 0;
-    }
-}
-
-@keyframes menuopen {
-    from {
-      left: 100vw;
-    }
-
-    to {
-      left: 0;
-    }
-}
-
-@-webkit-keyframes menuclose {
-    from {
-      left: 0;
-    }
-
-    to {
-      left: 100vw;
-    }
-}
-
-@keyframes menuclose {
-    from {
-      left: 0;
-    }
-
-    to {
-      left: 100vw;
-    }
-}
 }
 
 @media (max-width: 767.98px) {
@@ -11820,15 +11765,13 @@ footer .container_80 .second_row .col-lg-5 .social i {
   #navbar .row #links_container {
     display: none;
     padding-top: 30px;
-    position: absolute;
-    top: 70px;
-    left: 0;
     width: 100vw;
     height: 100vh;
     background-color: #141430;
   }
 
   #navbar .row #links_container #button_hamburger {
+    opacity: 1;
     display: block;
     cursor: pointer;
     color: white;
@@ -11878,60 +11821,6 @@ footer .container_80 .second_row .col-lg-5 .social i {
     -webkit-animation-name: none;
             animation-name: none;
   }
-
-  .menuopen {
-    -webkit-animation-name: menuopen;
-            animation-name: menuopen;
-    -webkit-animation-duration: 0.5s;
-            animation-duration: 0.5s;
-  }
-
-  .menuclose {
-    -webkit-animation-name: menuclose;
-            animation-name: menuclose;
-    -webkit-animation-duration: 0.5s;
-            animation-duration: 0.5s;
-  }
-
-@-webkit-keyframes menuopen {
-    from {
-      left: 100vw;
-    }
-
-    to {
-      left: 0;
-    }
-}
-
-@keyframes menuopen {
-    from {
-      left: 100vw;
-    }
-
-    to {
-      left: 0;
-    }
-}
-
-@-webkit-keyframes menuclose {
-    from {
-      left: 0;
-    }
-
-    to {
-      left: 100vw;
-    }
-}
-
-@keyframes menuclose {
-    from {
-      left: 0;
-    }
-
-    to {
-      left: 100vw;
-    }
-}
 }
 
 @media (min-width: 1700px) {
