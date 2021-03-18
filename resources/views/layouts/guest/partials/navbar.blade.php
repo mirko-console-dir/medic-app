@@ -63,7 +63,7 @@
           @endif
         @endauth
       @endif
-      <div id="button_hamburger" onclick = "clickHamburger()">
+      <div id="button_hamburger" onclick = "openHamburger()">
         <i class="fas fa-bars"></i>
       </div>
     </div>
