@@ -1,5 +1,101 @@
 // MD - Medium devices (tablets, 992px and down)
 @media (max-width: 991.98px) {
+  #navbar{
+    height: 90px;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    width: 100%;
+    border-radius: 0;
+    .row{
+      .logo_container{
+        #logo{
+          img{
+            height: 90px;
+          }
+        }
+      }
+      #links_container{
+        display: none;
+        padding-top: 30px;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: map-get($color-map, primary_color_dark);
+        // animation-name: menuopen;
+        // animation-duration: 0.5s;
+        .close_icon_hamburger{
+          display: block;
+          color: red;
+          position: absolute;
+          right: 7%;
+          top: 3%;
+          font-size: 25px;
+        }
+        .links{
+          display: block;
+          padding-left: 15px;
+          li{
+            height: max-content;
+            width: max-content;
+            a{
+              height: 50px;
+              line-height: 50px;
+              display: block;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              font-size: 22px;
+              width: max-content;
+            }
+            hr{
+              display: none;
+            }
+          }
+        }
+      }
+      .buttons{
+        justify-content: flex-end;
+        a{
+          margin: 0 15px;
+          height: 40px;
+          width: 100px;
+          text-align: center;
+        }
+        #button_hamburger{
+          display: block;
+          cursor: pointer;
+          color: white;
+          font-size: 27px;
+        }
+      }
+    }
+}
+
+#navbar.fixed_top{
+    animation-name: none;
+  }
+
+  .menuopen{
+    animation-name: menuopen;
+    animation-duration: 0.5s;
+  }
+
+  .menuclose{
+    animation-name: menuclose;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes menuopen {
+    from {left: 100vw;}
+    to {left: 0;}
+  }
+
+  @keyframes menuclose {
+    from {left: 0;}
+    to {left: 100vw;}
+  }
 }
 
 // SM - Small devices (landscape phones, 768 and down)

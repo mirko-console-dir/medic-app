@@ -11653,6 +11653,148 @@ footer .container_80 .second_row .col-lg-5 .social i {
   margin-right: 10px;
 }
 
+@media (max-width: 991.98px) {
+  #navbar {
+    height: 90px;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  #navbar .row .logo_container #logo img {
+    height: 90px;
+  }
+
+  #navbar .row #links_container {
+    display: none;
+    padding-top: 30px;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #141430;
+  }
+
+  #navbar .row #links_container .close_icon_hamburger {
+    display: block;
+    color: red;
+    position: absolute;
+    right: 7%;
+    top: 3%;
+    font-size: 25px;
+  }
+
+  #navbar .row #links_container .links {
+    display: block;
+    padding-left: 15px;
+  }
+
+  #navbar .row #links_container .links li {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+
+  #navbar .row #links_container .links li a {
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+
+  #navbar .row #links_container .links li hr {
+    display: none;
+  }
+
+  #navbar .row .buttons {
+    justify-content: flex-end;
+  }
+
+  #navbar .row .buttons a {
+    margin: 0 15px;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+  }
+
+  #navbar .row .buttons #button_hamburger {
+    display: block;
+    cursor: pointer;
+    color: white;
+    font-size: 27px;
+  }
+
+  #navbar.fixed_top {
+    -webkit-animation-name: none;
+            animation-name: none;
+  }
+
+  .menuopen {
+    -webkit-animation-name: menuopen;
+            animation-name: menuopen;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+  }
+
+  .menuclose {
+    -webkit-animation-name: menuclose;
+            animation-name: menuclose;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
+  }
+
+@-webkit-keyframes menuopen {
+    from {
+      left: 100vw;
+    }
+
+    to {
+      left: 0;
+    }
+}
+
+@keyframes menuopen {
+    from {
+      left: 100vw;
+    }
+
+    to {
+      left: 0;
+    }
+}
+
+@-webkit-keyframes menuclose {
+    from {
+      left: 0;
+    }
+
+    to {
+      left: 100vw;
+    }
+}
+
+@keyframes menuclose {
+    from {
+      left: 0;
+    }
+
+    to {
+      left: 100vw;
+    }
+}
+}
+
 @media (max-width: 767.98px) {
   #navbar {
     height: 70px;
@@ -11805,6 +11947,17 @@ footer .container_80 .second_row .col-lg-5 .social i {
 
   #jumbo_home .container_searchbar .text_jumbo h2 {
     font-size: 60px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #jumbo_home .overlay_doc_image {
+    background-position: 90% 86%;
+  }
+
+  #jumbo_home .container_searchbar {
+    top: 20%;
+    width: 50%;
   }
 }
 

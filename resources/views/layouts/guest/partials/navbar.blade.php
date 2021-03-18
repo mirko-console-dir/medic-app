@@ -3,7 +3,7 @@
 
   <div class="row">
 
-    <div class="col-sm-6 col-lg-3 logo_container">
+    <div class="col-lg-3 col-md-4 col-sm-6 logo_container">
 
       <a href="/" class="d_flex" id="logo">
         <img src="{{asset('img/logo.png')}}" alt="MedicUs logo">
@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <div class="col-sm-6 col-lg-3 d_flex buttons">
+    <div class="col-lg-3 col-md-8 col-sm-6 d_flex buttons">
       @if (Route::has('login'))
         @auth
           <a href="{{ url('/dashboard') }}" class="btn_blue">My Profile</a>
