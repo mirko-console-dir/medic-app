@@ -1,0 +1,40 @@
+// MD - Medium devices (tablets, 992px and down)
+@media (max-width: 991.98px) {
+    #info_centre {
+        .second_info_row {
+            margin-top: -5px;
+            width: 100%;
+            
+            .box_area {
+                width: 100%;
+
+                .info_row {
+                    flex-wrap: nowrap;
+                    width: 100%;
+                }
+            }
+           
+        }
+    }
+}
+
+// SM - Small devices (landscape phones, 768 and down)
+@media (max-width: 767.98px) {
+    #info_centre {
+
+        .second_info_row {
+            margin-top: -5px;
+            width: 100%;
+             
+            .box_area {
+                width: 100%;
+                 
+                .info_row {
+                    flex-wrap: nowrap;
+                    width: 100%;
+                }
+            }
+            
+        }
+    }
+}
