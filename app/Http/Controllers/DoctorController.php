@@ -84,14 +84,10 @@ class DoctorController extends Controller
      */
     public function update(Request $request, User $user, $slug, Clinic $clinic)
     {
-        // dd($request->all());
-        Storage::delete('cv_img', $user->cv_img);
-        Storage::delete('profile_img', $user->profile_img);
-        $slug = $request->name . '-' . $request ->lastname;
-        
-        // dd(Auth::user()->prefix_id);
+        // dd($request->file());
+        $file = $request->file();
 
-        //dd($slug);
+        $slug = $request->name . '-' . $request->lastname;
 
         $validatedData = $request->validate([
             'name' => 'required',
@@ -99,38 +95,97 @@ class DoctorController extends Controller
             'email' => 'required',
             'address' => 'required',
             'register_number_doc' => 'required',
-            'cv_img' => '',
             'phone_number' => 'required',
-            'profile_img' => '',
-            'service_id'=> 'nullable',
+            'service_id' => 'nullable',
             'cv_img' => 'nullable | file ',
             'profile_img' => 'nullable | image ',
             'prefix_id' => 'required',
             // 'slug' => 'required'
 
         ]);
+        // dd(Auth::user()->prefix_id);
 
-        // dd($validatedData);
-        // $prefix_id = $request->prefix_id;
-        $cv_img = Storage::put('cv_img', $request->cv_img);
-        $profile_img = Storage::put('profile_img', $request->profile_img);
+        if ($file != null) {
 
-        // $user = User::where('slug', $slug)->first();
-        $validatedData['slug'] = $slug;
-        $validatedData['cv_img'] = $cv_img;
-        $validatedData['profile_img'] = $profile_img;
-        // $validatedData['prefix_id'] = $prefix_id;
 
-        $user = Auth::user();
-        $user->clinics()->sync($request->clinic_id);
-        $user->specializations()->sync($request->specialization_id);
+            if (isset($file['profile_img']) && !isset($file['cv_img']) ) {
 
-        $user->update($validatedData);
-        // dd($slug);
-        // dd($user);
-        return redirect()->route('dashboard.');
+                Storage::delete('profile_img', $user->profile_img);
+                $profile_img = Storage::put('profile_img', $request->profile_img);
+                $validatedData['slug'] = $slug;
+                $validatedData['profile_img'] = $profile_img;
+                $validatedData['cv_img'] = Auth::user()->cv_img;
+                $user = Auth::user();
+                $user->clinics()->sync($request->clinic_id);
+                $user->specializations()->sync($request->specialization_id);
+                $user->update($validatedData);
+                return redirect()->route('dashboard.');
 
-        
+            } elseif (isset($file['cv_img']) && !isset($file['profile_img'])) {
+
+                Storage::delete('cv_img', $user->cv_img);
+                $cv_img = Storage::put('cv_img', $request->cv_img);
+                $validatedData['slug'] = $slug;
+                $validatedData['cv_img'] = $cv_img;
+                $validatedData['profile_img'] = Auth::user()->profile_img;
+                $user = Auth::user();
+                $user->clinics()->sync($request->clinic_id);
+                $user->specializations()->sync($request->specialization_id);
+                $user->update($validatedData);
+                return redirect()->route('dashboard.');
+            }
+            else {
+                Storage::delete('cv_img', $user->cv_img);
+                Storage::delete('profile_img', $user->profile_img);
+                $cv_img = Storage::put('cv_img', $request->cv_img);
+                $profile_img = Storage::put('profile_img', $request->profile_img);
+                $validatedData['slug'] = $slug;
+                $validatedData['cv_img'] = $cv_img;
+                $validatedData['profile_img'] = $profile_img;
+                $user = Auth::user();
+                $user->clinics()->sync($request->clinic_id);
+                $user->specializations()->sync($request->specialization_id);
+                $user->update($validatedData);
+                return redirect()->route('dashboard.');
+            }
+        }
+
+        elseif($request->file() == null) {
+
+            $slug = $request->name . '-' . $request->lastname;
+            $validatedData = $request->validate([
+                'name' => 'required',
+                'lastname' => 'required',
+                'email' => 'required',
+                'address' => 'required',
+                'register_number_doc' => 'required',
+                'cv_img' => '',
+                'phone_number' => 'required',
+                'profile_img' => '',
+                'service_id' => 'nullable',
+                'cv_img' => 'nullable | file ',
+                'profile_img' => 'nullable | image ',
+                'prefix_id' => 'required',
+                // 'slug' => 'required'
+
+            ]);
+
+            $cv_img = Auth::user()->cv_img;
+            $profile_img = Auth::user()->profile_img;
+            $validatedData['slug'] = $slug;
+            $validatedData['cv_img'] = $cv_img;
+            $validatedData['profile_img'] = $profile_img;
+
+            $user = Auth::user();
+            $user->clinics()->sync($request->clinic_id);
+            $user->specializations()->sync($request->specialization_id);
+
+            $user->update($validatedData);
+            // dd($slug);
+            // dd($user);
+            return redirect()->route('dashboard.');
+        }
+
     }
 
     /**
