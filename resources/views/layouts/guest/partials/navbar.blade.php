@@ -11,7 +11,7 @@
       </a>
     </div>
 
-    <div class="col-lg-9 menuopen" id="links_container">
+    <div class="col-lg-9" id="links_container">
 
       <ul class="links">
         <li class="link">
