@@ -29,5 +29,7 @@
     @yield('content')
     @include('layouts.guest.partials.footer')
   </div>
+  {{-- <style> with js plane --}}
+  @include('guest.partials.js.navbar')
 </body>
 </html>

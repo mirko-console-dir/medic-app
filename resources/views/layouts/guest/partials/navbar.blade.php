@@ -1,7 +1,9 @@
 <div id="navbar" class="">
+  <div class="container-fluid">
+
   <div class="row">
 
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-sm-6 col-lg-3 logo_container">
 
       <a href="/" class="d_flex" id="logo">
         <img src="{{asset('img/logo.png')}}" alt="MedicUs logo">
@@ -9,7 +11,7 @@
       </a>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-6" id="links_container">
 
       <ul class="links">
         <li class="link">
@@ -44,9 +46,12 @@
         </li>
 
       </ul>
+      <div class="close_icon_hamburger" onclick="closeHamburger()">
+        <i class="fas fa-times"></i>
+      </div>
     </div>
 
-    <div class="col-lg-3 d_flex buttons">
+    <div class="col-sm-6 col-lg-3 d_flex buttons">
       @if (Route::has('login'))
         @auth
           <a href="{{ url('/dashboard') }}" class="btn_blue">My Profile</a>
@@ -58,7 +63,11 @@
           @endif
         @endauth
       @endif
+      <div id="button_hamburger" onclick = "clickHamburger()">
+        <i class="fas fa-bars"></i>
+      </div>
     </div>
 
   </div>
+</div>
 </div>
