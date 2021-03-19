@@ -11178,6 +11178,7 @@ input {
   margin: auto;
   margin-bottom: 10px;
   border-radius: 7px;
+  padding-right: 20px;
 }
 
 #navbar .row #logo {
@@ -11216,13 +11217,14 @@ input {
 #navbar #links_container .links .button_nav {
   padding: 5px 15px;
   border-radius: 7px;
-  margin-right: 15px;
+  margin-left: 15px;
+  margin-right: 5px;
 }
 
 #navbar #links_container .links .link {
   height: 100%;
   text-transform: capitalize;
-  margin: 0 1.5em;
+  margin: 0 1.2em;
   position: relative;
 }
 
@@ -11619,16 +11621,12 @@ footer .second_row .social_icons .social i {
   margin-right: 10px;
 }
 
-<<<<<<< HEAD
-@media (max-width: 991.98px) {
-=======
 footer .second_row .copyright {
   font-size: 0.8rem;
   justify-content: left;
 }
 
-@media (max-width: 767.98px) {
->>>>>>> RTminorfix
+@media (max-width: 991.98px) {
   #navbar {
     height: 90px;
     position: fixed;
@@ -11662,14 +11660,15 @@ footer .second_row .copyright {
   }
 
   #navbar .row #links_container {
-    display: none;
+    display: block;
     padding-top: 30px;
     position: absolute;
-    top: 70px;
-    left: 0;
+    top: 90px;
+    left: 100vw;
     width: 100vw;
     height: 100vh;
     background-color: #141430;
+    transition: left 0.5 ease;
   }
 
   #navbar .row #links_container .close_icon_hamburger {
@@ -11678,7 +11677,7 @@ footer .second_row .copyright {
     position: absolute;
     right: 7%;
     top: 3%;
-    font-size: 25px;
+    font-size: 40px;
   }
 
   #navbar .row #links_container .links {
@@ -11728,11 +11727,6 @@ footer .second_row .copyright {
 @media (max-width: 767.98px) {
   #navbar {
     height: 70px;
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    width: 100%;
-    border-radius: 0;
   }
 
   #navbar .row .logo_container {
@@ -11744,63 +11738,74 @@ footer .second_row .copyright {
   }
 
   #navbar .row #links_container {
-    display: none;
-    padding-top: 30px;
-    width: 100vw;
-    height: 100vh;
-    background-color: #141430;
+    top: 70px;
   }
 
   #navbar .row #links_container #button_hamburger {
-    opacity: 1;
     display: block;
-    cursor: pointer;
-    color: white;
-    font-size: 27px;
   }
 
   #navbar .row #links_container .close_icon_hamburger {
-    display: block;
-    color: red;
-    position: absolute;
-    right: 7%;
-    top: 3%;
-    font-size: 25px;
-  }
-
-  #navbar .row #links_container .links {
-    display: block;
-    padding-left: 15px;
-  }
-
-  #navbar .row #links_container .links li {
-    height: -webkit-max-content;
-    height: -moz-max-content;
-    height: max-content;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-  }
-
-  #navbar .row #links_container .links li a {
-    height: 50px;
-    line-height: 50px;
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 22px;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-  }
-
-  #navbar .row #links_container .links li hr {
-    display: none;
+    font-size: 30px;
   }
 
   #navbar.fixed_top {
     -webkit-animation-name: none;
             animation-name: none;
+  }
+}
+
+.menuclose {
+  -webkit-animation-name: menuclose;
+          animation-name: menuclose;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+.menuopen {
+  -webkit-animation-name: menuopen;
+          animation-name: menuopen;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+}
+
+@-webkit-keyframes menuopen {
+  from {
+    left: 100vw;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@keyframes menuopen {
+  from {
+    left: 100vw;
+  }
+
+  to {
+    left: 0;
+  }
+}
+
+@-webkit-keyframes menuclose {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 100vw;
+  }
+}
+
+@keyframes menuclose {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: 100vw;
   }
 }
 
@@ -11853,7 +11858,7 @@ footer .second_row .copyright {
   }
 
   #jumbo_home .container_searchbar .text_jumbo h2 {
-    font-size: 30px;
+    font-size: 40px;
     margin-top: 0;
     margin-bottom: 20px;
   }
