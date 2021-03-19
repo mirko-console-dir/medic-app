@@ -21,7 +21,6 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('slideshow', require('./components/slideshow.vue').default);
-Vue.component('searchome', require('./components/navbar.vue').default);
 Vue.component('searchome', require('./components/searchome.vue').default);
 Vue.component('doctors_api', require('./components/doctors_api.vue').default);
 
