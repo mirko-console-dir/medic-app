@@ -86,7 +86,7 @@ class User extends Authenticatable
     public function prefixes()
     {
 
-        return $this->belongsTo('App\Prefix');
+        return $this->belongsTo('App\Prefix', 'prefix_id');
     }
 
     public function services()
