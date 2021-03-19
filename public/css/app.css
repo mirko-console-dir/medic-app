@@ -11663,7 +11663,7 @@ footer .second_row .copyright {
     display: block;
     padding-top: 30px;
     position: absolute;
-    top: 70px;
+    top: 90px;
     left: 100vw;
     width: 100vw;
     height: 100vh;
@@ -11677,7 +11677,7 @@ footer .second_row .copyright {
     position: absolute;
     right: 7%;
     top: 3%;
-    font-size: 30px;
+    font-size: 40px;
   }
 
   #navbar .row #links_container .links {
@@ -11716,6 +11716,37 @@ footer .second_row .copyright {
 
   #navbar .row #links_container .links li hr {
     display: none;
+  }
+
+  #navbar.fixed_top {
+    -webkit-animation-name: none;
+            animation-name: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #navbar {
+    height: 70px;
+  }
+
+  #navbar .row .logo_container {
+    width: 50%;
+  }
+
+  #navbar .row .logo_container #logo img {
+    height: 70px;
+  }
+
+  #navbar .row #links_container {
+    top: 70px;
+  }
+
+  #navbar .row #links_container #button_hamburger {
+    display: block;
+  }
+
+  #navbar .row #links_container .close_icon_hamburger {
+    font-size: 30px;
   }
 
   #navbar.fixed_top {
@@ -11775,88 +11806,6 @@ footer .second_row .copyright {
 
   to {
     left: 100vw;
-  }
-}
-
-@media (max-width: 767.98px) {
-  #navbar {
-    height: 70px;
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    width: 100%;
-    border-radius: 0;
-  }
-
-  #navbar .row .logo_container {
-    width: 50%;
-  }
-
-  #navbar .row .logo_container #logo img {
-    height: 70px;
-  }
-
-  #navbar .row #links_container {
-    display: block;
-    padding-top: 30px;
-    position: absolute;
-    top: 70px;
-    left: 100vw;
-    width: 100vw;
-    height: 100vh;
-    background-color: #141430;
-  }
-
-  #navbar .row #links_container #button_hamburger {
-    opacity: 1;
-    display: block;
-    cursor: pointer;
-    color: white;
-    font-size: 27px;
-  }
-
-  #navbar .row #links_container .close_icon_hamburger {
-    display: block;
-    color: red;
-    position: absolute;
-    right: 7%;
-    top: 3%;
-    font-size: 25px;
-  }
-
-  #navbar .row #links_container .links {
-    display: block;
-    padding-left: 15px;
-  }
-
-  #navbar .row #links_container .links li {
-    height: -webkit-max-content;
-    height: -moz-max-content;
-    height: max-content;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-  }
-
-  #navbar .row #links_container .links li a {
-    height: 50px;
-    line-height: 50px;
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 22px;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-  }
-
-  #navbar .row #links_container .links li hr {
-    display: none;
-  }
-
-  #navbar.fixed_top {
-    -webkit-animation-name: none;
-            animation-name: none;
   }
 }
 

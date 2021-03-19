@@ -26,7 +26,6 @@
         right: 5%;
         top: 50%;
         transform: translateY(-50%);
-
         i{
           text-align: center;
         }
@@ -35,7 +34,7 @@
         display: block;
         padding-top: 30px;
         position: absolute;
-        top: 70px;
+        top: 90px;
         left: 100vw;
         width: 100vw;
         height: 100vh;
@@ -47,7 +46,7 @@
           position: absolute;
           right: 7%;
           top: 3%;
-          font-size: 30px;
+          font-size: 40px;
         }
         .links{
           display: block;
@@ -78,14 +77,43 @@
         }
       }
     }
-}
-
-// animations, animations classes, and keyframes
-
-#navbar.fixed_top{
+  }
+  #navbar.fixed_top{
     animation-name: none;
   }
 }
+
+
+// SM - Small devices (landscape phones, 768 and down)
+@media (max-width: 767.98px) {
+  #navbar{
+    height: 70px;
+    .row{
+      .logo_container{
+        width: 50%;
+        #logo{
+          img{
+            height: 70px;
+          }
+        }
+      }
+      #links_container{
+        top: 70px;
+        #button_hamburger{
+          display: block;
+        }
+        .close_icon_hamburger{
+          font-size: 30px;
+        }
+      }
+    }
+  }
+  #navbar.fixed_top{
+  animation-name: none;
+  }
+}
+
+// animations, animations classes, and keyframes
 
 .menuclose{
   animation-name: menuclose;
@@ -104,75 +132,4 @@
 @keyframes menuclose {
   from {left: 0;}
   to {left: 100vw;}
-}
-// SM - Small devices (landscape phones, 768 and down)
-@media (max-width: 767.98px) {
-  #navbar{
-    height: 70px;
-    position: fixed;
-    z-index: 3;
-    top: 0;
-    width: 100%;
-    border-radius: 0;
-    .row{
-      .logo_container{
-        width: 50%;
-        #logo{
-          img{
-            height: 70px;
-          }
-        }
-      }
-      #links_container{
-        display: block;
-        padding-top: 30px;
-        position: absolute;
-        top: 70px;
-        left: 100vw;
-        width: 100vw;
-        height: 100vh;
-        background-color: map-get($color-map, primary_color_dark);
-        #button_hamburger{
-          opacity: 1;
-          display: block;
-          cursor: pointer;
-          color: white;
-          font-size: 27px;
-        }
-        .close_icon_hamburger{
-          display: block;
-          color: red;
-          position: absolute;
-          right: 7%;
-          top: 3%;
-          font-size: 25px;
-        }
-        .links{
-          display: block;
-          padding-left: 15px;
-          li{
-            height: max-content;
-            width: max-content;
-            a{
-              height: 50px;
-              line-height: 50px;
-              display: block;
-              margin-top: 10px;
-              margin-bottom: 10px;
-              font-size: 22px;
-              width: max-content;
-            }
-            hr{
-              display: none;
-            }
-          }
-        }
-      }
-    }
-}
-
-#navbar.fixed_top{
-    animation-name: none;
-}
-
 }
