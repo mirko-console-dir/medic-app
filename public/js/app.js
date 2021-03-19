@@ -2044,9 +2044,13 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/searchome.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2057,41 +2061,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-module.exports = {
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  setup: function setup() {
+    filterSpec = Object(vue__WEBPACK_IMPORTED_MODULE_0__["reactive"])(filterSpec);
+  },
   data: function data() {
     return {
       users: [],
       search: '',
       filterDoctors: [],
-      doctor: []
+      filterSpec: [],
+      doctor: [],
+      specializations: []
     };
   },
-  methods: {
-    specFor: function specFor() {
+  computed: {
+    specList: function specList() {
       var _this = this;
 
-      this.filterDoctors = [];
       this.users.forEach(function (doctor) {
         doctor.specializations.forEach(function (spec) {
-          if (spec.name === _this.search) {
-            return _this.filterDoctors.push(doctor.name);
+          if (!_this.specializations.includes(spec.name.toLowerCase())) {
+            return _this.specializations.push(spec.name.toLowerCase());
           }
         });
       });
     }
   },
+  methods: {
+    specFilter: function specFilter(search) {
+      var _this2 = this;
+
+      this.filterSpec = [];
+      this.specializations.forEach(function (spec) {
+        if (spec.toLowerCase().includes(search.toLowerCase())) {
+          return _this2.filterSpec.push(spec);
+        }
+      });
+    }
+  },
+  created: function created() {},
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     console.log('Component "Searchhome" mounted');
     axios.get('api/users').then(function (response) {
       console.log(response.data.data);
-      _this2.users = response.data.data;
+      _this3.users = response.data.data;
     })["catch"](function (error) {
       console.log(error);
     });
+    this.filterSpec = this.specializations;
   }
-};
+}); //Vue.set(searchome.filterSpec, searchome.specFilter());
 
 /***/ }),
 
@@ -38823,50 +38849,51 @@ var render = function() {
   return _c(
     "form",
     {
-      staticClass: "col-lg-6 col-sm-12 d_flex",
+      staticClass: "col-lg-6 col-sm-12",
       attrs: { action: "/search", method: "post" }
     },
     [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.search,
-            expression: "search"
-          }
-        ],
-        attrs: {
-          type: "text",
-          name: "search",
-          placeholder: "Search for a doctor here"
-        },
-        domProps: { value: _vm.search },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "d_flex" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
             }
-            _vm.search = $event.target.value
+          ],
+          attrs: {
+            type: "text",
+            name: "search",
+            placeholder: "Search for a specialization"
+          },
+          domProps: { value: _vm.search },
+          on: {
+            keyup: function($event) {
+              return _vm.specFilter(_vm.search)
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
           }
-        }
-      }),
+        }),
+        _vm._v(" "),
+        _c("button", { attrs: { type: "submit", name: "button" } }, [
+          _vm._v("GO")
+        ])
+      ]),
       _vm._v(" "),
       _c(
-        "div",
-        {
-          on: {
-            click: function($event) {
-              return _vm.specFor()
-            }
-          }
-        },
-        [_vm._v("Click")]
-      ),
-      _vm._v(" "),
-      _c("p", { staticStyle: { color: "white" } }, [
-        _vm._v(_vm._s(_vm.filterUsers))
-      ])
+        "ul",
+        _vm._l(_vm.filterSpec, function(spec) {
+          return _c("li", [_vm._v(_vm._s(spec))])
+        }),
+        0
+      )
     ]
   )
 }
@@ -51430,9 +51457,7 @@ component.options.__file = "resources/js/components/searchome.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./searchome.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/searchome.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

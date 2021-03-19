@@ -1,35 +1,55 @@
 <template>
-  <form class="col-lg-6 col-sm-12 d_flex" action="/search" method="post">
-    <input type="text" name="search" placeholder="Search for a doctor here" v-model="search">
-    <div @click="specFor()">Click</div>
-    <!-- <button type="submit" name="button">GO</button> -->
-    <p style="color: white">{{filterUsers}}</p>
+  <form class="col-lg-6 col-sm-12" action="/search" method="post">
+      <div class="d_flex">
+        <input type="text" name="search" placeholder="Search for a specialization" @keyup="specFilter(search)" v-model="search">
+        <button type="submit" name="button">GO</button>
+      </div>
+        <ul>
+          <li v-for="spec in filterSpec">{{spec}}</li>
+        </ul>
 
   </form>
 </template>
 
 <script>
-    module.exports = {
-      
+    import { reactive } from 'vue'
+    export default {
+      setup() {
+        filterSpec = reactive(filterSpec);
+      },
       data: function () {
         return {
           users: [],
           search: '',
           filterDoctors: [],
+          filterSpec: [],
           doctor: [],
+          specializations: [],
         }
       },
-      methods: {
-        specFor: function(){
-          this.filterDoctors = [];
+      computed: {
+        specList: function(){
           this.users.forEach(doctor=>{
-            doctor.specializations.forEach(spec =>{
-              if(spec.name === this.search){
-                return this.filterDoctors.push(doctor.name);
+            doctor.specializations.forEach(spec=>{
+              if(!this.specializations.includes(spec.name.toLowerCase())){
+                return this.specializations.push(spec.name.toLowerCase());
               }
             });
           });
-        }
+        },
+        
+      },
+      methods: {
+        specFilter: function(search){
+          this.filterSpec = [];
+          this.specializations.forEach(spec =>{
+            if(spec.toLowerCase().includes(search.toLowerCase())){
+              return this.filterSpec.push(spec);
+            } 
+          });
+        },
+      },
+      created(){
       },
       mounted() {
         console.log('Component "Searchhome" mounted');
@@ -42,6 +62,9 @@
         .catch(error => {
             console.log(error);
         })
-      },
+        this.filterSpec = this.specializations;
+      }
     }
+
+    //Vue.set(searchome.filterSpec, searchome.specFilter());
 </script>
