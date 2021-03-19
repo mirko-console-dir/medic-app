@@ -1,7 +1,7 @@
 footer {
-  height: 340px;
   background-color: #141430;
   color: white;
+  padding-bottom: 10px;
   
   .container_80 {
     margin: 0 auto;
@@ -12,19 +12,16 @@ footer {
       margin: 0;
       padding-bottom: 50px;
 
-      // First column
+      // Logo
       .logo_row {
         
         img {
           height: 120px;
         }
       } 
-    } 
-  
-
-      // Second column
+    
+      // Menu
       .menu_footer {
-        
         & .links_footer {
           
             .title_footer {
@@ -38,11 +35,10 @@ footer {
                 font-size: 0.8rem;
                 line-height: 1.5rem;
               }
-
             }
 
             .visibility_single {
-              visibility: hidden;
+              display: none;
             }
 
             .fa-chevron-right {
@@ -56,16 +52,14 @@ footer {
                 color: #00aeef;
               }
             }
-            
-        }
+          } 
       }
-
-      // Third column
+      
+      // Details
       .details {
 
         & .details_footer {
           flex-direction: column;
-          justify-content: left;
           & p {
             margin-top: 25px;
             padding-bottom: 25px;
@@ -80,21 +74,20 @@ footer {
           }
         }
       }
-      
+
+    }
     
-  }
     
     // Row 2
     & .second_row {
-      overflow: hidden;
-
       margin: 0;
       
-      // First column
+      // Social
       .social_icons {
 
         .social {
-          margin-left: 15px;
+          max-width: 200px;
+          justify-content: flex-start;
           i {
             color: #00aeef;
             margin-right: 10px;
@@ -103,17 +96,17 @@ footer {
       }
       
 
-      // Third column
+      // Copyright
       .copyright {
-
-        font-size: 0.8rem;
-        justify-content: left;
+        font-size: 0.75rem;
+        justify-content: space-around;
       }
-        
       
-
     }
-  
+  }
 }
+
+
+
 
 

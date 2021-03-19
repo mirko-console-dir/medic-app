@@ -12,7 +12,7 @@
       </div>
      
 
-      <div class="col-lg-5 col-md-4 col-sm-8 col-xs-6 menu_footer">
+      <div class="col-lg-5 col-md-4 col-sm-8 col-xs-12 menu_footer">
         <div class="links_footer">
           
           <p class="title_footer"> Nullam wisi ultricies a <br> gravida vitae </p> 
@@ -35,7 +35,7 @@
               <a href=""> <i class="fas fa-chevron-right"></i> Morbi accusam </a> 
             </div>
 
-            <div class="col-md-12 col-xs-12 visibility_single d_flex">
+            <div class="col-md-12 col-xs-12 visibility_single">
               <a href=""> <i class="fas fa-chevron-right"></i> Aenean solli </a>  
               <a href=""> <i class="fas fa-chevron-right"></i> Mauris in erat </a> 
               <a href=""> <i class="fas fa-chevron-right"></i> Nam nec tellus </a> 
@@ -54,7 +54,7 @@
       
       </div>
      
-      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 details">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 details">
         <div class="details_footer d_flex_center">
           <p class="title_footer"> Vestibulum dapibus <br> mauris nec malesuada <br> fames ac tupis velit </p>
           <a href="" class="buttons btn_blue">View more details</a>
@@ -65,24 +65,25 @@
     <!-- End First footer row -->
 
     <!-- Second footer row -->
-    <div class="row second_row d_flex">
+    <div class="row second_row">
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 social_icons">
-        <div class="social d_flex_center">
-          <div class="d_flex">
-            <a href=""> <i class="fab fa-facebook-square"></i> </a>
-            <a href=""> <i class="fab fa-twitter-square"></i> </a>
-            <a href=""> <i class="fab fa-instagram"></i> </a>
-            <a href=""> <i class="fab fa-youtube"></i> </a>
-            <a href=""> <i class="fab fa-linkedin"></i> </a>
-          </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 social_icons d_flex_center">
+        <div class="social d_flex">
+          <a href=""> <i class="fab fa-facebook-square"></i> </a>
+          <a href=""> <i class="fab fa-twitter-square"></i> </a>
+          <a href=""> <i class="fab fa-instagram"></i> </a>
+          <a href=""> <i class="fab fa-youtube"></i> </a>
+          <a href=""> <i class="fab fa-linkedin"></i> </a>
         </div>
       </div>
 
+      <div class ="col-lg-5 col-md-4 col-sm-3 col-xs-12"></div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 copyright d_flex">
+
+      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 copyright d_flex">
         <small> Copyright 2021 Medical Clinic - Team 5 <br> All right reserved</small>
       </div>
+
     </div>
     <!-- End Second footer row -->
     
@@ -90,3 +91,6 @@
   </div>
   
 </footer>
+
+
+<!-- col-md-8 col-sm-8 col-xs-8 -->
