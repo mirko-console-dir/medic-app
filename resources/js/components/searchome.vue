@@ -1,7 +1,7 @@
 <template>
-  <form class="col-lg-6 col-sm-12" action="/search" method="post">
+  <form class="col-lg-6 col-sm-12" action="/search" method="post" autocomplete="off">
       <div class="d_flex">
-        <input type="text" name="search" placeholder="Search for a specialization" @keyup="specFilter(search)" v-model="search">
+        <input type="text" name="search" placeholder="Search for a specialization" v-model="search" @keyup="specFilter(search)">
         <button type="submit" name="button">GO</button>
       </div>
         <ul>
@@ -14,17 +14,16 @@
 <script>
     import { reactive } from 'vue'
     export default {
-      setup() {
-        filterSpec = reactive(filterSpec);
-      },
       data: function () {
         return {
           users: [],
           search: '',
           filterDoctors: [],
-          filterSpec: [],
+          filterSpec: {},
           doctor: [],
           specializations: [],
+          //specFilter: [],
+
         }
       },
       computed: {
@@ -40,19 +39,30 @@
         
       },
       methods: {
-        specFilter: function(search){
-          this.filterSpec = [];
-          this.specializations.forEach(spec =>{
-            if(spec.toLowerCase().includes(search.toLowerCase())){
-              return this.filterSpec.push(spec);
-            } 
-          });
+        specFilter: function(){
+          let filter = [];
+          let IndexOfItem = 0;
+          let specializations = this.specializations;
+          if(this.search.length > 0){
+            this.specializations.forEach(spec =>{
+              console.log("ciao");
+              if(spec.toLowerCase().includes(this.search.toLowerCase())){
+                IndexOfItem++;
+                filter.push(spec);
+                return filter;
+              };
+            });
+          }
+          
+          console.log(filter, IndexOfItem);
+          Vue.set(this.filterSpec, IndexOfItem, filter);
+          return 
         },
+
       },
-      created(){
+      created() {
       },
       mounted() {
-        console.log('Component "Searchhome" mounted');
         axios
         .get('api/users')
         .then(response => {
@@ -62,8 +72,8 @@
         .catch(error => {
             console.log(error);
         })
-        this.filterSpec = this.specializations;
+        console.log("specializations", this.specializations);
+        console.log('Component "Searchhome" mounted');
       },
     }
-    //Vue.set(searchome.filterSpec, searchome.specFilter());
 </script>

@@ -2062,50 +2062,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-=======
 //
 //
 
->>>>>>> AM-Frontend
 /* harmony default export */ __webpack_exports__["default"] = ({
-  setup: function setup() {
-    filterSpec = Object(vue__WEBPACK_IMPORTED_MODULE_0__["reactive"])(filterSpec);
-  },
   data: function data() {
     return {
-<<<<<<< HEAD
-      initValue: '',
-      users: []
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get('api/users').then(function (response) {
-      console.log(response.data.data);
-      _this.users = response.data.data;
-    })["catch"](function (error) {
-      console.log(error);
-    });
-  },
-  methods: {
-    filteredUsers: function filteredUsers() {
-      var _this2 = this;
-
-      return this.filteredUsers = this.users.filter(function (user) {
-        return user.specialization.name.toLowerCase().includes(_this2.initValue.toLowerCase());
-      });
-    }
-  }
-});
-=======
       users: [],
       search: '',
       filterDoctors: [],
-      filterSpec: [],
+      filterSpec: {},
       doctor: [],
-      specializations: []
+      specializations: [] //specFilter: [],
+
     };
   },
   computed: {
@@ -2122,32 +2091,46 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    specFilter: function specFilter(search) {
+    specFilter: function specFilter() {
       var _this2 = this;
 
-      this.filterSpec = [];
-      this.specializations.forEach(function (spec) {
-        if (spec.toLowerCase().includes(search.toLowerCase())) {
-          return _this2.filterSpec.push(spec);
-        }
-      });
+      var filter = [];
+      var IndexOfItem = 0;
+      var specializations = this.specializations;
+
+      if (this.search.length > 0) {
+        this.specializations.forEach(function (spec) {
+          console.log("ciao");
+
+          if (spec.toLowerCase().includes(_this2.search.toLowerCase())) {
+            IndexOfItem++;
+            filter.push(spec);
+            return filter;
+          }
+
+          ;
+        });
+      }
+
+      console.log(filter, IndexOfItem);
+      Vue.set(this.filterSpec, IndexOfItem, filter);
+      return;
     }
   },
   created: function created() {},
   mounted: function mounted() {
     var _this3 = this;
 
-    console.log('Component "Searchhome" mounted');
     axios.get('api/users').then(function (response) {
       console.log(response.data.data);
       _this3.users = response.data.data;
     })["catch"](function (error) {
       console.log(error);
     });
-    this.filterSpec = this.specializations;
+    console.log("specializations", this.specializations);
+    console.log('Component "Searchhome" mounted');
   }
-}); //Vue.set(searchome.filterSpec, searchome.specFilter());
->>>>>>> AM-Frontend
+});
 
 /***/ }),
 
@@ -38879,45 +38862,8 @@ var render = function() {
   return _c(
     "form",
     {
-<<<<<<< HEAD
-      staticClass: "col-lg-6 col-sm-12 d_flex",
-      attrs: { action: "/search", method: "post" }
-    },
-    [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.initValue,
-            expression: "initValue"
-          }
-        ],
-        attrs: {
-          type: "text",
-          name: "search",
-          placeholder: "Search for a specialization here"
-        },
-        domProps: { value: _vm.initValue },
-        on: {
-          change: function($event) {
-            return _vm.filteredUsers()
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.initValue = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("button", { attrs: { type: "submit", name: "button" } }, [
-        _vm._v("GO")
-      ])
-=======
       staticClass: "col-lg-6 col-sm-12",
-      attrs: { action: "/search", method: "post" }
+      attrs: { action: "/search", method: "post", autocomplete: "off" }
     },
     [
       _c("div", { staticClass: "d_flex" }, [
@@ -38961,7 +38907,6 @@ var render = function() {
         }),
         0
       )
->>>>>>> AM-Frontend
     ]
   )
 }
@@ -51481,15 +51426,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/js/components/searchome.vue ***!
   \***********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _searchome_vue_vue_type_template_id_ce33cb38___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./searchome.vue?vue&type=template&id=ce33cb38& */ "./resources/js/components/searchome.vue?vue&type=template&id=ce33cb38&");
 /* harmony import */ var _searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchome.vue?vue&type=script&lang=js& */ "./resources/js/components/searchome.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -51519,7 +51463,7 @@ component.options.__file = "resources/js/components/searchome.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/components/searchome.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51637,13 +51581,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
 __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> AM-Frontend
 
 
 /***/ })
