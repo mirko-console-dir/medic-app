@@ -16,8 +16,5 @@ class DatabaseSeeder extends Seeder
         $this->call(SpecializationSeeder::class);
         $this->call(SponsorshipSeeder::class);
         $this->call(ClinicSeeder::class);
-
-
-
     }
 }
