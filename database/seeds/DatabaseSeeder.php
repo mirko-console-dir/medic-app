@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(PrefixSeeder::class);
-        $this->call(ServiceSeeder::class);
         $this->call(SpecializationSeeder::class);
         $this->call(SponsorshipSeeder::class);
         $this->call(ClinicSeeder::class);
