@@ -2007,6 +2007,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2015,7 +2021,8 @@ __webpack_require__.r(__webpack_exports__);
         "default": function _default() {
           return {};
         }
-      }
+      } // users: "",
+
     };
   },
   mounted: function mounted() {
@@ -38634,27 +38641,50 @@ var render = function() {
       _c(
         "div",
         { staticClass: "col-md-8" },
-        _vm._l(_vm.users, function(user, index) {
+        _vm._l(_vm.users, function(user) {
           return _c("div", { key: user.id, staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v(_vm._s(user.name) + " " + _vm._s(user.lastname))
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
-              user.prefix
+              user.prefixes
                 ? _c("div", [
                     _c("p", [
                       _vm._v(
-                        " Phone number: " + _vm._s(user.prefix.dial_code) + " "
+                        " Phone number: " +
+                          _vm._s(user.prefixes.dial_code) +
+                          " "
                       )
-                    ])
+                    ]),
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(user.phone_number) +
+                        "\n                    "
+                    )
                   ])
                 : _vm._e(),
-              _vm._v(
-                "\n                    " +
-                  _vm._s(user.phone_number) +
-                  "\n                "
-              )
+              _vm._v(" "),
+              user.specializations
+                ? _c(
+                    "div",
+                    [
+                      _vm._v(
+                        "\n                        Specializations:\n                        "
+                      ),
+                      _vm._l(user.specializations, function(specializations) {
+                        return _c("span", { key: specializations.id }, [
+                          _vm._v(
+                            " \n                        " +
+                              _vm._s(specializations.name) +
+                              " \n                        "
+                          )
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                : _vm._e()
             ])
           ])
         }),

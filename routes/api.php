@@ -23,3 +23,4 @@ use Illuminate\Support\Facades\Route;
 //     ],200);
 // });
 Route::get('users', 'API\ApiController@users');
+Route::get('prefixes', 'API\ApiController@prefixes');

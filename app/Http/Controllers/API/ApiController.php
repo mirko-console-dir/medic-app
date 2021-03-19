@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Prefix;
+use App\Specialization;
+
 
 class ApiController extends Controller
 {
@@ -13,11 +15,11 @@ class ApiController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => User::with('prefixes')->get(),
+            'data' => User::with('prefixes', 'specializations')->get(),
         ], 200);
     }
 
-    public function prefix()
+    public function prefixes()
     {
         return response()->json([
             'success' => true,
