@@ -20,9 +20,10 @@
                     var ctx = document.getElementById('myChart');
                     // console.log(users);
                     var months_array = [];
+                    var tot_user_per_month = [];
                     var users = {!!$users!!};
 
-                    // console.log(months_array);
+                    
                     users.forEach(
                         element => {
                             // console.log(element.created_at);
@@ -35,20 +36,32 @@
                             var user_month_join = user_month.join('');
                             // console.log(user_month_join);
 
+                            tot_user_per_month.push(user_month_join);
+
                             if (months_array.indexOf(user_month_join) == -1) {
                                 months_array.push(user_month_join);
-
                             }
                         }
                     );
 
-                    // console.log(months_array);
+                    console.log(months_array);
 
+                    tot_user_per_month.sort();
                     months_array.sort();
 
-                    // console.log(months_array);
+                    console.log(tot_user_per_month);
+                    const user_per_month = [];
+
+                    for (let i = 0; i < tot_user_per_month.length; i++) {
+
+                        console.log(tot_user_per_month[i])
+
+
+                    }
+
+                    // console.log(user_per_month);
                     const months_name = [];
-                    // WITH METHOD MAP DOESNT WORK
+                    // WITH METHOD MAP DOESNT WORK so we use the map to create the value we want and push them into months_name array!!!
                     const months_array_map = months_array.map(element => {
 
                         if (element == 01) {
@@ -94,6 +107,90 @@
 
                     console.log(months_name);
 
+                    // WE MAKE MONTHS_NAME AS OBJECT with key the name of the month
+                    const obj_months = {};
+                    for (const key of months_name) {
+                        obj_months[key] = '';
+                    }
+
+                  
+
+                    for (let i = 0; i < tot_user_per_month.length; i++) {
+
+                        if (tot_user_per_month[i] == '01') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['January'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '02') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['February'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '03') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['March'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '04') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['April'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '05') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['May'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '06') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['June'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '07') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['July'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '08') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['August'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '09') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['September'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '10') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['October'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '11') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['November'] += tot_user_per_month[i];
+                        } else if (tot_user_per_month[i] == '12') {
+                            tot_user_per_month[i] = 1;
+                            obj_months['December'] += tot_user_per_month[i];
+                        }
+
+                    }
+                    // console.log(obj_months);
+
+                    let values_per_month = [];
+
+                    for (const value in obj_months) {
+                        if (Object.hasOwnProperty.call(obj_months, value)) {
+                            const element = obj_months[value];
+                            values_per_month.push(element);
+
+                        }
+                    }
+
+                    console.log(values_per_month);
+
+                    let data = [];
+                    values_per_month.forEach(element => {
+
+                        let g = (Array.from(element));
+
+                        console.log(g);
+                        let total = 0;
+                        for (let i = 0; i < g.length; i++) {
+                            console.log(g[i]);
+                            const parsed = parseInt(g[i])
+                            total += parsed;
+                        }
+
+                        console.log(total);
+                        data.push(total);
+                        // })
+
+
+                    })
+
+                    console.log(data);
                     // MAKE ARRAY AS OBJECT
                     var months_object = Object.assign({}, months_array);
                     // console.log(months_object);
@@ -107,7 +204,7 @@
                             labels: months_name,
                             datasets: [{
                                 label: '# of Doctors',
-                                data: [12, 19, 3, 5, 2, 3],
+                                data: data,
                                 backgroundColor: [
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(54, 162, 235, 0.2)',
@@ -140,7 +237,7 @@
                                 yAxes: [{
                                     ticks: {
                                         min: 0,
-                                        max: 100,
+                                        max: 10,
                                     }
                                 }]
                             }

@@ -48,7 +48,7 @@
 
                 <!-- Address -->
                 <label for="address">Address</label>
-                <input type="text" name="address" id="address" class="form-control" placeholder="Insert your address" value="{{$user->address}}" required>
+                <input type="text" name="address" id="address" class="form-control" placeholder="Insert your address" value="{{$user->address}}">
                 <br>
 
                 <!-- ManyToMany Service -->
