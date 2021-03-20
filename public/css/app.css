@@ -11351,10 +11351,36 @@ input {
   background: #00aeef;
 }
 
-#jumbo_home .container_searchbar form .suggestions {
-  width: 75%;
-  background-color: white;
+#jumbo_home .container_searchbar form ul {
+  width: 74%;
+  background: white;
+  margin-left: 1%;
+  border-top: 1px solid lightgrey;
+  padding-left: 0;
+  margin-bottom: 0;
+  max-height: 121px;
+  overflow-y: auto;
+}
+
+#jumbo_home .container_searchbar form ul li {
+  text-transform: capitalize;
+  width: 100%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+#jumbo_home .container_searchbar form ul li a {
+  padding-left: 20px;
+  display: block;
+  width: 100%;
   color: #141430;
+  outline: 0;
+}
+
+#jumbo_home .container_searchbar form ul li a:hover {
+  background-color: lightgrey;
+  transition: background-color 0.3s ease;
 }
 
 #boxes_features_home .first_row .intro_description {
