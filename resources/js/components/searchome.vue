@@ -1,11 +1,14 @@
 <template>
   <form class="col-lg-6 col-sm-12" action="/search" method="post" autocomplete="off">
-      <div class="d_flex">
-        <input type="text" name="search" placeholder="Search for a specialization" v-model="search" @keyup="specFilter(search)">
+      <div class="d_flex input_container">
+        <input type="text" onfocus="appearList()" onfocusout="disappearList()" name="search" placeholder="Search for a specialization" v-model="search" @keyup="specFilter(search)">
         <button type="submit" name="button">GO</button>
       </div>
-      <ul>
-        <li v-for="spec in filterSpec" >
+      <ul id="spec_list">
+        <li v-if="filterSpec.length === 0" v-for="spec in specializations" >
+          <a href="#" >{{spec}}</a>
+        </li>
+        <li v-if="filterSpec.length > 0" v-for="spec in filterSpec" >
           <a href="#" >{{spec}}</a>
         </li>
       </ul>
