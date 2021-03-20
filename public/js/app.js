@@ -2063,6 +2063,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["componentName", "api"],
   data: function data() {
@@ -38861,7 +38864,7 @@ var render = function() {
       attrs: { action: "/search", method: "post", autocomplete: "off" }
     },
     [
-      _c("div", { staticClass: "d_flex" }, [
+      _c("div", { staticClass: "d_flex input_container" }, [
         _c("input", {
           directives: [
             {
@@ -38873,6 +38876,8 @@ var render = function() {
           ],
           attrs: {
             type: "text",
+            onfocus: "appearList()",
+            onfocusout: "disappearList()",
             name: "search",
             placeholder: "Search for a specialization"
           },
@@ -38897,12 +38902,25 @@ var render = function() {
       _vm._v(" "),
       _c(
         "ul",
-        _vm._l(_vm.filterSpec, function(spec) {
-          return _c("li", [
-            _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(spec))])
-          ])
-        }),
-        0
+        { attrs: { id: "spec_list" } },
+        [
+          _vm._l(_vm.specializations, function(spec) {
+            return _vm.filterSpec.length === 0
+              ? _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(spec))])
+                ])
+              : _vm._e()
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.filterSpec, function(spec) {
+            return _vm.filterSpec.length > 0
+              ? _c("li", [
+                  _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(spec))])
+                ])
+              : _vm._e()
+          })
+        ],
+        2
       )
     ]
   )

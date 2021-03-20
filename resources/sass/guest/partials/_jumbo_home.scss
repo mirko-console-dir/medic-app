@@ -25,50 +25,53 @@
       }
     }
     form{
-      input{
-        width: 75%;
-        height: 45px;
-        border-top-left-radius: 7px;
-        border-bottom-left-radius: 7px;
-        padding: 0 20px;
-      }
-      button{
-        width: 15%;
-        border-top-right-radius: 7px;
-        border-bottom-right-radius: 7px;
-        color: white;
-        background: map-get($color-map, primary_color_dark);
-        transition: background-color 0.4s ease;
-        &:hover{
-          background: map-get($color-map, primary_color_light);
-        }
-      }
-      ul{
-        width: 74%;
-        background: white;
-        margin-left: 1%;
-        border-top: 1px solid lightgrey;
-        padding-left: 0;
-        margin-bottom: 0;
-        max-height: 121px;
-        overflow-y: auto;
-        li{
-          text-transform: capitalize;
-          width: 100%;
-          height: max-content;
-          a{
-            padding-left: 20px;
-            display: block;
-            width: 100%;
-            color: map-get($color-map, primary_color_dark);
-            outline: 0;
+        .input_container{
+          input{
+            width: 75%;
+            height: 45px;
+            border-top-left-radius: 7px;
+            border-bottom-left-radius: 7px;
+            padding: 0 20px;
+          }
+          button{
+            width: 15%;
+            border-top-right-radius: 7px;
+            border-bottom-right-radius: 7px;
+            color: white;
+            background: map-get($color-map, primary_color_dark);
+            transition: background-color 0.4s ease;
             &:hover{
-              background-color: lightgrey;
-              transition: background-color 0.3s ease;
+              background: map-get($color-map, primary_color_light);
+            }
+          }
+        }
+        ul#spec_list{
+          display: none;
+          width: 74%;
+          background: white;
+          margin-left: 1%;
+          border-top: 1px solid lightgrey;
+          padding-left: 0;
+          margin-bottom: 0;
+          max-height: 121px;
+          overflow-y: auto;
+          li{
+            text-transform: capitalize;
+            width: 100%;
+            height: max-content;
+            a{
+              padding-left: 20px;
+              display: block;
+              width: 100%;
+              color: map-get($color-map, primary_color_dark);
+              outline: 0;
+              &:hover{
+                background-color: lightgrey;
+                transition: background-color 0.3s ease;
+              }
             }
           }
         }
       }
     }
   }
-}

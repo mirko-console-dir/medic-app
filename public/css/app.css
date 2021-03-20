@@ -11330,7 +11330,7 @@ input {
   font-size: 50px;
 }
 
-#jumbo_home .container_searchbar form input {
+#jumbo_home .container_searchbar form .input_container input {
   width: 75%;
   height: 45px;
   border-top-left-radius: 7px;
@@ -11338,7 +11338,7 @@ input {
   padding: 0 20px;
 }
 
-#jumbo_home .container_searchbar form button {
+#jumbo_home .container_searchbar form .input_container button {
   width: 15%;
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
@@ -11347,11 +11347,12 @@ input {
   transition: background-color 0.4s ease;
 }
 
-#jumbo_home .container_searchbar form button:hover {
+#jumbo_home .container_searchbar form .input_container button:hover {
   background: #00aeef;
 }
 
-#jumbo_home .container_searchbar form ul {
+#jumbo_home .container_searchbar form ul#spec_list {
+  display: none;
   width: 74%;
   background: white;
   margin-left: 1%;
@@ -11362,7 +11363,7 @@ input {
   overflow-y: auto;
 }
 
-#jumbo_home .container_searchbar form ul li {
+#jumbo_home .container_searchbar form ul#spec_list li {
   text-transform: capitalize;
   width: 100%;
   height: -webkit-max-content;
@@ -11370,7 +11371,7 @@ input {
   height: max-content;
 }
 
-#jumbo_home .container_searchbar form ul li a {
+#jumbo_home .container_searchbar form ul#spec_list li a {
   padding-left: 20px;
   display: block;
   width: 100%;
@@ -11378,7 +11379,7 @@ input {
   outline: 0;
 }
 
-#jumbo_home .container_searchbar form ul li a:hover {
+#jumbo_home .container_searchbar form ul#spec_list li a:hover {
   background-color: lightgrey;
   transition: background-color 0.3s ease;
 }
