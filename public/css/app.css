@@ -11351,6 +11351,12 @@ input {
   background: #00aeef;
 }
 
+#jumbo_home .container_searchbar form .suggestions {
+  width: 75%;
+  background-color: white;
+  color: #141430;
+}
+
 #boxes_features_home .first_row .intro_description {
   width: 40%;
   height: 500px;

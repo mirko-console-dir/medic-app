@@ -2061,7 +2061,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["componentName", "api"],
   data: function data() {
@@ -2071,7 +2070,8 @@ __webpack_require__.r(__webpack_exports__);
       filterDoctors: [],
       filterSpec: [],
       doctor: [],
-      specializations: []
+      specializations: [],
+      apiRequest: this.api
     };
   },
   methods: {
@@ -2103,7 +2103,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     self = this;
-    axios.get('api/users').then(function (response) {
+    axios //.get('api/users')
+    .get(self.apiRequest).then(function (response) {
       if (response.data.data != undefined) {
         self.users = response.data.data; //Creazione Elenco specializzazioni
 
@@ -38894,6 +38895,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "ul",
+        { staticClass: "suggestions" },
         _vm._l(_vm.filterSpec, function(spec) {
           return _c("li", [_vm._v(_vm._s(spec))])
         }),

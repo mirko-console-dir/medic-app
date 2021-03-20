@@ -43,6 +43,11 @@
           background: map-get($color-map, primary_color_light);
         }
       }
+      .suggestions{
+        width: 75%;
+        background-color: white;
+        color: map-get($color-map, primary_color_dark);
+      }
     }
   }
 }

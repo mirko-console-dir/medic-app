@@ -4,10 +4,9 @@
         <input type="text" name="search" placeholder="Search for a specialization" v-model="search" @keyup="specFilter(search)">
         <button type="submit" name="button">GO</button>
       </div>
-        <ul>
-          <li v-for="spec in filterSpec">{{spec}}</li>
-        </ul>
-
+      <ul class="suggestions">
+        <li v-for="spec in filterSpec">{{spec}}</li>
+      </ul>
   </form>
 </template>
 
@@ -22,6 +21,7 @@
           filterSpec: [],
           doctor: [],
           specializations: [],
+          apiRequest: this.api,
         }
       },
       methods: {
@@ -48,7 +48,8 @@
       created() {
         self = this;
         axios        
-        .get('api/users')
+        //.get('api/users')
+        .get(self.apiRequest)
         .then(response => {
             if(response.data.data != undefined){
               self.users = response.data.data;
