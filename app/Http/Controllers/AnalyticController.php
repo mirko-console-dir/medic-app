@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 
 class AnalyticController extends Controller
@@ -15,8 +16,18 @@ class AnalyticController extends Controller
      */
     public function index(User $user)
     {
+
+        
+        $users_month = User::orderBy('created_at', 'ASC')->pluck('created_at');
+      
+        
+       
+
         $user = Auth::user();
-        return view('dashboard.admin.analytics',compact('user'));
+        $users = User::all();
+        // dd($users);
+       
+        return view('dashboard.admin.analytics',compact('user','users'));
     }
 
     /**
