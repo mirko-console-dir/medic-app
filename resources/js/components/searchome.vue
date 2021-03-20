@@ -4,8 +4,10 @@
         <input type="text" name="search" placeholder="Search for a specialization" v-model="search" @keyup="specFilter(search)">
         <button type="submit" name="button">GO</button>
       </div>
-      <ul class="suggestions">
-        <li v-for="spec in filterSpec">{{spec}}</li>
+      <ul>
+        <li v-for="spec in filterSpec" >
+          <a href="#" >{{spec}}</a>
+        </li>
       </ul>
   </form>
 </template>
@@ -41,13 +43,13 @@
           }
           console.log(filter, IndexOfItem);
           this.filterSpec = filter;
-          return 
+          return
         },
       },
 
       created() {
         self = this;
-        axios        
+        axios
         //.get('api/users')
         .get(self.apiRequest)
         .then(response => {
@@ -65,7 +67,7 @@
 
               //console.log("self.specializations", self.specializations);
             }
-        
+
         })
         .catch(error => {
             console.log(error);

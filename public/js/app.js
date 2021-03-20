@@ -2061,6 +2061,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["componentName", "api"],
   data: function data() {
@@ -38895,9 +38897,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "ul",
-        { staticClass: "suggestions" },
         _vm._l(_vm.filterSpec, function(spec) {
-          return _c("li", [_vm._v(_vm._s(spec))])
+          return _c("li", [
+            _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(spec))])
+          ])
         }),
         0
       )
@@ -51575,8 +51578,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

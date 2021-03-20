@@ -43,10 +43,31 @@
           background: map-get($color-map, primary_color_light);
         }
       }
-      .suggestions{
-        width: 75%;
-        background-color: white;
-        color: map-get($color-map, primary_color_dark);
+      ul{
+        width: 74%;
+        background: white;
+        margin-left: 1%;
+        border-top: 1px solid lightgrey;
+        padding-left: 0;
+        margin-bottom: 0;
+        max-height: 121px;
+        overflow-y: auto;
+        li{
+          text-transform: capitalize;
+          width: 100%;
+          height: max-content;
+          a{
+            padding-left: 20px;
+            display: block;
+            width: 100%;
+            color: map-get($color-map, primary_color_dark);
+            outline: 0;
+            &:hover{
+              background-color: lightgrey;
+              transition: background-color 0.3s ease;
+            }
+          }
+        }
       }
     }
   }
