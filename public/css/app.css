@@ -11372,6 +11372,8 @@ input {
 }
 
 #jumbo_home .container_searchbar form ul#spec_list li a {
+  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 20px;
   display: block;
   width: 100%;
