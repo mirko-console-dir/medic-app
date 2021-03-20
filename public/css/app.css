@@ -11079,6 +11079,7 @@ input {
   background-color: #f5f5f5;
   padding: 30px;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 #dashboard div {
@@ -12116,6 +12117,21 @@ footer .container_80 .second_row .copyright {
 
   footer .first_row .details .btn_blue {
     font-size: 0.7rem !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #dashboard #sidebar {
+    width: 100%;
+  }
+
+  #dashboard #account {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  #dashboard #account h2 {
+    font-size: 30px;
   }
 }
 

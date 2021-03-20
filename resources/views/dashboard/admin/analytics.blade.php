@@ -23,7 +23,7 @@
                     var tot_user_per_month = [];
                     var users = {!!$users!!};
 
-                    
+                    console.log(users);
                     users.forEach(
                         element => {
                             // console.log(element.created_at);

@@ -12,7 +12,7 @@
 *********  ADMIN  **********
 ****************************/
 
-@import 'admin/dashboard';
+// @import 'admin/dashboard';
 
 /***************************
 ********  DOCTOR  **********
@@ -38,6 +38,7 @@
 @import 'guest/partials/mediaqueries/sponsored_doctors';
 @import 'guest/partials/mediaqueries/info_centre';
 @import 'guest/partials/mediaqueries/footer';
+@import 'doctor/partials/mediaqueries/dashboard';
 
 // Font
 
