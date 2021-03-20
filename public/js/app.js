@@ -2049,8 +2049,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2062,92 +2060,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-<<<<<<< HEAD
-=======
 //
-//
-
->>>>>>> AM-Frontend
 /* harmony default export */ __webpack_exports__["default"] = ({
-  setup: function setup() {
-    filterSpec = Object(vue__WEBPACK_IMPORTED_MODULE_0__["reactive"])(filterSpec);
-  },
+  props: ["componentName", "api"],
   data: function data() {
     return {
-<<<<<<< HEAD
-      initValue: '',
-      users: []
-    };
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get('api/users').then(function (response) {
-      console.log(response.data.data);
-      _this.users = response.data.data;
-    })["catch"](function (error) {
-      console.log(error);
-    });
-  },
-  methods: {
-    filteredUsers: function filteredUsers() {
-      var _this2 = this;
-
-      return this.filteredUsers = this.users.filter(function (user) {
-        return user.specialization.name.toLowerCase().includes(_this2.initValue.toLowerCase());
-      });
-    }
-  }
-});
-=======
       users: [],
       search: '',
       filterDoctors: [],
       filterSpec: [],
       doctor: [],
-      specializations: []
+      specializations: [],
+      apiRequest: this.api
     };
   },
-  computed: {
-    specList: function specList() {
+  methods: {
+    specFilter: function specFilter() {
       var _this = this;
 
-      this.users.forEach(function (doctor) {
-        doctor.specializations.forEach(function (spec) {
-          if (!_this.specializations.includes(spec.name.toLowerCase())) {
-            return _this.specializations.push(spec.name.toLowerCase());
+      var filter = [];
+      var IndexOfItem = 0;
+      var specializations = this.specializations;
+
+      if (this.search.length > 0) {
+        this.specializations.forEach(function (spec) {
+          console.log("ciao");
+
+          if (spec.toLowerCase().includes(_this.search.toLowerCase())) {
+            IndexOfItem++;
+            filter.push(spec);
+            return filter;
           }
+
+          ;
         });
-      });
+      }
+
+      console.log(filter, IndexOfItem);
+      this.filterSpec = filter;
+      return;
     }
   },
-  methods: {
-    specFilter: function specFilter(search) {
-      var _this2 = this;
+  created: function created() {
+    self = this;
+    axios //.get('api/users')
+    .get(self.apiRequest).then(function (response) {
+      if (response.data.data != undefined) {
+        self.users = response.data.data; //Creazione Elenco specializzazioni
 
-      this.filterSpec = [];
-      this.specializations.forEach(function (spec) {
-        if (spec.toLowerCase().includes(search.toLowerCase())) {
-          return _this2.filterSpec.push(spec);
-        }
-      });
-    }
-  },
-  created: function created() {},
-  mounted: function mounted() {
-    var _this3 = this;
-
-    console.log('Component "Searchhome" mounted');
-    axios.get('api/users').then(function (response) {
-      console.log(response.data.data);
-      _this3.users = response.data.data;
+        self.users.forEach(function (doctor) {
+          doctor.specializations.forEach(function (spec) {
+            if (!self.specializations.includes(spec.name.toLowerCase())) {
+              return self.specializations.push(spec.name.toLowerCase());
+            }
+          });
+        }); //console.log("self.specializations", self.specializations);
+      }
     })["catch"](function (error) {
       console.log(error);
     });
-    this.filterSpec = this.specializations;
+  },
+  mounted: function mounted() {
+    console.log('Component "Searchhome" mounted');
   }
-}); //Vue.set(searchome.filterSpec, searchome.specFilter());
->>>>>>> AM-Frontend
+});
 
 /***/ }),
 
@@ -38879,45 +38855,8 @@ var render = function() {
   return _c(
     "form",
     {
-<<<<<<< HEAD
-      staticClass: "col-lg-6 col-sm-12 d_flex",
-      attrs: { action: "/search", method: "post" }
-    },
-    [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.initValue,
-            expression: "initValue"
-          }
-        ],
-        attrs: {
-          type: "text",
-          name: "search",
-          placeholder: "Search for a specialization here"
-        },
-        domProps: { value: _vm.initValue },
-        on: {
-          change: function($event) {
-            return _vm.filteredUsers()
-          },
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.initValue = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("button", { attrs: { type: "submit", name: "button" } }, [
-        _vm._v("GO")
-      ])
-=======
       staticClass: "col-lg-6 col-sm-12",
-      attrs: { action: "/search", method: "post" }
+      attrs: { action: "/search", method: "post", autocomplete: "off" }
     },
     [
       _c("div", { staticClass: "d_flex" }, [
@@ -38956,12 +38895,12 @@ var render = function() {
       _vm._v(" "),
       _c(
         "ul",
+        { staticClass: "suggestions" },
         _vm._l(_vm.filterSpec, function(spec) {
           return _c("li", [_vm._v(_vm._s(spec))])
         }),
         0
       )
->>>>>>> AM-Frontend
     ]
   )
 }
@@ -51481,15 +51420,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/js/components/searchome.vue ***!
   \***********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _searchome_vue_vue_type_template_id_ce33cb38___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./searchome.vue?vue&type=template&id=ce33cb38& */ "./resources/js/components/searchome.vue?vue&type=template&id=ce33cb38&");
 /* harmony import */ var _searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchome.vue?vue&type=script&lang=js& */ "./resources/js/components/searchome.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _searchome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -51519,7 +51457,7 @@ component.options.__file = "resources/js/components/searchome.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/components/searchome.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51637,13 +51575,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
 __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> AM-Frontend
 
 
 /***/ })

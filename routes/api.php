@@ -22,5 +22,5 @@ use Illuminate\Support\Facades\Route;
 //         'data' => App\User::all()
 //     ],200);
 // });
-Route::get('users', 'API\ApiController@users');
+Route::get('users', 'API\ApiController@users')->name('api.users');
 Route::get('prefixes', 'API\ApiController@prefixes');
