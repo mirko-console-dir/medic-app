@@ -12,31 +12,17 @@
 </template>
 
 <script>
-    import { reactive } from 'vue'
     export default {
+      props: ["componentName", "api"],
       data: function () {
         return {
           users: [],
           search: '',
           filterDoctors: [],
-          filterSpec: {},
+          filterSpec: [],
           doctor: [],
           specializations: [],
-          //specFilter: [],
-
         }
-      },
-      computed: {
-        specList: function(){
-          this.users.forEach(doctor=>{
-            doctor.specializations.forEach(spec=>{
-              if(!this.specializations.includes(spec.name.toLowerCase())){
-                return this.specializations.push(spec.name.toLowerCase());
-              }
-            });
-          });
-        },
-        
       },
       methods: {
         specFilter: function(){
@@ -53,26 +39,39 @@
               };
             });
           }
-          
           console.log(filter, IndexOfItem);
-          Vue.set(this.filterSpec, IndexOfItem, filter);
+          this.filterSpec = filter;
           return 
         },
+      },
 
-      },
       created() {
-      },
-      mounted() {
-        axios
+        self = this;
+        axios        
         .get('api/users')
         .then(response => {
-            console.log(response.data.data);
-            this.users = response.data.data;
+            if(response.data.data != undefined){
+              self.users = response.data.data;
+
+              //Creazione Elenco specializzazioni
+              self.users.forEach(doctor=>{
+                doctor.specializations.forEach(spec=>{
+                  if(!self.specializations.includes(spec.name.toLowerCase())){
+                    return self.specializations.push(spec.name.toLowerCase());
+                  }
+                });
+              });
+
+              //console.log("self.specializations", self.specializations);
+            }
+        
         })
         .catch(error => {
             console.log(error);
-        })
-        console.log("specializations", this.specializations);
+        });
+      },
+
+      mounted() {
         console.log('Component "Searchhome" mounted');
       },
     }

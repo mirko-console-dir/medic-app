@@ -2049,8 +2049,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2064,35 +2062,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["componentName", "api"],
   data: function data() {
     return {
       users: [],
       search: '',
       filterDoctors: [],
-      filterSpec: {},
+      filterSpec: [],
       doctor: [],
-      specializations: [] //specFilter: [],
-
+      specializations: []
     };
-  },
-  computed: {
-    specList: function specList() {
-      var _this = this;
-
-      this.users.forEach(function (doctor) {
-        doctor.specializations.forEach(function (spec) {
-          if (!_this.specializations.includes(spec.name.toLowerCase())) {
-            return _this.specializations.push(spec.name.toLowerCase());
-          }
-        });
-      });
-    }
   },
   methods: {
     specFilter: function specFilter() {
-      var _this2 = this;
+      var _this = this;
 
       var filter = [];
       var IndexOfItem = 0;
@@ -2102,7 +2086,7 @@ __webpack_require__.r(__webpack_exports__);
         this.specializations.forEach(function (spec) {
           console.log("ciao");
 
-          if (spec.toLowerCase().includes(_this2.search.toLowerCase())) {
+          if (spec.toLowerCase().includes(_this.search.toLowerCase())) {
             IndexOfItem++;
             filter.push(spec);
             return filter;
@@ -2113,21 +2097,29 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       console.log(filter, IndexOfItem);
-      Vue.set(this.filterSpec, IndexOfItem, filter);
+      this.filterSpec = filter;
       return;
     }
   },
-  created: function created() {},
-  mounted: function mounted() {
-    var _this3 = this;
-
+  created: function created() {
+    self = this;
     axios.get('api/users').then(function (response) {
-      console.log(response.data.data);
-      _this3.users = response.data.data;
+      if (response.data.data != undefined) {
+        self.users = response.data.data; //Creazione Elenco specializzazioni
+
+        self.users.forEach(function (doctor) {
+          doctor.specializations.forEach(function (spec) {
+            if (!self.specializations.includes(spec.name.toLowerCase())) {
+              return self.specializations.push(spec.name.toLowerCase());
+            }
+          });
+        }); //console.log("self.specializations", self.specializations);
+      }
     })["catch"](function (error) {
       console.log(error);
     });
-    console.log("specializations", this.specializations);
+  },
+  mounted: function mounted() {
     console.log('Component "Searchhome" mounted');
   }
 });
