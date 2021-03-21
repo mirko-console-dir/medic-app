@@ -14,10 +14,10 @@
 
 
 
-                <canvas id="myChart"></canvas>
+                <canvas id="numberDoctors"></canvas>
 
                 <script>
-                    var ctx = document.getElementById('myChart');
+                    var ctx = document.getElementById('numberDoctors');
                     // console.log(users);
                     var months_array = [];
                     var tot_user_per_month = [];

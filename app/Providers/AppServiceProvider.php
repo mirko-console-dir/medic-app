@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,9 +25,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Braintree\Configuration::environment(env('BTREE_ENVIRONMENT'));
-        \Braintree\Configuration::merchantId(env('BTREE_MERCHANT_ID'));
-        \Braintree\Configuration::publicKey(env('BTREE_PUBLIC_KEY'));
-        \Braintree\Configuration::privateKey(env('BTREE_PRIVATE_KEY'));
+        \Braintree\Configuration::environment(config('services.braintree.environment'));
+        \Braintree\Configuration::merchantId(config('services.braintree.merchant_id'));
+        \Braintree\Configuration::publicKey(config('services.braintree.public_key'));
+        \Braintree\Configuration::privateKey(config('services.braintree.private_key'));
+
     }
 }
