@@ -40,6 +40,13 @@
 @import 'guest/partials/mediaqueries/footer';
 @import 'doctor/partials/mediaqueries/dashboard';
 
+
+/***************************
+**********  AUTH  **********
+****************************/
+
+@import "layouts/auth/app";
+@import "auth/login";
 // Font
 
 body{

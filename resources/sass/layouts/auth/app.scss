@@ -1,0 +1,42 @@
+#layout_log_reg{
+   background-image:url("/img/bg_jumbo.jpg");
+   background-size: 120%;
+  nav{
+    background-color: map-get($color-map, primary_color_dark);
+    height: 100px;
+    .container{
+      a{
+        img{
+          height: 100px;
+        }
+      }
+      #navbarSupportedContent{
+       .nav-link{
+         @include button();
+         margin-left: 15px;
+         margin-right: 5px;
+       }
+       .dropdown-toggle{
+         color: white;
+         font-size: 20px;
+       }
+       .dropdown-menu-right{
+         background-color: #015699;
+          margin: 0;
+          padding: 0;
+          // border: 1px solid map-get($color-map, primary_color_dark);
+         a{
+           color: white;
+           height: 100%;
+           padding: 10px 24px;
+           border-radius: 0.25rem;
+           &:hover{
+             transition: background-color 0.5s ease;
+             background-color: #006DB2;
+           }
+         }
+       }
+      }
+    }
+  }
+}
