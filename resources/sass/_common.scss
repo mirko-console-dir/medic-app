@@ -120,3 +120,7 @@ height: 100%;
       color:  map-get($color-map, primary_color_light);
     }
 }
+
+.active{
+  display: block;
+}

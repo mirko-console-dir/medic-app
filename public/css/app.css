@@ -11067,6 +11067,10 @@ input {
   color: #00aeef;
 }
 
+.active {
+  display: block;
+}
+
 /***************************
 *********  ADMIN  **********
 ****************************/
@@ -11385,6 +11389,10 @@ input {
 #jumbo_home .container_searchbar form ul#spec_list li a:hover {
   background-color: lightgrey;
   transition: background-color 0.3s ease;
+}
+
+#jumbo_home .container_searchbar form ul#spec_list.active {
+  display: block;
 }
 
 #boxes_features_home .first_row .intro_description {

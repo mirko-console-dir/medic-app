@@ -1,17 +1,27 @@
 <template>
   <form class="col-lg-6 col-sm-12" action="/search" method="post" autocomplete="off">
+      
       <div class="d_flex input_container">
-        <input type="text" onfocus="appearList()" onfocusout="disappearList()" name="search" placeholder="Search for a specialization" v-model="search" @keyup="specFilter(search)">
+        <input class="no_blur" type="text" name="search" placeholder="Start typing a specialization" 
+          v-model="search" 
+          @keyup="specFilter(search)" 
+          @click="showList()" 
+        >
         <button type="submit" name="button">GO</button>
       </div>
-      <ul id="spec_list">
-        <li v-if="filterSpec.length === 0" v-for="spec in specializations" >
-          <a href="#" >{{spec}}</a>
-        </li>
-        <li v-if="filterSpec.length > 0" v-for="spec in filterSpec" >
-          <a href="#" >{{spec}}</a>
+
+      <ul id="spec_list" v-if="search.length === 0" :class="show?'active':''" >
+        <li v-for="spec in specializations" >
+          <a class="no_blur" href="#">{{spec}}</a>
         </li>
       </ul>
+
+      <ul id="spec_list" v-else :class="show?'active':''" >
+        <li v-for="spec in filterSpec" >
+          <a class="no_blur" href="#">{{spec}}</a>
+        </li>
+      </ul>
+
   </form>
 </template>
 
@@ -27,36 +37,40 @@
           doctor: [],
           specializations: [],
           apiRequest: this.api,
+          show: false,
+          list: null,
         }
       },
       methods: {
         specFilter: function(){
           let filter = [];
-          let IndexOfItem = 0;
           let specializations = this.specializations;
           if(this.search.length > 0){
             this.specializations.forEach(spec =>{
-              console.log("ciao");
               if(spec.toLowerCase().includes(this.search.toLowerCase())){
-                IndexOfItem++;
                 filter.push(spec);
-                return filter;
-              };
+              }
             });
+            if(filter.length === 0){
+              filter = ["No results found"]
+            }
           }
-          console.log(filter, IndexOfItem);
-          this.filterSpec = filter;
-          return
+          return this.filterSpec = filter;
         },
+
+        showList: function(){
+          if(!this.show){
+            return this.show = true;
+          }
+        },
+
       },
 
-      created() {
+      mounted() {
         self = this;
         axios
-        //.get('api/users')
-        .get(self.apiRequest)
+        .get(self.apiRequest) //.get('api/users')
         .then(response => {
-            if(response.data.data != undefined){
               self.users = response.data.data;
 
               //Creazione Elenco specializzazioni
@@ -67,18 +81,25 @@
                   }
                 });
               });
-
-              //console.log("self.specializations", self.specializations);
-            }
-
         })
         .catch(error => {
             console.log(error);
         });
-      },
+        
+        /**
+        * Funzione che permette di nascondere la visualizzazione della lista
+        * delle specializzazioni quando si clicca su elementi senza classe 'no_blur'
+        */
+        document.addEventListener('click', (event)=>{
+          if(event.target.className !='no_blur'){
+            return this.show = false;
+          }
+        });
 
-      mounted() {
         console.log('Component "Searchhome" mounted');
+      },
+      destroyed(){
+        document.removeEventListener('click');
       },
     }
 </script>
