@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+  My Services
+@endsection
 
 @section('content')
 
@@ -18,7 +21,7 @@
                     <h4>{{$service->name}}</h4>
                     <h4>{{$service->description}}</h4>
                     <h4>&euro; {{$service->price}}</h4>
-                   
+
                     <button class="btn btn-dark">
                         <a href="{{route('dashboard.services.edit', $service->id)}}"> Edit
                             <i class="fas fa-edit"></i>

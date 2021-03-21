@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+  Edit Profile
+@endsection
 @section('content')
 <div class="container d_flex" id="dashboard">
 

@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+  Edit Clinics
+@endsection
 @section('content')
 
 <div class="container d_flex" id="dashboard">
@@ -23,7 +25,7 @@
 
                     @METHOD('PATCH')
                     @csrf
-                    
+
                     <div class="form-group d_flex_column">
 
                         <!-- Name -->

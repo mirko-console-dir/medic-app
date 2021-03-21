@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+  My profile
+@endsection
 
 @section('content')
 @role('doctor')
@@ -131,8 +134,8 @@
     @include('dashboard.partials.sidebar')
 
     <div class="col-md-9">
-        
-        
+
+
     </div>
 </div>
 @endrole

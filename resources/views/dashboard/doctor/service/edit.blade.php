@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+  Edit Services
+@endsection
+
 @section('content')
 
 
