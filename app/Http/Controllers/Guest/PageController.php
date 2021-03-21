@@ -20,4 +20,9 @@ class PageController extends Controller
     {
         return view('spa.doctors');
     }
+
+    public function checkout()
+    {
+        return view('payment.checkout');
+    }
 }

@@ -86,7 +86,7 @@ class RegisterController extends Controller
 
         $user->assignRole('doctor');
         $user->givePermissionTo(['edit_doctor', 'show_doctor', 'remove_doctor',]);
-//assign role to user
+        //assign role to user
 
         // dd($user); 
         return $user;
