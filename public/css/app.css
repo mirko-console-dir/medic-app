@@ -12121,6 +12121,54 @@ footer .container_80 .second_row .copyright {
   }
 }
 
+/***************************
+**********  AUTH  **********
+****************************/
+
+#layout_log_reg {
+  background-image: url("/img/bg_jumbo.jpg");
+  background-size: 120%;
+}
+
+#layout_log_reg nav {
+  background-color: #141430;
+  height: 100px;
+}
+
+#layout_log_reg nav .container a img {
+  height: 100px;
+}
+
+#layout_log_reg nav .container #navbarSupportedContent .nav-link {
+  padding: 5px 15px;
+  border-radius: 7px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+#layout_log_reg nav .container #navbarSupportedContent .dropdown-toggle {
+  color: white;
+  font-size: 20px;
+}
+
+#layout_log_reg nav .container #navbarSupportedContent .dropdown-menu-right {
+  background-color: #015699;
+  margin: 0;
+  padding: 0;
+}
+
+#layout_log_reg nav .container #navbarSupportedContent .dropdown-menu-right a {
+  color: white;
+  height: 100%;
+  padding: 10px 24px;
+  border-radius: 0.25rem;
+}
+
+#layout_log_reg nav .container #navbarSupportedContent .dropdown-menu-right a:hover {
+  transition: background-color 0.5s ease;
+  background-color: #006DB2;
+}
+
 body {
   font-family: "poppins", sans-serif;
 }

@@ -39,6 +39,13 @@
 @import 'guest/partials/mediaqueries/info_centre';
 @import 'guest/partials/mediaqueries/footer';
 
+
+/***************************
+**********  AUTH  **********
+****************************/
+
+@import "layouts/auth/app";
+@import "auth/login";
 // Font
 
 body{
