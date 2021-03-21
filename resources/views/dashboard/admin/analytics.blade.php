@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+  Analytics
+@endsection
 
 @section('script')
 
@@ -32,7 +35,7 @@
                             // console.log(date_user);
                             var user_month = date_user.slice(5, 7);
                             // console.log(user_month);
-                            // Qui ho preso il mese "03" per ogni singolo utente registrato 
+                            // Qui ho preso il mese "03" per ogni singolo utente registrato
                             var user_month_join = user_month.join('');
                             // console.log(user_month_join);
 
@@ -113,7 +116,7 @@
                         obj_months[key] = '';
                     }
 
-                  
+
 
                     for (let i = 0; i < tot_user_per_month.length; i++) {
 

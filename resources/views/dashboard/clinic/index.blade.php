@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+  My Clinics
+@endsection
+
 @section('content')
 
 <div class="container d_flex" id="dashboard">
