@@ -14,8 +14,9 @@
 
     <div class="box call_to_action position_absolute">
 
-      <div class="card position_absolute">
-
+      <div class="card position_absolute d_flex">
+        <i class="quote">"Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, expedita."</i>
+        <div class="signature">Dott.ssa Maria Pia Addolorata</div>
       </div>
     </div>
 
@@ -26,3 +27,4 @@
 
 
 </section>
+
