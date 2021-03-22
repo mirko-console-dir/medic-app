@@ -29,7 +29,7 @@ Route::get('/doctors_api', 'Guest\PageController@doctors_api')->name('doctors_ap
 //Braintree Payment controller
 Route::get('/payment', 'PaymentController@make')->name('payment');
 //Route provvisoria checkout tramite PageController
-Route::get('/checkout', 'Guest\PageController@checkout')->name('checkout');
+// Route::get('/checkout', 'Guest\PageController@checkout')->name('checkout');
 
 
 // Dashboard
@@ -39,6 +39,10 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::resource('services', 'ServiceController');
     Route::resource('clinics', 'ClinicController');
     Route::resource('analytics', 'AnalyticController');
+    Route::resource('sponsorships', 'SponsorshipController');
+    Route::resource('checkout', 'CheckoutController');
+
+
 
 
 

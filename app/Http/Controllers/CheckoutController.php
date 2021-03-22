@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use DateTime;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\Sponsorship;
 
-class AnalyticController extends Controller
+
+
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +18,7 @@ class AnalyticController extends Controller
      */
     public function index(User $user)
     {
-
         
-        // $users_month = User::orderBy('created_at', 'ASC')->pluck('created_at');  
-
-        $user = Auth::user();
-        $users = User::all();
-        // dd($users);
-       
-        return view('dashboard.admin.analytics',compact('user','users'));
     }
 
     /**
@@ -43,9 +37,9 @@ class AnalyticController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+        
     }
 
     /**
@@ -77,9 +71,21 @@ class AnalyticController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, User $user, Sponsorship $sponsorship)
     {
-        //
+        // dd($request->sponsorship_id);
+        $sponsorships = Sponsorship::all();
+
+        foreach($sponsorships as $sponsorship){
+            if($sponsorship->id == $request->sponsorship_id){
+                $user_sponsorship = $sponsorship;
+            }
+        }
+
+        $user = Auth::user();
+        // dd($user);
+
+        return view('payment.checkout', compact('user','user_sponsorship'));
     }
 
     /**

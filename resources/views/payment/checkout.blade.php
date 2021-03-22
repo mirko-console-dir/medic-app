@@ -15,24 +15,29 @@
   <div class="container">
      <div class="row">
        <div class="col-md-8 col-md-offset-2">
-         <div id="dropin-container"></div>
-         <button id="submit-button">Request payment method</button>
+         <div id="dropin-container">
+         </div>
+         <button id="submit-button">Checkout</button>
+         
        </div>
      </div>
   </div>
   <script>
+    var user = {!!$user!!};
+    var sponsorship = {!!$user_sponsorship!!};
+    console.log(sponsorship);
     var button = document.querySelector('#submit-button');
-
     braintree.dropin.create({
       authorization: "{{ Braintree\ClientToken::generate() }}",
       container: '#dropin-container'
     }, function (createErr, instance) {
       button.addEventListener('click', function () {
         instance.requestPaymentMethod(function (err, payload) {
-          $.get('{{ route('payment') }}', {payload}, function (response) {
+          console.log(payload);
+          $.get('{{ route('payment') }}', {payload,sponsorship,user}, function (response) {
             if (response.success) {
               alert('Payment successfull!');
-              console.log(response);
+              console.log(payload);
             } else {
               alert('Payment failed');
               console.log(payload);
