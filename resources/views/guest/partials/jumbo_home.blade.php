@@ -9,11 +9,6 @@
         <h2>The best place to find doctors you need.</h2>
       </div>
         <searchome api="{{route('api.users')}}"></searchome>
-      {{-- <form class="col-lg-6 col-sm-12 d_flex" action="index.html" method="post">
-        <input type="text" name="search" placeholder="Search for a doctor here">
-        <button type="submit" name="button">GO</button>
-      </form> --}}
-
     </div>
 
   </div>
