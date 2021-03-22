@@ -9,10 +9,13 @@ class PaymentController extends Controller
 {
     public function make(Request $request)
     {
+        // dd($request);
         //la request contiene i dati per autorizzare il pagamento, ma non quelli del pagamento stesso (ovvero prezzo, ecc...)
         $payload = $request->input('payload', false);
+        $sponsorship = $request->input('sponsorship', false);
+        $user = $request->input('user',false);
         $nonce = $payload['nonce'];
-        $amount = '15.99';
+        $amount = $sponsorship['price'];
 
         $status = \Braintree\Transaction::sale([
             'amount' => $amount,

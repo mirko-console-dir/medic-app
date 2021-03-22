@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Sponsorship;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class PageController extends Controller
 {
@@ -21,8 +25,13 @@ class PageController extends Controller
         return view('spa.doctors');
     }
 
-    public function checkout()
-    {
-        return view('payment.checkout');
+    public function checkout(Sponsorship $sponsorship, User $user)
+    {   
+        $sponsorships = Sponsorship::all();
+        $user = Auth::user();
+
+        // $sponsorship = Sponsorship::find($id);
+        // dd($sponsorship->id);
+        return view('payment.checkout', compact('sponsorships','user'));
     }
 }

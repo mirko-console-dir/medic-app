@@ -17,7 +17,7 @@
               @role('admin')
               <li><a href="{{route('dashboard.analytics.index')}}"> <i class="fas fa-chart-line"></i>Analytics</a></li>
               @endrole
-              <li><a href=""> <i class="fas fa-donate"></i>Sponsorship</a></li>
+              <li><a href="{{route('dashboard.sponsorships.index')}}"> <i class="fas fa-donate"></i>Sponsorship</a></li>
 
 
           </ul>

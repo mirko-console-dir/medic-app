@@ -84,7 +84,7 @@ class DoctorController extends Controller
      */
     public function update(Request $request, User $user, $slug, Clinic $clinic)
     {
-        // dd($request->file());
+        // dd($request->all());
         $file = $request->file();
 
         $slug = $request->name . '-' . $request->lastname;

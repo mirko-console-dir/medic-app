@@ -4,27 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use DateTime;
+use App\Sponsorship;
+
 use Illuminate\Support\Facades\Auth;
 
-class AnalyticController extends Controller
+
+class SponsorshipController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index(User $user, Sponsorship $sponsorship)
     {
-
-        
-        // $users_month = User::orderBy('created_at', 'ASC')->pluck('created_at');  
-
         $user = Auth::user();
-        $users = User::all();
-        // dd($users);
-       
-        return view('dashboard.admin.analytics',compact('user','users'));
+        $user_sponsorships = User::with('sponsorships')->get();
+        $sponsorships = Sponsorship::all();
+        return view('dashboard.doctor.sponsorship.index',compact('user','sponsorships', 'user_sponsorships'));
     }
 
     /**
@@ -77,9 +74,16 @@ class AnalyticController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, User $user)
     {
-        //
+        
+        $user = Auth::user();
+        $user->sponsorships()->sync($request->sponsorship_id);
+
+
+        return redirect()->route('dashboard.sponsorships.index');
+        // dd($user);
+
     }
 
     /**
