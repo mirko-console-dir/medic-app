@@ -16,15 +16,26 @@ class AnalyticController extends Controller
      */
     public function index(User $user)
     {
-
-        
         // $users_month = User::orderBy('created_at', 'ASC')->pluck('created_at');  
 
         $user = Auth::user();
         $users = User::all();
         // dd($users);
+        $user_sponsorships = json_encode(User::with('sponsorships')->get());
+        // dd($user_sponsorships);
+        // foreach ($user_sponsorships as $user_sponsorship) {
+            
+        //    if($user_sponsorship->sponsorships['0']->id != 1)
+        //    {
+
+               
+
+        //    }
+        // };
+
+        // dd($g);
        
-        return view('dashboard.admin.analytics',compact('user','users'));
+        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships'));
     }
 
     /**
