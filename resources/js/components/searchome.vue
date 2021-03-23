@@ -1,5 +1,5 @@
 <template>
-  <form class="col-lg-6 col-sm-12" action="/search" method="post" autocomplete="off">
+  <div class="form col-lg-6 col-sm-12" action="/search" method="post" autocomplete="off">
       
       <div class="d_flex input_container">
         <input class="no_blur" type="text" name="search" placeholder="Start typing a specialization" 
@@ -7,7 +7,9 @@
           @keyup="specFilter(search)" 
           @click="showList()" 
         >
-        <button type="submit" name="button">GO</button>
+        <button type="submit" name="button" 
+          @click="cookie()"
+        >GO</button>
       </div>
 
       <ul id="spec_list" v-if="search.length === 0" :class="show?'active':''" >
@@ -22,7 +24,7 @@
         </li>
       </ul>
 
-  </form>
+  </div>
 </template>
 
 <script>
@@ -62,6 +64,9 @@
           if(!this.show){
             return this.show = true;
           }
+        },
+        cookie: function() {
+          return document.cookie = this.search;
         },
 
       },
