@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,17 +12,25 @@
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
   <div class="container">
-     <div class="row">
-       <div class="col-md-8 col-md-offset-2">
-         <div id="dropin-container">
-         </div>
-         <button id="submit-button">Checkout</button>
-         
-       </div>
-     </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div id="dropin-container">
+        </div>
+        <button id="submit-button">Checkout</button>
+        <form action="{{route('dashboard.sponsorships.index')}}">
+          <button class="btn btn-warning" type="submit">Go Back</button>
+        </form>
+
+      </div>
+    </div>
   </div>
+
+
+
+
   <script>
     var user = {!!$user!!};
     var sponsorship = {!!$user_sponsorship!!};
@@ -30,22 +39,28 @@
     braintree.dropin.create({
       authorization: "{{ Braintree\ClientToken::generate() }}",
       container: '#dropin-container'
-    }, function (createErr, instance) {
-      button.addEventListener('click', function () {
-        instance.requestPaymentMethod(function (err, payload) {
+    }, function(createErr, instance) {
+      button.addEventListener('click', function() {
+        instance.requestPaymentMethod(function(err, payload) {
           console.log(payload);
-          $.get('{{ route('payment') }}', {payload,sponsorship,user}, function (response) {
-            if (response.success) {
-              alert('Payment successfull!');
-              console.log(payload);
-            } else {
-              alert('Payment failed');
-              console.log(payload);
-            }
-          }, 'json');
+          $.get('{{ route('payment') }}', {
+              payload,
+              sponsorship,
+              user
+            },
+            function(response) {
+              if (response.success) {
+                alert('Payment successfull!');
+                console.log(response);
+              } else {
+                alert('Payment failed');
+                console.log(payload);
+              }
+            }, 'json');
         });
       });
     });
   </script>
 </body>
+
 </html>

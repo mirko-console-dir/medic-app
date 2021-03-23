@@ -12123,18 +12123,22 @@ footer .container_80 .second_row .copyright {
   footer .first_row .details .btn_blue {
     font-size: 0.7rem !important;
   }
-}
 
   footer .second_row .social_icons {
     justify-content: center !important;
-@media (max-width: 991.98px) {
-  #dashboard #sidebar {
-    width: 100%;
   }
 
   footer .second_row .copyright {
     padding-top: 10px;
     justify-content: center !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #dashboard #sidebar {
+    width: 100%;
+  }
+
   #dashboard #account {
     margin-top: 30px;
     width: 100%;

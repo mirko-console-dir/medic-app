@@ -19,8 +19,21 @@ class SponsorshipController extends Controller
     public function index(User $user, Sponsorship $sponsorship)
     {
         $user = Auth::user();
-        $user_sponsorships = User::with('sponsorships')->get();
+
         $sponsorships = Sponsorship::all();
+        // foreach ($sponsorships as $sponsorship) {
+        //     if ($sponsorship->name == 'free') {
+        //         $sponsorship_default = $sponsorship;
+        //     }
+        // };
+        //dd($user);
+        $user_sponsorships = User::with('sponsorships')->get();
+        // dd($user_sponsorships);
+        // dd($user->sponsorship->contains());
+        // if($user->sponsorships->contains(){
+        //     $user->sponsorships()->sync($sponsorship_default)
+
+        // }
         return view('dashboard.doctor.sponsorship.index',compact('user','sponsorships', 'user_sponsorships'));
     }
 

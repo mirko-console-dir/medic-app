@@ -14,7 +14,7 @@
 
                 <h3>Your subscription is:</h3>
 
-
+             
                 @foreach($user_sponsorships as $user_sponsorship)
                 @if($user_sponsorship->id == $user->id)
                 @foreach($user_sponsorship->sponsorships as $sponsorship)
