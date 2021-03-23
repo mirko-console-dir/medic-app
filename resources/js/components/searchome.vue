@@ -1,30 +1,30 @@
 <template>
-  <div class="form col-lg-6 col-sm-12" action="/search" method="post" autocomplete="off">
-      
+  <form  class="form col-lg-6 col-sm-12" action="/search" autocomplete="off">
+
       <div class="d_flex input_container">
-        <input class="no_blur" type="text" name="search" placeholder="Start typing a specialization" 
-          v-model="search" 
-          @keyup="specFilter(search)" 
-          @click="showList()" 
+        <input class="no_blur" type="text" name="search" placeholder="Start typing a specialization"
+          v-model="search"
+          @keyup="specFilter(search)"
+          @click="showList()"
         >
-        <button type="submit" name="button" 
+        <button type="submit" name="button"
           @click="cookie()"
         >GO</button>
       </div>
 
       <ul id="spec_list" v-if="search.length === 0" :class="show?'active':''" >
         <li v-for="spec in specializations" >
-          <a class="no_blur" href="#">{{spec}}</a>
+          <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
         </li>
       </ul>
 
       <ul id="spec_list" v-else :class="show?'active':''" >
-        <li v-for="spec in filterSpec" >
-          <a class="no_blur" href="#">{{spec}}</a>
+        <li v-for="spec in filterSpec">
+          <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
         </li>
       </ul>
 
-  </div>
+  </form>
 </template>
 
 <script>
@@ -68,6 +68,9 @@
         cookie: function() {
           return document.cookie = this.search;
         },
+        writeSpec: function(spec){
+          return this.search = spec;
+        }
 
       },
 
@@ -90,7 +93,7 @@
         .catch(error => {
             console.log(error);
         });
-        
+
         /**
         * Funzione che permette di nascondere la visualizzazione della lista
         * delle specializzazioni quando si clicca su elementi senza classe 'no_blur'
