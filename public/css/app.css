@@ -12123,18 +12123,22 @@ footer .container_80 .second_row .copyright {
   footer .first_row .details .btn_blue {
     font-size: 0.7rem !important;
   }
-}
 
   footer .second_row .social_icons {
     justify-content: center !important;
-@media (max-width: 991.98px) {
-  #dashboard #sidebar {
-    width: 100%;
   }
 
   footer .second_row .copyright {
     padding-top: 10px;
     justify-content: center !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #dashboard #sidebar {
+    width: 100%;
+  }
+
   #dashboard #account {
     margin-top: 30px;
     width: 100%;
@@ -12193,6 +12197,40 @@ footer .container_80 .second_row .copyright {
 #layout_auth nav .container #navbarSupportedContent .dropdown-menu-right a:hover {
   transition: background-color 0.5s ease;
   background-color: #006DB2;
+}
+
+.form-group {
+  align-items: center;
+}
+
+.card-body label {
+  margin-right: 15px;
+}
+
+.form-check {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.form-check input {
+  margin-left: -10rem;
+}
+
+.form-login {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.form-group {
+  align-items: center;
+}
+
+.btn_register {
+  justify-content: center;
+}
+
+.btn_register button {
+  margin-top: 20px;
 }
 
 body {
