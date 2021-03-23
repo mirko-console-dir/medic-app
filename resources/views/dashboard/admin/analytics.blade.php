@@ -13,12 +13,9 @@
         <div class="my_profile d_flex_column">
             <div class="detail d_flex_column">
                 <h2>Website Analytics</h2>
-
-
-
-
+                @role('admin')
                 <canvas id="numberDoctors"></canvas>
-
+                @endrole
                 <script>
                     var ctx = document.getElementById('numberDoctors');
                     // console.log(users);

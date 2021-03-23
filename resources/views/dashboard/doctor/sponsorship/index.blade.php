@@ -11,10 +11,10 @@
             <div class="detail d_flex_column">
                 <h2>Sponsorship</h2>
 
+                @role('doctor')
 
                 <h3>Your subscription is:</h3>
 
-             
                 @foreach($user_sponsorships as $user_sponsorship)
                 @if($user_sponsorship->id == $user->id)
                 @foreach($user_sponsorship->sponsorships as $sponsorship)
@@ -24,10 +24,9 @@
                 @endif
                 @endforeach
                 <br>
-
                 <!-- <form action="{{ route('dashboard.sponsorships.update', $user->slug) }}" method="post"> -->
                 <form action="{{ route('dashboard.checkout.update', $sponsorship->id) }}" method="post">
-                @METHOD('PATCH')
+                    @METHOD('PATCH')
                     @csrf
                     <select name="sponsorship_id" id="">
                         @foreach($sponsorships as $sponsorship)
@@ -41,6 +40,8 @@
                     <button type="submit" class="btn btn-success">Go to Checkout</button>
 
                 </form>
+                @endrole
+
             </div>
 
 

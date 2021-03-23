@@ -2,12 +2,12 @@
       <div class="detail d_flex_column">
           <ul class="list-unstyled">
               <li><a href="{{route('dashboard.')}}">
-              <i class="fas fa-user"></i>
-              My Profile</a></li>
+                      <i class="fas fa-user"></i>
+                      My Profile</a></li>
               <li><a href="{{route('dashboard.doctors.edit', $user->slug)}}"> <i class="fas fa-pencil-alt"></i>Edit Profile</a></li>
               <li>
                   <a href="{{route('dashboard.clinics.index')}}">
-                  <i class="fas fa-hospital"></i>
+                      <i class="fas fa-hospital"></i>
                       All Clinics
                   </a>
               </li>
@@ -17,8 +17,9 @@
               @role('admin')
               <li><a href="{{route('dashboard.analytics.index')}}"> <i class="fas fa-chart-line"></i>Analytics</a></li>
               @endrole
+              @role('doctor')
               <li><a href="{{route('dashboard.sponsorships.index')}}"> <i class="fas fa-donate"></i>Sponsorship</a></li>
-
+              @endrole
 
           </ul>
       </div>
