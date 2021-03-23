@@ -1,26 +1,5 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card" v-for="user in users" :key="user.id">
-                    <div class="card-header">{{ user.name }} {{ user.lastname }}</div>
-
-                    <div class="card-body">
-                        <div v-if="user.prefixes">
-                            <p> Phone number: {{ user.prefixes.dial_code }} </p>
-                            {{ user.phone_number }}
-                        </div>
-                        <div v-if="user.specializations">
-                            Specializations:
-                            <span v-for="specializations in user.specializations" :key="specializations.id"> 
-                            {{ specializations.name }} 
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </template>
 
 <script>

@@ -7,7 +7,7 @@ Advanced Search
 
 @section('content')
 @include('layouts.guest.partials.navbar')
-
+<advanced_search></advanced_search>
 @include('guest.partials.footer')
 
 @endsection
