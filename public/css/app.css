@@ -11335,7 +11335,8 @@ input {
   font-size: 50px;
 }
 
-#jumbo_home .container_searchbar .form .input_container input {
+#jumbo_home .container_searchbar form .input_container input {
+  text-transform: capitalize;
   width: 75%;
   height: 45px;
   border-top-left-radius: 7px;
@@ -11343,7 +11344,7 @@ input {
   padding: 0 20px;
 }
 
-#jumbo_home .container_searchbar .form .input_container button {
+#jumbo_home .container_searchbar form .input_container button {
   width: 15%;
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
@@ -11352,11 +11353,11 @@ input {
   transition: background-color 0.4s ease;
 }
 
-#jumbo_home .container_searchbar .form .input_container button:hover {
+#jumbo_home .container_searchbar form .input_container button:hover {
   background: #00aeef;
 }
 
-#jumbo_home .container_searchbar .form ul#spec_list {
+#jumbo_home .container_searchbar form ul#spec_list {
   display: none;
   width: 74%;
   background: white;
@@ -11368,7 +11369,7 @@ input {
   overflow-y: auto;
 }
 
-#jumbo_home .container_searchbar .form ul#spec_list li {
+#jumbo_home .container_searchbar form ul#spec_list li {
   text-transform: capitalize;
   width: 100%;
   height: -webkit-max-content;
@@ -11376,7 +11377,7 @@ input {
   height: max-content;
 }
 
-#jumbo_home .container_searchbar .form ul#spec_list li a {
+#jumbo_home .container_searchbar form ul#spec_list li a {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 20px;
@@ -11386,12 +11387,12 @@ input {
   outline: 0;
 }
 
-#jumbo_home .container_searchbar .form ul#spec_list li a:hover {
+#jumbo_home .container_searchbar form ul#spec_list li a:hover {
   background-color: lightgrey;
   transition: background-color 0.3s ease;
 }
 
-#jumbo_home .container_searchbar .form ul#spec_list.active {
+#jumbo_home .container_searchbar form ul#spec_list.active {
   display: block;
 }
 

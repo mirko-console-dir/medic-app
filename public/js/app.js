@@ -2001,9 +2001,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.searchArray = document.cookie.split('; '); //this.search = this.searchArray.find('search=');
+    var _this = this;
 
-    this.search = this.searchArray[this.searchArray.length - 1];
+    this.searchArray = document.cookie.split('; ');
+    this.searchArray.forEach(function (string) {
+      if (string.length < 99) {
+        _this.search = string;
+      }
+    });
   }
 });
 
@@ -2130,6 +2135,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     cookie: function cookie() {
       return document.cookie = this.search;
+    },
+    writeSpec: function writeSpec(spec) {
+      return this.search = spec;
     }
   },
   mounted: function mounted() {
@@ -38825,7 +38833,7 @@ var render = function() {
           expression: "search"
         }
       ],
-      staticClass: "form-control",
+      staticClass: "form-control text-capitalize",
       attrs: { type: "text", name: "" },
       domProps: { value: _vm.search },
       on: {
@@ -38886,10 +38894,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "form",
     {
       staticClass: "form col-lg-6 col-sm-12",
-      attrs: { action: "/search", method: "post", autocomplete: "off" }
+      attrs: { action: "/search", autocomplete: "off" }
     },
     [
       _c("div", { staticClass: "d_flex input_container" }, [
@@ -38945,9 +38953,19 @@ var render = function() {
             { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
             _vm._l(_vm.specializations, function(spec) {
               return _c("li", [
-                _c("a", { staticClass: "no_blur", attrs: { href: "#" } }, [
-                  _vm._v(_vm._s(spec))
-                ])
+                _c(
+                  "a",
+                  {
+                    staticClass: "no_blur",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.writeSpec(spec)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(spec))]
+                )
               ])
             }),
             0
@@ -38957,9 +38975,19 @@ var render = function() {
             { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
             _vm._l(_vm.filterSpec, function(spec) {
               return _c("li", [
-                _c("a", { staticClass: "no_blur", attrs: { href: "#" } }, [
-                  _vm._v(_vm._s(spec))
-                ])
+                _c(
+                  "a",
+                  {
+                    staticClass: "no_blur",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.writeSpec(spec)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(spec))]
+                )
               ])
             }),
             0
@@ -51708,8 +51736,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

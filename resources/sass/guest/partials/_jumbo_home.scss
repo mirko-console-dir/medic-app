@@ -24,9 +24,10 @@
         font-size: 50px;
       }
     }
-    .form{
+    form{
         .input_container{
           input{
+            text-transform: capitalize;
             width: 75%;
             height: 45px;
             border-top-left-radius: 7px;
