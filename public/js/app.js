@@ -2032,6 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["componentName", "api"],
   data: function data() {
@@ -2571,12 +2572,12 @@ module.exports = {
     this.cardMediaQuery();
   },
   mounted: function mounted() {
-    console.log('Component "Slideshow" mounted');
     this.i = 0;
     this.j = this.i + 1;
     this.k = this.i + 2;
     this.l = this.i + 3;
     this.next(true);
+    console.log('Component "Slideshow" mounted');
   },
   distroyed: function distroyed() {
     window.removeEventListener('resize', this.cardMediaQuery);
@@ -39025,37 +39026,42 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _vm._m(0)
+    _c("div", { staticClass: "doctors_show" }, [
+      _c(
+        "div",
+        { staticClass: "card_container d_flex" },
+        _vm._l(_vm.users, function(user) {
+          return _c("div", { staticClass: "card_wrapper" }, [
+            _c(
+              "a",
+              { staticClass: "card", attrs: { href: "/doctor/" + user.slug } },
+              [
+                _c("div", { staticClass: "avatar" }),
+                _vm._v(" "),
+                _c("h4", { staticClass: "name" }, [
+                  _vm._v(_vm._s(user.name + " " + user.lastname) + " ")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "h4",
+                  { staticClass: "specialization" },
+                  _vm._l(user.specializations, function(spec) {
+                    return _c("span", [_vm._v(_vm._s(spec.name))])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "rating" }, [_vm._v("*****")])
+              ]
+            )
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "doctors_show" }, [
-      _c("div", { staticClass: "card_container d_flex" }, [
-        _c("div", { staticClass: "card_wrapper" }, [
-          _c("a", { staticClass: "card", attrs: { href: "#" } }, [
-            _c("div", { staticClass: "avatar" }),
-            _vm._v(" "),
-            _c("h4", { staticClass: "name" }, [_vm._v("Dott.ssa Cippa lippa")]),
-            _vm._v(" "),
-            _c("h4", { staticClass: "specialization" }, [_vm._v("Neurologia")]),
-            _vm._v(" "),
-            _c("p", { staticClass: "description" }, [
-              _vm._v(
-                "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod reiciendis nulla fuga corporis, dolorem dignissimos quae quisquam aperiam sint nisi."
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "rating" }, [_vm._v("*****")])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39275,16 +39281,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", { staticClass: "info presentation" }, [
                   _vm._v(_vm._s(profile.presentation))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "info presentation",
-                    attrs: { href: "/dashboard/doctors/{doctor}" }
-                  },
-                  [_vm._v("ID: " + _vm._s(profile.id))]
-                )
+                ])
               ]
             )
           }),

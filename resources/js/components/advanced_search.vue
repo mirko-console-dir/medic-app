@@ -27,12 +27,13 @@
 
     <div class="doctors_show">
       <div class="card_container d_flex">
-        <div class="card_wrapper">
-          <a href="#" class="card">
+        <div class="card_wrapper" v-for="user in users">
+          <a :href="'/doctor/'+user.slug" class="card">
             <div class="avatar"></div>
-            <h4 class="name">Dott.ssa Cippa lippa</h4>
-            <h4 class="specialization">Neurologia</h4>
-            <p class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod reiciendis nulla fuga corporis, dolorem dignissimos quae quisquam aperiam sint nisi.</p>
+            <h4 class="name">{{user.name+" "+user.lastname}} </h4>
+            <h4 class="specialization" >
+              <span v-for="spec in user.specializations">{{spec.name}}</span> 
+            </h4>
             <div class="rating">*****</div>
           </a>
         </div>
