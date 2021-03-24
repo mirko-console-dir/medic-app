@@ -11305,8 +11305,10 @@ input {
 #jumbo_home {
   padding-top: 50px;
   height: calc(100vh + 80px);
+  min-height: 800px;
   background-image: url("/img/bg_jumbo.jpg");
   background-size: cover;
+  position: relative;
 }
 
 #jumbo_home .overlay_doc_image {
@@ -11676,6 +11678,22 @@ footer .container_80 .second_row .copyright {
   justify-content: space-around;
 }
 
+#advanced_search {
+  background-image: url("/img/bg_jumbo.jpg");
+  background-size: cover;
+}
+
+#advanced_search main h1.title {
+  color: white;
+  text-align: center;
+  margin-top: 40px;
+}
+
+#advanced_search main input {
+  margin-top: 40px;
+  margin-bottom: 800px;
+}
+
 @media (max-width: 991.98px) {
   #navbar {
     height: 90px;
@@ -11871,6 +11889,10 @@ footer .container_80 .second_row .copyright {
 }
 
 @media (max-width: 991.98px) {
+  #jumbo_home {
+    min-height: 1104px;
+  }
+
   #jumbo_home .overlay_doc_image {
     background-position: 90% 86%;
   }
@@ -11884,6 +11906,7 @@ footer .container_80 .second_row .copyright {
 @media (max-width: 767.98px) {
   #jumbo_home {
     height: 100vh;
+    min-height: 568px;
   }
 
   #jumbo_home .overlay_doc_image {
@@ -12132,6 +12155,25 @@ footer .container_80 .second_row .copyright {
   footer .second_row .copyright {
     padding-top: 10px;
     justify-content: center !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #advanced_search main {
+    margin-top: 90px;
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #advanced_search main {
+    margin-top: 70px;
+    padding-top: 30px;
+  }
+
+  #advanced_search main h1.title {
+    font-size: 35px;
+    text-align: left;
   }
 }
 

@@ -38823,7 +38823,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "col-lg-5 col-md-12" }, [
     _c("input", {
       directives: [
         {
@@ -38834,7 +38834,11 @@ var render = function() {
         }
       ],
       staticClass: "form-control text-capitalize",
-      attrs: { type: "text", name: "" },
+      attrs: {
+        type: "text",
+        name: "",
+        placeholder: "Search for Specializations"
+      },
       domProps: { value: _vm.search },
       on: {
         input: function($event) {

@@ -25,6 +25,7 @@
 // MD - Medium devices (tablets, 992px and down)
 @media (max-width: 991.98px) {
   #jumbo_home{
+    min-height: 1104px;
     .overlay_doc_image{
       background-position: 90% 86%;
     }
@@ -39,6 +40,7 @@
 @media (max-width: 767.98px) {
   #jumbo_home{
       height: 100vh;
+      min-height: 568px;
     .overlay_doc_image{
       background-size: 0;
       margin-top: 10px;

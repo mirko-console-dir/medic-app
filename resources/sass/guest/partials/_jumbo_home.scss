@@ -1,8 +1,10 @@
 #jumbo_home{
   padding-top: 50px;
   height: calc(100vh + 80px);
+  min-height: 800px;
   background-image:url("/img/bg_jumbo.jpg");
   background-size: cover;
+  position: relative;
   .overlay_doc_image{
     width: 100%;
     height: 100%;

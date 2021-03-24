@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <input class="form-control text-capitalize" type="text" name="" v-model="search">
+    <div class="col-lg-5 col-md-12">
+        <input class="form-control text-capitalize" type="text" name="" v-model="search" placeholder="Search for Specializations">
     </div>
 </template>
 <script>
