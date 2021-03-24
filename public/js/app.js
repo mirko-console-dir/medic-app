@@ -1993,19 +1993,116 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["componentName", "api"],
   data: function data() {
     return {
-      search: ""
+      users: [],
+      filterDoctors: [],
+      filterSpec: [],
+      doctor: [],
+      specializations: [],
+      apiRequest: this.api,
+      show: false,
+      list: null,
+      search: ''
     };
   },
+  methods: {
+    specFilter: function specFilter() {
+      var _this = this;
+
+      var filter = [];
+      var specializations = this.specializations;
+
+      if (this.search.length > 0) {
+        this.specializations.forEach(function (spec) {
+          if (spec.toLowerCase().includes(_this.search.toLowerCase())) {
+            filter.push(spec);
+          }
+        });
+
+        if (filter.length === 0) {
+          filter = ["No results found"];
+        }
+      }
+
+      return this.filterSpec = filter;
+    },
+    showList: function showList() {
+      if (!this.show) {
+        return this.show = true;
+      }
+    },
+    cookie: function cookie() {
+      return document.cookie = "search=" + this.search;
+    },
+    writeSpec: function writeSpec(spec) {
+      return this.search = spec;
+    }
+  },
   mounted: function mounted() {
+    var _this2 = this;
+
+    self = this;
+    axios.get(self.apiRequest) //.get('api/users')
+    .then(function (response) {
+      self.users = response.data.data; //Creazione Elenco specializzazioni
+
+      self.users.forEach(function (doctor) {
+        doctor.specializations.forEach(function (spec) {
+          if (!self.specializations.includes(spec.name.toLowerCase())) {
+            return self.specializations.push(spec.name.toLowerCase());
+          }
+        });
+      });
+    })["catch"](function (error) {
+      console.log(error);
+    });
+
     if (document.cookie.includes("search")) {
       this.search = document.cookie.split('; ').find(function (row) {
         return row.startsWith('search=');
       }).split('=')[1];
       document.cookie = "search=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     }
+    /**
+    * Funzione che permette di nascondere la visualizzazione della lista
+    * delle specializzazioni quando si clicca su elementi senza classe 'no_blur'
+    */
+
+
+    document.addEventListener('click', function (event) {
+      if (event.target.className != 'no_blur') {
+        return _this2.show = false;
+      }
+    });
+    console.log('Component "Searchhome" mounted');
+  },
+  destroyed: function destroyed() {
+    document.removeEventListener('click');
   }
 });
 
@@ -38820,33 +38917,91 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-lg-5 col-md-12" }, [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.search,
-          expression: "search"
-        }
-      ],
-      staticClass: "form-control text-capitalize",
-      attrs: {
-        type: "text",
-        name: "",
-        placeholder: "Search for Specializations"
-      },
-      domProps: { value: _vm.search },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+  return _c(
+    "form",
+    { staticClass: "col-lg-6 col-md-12", attrs: { autocomplete: "off" } },
+    [
+      _c("div", { staticClass: " input_container no_blur" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
+            }
+          ],
+          staticClass: "form-control text-capitalize no_blur",
+          attrs: {
+            type: "text",
+            name: "",
+            placeholder: "Search for Specializations"
+          },
+          domProps: { value: _vm.search },
+          on: {
+            keyup: function($event) {
+              return _vm.specFilter(_vm.search)
+            },
+            click: function($event) {
+              return _vm.showList()
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
           }
-          _vm.search = $event.target.value
-        }
-      }
-    })
-  ])
+        })
+      ]),
+      _vm._v(" "),
+      _vm.search.length === 0
+        ? _c(
+            "ul",
+            { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
+            _vm._l(_vm.specializations, function(spec) {
+              return _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "no_blur",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.writeSpec(spec)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(spec))]
+                )
+              ])
+            }),
+            0
+          )
+        : _c(
+            "ul",
+            { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
+            _vm._l(_vm.filterSpec, function(spec) {
+              return _c("li", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "no_blur",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.writeSpec(spec)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(spec))]
+                )
+              ])
+            }),
+            0
+          )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

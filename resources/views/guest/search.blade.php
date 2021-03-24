@@ -12,7 +12,7 @@ Advanced Search
   <div class="container_80 row">
 
     <h1 class="title col-lg-12">Advanced Search </h1>
-    <advanced_search></advanced_search>
+    <advanced_search api="{{route('api.users')}}"></advanced_search>
 
   </div>
 

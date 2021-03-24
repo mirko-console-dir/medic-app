@@ -11681,6 +11681,7 @@ footer .container_80 .second_row .copyright {
 #advanced_search {
   background-image: url("/img/bg_jumbo.jpg");
   background-size: cover;
+  padding-top: 50px;
 }
 
 #advanced_search main h1.title {
@@ -11689,9 +11690,52 @@ footer .container_80 .second_row .copyright {
   margin-top: 40px;
 }
 
-#advanced_search main input {
-  margin-top: 40px;
-  margin-bottom: 800px;
+#advanced_search main form {
+  margin: 40px auto;
+}
+
+#advanced_search main form .input_container input {
+  height: 45px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  padding: 0 20px;
+}
+
+#advanced_search main form ul#spec_list {
+  display: none;
+  background: white;
+  border-top: 1px solid lightgrey;
+  padding-left: 0;
+  margin-bottom: 0;
+  max-height: 121px;
+  overflow-y: auto;
+}
+
+#advanced_search main form ul#spec_list li {
+  text-transform: capitalize;
+  width: 100%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+#advanced_search main form ul#spec_list li a {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  display: block;
+  width: 100%;
+  color: #141430;
+  outline: 0;
+}
+
+#advanced_search main form ul#spec_list li a:hover {
+  background-color: lightgrey;
+  transition: background-color 0.3s ease;
+}
+
+#advanced_search main form ul#spec_list.active {
+  display: block;
 }
 
 @media (max-width: 991.98px) {
