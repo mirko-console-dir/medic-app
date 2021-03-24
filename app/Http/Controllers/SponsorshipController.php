@@ -32,8 +32,12 @@ class SponsorshipController extends Controller
         // dd($user->sponsorship->contains());
         // if($user->sponsorships->contains(){
         //     $user->sponsorships()->sync($sponsorship_default)
-
         // }
+
+        $exclusive = 144;
+        // $end_date_exclusive = date("Y-m-d H:i:s", strtotime("+$exclusive hours"));
+        // dd($end_date_exclusive);
+
         return view('dashboard.doctor.sponsorship.index',compact('user','sponsorships', 'user_sponsorships'));
     }
 
