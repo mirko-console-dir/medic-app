@@ -8,16 +8,16 @@ export default {
   data: function(){
       return {
           search: "",
-          searchArray: [],
       }
   },
   mounted() {
-    this.searchArray = document.cookie.split('; ')
-    this.searchArray.forEach(string=>{
-      if(string.length < 99) {
-        this.search = string;
-      }
-    })
+
+    if(document.cookie.includes("search")){
+      this.search = document.cookie.split('; ')
+      .find(row => row.startsWith('search='))
+      .split('=')[1];
+      document.cookie = "search=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
   }
 }
 </script>

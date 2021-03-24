@@ -1,5 +1,5 @@
 <template>
-  <form  class="form col-lg-6 col-sm-12" action="/search" autocomplete="off">
+  <form  class="form col-lg-6 col-sm-12"  autocomplete="off" action="/search">
 
       <div class="d_flex input_container">
         <input class="no_blur" type="text" name="search" placeholder="Start typing a specialization"
@@ -66,7 +66,7 @@
           }
         },
         cookie: function() {
-          return document.cookie = this.search;
+          return document.cookie = "search="+this.search;
         },
         writeSpec: function(spec){
           return this.search = spec;

@@ -1996,19 +1996,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      search: "",
-      searchArray: []
+      search: ""
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    this.searchArray = document.cookie.split('; ');
-    this.searchArray.forEach(function (string) {
-      if (string.length < 99) {
-        _this.search = string;
-      }
-    });
+    if (document.cookie.includes("search")) {
+      this.search = document.cookie.split('; ').find(function (row) {
+        return row.startsWith('search=');
+      }).split('=')[1];
+      document.cookie = "search=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
   }
 });
 
@@ -2134,7 +2131,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     cookie: function cookie() {
-      return document.cookie = this.search;
+      return document.cookie = "search=" + this.search;
     },
     writeSpec: function writeSpec(spec) {
       return this.search = spec;
@@ -38901,7 +38898,7 @@ var render = function() {
     "form",
     {
       staticClass: "form col-lg-6 col-sm-12",
-      attrs: { action: "/search", autocomplete: "off" }
+      attrs: { autocomplete: "off", action: "/search" }
     },
     [
       _c("div", { staticClass: "d_flex input_container" }, [
@@ -51740,8 +51737,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
