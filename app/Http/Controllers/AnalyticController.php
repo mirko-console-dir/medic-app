@@ -34,7 +34,7 @@ class AnalyticController extends Controller
         // };
 
         // dd($g);
-       
+
         return view('dashboard.admin.analytics',compact('user','users','user_sponsorships'));
     }
 

@@ -31,7 +31,7 @@ class PaymentController extends Controller
 
         if($status->success || !is_null($status->transaction)){
             $user = Auth::user();
-            $user->sponsorships()->sync($sponsorship['id']);
+            $user->sponsorships()->attach($sponsorship['id']);
             return response()->json($status);
         }
 
