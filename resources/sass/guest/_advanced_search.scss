@@ -1,15 +1,54 @@
 #advanced_search{
   background-image:url("/img/bg_jumbo.jpg");
   background-size: cover;
+  padding-top: 50px;
   main{
     h1.title{
       color: white;
       text-align: center;
       margin-top: 40px;
     }
-    input{
-      margin-top: 40px;
-      margin-bottom: 800px;
+    form{
+      margin: 40px auto;
+      .input_container{
+        input{
+          height: 45px;
+          border-top-left-radius: 7px;
+          border-bottom-left-radius: 7px;
+          padding: 0 20px;
+        }
+      }
+      ul#spec_list{
+        display: none;
+        background: white;
+        border-top: 1px solid lightgrey;
+        padding-left: 0;
+        margin-bottom: 0;
+        max-height: 121px;
+        overflow-y: auto;
+        li{
+          text-transform: capitalize;
+          width: 100%;
+          height: max-content;
+          a{
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 20px;
+            display: block;
+            width: 100%;
+            color: map-get($color-map, primary_color_dark);
+            outline: 0;
+            &:hover{
+              background-color: lightgrey;
+              transition: background-color 0.3s ease;
+            }
+          }
+        }
+        &.active{
+          display: block;
+        }
+      }
     }
+
   }
 }
