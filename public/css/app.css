@@ -11878,6 +11878,10 @@ footer .container_80 .second_row .copyright {
 }
 
 @media (min-width: 1700px) {
+  #jumbo_home {
+    min-height: 1160px;
+  }
+
   #jumbo_home .overlay_doc_image {
     background-size: calc(0.8 * 790px) calc(0.8 * 1000px);
     background-position: 80% 100%;
