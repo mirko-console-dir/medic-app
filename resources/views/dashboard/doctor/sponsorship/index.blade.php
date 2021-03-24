@@ -29,11 +29,13 @@
                     @METHOD('PATCH')
                     @csrf
                     <select name="sponsorship_id" id="">
-                        @foreach($sponsorships as $sponsorship)
-
+                        <option value="" disabled selected>Select your sponsorship</option>
+                        @foreach($sponsorships as $key => $sponsorship)
+                        @if ($key > 0)
                         <option value="{{$sponsorship->id}}" name="sponsorship_id">
                             {{$sponsorship->name}} &euro; {{$sponsorship->price}}
                         </option>
+                        @endif
                         @endforeach
 
                     </select>
