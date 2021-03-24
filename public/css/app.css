@@ -12246,6 +12246,40 @@ footer .container_80 .second_row .copyright {
   background-color: #006DB2;
 }
 
+.form-group {
+  align-items: center;
+}
+
+.card-body label {
+  margin-right: 15px;
+}
+
+.form-check {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.form-check input {
+  margin-left: -10rem;
+}
+
+.form-login {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.form-group {
+  align-items: center;
+}
+
+.btn_register {
+  justify-content: center;
+}
+
+.btn_register button {
+  margin-top: 20px;
+}
+
 body {
   font-family: "poppins", sans-serif;
 }

@@ -25,6 +25,8 @@
     },
     "dependencies": {
         "axios-delay": "^1.0.0-rc6",
-        "chart.js": "^2.9.4"
+        "chart.js": "^2.9.4",
+        "es6-promise": "^4.2.8",
+        "vuex": "^3.6.2"
     }
 }
