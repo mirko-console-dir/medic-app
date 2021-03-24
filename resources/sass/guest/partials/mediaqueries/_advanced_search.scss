@@ -1,9 +1,31 @@
+@media (max-width: 1280px) {
+  #advanced_search{
+      main{
+        margin-top: 90px;
+        padding-top: 30px;
+        .component{
+          .card_container{
+            .card_wrapper{
+              width: calc(100% / 3);
+          }
+        }
+      }
+    }
+  }
+}
+
+
 // MD - Medium devices (tablets, 992px and down)
 @media (max-width: 991.98px) {
   #advanced_search{
     main{
-      margin-top: 90px;
-      padding-top: 30px;
+      .component{
+        .card_container{
+          .card_wrapper{
+            width: calc(100% / 2);
+          }
+        }
+      }
     }
   }
 }
@@ -17,6 +39,15 @@
       h1.title{
         font-size: 35px;
         text-align: left;
+      }
+      .component{
+        .card_container{
+          justify-content: center;
+          .card_wrapper{
+            width: calc(100% / 1);
+            max-width: 300px;
+          }
+        }
       }
     }
   }

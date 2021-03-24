@@ -9,7 +9,7 @@
                     <h4 class="info name">{{profile.sex === 'm'?'Dott.':'Dott.ssa'}} {{profile.name}} {{profile.lastname}}</h4>
                     <h4 class="info specialization">{{profile.specialization}}</h4>
                     <p class="info presentation">{{profile.presentation}}</p>
-                    <a class="info presentation" href="/dashboard/doctors/{doctor}">ID: {{profile.id}}</a>
+                    <!-- <a class="info presentation" :href="'/doctor/'+user.slug">ID: {{profile.id}}</a> -->
                 </div>
             </transition-group>
         </div>
@@ -279,12 +279,14 @@ module.exports = {
         this.cardMediaQuery();
     },
     mounted() {
-        console.log('Component "Slideshow" mounted');
+        
+
         this.i = 0;
         this.j = this.i + 1;
         this.k = this.i + 2;
         this.l = this.i + 3;
         this.next(true);
+        console.log('Component "Slideshow" mounted');
     },
     distroyed() {
         window.removeEventListener('resize', this.cardMediaQuery);

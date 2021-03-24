@@ -3,52 +3,92 @@
   background-size: cover;
   padding-top: 50px;
   main{
+    padding-bottom: 50px;
     h1.title{
       color: white;
       text-align: center;
       margin-top: 40px;
     }
-    form{
-      margin: 40px auto;
-      .input_container{
-        input{
-          height: 45px;
-          border-top-left-radius: 7px;
-          border-bottom-left-radius: 7px;
-          padding: 0 20px;
-        }
-      }
-      ul#spec_list{
-        display: none;
-        background: white;
-        border-top: 1px solid lightgrey;
-        padding-left: 0;
-        margin-bottom: 0;
-        max-height: 121px;
-        overflow-y: auto;
-        li{
-          text-transform: capitalize;
-          width: 100%;
-          height: max-content;
-          a{
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 20px;
-            display: block;
-            width: 100%;
-            color: map-get($color-map, primary_color_dark);
-            outline: 0;
-            &:hover{
-              background-color: lightgrey;
-              transition: background-color 0.3s ease;
+    .component{
+      width: 100%;
+      form{
+        position: relative;
+        margin: 40px auto;
+        .input_container{
+          input{
+            height: 45px;
+            border-top-left-radius: 7px;
+            border-bottom-left-radius: 7px;
+            padding: 0 20px;
+            &::first-letter{
+              text-transform: uppercase;
             }
           }
         }
-        &.active{
-          display: block;
+        ul#spec_list{
+          position: absolute;
+          top: 45px;
+          left: 0;
+          width: 100%;
+          display: none;
+          background: white;
+          border-top: 1px solid lightgrey;
+          padding-left: 0;
+          margin-bottom: 0;
+          max-height: 121px;
+          overflow-y: auto;
+          li{
+            text-transform: capitalize;
+            width: 100%;
+            height: max-content;
+            a{
+              padding-top: 5px;
+              padding-bottom: 5px;
+              padding-left: 20px;
+              display: block;
+              width: 100%;
+              color: map-get($color-map, primary_color_dark);
+              outline: 0;
+              &:hover{
+                background-color: lightgrey;
+                transition: background-color 0.3s ease;
+              }
+            }
+          }
+          &.active{
+            display: block;
+          }
+        }
+      }
+      .card_container{
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding-top: 150px;
+        .card_wrapper{
+          width: calc(100% / 4);
+          padding: 10px;
+          .card{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgb(0, 0, 0, 0.5);
+            color: white;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 20px 10px;
+            .avatar{
+              width: 200px;
+              height: 200px;
+              border-radius: 50%;
+              background-image: url('/img/sponsored/profile_01.jpg');
+              background-position: top center;
+              background-size: cover;
+              background-repeat: no-repeat;
+            }
+          }
         }
       }
     }
-
   }
 }

@@ -2015,6 +2015,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["componentName", "api"],
   data: function data() {
@@ -2081,6 +2099,10 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       console.log(error);
     });
+    /**
+    * Se il cookie contiene una chiave di ricerca, questa viene estratta.
+    * Alla chiusura della pagina il cookie viene cancellato.
+    */
 
     if (document.cookie.includes("search")) {
       this.search = document.cookie.split('; ').find(function (row) {
@@ -2095,11 +2117,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
     document.addEventListener('click', function (event) {
-      if (event.target.className != 'no_blur') {
+      if (!event.target.className.includes('no_blur')) {
         return _this2.show = false;
       }
     });
-    console.log('Component "Searchhome" mounted');
+    console.log('Component "Advanced-search" mounted');
   },
   destroyed: function destroyed() {
     document.removeEventListener('click');
@@ -2258,7 +2280,7 @@ __webpack_require__.r(__webpack_exports__);
     */
 
     document.addEventListener('click', function (event) {
-      if (event.target.className != 'no_blur') {
+      if (!event.target.className.includes('no_blur')) {
         return _this2.show = false;
       }
     });
@@ -2550,12 +2572,12 @@ module.exports = {
     this.cardMediaQuery();
   },
   mounted: function mounted() {
-    console.log('Component "Slideshow" mounted');
     this.i = 0;
     this.j = this.i + 1;
     this.k = this.i + 2;
     this.l = this.i + 3;
     this.next(true);
+    console.log('Component "Slideshow" mounted');
   },
   distroyed: function distroyed() {
     window.removeEventListener('resize', this.cardMediaQuery);
@@ -38917,91 +38939,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    { staticClass: "col-lg-6 col-md-12", attrs: { autocomplete: "off" } },
-    [
-      _c("div", { staticClass: " input_container no_blur" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.search,
-              expression: "search"
-            }
-          ],
-          staticClass: "form-control text-capitalize no_blur",
-          attrs: {
-            type: "text",
-            name: "",
-            placeholder: "Search for Specializations"
-          },
-          domProps: { value: _vm.search },
-          on: {
-            keyup: function($event) {
-              return _vm.specFilter(_vm.search)
-            },
-            click: function($event) {
-              return _vm.showList()
-            },
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+  return _c("div", { staticClass: "component" }, [
+    _c(
+      "form",
+      { staticClass: "col-lg-6 col-md-12", attrs: { autocomplete: "off" } },
+      [
+        _c("div", { staticClass: " input_container no_blur" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search"
               }
-              _vm.search = $event.target.value
+            ],
+            staticClass: "form-control text-capitalize no_blur",
+            attrs: {
+              type: "text",
+              name: "",
+              placeholder: "start typing a specialization"
+            },
+            domProps: { value: _vm.search },
+            on: {
+              keyup: function($event) {
+                return _vm.specFilter(_vm.search)
+              },
+              click: function($event) {
+                return _vm.showList()
+              },
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search = $event.target.value
+              }
             }
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _vm.search.length === 0
-        ? _c(
-            "ul",
-            { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-            _vm._l(_vm.specializations, function(spec) {
-              return _c("li", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "no_blur",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        return _vm.writeSpec(spec)
+          })
+        ]),
+        _vm._v(" "),
+        _vm.search.length === 0
+          ? _c(
+              "ul",
+              { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
+              _vm._l(_vm.specializations, function(spec) {
+                return _c("li", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "no_blur",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          return _vm.writeSpec(spec)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v(_vm._s(spec))]
-                )
-              ])
-            }),
-            0
-          )
-        : _c(
-            "ul",
-            { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-            _vm._l(_vm.filterSpec, function(spec) {
-              return _c("li", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "no_blur",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        return _vm.writeSpec(spec)
+                    },
+                    [_vm._v(_vm._s(spec))]
+                  )
+                ])
+              }),
+              0
+            )
+          : _c(
+              "ul",
+              { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
+              _vm._l(_vm.filterSpec, function(spec) {
+                return _c("li", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "no_blur",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          return _vm.writeSpec(spec)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v(_vm._s(spec))]
-                )
-              ])
-            }),
-            0
-          )
-    ]
-  )
+                    },
+                    [_vm._v(_vm._s(spec))]
+                  )
+                ])
+              }),
+              0
+            )
+      ]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "doctors_show" }, [
+      _c(
+        "div",
+        { staticClass: "card_container d_flex" },
+        _vm._l(_vm.users, function(user) {
+          return _c("div", { staticClass: "card_wrapper" }, [
+            _c(
+              "a",
+              { staticClass: "card", attrs: { href: "/doctor/" + user.slug } },
+              [
+                _c("div", { staticClass: "avatar" }),
+                _vm._v(" "),
+                _c("h4", { staticClass: "name" }, [
+                  _vm._v(_vm._s(user.name + " " + user.lastname) + " ")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "h4",
+                  { staticClass: "specialization" },
+                  _vm._l(user.specializations, function(spec) {
+                    return _c("span", [_vm._v(_vm._s(spec.name))])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "rating" }, [_vm._v("*****")])
+              ]
+            )
+          ])
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39070,7 +39128,7 @@ var render = function() {
           attrs: {
             type: "text",
             name: "search",
-            placeholder: "Start typing a specialization"
+            placeholder: "start typing a specialization"
           },
           domProps: { value: _vm.search },
           on: {
@@ -39223,16 +39281,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("p", { staticClass: "info presentation" }, [
                   _vm._v(_vm._s(profile.presentation))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "info presentation",
-                    attrs: { href: "/dashboard/doctors/{doctor}" }
-                  },
-                  [_vm._v("ID: " + _vm._s(profile.id))]
-                )
+                ])
               ]
             )
           }),
@@ -51892,8 +51941,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> AM-Frontend-20210324
 
 
 /***/ })

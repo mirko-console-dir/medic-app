@@ -11338,12 +11338,15 @@ input {
 }
 
 #jumbo_home .container_searchbar form .input_container input {
-  text-transform: capitalize;
   width: 75%;
   height: 45px;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
   padding: 0 20px;
+}
+
+#jumbo_home .container_searchbar form .input_container input::first-letter {
+  text-transform: uppercase;
 }
 
 #jumbo_home .container_searchbar form .input_container button {
@@ -11684,24 +11687,41 @@ footer .container_80 .second_row .copyright {
   padding-top: 50px;
 }
 
+#advanced_search main {
+  padding-bottom: 50px;
+}
+
 #advanced_search main h1.title {
   color: white;
   text-align: center;
   margin-top: 40px;
 }
 
-#advanced_search main form {
+#advanced_search main .component {
+  width: 100%;
+}
+
+#advanced_search main .component form {
+  position: relative;
   margin: 40px auto;
 }
 
-#advanced_search main form .input_container input {
+#advanced_search main .component form .input_container input {
   height: 45px;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
   padding: 0 20px;
 }
 
-#advanced_search main form ul#spec_list {
+#advanced_search main .component form .input_container input::first-letter {
+  text-transform: uppercase;
+}
+
+#advanced_search main .component form ul#spec_list {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
   display: none;
   background: white;
   border-top: 1px solid lightgrey;
@@ -11711,7 +11731,7 @@ footer .container_80 .second_row .copyright {
   overflow-y: auto;
 }
 
-#advanced_search main form ul#spec_list li {
+#advanced_search main .component form ul#spec_list li {
   text-transform: capitalize;
   width: 100%;
   height: -webkit-max-content;
@@ -11719,7 +11739,7 @@ footer .container_80 .second_row .copyright {
   height: max-content;
 }
 
-#advanced_search main form ul#spec_list li a {
+#advanced_search main .component form ul#spec_list li a {
   padding-top: 5px;
   padding-bottom: 5px;
   padding-left: 20px;
@@ -11729,13 +11749,46 @@ footer .container_80 .second_row .copyright {
   outline: 0;
 }
 
-#advanced_search main form ul#spec_list li a:hover {
+#advanced_search main .component form ul#spec_list li a:hover {
   background-color: lightgrey;
   transition: background-color 0.3s ease;
 }
 
-#advanced_search main form ul#spec_list.active {
+#advanced_search main .component form ul#spec_list.active {
   display: block;
+}
+
+#advanced_search main .component .card_container {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding-top: 150px;
+}
+
+#advanced_search main .component .card_container .card_wrapper {
+  width: calc(100% / 4);
+  padding: 10px;
+}
+
+#advanced_search main .component .card_container .card_wrapper .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px 10px;
+}
+
+#advanced_search main .component .card_container .card_wrapper .card .avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url("/img/sponsored/profile_01.jpg");
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 991.98px) {
@@ -12206,10 +12259,20 @@ footer .container_80 .second_row .copyright {
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1280px) {
   #advanced_search main {
     margin-top: 90px;
     padding-top: 30px;
+  }
+
+  #advanced_search main .component .card_container .card_wrapper {
+    width: calc(100% / 3);
+  }
+}
+
+@media (max-width: 991.98px) {
+  #advanced_search main .component .card_container .card_wrapper {
+    width: calc(100% / 2);
   }
 }
 
@@ -12222,6 +12285,15 @@ footer .container_80 .second_row .copyright {
   #advanced_search main h1.title {
     font-size: 35px;
     text-align: left;
+  }
+
+  #advanced_search main .component .card_container {
+    justify-content: center;
+  }
+
+  #advanced_search main .component .card_container .card_wrapper {
+    width: calc(100% / 1);
+    max-width: 300px;
   }
 }
 

@@ -2,7 +2,7 @@
   <form  class="form col-lg-6 col-sm-12"  autocomplete="off" action="/search">
 
       <div class="d_flex input_container">
-        <input class="no_blur" type="text" name="search" placeholder="Start typing a specialization"
+        <input class="no_blur" type="text" name="search" placeholder="start typing a specialization"
           v-model="search"
           @keyup="specFilter(search)"
           @click="showList()"
@@ -65,9 +65,11 @@
             return this.show = true;
           }
         },
+
         cookie: function() {
-          return document.cookie = "search="+this.search;
+          return document.cookie = "search=" + this.search;
         },
+
         writeSpec: function(spec){
           return this.search = spec;
         }
@@ -99,7 +101,7 @@
         * delle specializzazioni quando si clicca su elementi senza classe 'no_blur'
         */
         document.addEventListener('click', (event)=>{
-          if(event.target.className !='no_blur'){
+          if(!event.target.className.includes('no_blur')){
             return this.show = false;
           }
         });
