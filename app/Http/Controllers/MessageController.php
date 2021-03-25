@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use App\Message;
 
 class MessageController extends Controller
@@ -14,9 +15,11 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user, Message $message)
     {
-        //
+        $user = Auth::user();
+        $messages = Message::all();
+        return view('dashboard.doctor.message.index', compact('user','messages'));
     }
 
     /**

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Review;
+use App\User;
 
 class ReviewController extends Controller
 {
@@ -13,9 +15,12 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user, Review $review)
     {
-        //
+        $user = Auth::user();
+        $reviews = Review::all();
+
+        return view('dashboard.doctor.review.index', compact('user','reviews'));
     }
 
     /**

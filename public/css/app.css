@@ -11214,6 +11214,67 @@ input {
   justify-content: flex-end;
 }
 
+#account .pagination {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px;
+}
+
+#account .pagination .tableList {
+  min-height: 250px;
+  text-indent: 20px;
+}
+
+#account .tableList .objectBlock {
+  color: black;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+}
+
+#account .pageButton {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+#account .clickPageNumber {
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#account .pagination-block {
+  text-align: center;
+  width: 100%;
+}
+
+#account .pagination-block span {
+  display: inline-block;
+}
+
+#account .pagination-block .pageButton {
+  background-color: grey;
+  color: white;
+}
+
+#account .pagination-block span:hover {
+  cursor: pointer;
+}
+
+#account .opacity {
+  opacity: 0.5;
+}
+
+#account .outline-none {
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 /***************************
 *********  GUEST  **********
 ****************************/

@@ -51941,8 +51941,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
