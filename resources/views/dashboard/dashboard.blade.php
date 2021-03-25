@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-  My profile
+My profile
 @endsection
 
 @section('content')
@@ -29,6 +29,10 @@
 
             <div class="detail d_flex_column">
                 <h2>Account information</h2>
+                <div class="d_flex_column">
+                    <h4>Description:</h4>
+                    <h4>{{$user->body}}</h4>
+                </div>
                 <h4>Address: {{$user->address}}</h4>
                 <h4>Register Doctor Number: {{$user->register_number_doc}}</h4>
                 <h4>Phone Number:

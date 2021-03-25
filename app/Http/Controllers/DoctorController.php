@@ -93,6 +93,7 @@ class DoctorController extends Controller
             'name' => 'required',
             'lastname' => 'required',
             'email' => 'required',
+            'body' => 'nullable',
             'address' => 'nullable',
             'register_number_doc' => 'required | digits:10',
             'phone_number' => 'nullable',
@@ -104,6 +105,7 @@ class DoctorController extends Controller
 
         ]);
         // dd(Auth::user()->prefix_id);
+        // dd($validatedData);
 
         if ($file != null) {
 
@@ -158,6 +160,7 @@ class DoctorController extends Controller
                 'lastname' => 'required',
                 'email' => 'required',
                 'address' => 'nullable',
+                'body' => 'nullable',
                 'register_number_doc' => 'required | digits:10',
                 'cv_img' => '',
                 'phone_number' => 'nullable',
@@ -179,7 +182,7 @@ class DoctorController extends Controller
             $user = Auth::user();
             $user->clinics()->sync($request->clinic_id);
             $user->specializations()->sync($request->specialization_id);
-
+            // dd($validatedData);
             $user->update($validatedData);
             // dd($slug);
             // dd($user);
