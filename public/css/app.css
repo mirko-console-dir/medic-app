@@ -12630,17 +12630,18 @@ html body::-webkit-scrollbar-track {
   background-color: #006DB2;
 }
 
-.form-group {
-  align-items: center;
-}
-
-.card {
+.card-custom {
   font-family: "poppins", sans-serif;
   font-weight: bolder;
-  border-radius: 40px !important;
-  background-color: #84be46;
-  margin-top: 30px;
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 20px 10px;
 }
 
 .card-body label {
