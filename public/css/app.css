@@ -11214,6 +11214,124 @@ input {
   justify-content: flex-end;
 }
 
+#checkout {
+  height: 100%;
+  background-image: url("/img/bg_jumbo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#checkout #navbar_checkout nav {
+  background-color: #141430;
+  height: 100px;
+}
+
+#checkout #navbar_checkout nav .container a img {
+  height: 100px;
+}
+
+#checkout #navbar_checkout nav .container #navbarSupportedContent .nav-link {
+  padding: 5px 15px;
+  border-radius: 7px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+#checkout #navbar_checkout nav .container #navbarSupportedContent .dropdown-toggle {
+  color: white;
+  font-size: 20px;
+}
+
+#checkout #navbar_checkout nav .container #navbarSupportedContent .dropdown-menu-right {
+  background-color: #015699;
+  margin: 0;
+  padding: 0;
+}
+
+#checkout #navbar_checkout nav .container #navbarSupportedContent .dropdown-menu-right a {
+  color: white;
+  height: 100%;
+  padding: 10px 24px;
+  border-radius: 0.25rem;
+}
+
+#checkout #navbar_checkout nav .container #navbarSupportedContent .dropdown-menu-right a:hover {
+  transition: background-color 0.5s ease;
+  background-color: #006DB2;
+}
+
+#checkout .row {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+#checkout .row #buttons_checkout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#checkout .row #buttons_checkout #submit-button {
+  margin-left: 10px;
+  background-color: #3ED182;
+  border-color: #3ED182;
+  color: white;
+  height: 42px;
+  width: 140px;
+  vertical-align: top;
+  border-radius: 5px;
+}
+
+#checkout .row #buttons_checkout #submit-button:hover {
+  background-color: #3ed182c7;
+}
+
+#checkout .row #buttons_checkout #submit-button i {
+  margin-right: 10px;
+}
+
+#checkout .row #buttons_checkout .btn {
+  color: #ffd507;
+}
+
+#checkout .row #buttons_checkout .btn .fa-arrow-left {
+  -webkit-animation: bounceLeft 2s infinite;
+  animation: bounceLeft 2s infinite;
+}
+
+#checkout .row #buttons_checkout .btn .fa-arrow-left:hover {
+  /* /left bounce */
+}
+
+@-webkit-keyframes bounceLeft {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(0);
+  }
+
+  40% {
+    transform: translateX(-30px);
+  }
+
+  60% {
+    transform: translateX(-15px);
+  }
+}
+
+@keyframes bounceLeft {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(0);
+  }
+
+  40% {
+    transform: translateX(-30px);
+  }
+
+  60% {
+    transform: translateX(-15px);
+  }
+}
+
 /***************************
 *********  GUEST  **********
 ****************************/

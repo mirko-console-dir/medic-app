@@ -140,3 +140,136 @@
 
 
 }
+#checkout{
+    height: 100%;
+    background-image:url("/img/bg_jumbo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    #navbar_checkout{
+        nav{
+        background-color: map-get($color-map, primary_color_dark);
+        height: 100px;
+        .container{
+            a{
+                img{
+                    height: 100px;
+                }
+            }
+            #navbarSupportedContent{
+                .nav-link{
+                    @include button();
+                    margin-left: 15px;
+                    margin-right: 5px;
+                }
+                .dropdown-toggle{
+                    color: white;
+                    font-size: 20px;
+                }
+                .dropdown-menu-right{
+                    background-color: #015699;
+                    margin: 0;
+                    padding: 0;
+                    // border: 1px solid map-get($color-map, primary_color_dark);
+                    a{
+                    color: white;
+                    height: 100%;
+                    padding: 10px 24px;
+                    border-radius: 0.25rem;
+                        &:hover{
+                            transition: background-color 0.5s ease;
+                            background-color: #006DB2;
+                        }
+                    }
+                }
+            }
+        }
+        }
+    }
+    .row{
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        #buttons_checkout{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            #submit-button{
+                margin-left: 10px;
+                background-color: #3ED182;
+                border-color: #3ED182;
+                color: white;
+                height: 42px;
+                width: 140px;
+                vertical-align: top;
+                border-radius: 5px;
+                &:hover{
+                    background-color: #3ed182c7;
+                }
+                i{
+                    margin-right: 10px;
+                }
+            }
+            .btn{
+                color: #ffd507;
+                .fa-arrow-left {
+                -webkit-animation: bounceLeft 2s infinite;
+                animation: bounceLeft 2s infinite;
+                &:hover{
+                    @-webkit-keyframes bounceLeft {
+                    0%,
+                    20%,
+                    50%,
+                    80%,
+                    100% {
+                        -webkit-transform: translateX(0);
+                        transform: translateX(0);
+                    }
+                    40% {
+                        -webkit-transform: translateX(-30px);
+                        transform: translateX(-30px);
+                    }
+                    60% {
+                        -webkit-transform: translateX(-15px);
+                        transform: translateX(-15px);
+                    }
+                    }
+                    @-moz-keyframes bounceLeft {
+                    0%,
+                    20%,
+                    50%,
+                    80%,
+                    100% {
+                        transform: translateX(0);
+                    }
+                    40% {
+                        transform: translateX(-30px);
+                    }
+                    60% {
+                        transform: translateX(-15px);
+                    }
+                    }
+                    @keyframes bounceLeft {
+                    0%,
+                    20%,
+                    50%,
+                    80%,
+                    100% {
+                        -ms-transform: translateX(0);
+                        transform: translateX(0);
+                    }
+                    40% {
+                        -ms-transform: translateX(-30px);
+                        transform: translateX(-30px);
+                    }
+                    60% {
+                        -ms-transform: translateX(-15px);
+                        transform: translateX(-15px);
+                    }
+                    }
+                    /* /left bounce */
+                }
+                }
+            }
+        }
+    }
+}

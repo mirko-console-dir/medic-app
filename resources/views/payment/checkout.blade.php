@@ -11,18 +11,25 @@
   <script src="https://js.braintreegateway.com/web/dropin/1.8.1/js/dropin.min.js"></script>
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 </head>
 
-<body>
+<body id="checkout">
+  <div id="navbar_checkout">
+    @include('layouts/auth/partials/navbar')
+  </div>
   <div class="container">
     <div class="row">
-      <div class="col-md-8 col-md-offset-2">
+      <div>
         <div id="dropin-container">
         </div>
-        <button id="submit-button">Checkout</button>
-        <form action="{{route('dashboard.sponsorships.index')}}">
-          <button class="btn btn-warning" type="submit">Go Back</button>
-        </form>
+        <div id="buttons_checkout">
+          <button id="submit-button"><i class="fas fa-lock"></i>Purchase</button>
+          <form action="{{route('dashboard.sponsorships.index')}}">
+            <button class="btn" type="submit"><i class="fas fa-arrow-left"></i> Go Back</button>
+          </form>
+        </div>
 
       </div>
     </div>
