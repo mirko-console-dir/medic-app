@@ -4,7 +4,7 @@
     <form  class="col-lg-6 col-md-12"  autocomplete="off">
 
         <div class=" input_container no_blur">
-          <input class="form-control text-capitalize no_blur" type="text" name="" placeholder="start typing a specialization"
+          <input class="form-control text-capitalize no_blur" type="text" name="" placeholder="Start typing a specialization"
             v-model="search"
             @keyup="specFilter(search)"
             @click="showList()"
@@ -32,7 +32,7 @@
             <div class="avatar"></div>
             <h4 class="name">{{user.name+" "+user.lastname}} </h4>
             <h4 class="specialization" >
-              <span v-for="spec in user.specializations">{{spec.name}}</span> 
+              <span v-for="spec in user.specializations">{{spec.name}}</span>
             </h4>
             <div class="rating">*****</div>
           </a>
