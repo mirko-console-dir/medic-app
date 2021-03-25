@@ -34,4 +34,12 @@ class PageController extends Controller
         // dd($sponsorship->id);
         return view('payment.checkout', compact('sponsorships','user'));
     }
+
+    public function doctor(User $user, $slug)
+    {
+        $user = User::where('slug', $slug)->first();
+        // dd($user);
+
+        return view('guest.profile_doctor', compact('user'));
+    }
 }

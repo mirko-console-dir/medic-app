@@ -20,7 +20,7 @@ class CreateReviewsTable extends Migration
             $table->string('lastname');
             $table->string('title');
             $table->text('body');
-            $table->timestamp('date');
+            // $table->timestamp('date');
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');

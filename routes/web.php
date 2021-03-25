@@ -22,14 +22,14 @@ Auth::routes();
 
 Route::get('/', 'Guest\PageController@index')->name('home');
 Route::get('/search', 'Guest\PageController@search')->name('search');
-
+Route::get('doctor/{slug}', 'Guest\PageController@doctor')->name('doctor/{slug}');
+Route::resource('message', 'Guest\MessageController');
 // Guest/PageController route API
 Route::get('/doctors_api', 'Guest\PageController@doctors_api')->name('doctors_api');
 
+
 //Braintree Payment controller
 Route::get('/payment', 'PaymentController@make')->name('payment');
-//Route provvisoria checkout tramite PageController
-// Route::get('/checkout', 'Guest\PageController@checkout')->name('checkout');
 
 
 // Dashboard
@@ -41,9 +41,5 @@ Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(functi
     Route::resource('analytics', 'AnalyticController');
     Route::resource('sponsorships', 'SponsorshipController');
     Route::resource('checkout', 'CheckoutController');
-
-
-
-
 
 });

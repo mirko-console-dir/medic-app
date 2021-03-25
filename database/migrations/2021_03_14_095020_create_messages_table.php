@@ -20,9 +20,9 @@ class CreateMessagesTable extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->string('email');
-            $table->string('tax_code')->nullable();
-            $table->timestamp('date')->nullable();
-            $table->string('slug')->unique();
+            // $table->string('tax_code')->nullable();
+            // $table->timestamp('date')->nullable();
+            // $table->string('slug')->unique();
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');
