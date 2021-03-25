@@ -34,3 +34,4 @@ Vue.component('doctors_api', require('./components/doctors_api.vue').default);
 const app = new Vue({
     el: '#app',
 });
+
