@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Guest;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
-use App\Message;
+use App\Review;
 
-class MessageController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +25,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -37,22 +36,21 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
+        
         $user_id = $request->user_id;
 
         $validatedData = $request->validate([
 
             'name' => 'required',
             'lastname' => 'required',
-            'email' => 'required',
+            'vote' => 'required | min:0 | max:5',
             'title' => 'required',
             'body' => 'required',
 
         ]);
 
         $validatedData['user_id'] = $user_id;
-        Message::create($validatedData);
+        Review::create($validatedData);
 
         return redirect()->route('search');
     }
