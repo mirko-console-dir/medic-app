@@ -12471,46 +12471,43 @@ html body::-webkit-scrollbar-track {
   background-color: #006DB2;
 }
 
-body {
-  font-family: "poppins", sans-serif;
-  font-weight: bolder;
-}
-
-body .form-group {
+.form-group {
   align-items: center;
 }
 
-body .card {
+.card {
+  font-family: "poppins", sans-serif;
+  font-weight: bolder;
   border-radius: 40px !important;
   background-color: #84be46;
   margin-top: 30px;
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
-body .card-body label {
+.card-body label {
   margin-right: 15px;
 }
 
-body .form-check {
+.form-check {
   margin-top: 20px;
   justify-content: center;
 }
 
-body .form-check input {
+.form-check input {
   margin-left: -10rem;
 }
 
-body .form-login {
+.form-login {
   margin-top: 20px;
   justify-content: center;
 }
 
-body .form-control {
+.form-control {
   border: 1px solid #141430;
   background-color: floralwhite !important;
 }
 
-body .btn-primary {
+.btn-primary {
   padding: 5px 15px;
   border-radius: 7px;
   border: 0;
