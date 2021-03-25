@@ -34,7 +34,7 @@
                  color: black;
              }
              a:hover {
-                 font-size: 22px;
+                //  font-size: 22px;
                  color: rgba(36, 206, 121, 0.938);
              }
          }
@@ -95,6 +95,28 @@
     }
 
     #sponsorship{
+        .form_sponsorship{
+            .select_sponsorship{
+                border-color: #3ED182;
+                outline: none;
+                border-radius: 4px;
+            }
+            .btn{
+                margin-left: 10px;
+                background-color: #3ED182;
+                border-color: #3ED182;
+                color: white;
+                height: 42px;
+                width: 140px;
+                vertical-align: top;
+            }
+            i{
+                padding: 0;
+            }
+            small{
+                display: flex;
+            }
+        }
         h3{
             display: flex;
             justify-content: space-between;
@@ -106,7 +128,7 @@
                 
             }
         }
-        small{
+        .days_left{
             padding: 0 15px;
             margin-top: -15px;
             display: flex;

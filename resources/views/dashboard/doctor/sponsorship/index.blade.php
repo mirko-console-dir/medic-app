@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Sponsorship
+@endsection
 @section('content')
 
 <div class="container d_flex" id="dashboard">
@@ -35,7 +37,7 @@
                 //Function days left
                 $date1=date_create($end_sponsorship);
                 $date2=date_create($now);
-                $timeleft = date_diff($date1,$date2)->format("%a");
+                $timeleft = date_diff($date1,$date2)->format("%a")+1;
                 ?>
                 @endforeach
                 @endif
@@ -49,10 +51,10 @@
 
 
                 <!-- <form action="{{ route('dashboard.sponsorships.update', $user->slug) }}" method="post"> -->
-                <form action="{{ route('dashboard.checkout.update', $sponsorship->id) }}" method="post">
+                <form action="{{ route('dashboard.checkout.update', $sponsorship->id) }}" class="form_sponsorship" method="post">
                     @METHOD('PATCH')
                     @csrf
-                    <select name="sponsorship_id" id="">
+                    <select name="sponsorship_id" class="select_sponsorship">
                         @foreach($sponsorships as $key => $sponsorship)
                         @if ($key > 0)
                         <option value="{{$sponsorship->id}}" name="sponsorship_id">
@@ -64,7 +66,8 @@
                     </select>
 
 
-                    <button type="submit" class="btn btn-success">Go to Checkout</button>
+                    <button type="submit" class="btn"><i class="fas fa-shopping-cart"></i> Checkout</button>
+                    <small class="text-muted">Choose a Subcription</small>
 
                 </form>
                 
@@ -72,13 +75,15 @@
                 <h3><span>This is your sponsorship:</span> <span class="active_sponsorship">{{$sponsorship->name}}</span></h3>
                 <br>
                 <h3><span>Expiration date:</span> <span class="active_sponsorship">{{date('d-m-Y', strtotime($end_sponsorship))}}</span></h3>
+                    {{-- Function timeleft --}}
+                    @if ($timeleft == 1)
+                        <small class="days_left">{{$timeleft}} day left</small>
+                    @else
+                        <small class="days_left">{{$timeleft}} days left</small>
+                    @endif
                 @endif
 
-                @if ($timeleft == 1)
-                    <small>{{$timeleft}} day left</small>
-                @else
-                    <small>{{$timeleft}} days left</small>
-                @endif
+                
                 @endrole
 
 
