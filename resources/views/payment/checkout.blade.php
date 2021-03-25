@@ -57,6 +57,7 @@
             },
             function(response) {
               if (response.success) {
+                document.getElementById('submit-button').style.visibility = 'hidden';
                 alert('Payment successfull!');
                 console.log(response);
               } else {
