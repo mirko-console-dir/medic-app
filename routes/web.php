@@ -24,6 +24,8 @@ Route::get('/', 'Guest\PageController@index')->name('home');
 Route::get('/search', 'Guest\PageController@search')->name('search');
 Route::get('doctor/{slug}', 'Guest\PageController@doctor')->name('doctor/{slug}');
 Route::resource('message', 'Guest\MessageController');
+
+Route::resource('review', 'Guest\ReviewController');
 // Guest/PageController route API
 Route::get('/doctors_api', 'Guest\PageController@doctors_api')->name('doctors_api');
 
