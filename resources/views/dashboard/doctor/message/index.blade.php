@@ -16,17 +16,13 @@ My Messages
                 <div class="pagination">
                     <div class="tableList d_flex_column" id="listingTable"></div>
                     <div class="pagination-block">
-                        <span class="pageButton outline-none" id="button_prev">Prev</span>
+                        <span class="pageButton outline-none hidden" id="button_prev">Prev</span>
                         <span id="page_number" class="outline-none"></span>
-                        <span class="pageButton outline-none" id="button_next">Next</span>
+                        <span class="pageButton outline-none hidden" id="button_next">Next</span>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
-
     </div>
 
 
@@ -111,8 +107,18 @@ My Messages
                 for (var i = (page - 1) * records_per_page; i < (page * records_per_page) && i < messages_user.length; i++) {
                     listingTable.innerHTML += `
                 <div class='objectBlock d_flex_column'>
-                <h4> ${messages_user[i].name} ${messages_user[i].lastname} </h4>
-                <h4> ${messages_user[i].title}</h4>
+                <div class='d_flex'>
+                <p class='header_message'> ${messages_user[i].name} ${messages_user[i].lastname} </p>
+                
+                <p>| ${messages_user[i].email}</p>
+
+                </div>
+                
+                <div class="d_flex">
+                <h4>${messages_user[i].title}</h4>
+                </div>
+                <p class="body_message"> ${messages_user[i].body}</p>
+
                 </div>
                 `;
                 }
@@ -132,6 +138,10 @@ My Messages
                     current_page--;
                     changePage(current_page);
                 }
+            }
+
+             let numPages = function() {
+                return Math.ceil(messages_user.length / records_per_page);
             }
 
             let nextPage = function() {
@@ -159,9 +169,7 @@ My Messages
                 }
             }
 
-            let numPages = function() {
-                return Math.ceil(messages_user.length / records_per_page);
-            }
+           
         }
         let pagination = new Pagination();
         pagination.init();

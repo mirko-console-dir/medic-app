@@ -18,7 +18,7 @@ class MessageController extends Controller
     public function index(User $user, Message $message)
     {
         $user = Auth::user();
-        $messages = Message::all();
+        $messages = Message::latest()->get();
         return view('dashboard.doctor.message.index', compact('user','messages'));
     }
 
