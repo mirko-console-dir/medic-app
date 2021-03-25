@@ -2033,8 +2033,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["componentName", "api"],
+  props: ["img", "api"],
   data: function data() {
     return {
       users: [],
@@ -2043,11 +2061,16 @@ __webpack_require__.r(__webpack_exports__);
       doctor: [],
       specializations: [],
       apiRequest: this.api,
+      imgPath: this.img,
       show: false,
       list: null,
-      search: ''
+      search: '',
+      items: 12,
+      page: 1,
+      array: []
     };
   },
+  computed: {},
   methods: {
     specFilter: function specFilter() {
       var _this = this;
@@ -2079,6 +2102,49 @@ __webpack_require__.r(__webpack_exports__);
     },
     writeSpec: function writeSpec(spec) {
       return this.search = spec;
+    },
+    next: function next() {
+      if (this.page * this.items > this.users.length) {
+        return console.log("page", this.page);
+      }
+
+      return this.page++;
+    },
+    prev: function prev() {
+      if (this.page < 2) {
+        return console.log("page", this.page);
+      }
+
+      return this.page--;
+    }
+  },
+  created: function created() {
+    /**
+    * Creare dei fake user
+    */
+    var fakeUser = {
+      id: 1,
+      name: "Marco",
+      lastname: "Marconi",
+      email: "marco.marconi@email.com",
+      address: "via degli indirizzi 11",
+      register_number_doc: "0000123456",
+      cv_img: null,
+      profile_img: "img/sponsored/profile_01.jpg",
+      phone_number: "0721 212223",
+      slug: null,
+      created_at: "2021-03-25T10:20:30.000000Z",
+      updated_at: "2021-03-25T10:20:30.000000Z",
+      prefix_id: "+39",
+      prefixes: null,
+      specializations: ["Immunology", "Neurology"],
+      sponsorships: ["exclusive"]
+    }; //let newFakeUser = this.fakeUser;
+
+    for (var i = 0; i < 12; i++) {
+      this.array.push(fakeUser);
+      this.array[i].id = i + 1;
+      this.array[i].profile_img = "img/sponsored/profile_0" + (i + 1) + ".jpg";
     }
   },
   mounted: function mounted() {
@@ -2087,7 +2153,8 @@ __webpack_require__.r(__webpack_exports__);
     self = this;
     axios.get(self.apiRequest) //.get('api/users')
     .then(function (response) {
-      self.users = response.data.data; //Creazione Elenco specializzazioni
+      self.users = response.data.data;
+      console.log(self.users); //Creazione Elenco specializzazioni
 
       self.users.forEach(function (doctor) {
         doctor.specializations.forEach(function (spec) {
@@ -2095,7 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
             return self.specializations.push(spec.name.toLowerCase());
           }
         });
-      });
+      }); //
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2207,9 +2274,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["componentName", "api"],
+  props: ["api"],
   data: function data() {
     return {
       users: [],
@@ -39030,34 +39096,89 @@ var render = function() {
       _c(
         "div",
         { staticClass: "card_container d_flex" },
-        _vm._l(_vm.users, function(user) {
-          return _c("div", { staticClass: "card_wrapper" }, [
-            _c(
-              "a",
-              { staticClass: "card", attrs: { href: "/doctor/" + user.slug } },
-              [
-                _c("div", { staticClass: "avatar" }),
-                _vm._v(" "),
-                _c("h4", { staticClass: "name" }, [
-                  _vm._v(_vm._s(user.name + " " + user.lastname) + " ")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "h4",
-                  { staticClass: "specialization" },
-                  _vm._l(user.specializations, function(spec) {
-                    return _c("span", [_vm._v(_vm._s(spec.name))])
-                  }),
-                  0
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "rating" }, [_vm._v("*****")])
-              ]
-            )
-          ])
-        }),
+        _vm._l(
+          _vm.users.slice(_vm.items * (_vm.page - 1), _vm.items * _vm.page),
+          function(user) {
+            return _c("div", { staticClass: "card_wrapper" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "card",
+                  attrs: { href: "/doctor/" + user.slug }
+                },
+                [
+                  user.profile_img != null
+                    ? _c("div", { staticClass: "avatar" }, [
+                        _c("div", {
+                          staticClass: "profile",
+                          style:
+                            "{background-image:url(storage/" +
+                            user.profile_img +
+                            ")}"
+                        })
+                      ])
+                    : _c("div", { staticClass: "avatar" }, [
+                        _c("div", {
+                          staticClass: "profile",
+                          staticStyle: {
+                            "background-image": "url(img/user-default.jpg)"
+                          }
+                        })
+                      ]),
+                  _vm._v(" "),
+                  _c("h4", { staticClass: "name" }, [
+                    _vm._v(_vm._s(user.name + " " + user.id) + " ")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "h4",
+                    { staticClass: "specialization" },
+                    _vm._l(user.specializations, function(spec) {
+                      return _c("span", [_vm._v(_vm._s(spec.name) + " ")])
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "rating" }, [_vm._v("*****")]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "description" }, [
+                    _vm._v(_vm._s(user.body))
+                  ])
+                ]
+              )
+            ])
+          }
+        ),
         0
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "page_controller" }, [
+        _c(
+          "div",
+          {
+            staticClass: "arrow left",
+            on: {
+              click: function($event) {
+                return _vm.prev()
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-chevron-left" })]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "arrow right",
+            on: {
+              click: function($event) {
+                return _vm.next()
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-chevron-right" })]
+        )
+      ])
     ])
   ])
 }
@@ -39165,8 +39286,8 @@ var render = function() {
         ? _c(
             "ul",
             { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-            _vm._l(_vm.specializations, function(spec) {
-              return _c("li", [
+            _vm._l(_vm.specializations, function(spec, index) {
+              return _c("li", { key: index }, [
                 _c(
                   "a",
                   {
@@ -39187,8 +39308,8 @@ var render = function() {
         : _c(
             "ul",
             { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-            _vm._l(_vm.filterSpec, function(spec) {
-              return _c("li", [
+            _vm._l(_vm.filterSpec, function(spec, index) {
+              return _c("li", { key: index }, [
                 _c(
                   "a",
                   {
@@ -51942,12 +52063,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\Romina Pc\Desktop\BOOLEAN\Classe 23\Progetto finale\Sito project work\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 =======
 __webpack_require__(/*! /Users/luigitroiano/Desktop/Final Project/medicUs/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /Users/luigitroiano/Desktop/Final Project/medicUs/resources/sass/app.scss */"./resources/sass/app.scss");
 >>>>>>> LT
+=======
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> AM-Frontend-20210325
 
 
 /***/ })

@@ -13,23 +13,22 @@
       </div>
 
       <ul id="spec_list" v-if="search.length === 0" :class="show?'active':''" >
-        <li v-for="spec in specializations" >
+        <li v-for="(spec, index) in specializations" :key="index">
           <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
         </li>
       </ul>
 
       <ul id="spec_list" v-else :class="show?'active':''" >
-        <li v-for="spec in filterSpec">
+        <li v-for="(spec, index) in filterSpec" :key="index">
           <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
         </li>
       </ul>
-
   </form>
 </template>
 
 <script>
     export default {
-      props: ["componentName", "api"],
+      props: ["api"],
       data: function () {
         return {
           users: [],

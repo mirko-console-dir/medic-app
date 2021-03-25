@@ -27,17 +27,35 @@
 
     <div class="doctors_show">
       <div class="card_container d_flex">
-        <div class="card_wrapper" v-for="user in users">
+
+        <div class="card_wrapper" v-for="user in users.slice(items*(page - 1), items*page)"> 
           <a :href="'/doctor/'+user.slug" class="card">
-            <div class="avatar"></div>
-            <h4 class="name">{{user.name+" "+user.lastname}} </h4>
+            
+            <div class="avatar" v-if="user.profile_img != null">
+              <div class="profile" :style="'{background-image:url(storage/'+user.profile_img+')}'"></div>
+            </div>
+            <!-- Fallback image -->
+            <div class="avatar" v-else>
+              <div class="profile" style="background-image:url(img/user-default.jpg)"></div>
+            </div> 
+
+
+            <h4 class="name">{{user.name+" "+user.id}} </h4>
             <h4 class="specialization" >
-              <span v-for="spec in user.specializations">{{spec.name}}</span>
+              <span v-for="spec in user.specializations">{{spec.name}} </span>
             </h4>
             <div class="rating">*****</div>
+            <p class="description">{{user.body}}</p>
           </a>
         </div>
+
       </div>
+
+      <div class="page_controller">
+        <div class="arrow left" @click="prev()"><i class="fas fa-chevron-left"></i></div>
+        <div class="arrow right" @click="next()"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
     </div>
   </div>
 
@@ -45,7 +63,7 @@
 
 <script>
     export default {
-      props: ["componentName", "api"],
+      props: ["img", "api"],
       data: function () {
         return {
           users: [],
@@ -54,10 +72,19 @@
           doctor: [],
           specializations: [],
           apiRequest: this.api,
+          imgPath: this.img,
           show: false,
           list: null,
           search: '',
-        }
+          items: 12,
+          page: 1,
+          array: [],
+          
+          }
+      },
+      computed: {
+        
+        
       },
       methods: {
         specFilter: function(){
@@ -90,15 +117,63 @@
           return this.search = spec;
         },
 
-      },
+        next: function() {
+          if(this.page*this.items > this.users.length){
+            return console.log("page", this.page);
+          }
+          return this.page++
+        },
 
+        prev: function(){
+          if(this.page < 2){
+            return console.log("page", this.page);
+          }
+          return this.page--
+        }
+      },
+      created(){
+        /**
+        * Creare dei fake user
+        */
+        const fakeUser =  
+        {
+        id: 1,
+        name: "Marco",
+        lastname: "Marconi",
+        email: "marco.marconi@email.com",
+        address: "via degli indirizzi 11",
+        register_number_doc: "0000123456",
+        cv_img: null,
+        profile_img: "img/sponsored/profile_01.jpg",
+        phone_number: "0721 212223",
+        slug: null,
+        created_at: "2021-03-25T10:20:30.000000Z",
+        updated_at: "2021-03-25T10:20:30.000000Z",
+        prefix_id: "+39",
+        prefixes: null,
+        specializations: [
+          "Immunology",
+          "Neurology"
+          ],
+        sponsorships: [
+          "exclusive"
+          ],
+        }
+        //let newFakeUser = this.fakeUser;
+        for (let i = 0; i < 12; i++){
+          this.array.push(fakeUser);
+          this.array[i].id = i+1;
+          this.array[i].profile_img = "img/sponsored/profile_0"+(i+1)+".jpg";
+        } 
+      },
       mounted() {
         self = this;
         axios
         .get(self.apiRequest) //.get('api/users')
         .then(response => {
               self.users = response.data.data;
-
+              console.log(self.users);
+              
               //Creazione Elenco specializzazioni
               self.users.forEach(doctor=>{
                 doctor.specializations.forEach(spec=>{
@@ -107,6 +182,8 @@
                   }
                 });
               });
+              //
+
         })
         .catch(error => {
             console.log(error);
@@ -132,7 +209,6 @@
             return this.show = false;
           }
         });
-
         console.log('Component "Advanced-search" mounted');
       },
 
