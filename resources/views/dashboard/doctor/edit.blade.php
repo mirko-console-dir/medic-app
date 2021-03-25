@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-  Edit Profile
+Edit Profile
 @endsection
 @section('content')
 <div class="container d_flex" id="dashboard">
@@ -46,6 +46,13 @@
                 <!-- Register_number_doc -->
                 <label for="register_number_doc">Register Doctor Number</label>
                 <input type="number" name="register_number_doc" id="register doctor number" class="form-control" placeholder="Insert your register_number_doc" value="{{$user->register_number_doc}}" required>
+                <br>
+
+                <!-- Description -->
+                <label for="body">Description</label>
+                <textarea type="textarea" name="body" id="body" class="form-control" placeholder="Insert your body" rows="4" cols = "40">
+                {{$user->body}}
+                </textarea>
                 <br>
 
                 <!-- Address -->
