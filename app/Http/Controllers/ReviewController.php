@@ -18,7 +18,7 @@ class ReviewController extends Controller
     public function index(User $user, Review $review)
     {
         $user = Auth::user();
-        $reviews = Review::all();
+        $reviews = Review::latest()->get();
 
         return view('dashboard.doctor.review.index', compact('user','reviews'));
     }

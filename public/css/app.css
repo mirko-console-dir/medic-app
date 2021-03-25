@@ -11080,10 +11080,12 @@ input {
 ****************************/
 
 #dashboard {
-  background-color: #f5f5f5;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: "poppins", sans-serif;
+  border: 1px solid white;
+  border-radius: 10px;
   padding: 30px;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 #dashboard div {
@@ -11352,6 +11354,25 @@ input {
   border: 1px solid black;
 }
 
+#account .tableList .objectBlock div {
+  padding: 5px 0px;
+  align-items: center;
+}
+
+#account .tableList .objectBlock div .header_message {
+  text-transform: capitalize;
+  font-size: 20px;
+}
+
+#account .tableList .objectBlock div p {
+  margin: 0;
+  font-size: 18px;
+}
+
+#account .hidden {
+  display: none;
+}
+
 #account .pageButton {
   border: 1px solid black;
   padding: 5px;
@@ -11366,10 +11387,6 @@ input {
 #account .pagination-block {
   text-align: center;
   width: 100%;
-}
-
-#account .pagination-block span {
-  display: inline-block;
 }
 
 #account .pagination-block .pageButton {
