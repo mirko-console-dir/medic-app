@@ -1,42 +1,22 @@
 // Colors
 
-// $color-map: (
-//     // Blue
-//     "primary_color_dark": rgb(2, 61, 113),
-//     "primary_color_light": rgb(74, 149, 217),
-
-//     // Green
-//     "secondary_color_dark": rgb(0, 108, 97),
-//     "secondary_color_light": rgb(62, 214, 198),
-
-//     // Orange
-//     "element_color_dark": rgb(242, 90, 96),
-//     "element_color_light": rgb(255, 151, 74),
-
-//     // Gray
-//     "primary_gray_dark": rgb(49, 49, 49),
-//     "primary_gray_light": rgb(134, 134, 134),
-
-//     "secondary_gray_dark": rgb(74, 74, 74),
-//     "secondary_gray_light": rgb(167, 167, 167),
-
-//     "black": rgb(0, 0, 0),
-//     "white": rgb(255, 255, 255)
-// );
-
 $color-map: (
-
-    // Blue
-    "primary_color_dark": rgb(20, 20, 48),
-    "primary_color_light": rgb(0, 174, 239),
-    "primary_color_jumbo": rgb(55,57,108),
-    "primary_link_color": rgba(31, 230, 220),
-    "button_blue_hover": rgb(0, 131, 179),
-
-    // Gray
-     "primary_gray_dark": rgb(49, 49, 49),
-     "primary_gray_light": rgb(221, 221, 221),
-
+  
+  // Blue
+  "primary_color_dark": rgb(20, 20, 48),
+  "primary_color_light": rgb(0, 174, 239),
+  "primary_color_jumbo": rgb(55,57,108),
+  "primary_link_color": rgba(31, 230, 220),
+  "button_blue_hover": rgb(0, 131, 179),
+  
+  // Gray
+  "primary_gray_dark": rgb(49, 49, 49),
+  "primary_gray_light": rgb(221, 221, 221),
+  
+  // Logo for Scrollbar
+  
+  "blue_logo": rgb(47, 169, 235),
+  "green_logo": rgb(132, 190, 70),
 );
 
 // Mixins
@@ -45,9 +25,46 @@ $color-map: (
   border-radius: 7px;
 }
 
+@mixin scrollbar {
+  html {
+    // For Firefox
+    scrollbar-color: rgb(47, 169, 235) rgb(132, 190, 70);
+
+    // For IE
+    body {
+      scrollbar-face-color: map-get($color-map, green_logo);
+      scrollbar-track-color: map-get($color-map, blue_logo);
+    }
+  
+    // For Chrome and Safari
+    body::-webkit-scrollbar {
+      width: 16px;
+      height: 16px;
+    }
+    body::-webkit-scrollbar-thumb {
+      background: map-get($color-map, blue_logo);
+      border-radius: 10px;
+      box-shadow: outset 2px 5px 12px map-get($color-map, primary_gray_light);
+    }
+    body::-webkit-scrollbar-thumb:hover{
+      background: map-get($color-map, button_blue_hover);
+    }
+    body::-webkit-scrollbar-track{
+      background: map-get($color-map, green_logo);
+      border-radius: 8px;
+      box-shadow: inset 1px 10px 12px map-get($color-map, primary_gray_light);
+    }
+  }
+}
+
+
 //Font-sizes
 $xsmall: 14px;
 $small: 18px;
 $medium: 24px;
 $large: 36px;
 $xlarge: 50px;
+
+
+
+

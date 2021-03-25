@@ -1,6 +1,9 @@
+@include scrollbar();
+
 #advanced_search{
   background-image:url("/img/bg_jumbo.jpg");
   background-size: cover;
+
   main{
     h1.title{
       color: white;
@@ -13,3 +16,5 @@
     }
   }
 }
+
+

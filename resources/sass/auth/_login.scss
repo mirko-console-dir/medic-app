@@ -1,22 +1,47 @@
-.form-group {
-    align-items: center;
-}
+body {
+    font-family: "poppins", sans-serif;
+    font-weight: bolder;
 
-.card-body label {
-    margin-right: 15px;
-    
-}
-
-.form-check {
-    margin-top: 20px;
-    justify-content: center;
-    
-    input {
-        margin-left: -10rem;
+    .form-group {
+        align-items: center;
     }
-}
+    
+    .card {
+        border-radius: 40px !important;
+        background-color: map-get($color-map, green_logo);
+        margin-top: 30px;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    }
 
-.form-login {
-    margin-top: 20px;
-    justify-content: center;
+    .card-body label {
+        margin-right: 15px;
+        
+    }
+
+    .form-check {
+        margin-top: 20px;
+        justify-content: center;
+        
+        input {
+            margin-left: -10rem;
+        }
+    }
+
+    .form-login {
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .form-control {
+        border: 1px solid map-get($color-map, primary_color_dark);
+        background-color: floralwhite !important;
+    }
+
+    .btn-primary {
+        padding: 5px 15px;
+        border-radius: 7px;
+        border: 0;
+    }
 }
