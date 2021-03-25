@@ -57,7 +57,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-12 form-login d_flex">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn_blue">
                                     {{ __('Login') }}
                                 </button>
 

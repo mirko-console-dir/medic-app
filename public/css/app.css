@@ -11723,6 +11723,66 @@ footer .container_80 .second_row .copyright {
   justify-content: space-around;
 }
 
+html {
+  scrollbar-color: #2fa9eb #84be46;
+}
+
+html body {
+  scrollbar-face-color: #84be46;
+  scrollbar-track-color: #2fa9eb;
+}
+
+html body::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+html body::-webkit-scrollbar-thumb {
+  background: #2fa9eb;
+  border-radius: 10px;
+  box-shadow: outset 2px 5px 12px #dddddd;
+}
+
+html body::-webkit-scrollbar-thumb:hover {
+  background: #0083b3;
+}
+
+html body::-webkit-scrollbar-track {
+  background: #84be46;
+  border-radius: 8px;
+  box-shadow: inset 1px 10px 12px #dddddd;
+}
+
+html {
+  scrollbar-color: #2fa9eb #84be46;
+}
+
+html body {
+  scrollbar-face-color: #84be46;
+  scrollbar-track-color: #2fa9eb;
+}
+
+html body::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+html body::-webkit-scrollbar-thumb {
+  background: #2fa9eb;
+  border-radius: 10px;
+  box-shadow: outset 2px 5px 12px #dddddd;
+}
+
+html body::-webkit-scrollbar-thumb:hover {
+  background: #0083b3;
+}
+
+html body::-webkit-scrollbar-track {
+  background: #84be46;
+  border-radius: 8px;
+  box-shadow: inset 1px 10px 12px #dddddd;
+}
+
 #advanced_search {
   background-image: url("/img/bg_jumbo.jpg");
   background-size: cover;
@@ -12411,26 +12471,49 @@ footer .container_80 .second_row .copyright {
   background-color: #006DB2;
 }
 
-.form-group {
+body {
+  font-family: "poppins", sans-serif;
+  font-weight: bolder;
+}
+
+body .form-group {
   align-items: center;
 }
 
-.card-body label {
+body .card {
+  border-radius: 40px !important;
+  background-color: #84be46;
+  margin-top: 30px;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+body .card-body label {
   margin-right: 15px;
 }
 
-.form-check {
+body .form-check {
   margin-top: 20px;
   justify-content: center;
 }
 
-.form-check input {
+body .form-check input {
   margin-left: -10rem;
 }
 
-.form-login {
+body .form-login {
   margin-top: 20px;
   justify-content: center;
+}
+
+body .form-control {
+  border: 1px solid #141430;
+  background-color: floralwhite !important;
+}
+
+body .btn-primary {
+  padding: 5px 15px;
+  border-radius: 7px;
+  border: 0;
 }
 
 .form-group {
