@@ -1,0 +1,61 @@
+#account {
+
+    .pagination {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        padding: 20px;
+    }
+
+    .pagination .tableList {
+        min-height: 250px;
+        text-indent: 20px;
+    }
+
+    .tableList .objectBlock {
+        // position: relative;
+        color: black;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid black;
+    }
+
+    .pageButton {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    .clickPageNumber {
+        padding: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .pagination-block {
+        text-align: center;
+        width: 100%;
+    }
+
+    .pagination-block span {
+        display: inline-block;
+    }
+
+    .pagination-block .pageButton {
+        background-color: grey;
+        color: white;
+    }
+
+    .pagination-block span:hover {
+        cursor: pointer;
+    }
+
+    .opacity {
+        opacity: 0.5;
+    }
+
+    .outline-none {
+        outline: none;
+        user-select: none;
+    }
+}

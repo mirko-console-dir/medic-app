@@ -11,8 +11,8 @@
                       All Clinics
                   </a>
               </li>
-              <li><a href=""> <i class="far fa-envelope"></i>My Messages</a></li>
-              <li><a href=""> <i class="far fa-comment-dots"></i>My Reviews</a></li>
+              <li><a href="{{route('message.index')}}"> <i class="far fa-envelope"></i>My Messages</a></li>
+              <li><a href="{{route('review.index')}}"> <i class="far fa-comment-dots"></i>My Reviews</a></li>
               <li><a href="{{route('dashboard.services.index')}}"> <i class="fas fa-notes-medical"></i>My Services</a></li>
               @role('admin')
               <li><a href="{{route('dashboard.analytics.index')}}"> <i class="fas fa-chart-line"></i>Analytics</a></li>
