@@ -17,7 +17,7 @@
 
 <body id="checkout">
   <div id="navbar_checkout">
-    @include('layouts/auth/partials/navbar')
+    @include('layouts.auth.partials.navbar')
   </div>
   <div class="container">
     <div class="row">
