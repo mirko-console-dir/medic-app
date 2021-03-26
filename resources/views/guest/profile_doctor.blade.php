@@ -3,7 +3,7 @@
 
 
 @section('title')
-
+  {{$user->name}} {{$user->lastname}}
 @endsection
 
 
@@ -20,26 +20,44 @@
 
       <div class="col-lg-8 col-md-12 info_container">
         <h1>{{$user->name}} {{$user->lastname}}</h4>
+        <div class="info_work">
 
-        <h4 class="info_work">Specialist in
-          @foreach($user_specialization as $specialization)
-          @if($specialization->id == $user->id)
-          @foreach($specialization->specializations as $user_has_specialization)
-          {{$user_has_specialization->name}}
-          @endforeach
-          @endif
-          @endforeach
-          <br>
-          Works at
-          @foreach($user_clinic as $clinic)
-          @if($clinic->id == $user->id)
-          @foreach($clinic->clinics as $user_has_clinic)
-          {{$user_has_clinic->name}}
-          @endforeach
-          @endif
+
+            {{-- @if($user_has_specialization = $user->specialization()->where('id', $user_specialization)->exists()) --}}
+
+            @foreach ($specializations as $specialization)
+
+              @if ($user->specializations()->where('id', $specialization->id)->exists())
+
+                <h4>
+                  Specialist in
+                      {{$specialization->name}}
+                </h4>
+
+              @endif
+
           @endforeach
 
-        </h4>
+
+
+
+
+
+
+
+
+            <h4>
+              Works at
+              @foreach($user_clinic as $clinic)
+              @if($clinic->id == $user->id)
+              @foreach($clinic->clinics as $user_has_clinic)
+              {{$user_has_clinic->name}}
+              @endforeach
+              @endif
+              @endforeach
+
+            </h4>
+          </div>
         <p>BIO</p>
         <div class="description">
           <p>{{$user->body}}</p>
