@@ -203,7 +203,7 @@
     var cty = document.getElementById('adminSponsorship');
 
     var user_sponsorships = {!!$user_sponsorships!!};
-    // console.log(user_sponsorships);
+    console.log(user_sponsorships);
 
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var months_obj = new Object({
@@ -225,7 +225,7 @@
     user_sponsorships.forEach(element => {
         if (element.sponsorships[0] != null) {
 
-            // console.log(element.sponsorships);
+            console.log(element.sponsorships);
             (element.sponsorships).forEach(value => {
                 // console.log(value);
                 if (value.name == 'standard') {
@@ -357,7 +357,7 @@
     });
 
     // console.log(months_obj);
-    // console.log(standard);
+    console.log(standard);
     // console.log(premium);
     // console.log(exclusive);
     var standard = [];

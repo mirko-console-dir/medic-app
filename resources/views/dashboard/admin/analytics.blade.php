@@ -17,9 +17,14 @@ Analytics
                 <canvas id="adminNumberDoctors"></canvas>
 
                 <canvas id="adminSponsorship"></canvas>
-
-
                 @include('dashboard.admin.partials.js_analytics')
+                @endrole
+
+                @role('doctor')
+                
+                <canvas id="doctorMessage"></canvas>
+                @include('dashboard.doctor.analytics.js_analytics')
+
                 @endrole
 
 
