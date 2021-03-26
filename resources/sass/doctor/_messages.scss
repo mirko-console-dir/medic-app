@@ -1,5 +1,5 @@
 #account {
-
+    color: white;
     .pagination {
         width: 100%;
         display: block;
@@ -15,10 +15,11 @@
 
     .tableList .objectBlock {
         // position: relative;
+        border-radius: 1px;
         color: black;
         padding: 10px;
         margin-bottom: 10px;
-        border: 1px solid black;
+        border: 1px solid white;
         div{
             padding: 5px 0px;
             align-items: center;

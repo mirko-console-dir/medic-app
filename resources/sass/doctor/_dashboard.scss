@@ -24,9 +24,8 @@
     #sidebar{
         width: 30%;
         padding: 0px 30px;
-        background-color: white;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-      0 1px 2px rgba(0, 0, 0, 0.24);
+        background-color:transparent;
+
          ul {
              li {
                  font-size: 20px;
@@ -35,7 +34,7 @@
                  }
              }
              a {
-                 color: black;
+                 color: white;
              }
              a:hover {
                 //  font-size: 22px;
@@ -48,13 +47,12 @@
     #account {
         width: 65%;
         padding: 0px 30px;
-        background-color: white;
-       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
-       0 1px 2px rgba(0, 0, 0, 0.24);
+        background-color: transparent;
 
+        color: white;
         h2 {
             text-transform: uppercase;
-            color: rgba(36, 206, 121, 0.938);
+            color: map-get($color-map , green_logo);
         }
 
         h4,
@@ -73,8 +71,9 @@
 
         .card_service {
             padding: 0px 10px;
-            border: 2px solid black;
+            border: 2px solid white;
             margin: 5px 0px;
+            border-radius: 1px;
 
         }
         .add_service {
@@ -107,8 +106,8 @@
             }
             .btn{
                 margin-left: 10px;
-                background-color: #3ED182;
-                border-color: #3ED182;
+                background-color : map-get($color-map , green_logo );
+                border-color: map-get($color-map, green_logo);
                 color: white;
                 height: 42px;
                 width: 140px;
