@@ -48,7 +48,9 @@
             <div class="specialization" >
               <span v-for="(spec, index) in user.specializations" :key="index">{{spec.name}} </span>
             </div>
-            <div class="rating">*****</div>
+            <div class="rating">
+              <i v-for="(vote, index) in user.avgVote" :class="(vote === 1)?'fas fa-star':'far fa-star'" :key="index"></i>
+            </div>
             <p class="description">{{user.body}}</p>
           </a>
         </div>
@@ -79,9 +81,9 @@
             current: 1,
             total: 1,
           },
+          rating: 0,
         }
       },
-
       methods: {
         /**
          * Filtra le specializzazioni tra quelle rese disponibili dai medici iscritti al sito
@@ -141,6 +143,36 @@
           this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
           if(this.pages.total === 0){this.pages.total = 1;}
         },
+        /**
+         * Compila l'elenco delle specializzazioni sulla base degli "users" presenti
+         * Calcola la media dei voti ricevuti dagli utenti                
+         */ 
+        querySpec: function(users){
+          users.forEach(doctor=>{
+            let vote = 0;
+            let avgVote = 0;
+            let floorVote = 0;
+            let counter = 0;
+            doctor.specializations.forEach(spec=>{
+              if(!this.specializations.includes(spec.name.toLowerCase())){
+                return this.specializations.push(spec.name.toLowerCase());
+              }
+            });
+            doctor.reviews.forEach(review =>{
+              counter++;
+              vote += review.vote; 
+            });
+            avgVote = vote/counter;
+            floorVote = Math.floor(avgVote);
+            avgVote = [0,0,0,0,0];
+            for(let i = 0; i < floorVote; i++){
+              avgVote[i] = 1;
+            }
+            doctor.avgVote = avgVote;
+            console.log(doctor.name, doctor.avgVote); 
+          });
+        },
+
         /** 
          * Effettua il passaggio alla pagina successiva
         */
@@ -155,6 +187,7 @@
           if(this.pages.current <= 1){return;}
           return this.pages.current--
         }
+
       },
 
       mounted() {
@@ -167,15 +200,9 @@
         .then(response => {
               self.users = response.data.data;
               /**
-               * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
-               */ 
-              self.users.forEach(doctor=>{
-                doctor.specializations.forEach(spec=>{
-                  if(!self.specializations.includes(spec.name.toLowerCase())){
-                    return self.specializations.push(spec.name.toLowerCase());
-                  }
-                });
-              });
+              * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
+              */
+              self.querySpec(self.users);
               /** 
               * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
               */
@@ -184,6 +211,7 @@
                * Trigger iniziale sul valore passato dalla pagina "home"
               */
               self.writeSpec((self.search != "")? self.search : "all"); 
+              
               
         })
         .catch(error => {

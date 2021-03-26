@@ -109,40 +109,38 @@
         }
       }
 
-    .page_controller{
-      display: flex;
-      justify-content: flex-start;
-
-      .arrow{
+      .page_controller{
         display: flex;
-        min-width: 60px;
-        min-height: 60px;
-        padding: 10px;
-        justify-content: center;
-        align-items: center;
-        background: map-get($color-map, card_background);
-        color: white;
-        border-radius: 20px;
-        margin: 50px 20px 20px 20px; 
-        transition: background 0.5s;
-        cursor: pointer;
-        i{
+        justify-content: flex-start;
+
+        .arrow{
+          display: flex;
+          min-width: 60px;
+          min-height: 60px;
+          padding: 10px;
+          justify-content: center;
+          align-items: center;
+          background: map-get($color-map, card_background);
+          color: white;
+          border-radius: 20px;
+          margin: 50px 20px 20px 20px; 
+          transition: background 0.5s;
+          cursor: pointer;
+          i{
+            font-size: $medium;
+          }
+          &:first-child{
+            margin-left: 10px;
+          }
+        }
+        .left:hover, .right:hover{
+          background: map-get($color-map, card_background_hover);
+        }
+        .page{
           font-size: $medium;
         }
-        &:first-child{
-          margin-left: 10px;
-        }
-      }
-      .left:hover, .right:hover{
-        background: map-get($color-map, card_background_hover);
-      }
-      .page{
-        font-size: $medium;
-      }
 
-    }
-    
-    
+      }
     }
   }
 }

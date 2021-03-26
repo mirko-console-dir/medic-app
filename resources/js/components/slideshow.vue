@@ -21,7 +21,7 @@
 /** Il carosello così impostato può visualizzare fino a un massimo di 4 card.
 *
 */
-module.exports = {
+export default {
     props: ['homeRoute'],
     data: function () {
         return {

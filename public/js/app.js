@@ -2051,6 +2051,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["img", "api", "users"],
   data: function data() {
@@ -2067,7 +2069,8 @@ __webpack_require__.r(__webpack_exports__);
       pages: {
         current: 1,
         total: 1
-      }
+      },
+      rating: 0
     };
   },
   methods: {
@@ -2141,6 +2144,40 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
 
+    /**
+     * Compila l'elenco delle specializzazioni sulla base degli "users" presenti
+     * Calcola la media dei voti ricevuti dagli utenti                
+     */
+    querySpec: function querySpec(users) {
+      var _this3 = this;
+
+      users.forEach(function (doctor) {
+        var vote = 0;
+        var avgVote = 0;
+        var floorVote = 0;
+        var counter = 0;
+        doctor.specializations.forEach(function (spec) {
+          if (!_this3.specializations.includes(spec.name.toLowerCase())) {
+            return _this3.specializations.push(spec.name.toLowerCase());
+          }
+        });
+        doctor.reviews.forEach(function (review) {
+          counter++;
+          vote += review.vote;
+        });
+        avgVote = vote / counter;
+        floorVote = Math.floor(avgVote);
+        avgVote = [0, 0, 0, 0, 0];
+
+        for (var i = 0; i < floorVote; i++) {
+          avgVote[i] = 1;
+        }
+
+        doctor.avgVote = avgVote;
+        console.log(doctor.name, doctor.avgVote);
+      });
+    },
+
     /** 
      * Effettua il passaggio alla pagina successiva
     */
@@ -2164,7 +2201,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this4 = this;
 
     self = this;
     /**
@@ -2175,16 +2212,10 @@ __webpack_require__.r(__webpack_exports__);
     .then(function (response) {
       self.users = response.data.data;
       /**
-       * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
-       */
+      * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
+      */
 
-      self.users.forEach(function (doctor) {
-        doctor.specializations.forEach(function (spec) {
-          if (!self.specializations.includes(spec.name.toLowerCase())) {
-            return self.specializations.push(spec.name.toLowerCase());
-          }
-        });
-      });
+      self.querySpec(self.users);
       /** 
       * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
       */
@@ -2217,7 +2248,7 @@ __webpack_require__.r(__webpack_exports__);
 
     document.addEventListener('click', function (event) {
       if (!event.target.className.includes('no_blur')) {
-        return _this3.show = false;
+        return _this4.show = false;
       }
     });
     console.log('Component "Advanced-search" mounted');
@@ -2402,9 +2433,11 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/slideshow.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -2427,7 +2460,7 @@ __webpack_require__.r(__webpack_exports__);
 /** Il carosello così impostato può visualizzare fino a un massimo di 4 card.
 *
 */
-module.exports = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   props: ['homeRoute'],
   data: function data() {
     return {
@@ -2687,7 +2720,7 @@ module.exports = {
   distroyed: function distroyed() {
     window.removeEventListener('resize', this.cardMediaQuery);
   }
-};
+});
 
 /***/ }),
 
@@ -39213,7 +39246,17 @@ var render = function() {
                     0
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "rating" }, [_vm._v("*****")]),
+                  _c(
+                    "div",
+                    { staticClass: "rating" },
+                    _vm._l(user.avgVote, function(vote, index) {
+                      return _c("i", {
+                        key: index,
+                        class: vote === 1 ? "fas fa-star" : "far fa-star"
+                      })
+                    }),
+                    0
+                  ),
                   _vm._v(" "),
                   _c("p", { staticClass: "description" }, [
                     _vm._v(_vm._s(user.body))
@@ -52066,9 +52109,7 @@ component.options.__file = "resources/js/components/slideshow.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./slideshow.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/slideshow.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
