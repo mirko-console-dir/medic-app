@@ -28,16 +28,16 @@
     <div class="doctors_show">
       <div class="card_container d_flex">
 
-        <div class="card_wrapper" v-for="user in users.slice(items*(page - 1), items*page)"> 
+        <div class="card_wrapper" v-for="user in users.slice(items*(page - 1), items*page)">
           <a :href="'/doctor/'+user.slug" class="card">
-            
+
             <div class="avatar" v-if="user.profile_img != null">
-              <div class="profile" :style="'{background-image:url(storage/'+user.profile_img+')}'"></div>
+              <div class="profile" v-bind:style="{ 'background-image': 'url( storage/' + user.profile_img + ')' }"></div>
             </div>
             <!-- Fallback image -->
             <div class="avatar" v-else>
               <div class="profile" style="background-image:url(img/user-default.jpg)"></div>
-            </div> 
+            </div>
 
 
             <h4 class="name">{{user.name+" "+user.id}} </h4>
@@ -79,12 +79,12 @@
           items: 12,
           page: 1,
           array: [],
-          
+
           }
       },
       computed: {
-        
-        
+
+
       },
       methods: {
         specFilter: function(){
@@ -135,7 +135,7 @@
         /**
         * Creare dei fake user
         */
-        const fakeUser =  
+        const fakeUser =
         {
         id: 1,
         name: "Marco",
@@ -164,7 +164,7 @@
           this.array.push(fakeUser);
           this.array[i].id = i+1;
           this.array[i].profile_img = "img/sponsored/profile_0"+(i+1)+".jpg";
-        } 
+        }
       },
       mounted() {
         self = this;
@@ -173,7 +173,7 @@
         .then(response => {
               self.users = response.data.data;
               console.log(self.users);
-              
+
               //Creazione Elenco specializzazioni
               self.users.forEach(doctor=>{
                 doctor.specializations.forEach(spec=>{

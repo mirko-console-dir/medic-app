@@ -30,7 +30,7 @@
 
 <body id="layout_auth">
     <div id="app">
-        @include('layouts/auth/partials/navbar')
+        @include('layouts.auth.partials.navbar')
 
         <main class="py-4">
             @yield('content')

@@ -1,0 +1,68 @@
+#profile_doctor{
+  background-image:url("/img/bg_jumbo.jpg");
+  background-size: cover;
+  padding-top: 50px;
+  nav{
+    margin-top: 50px;
+  }
+  main{
+    margin-top: 80px;
+    color: white;
+    background: map-get($color-map, card_background);
+    border-radius: 10px;
+    .doctor_infos{
+      width: 100%;
+      margin-left: 0;
+      .img_profile_container{
+        width: 100%;
+        img{
+          width: 70%;
+          display: block;
+          margin: 40px auto;
+          border-radius: 50%;
+        }
+      }
+      .info_container{
+        h1{
+          margin-bottom: 0;
+        }
+        .info_work{
+          width: max-content;
+          margin-top: 0;
+          text-transform: uppercase;
+          padding: 10px 20px;
+          border: 2px solid map-get($color-map, primary_color_light);
+          border-radius: 10px;
+        }
+        .description{
+          max-height: 150px;
+          overflow-y: auto;
+          padding-right: 5%;
+          p{
+            font-size: 16px;
+          }
+        }
+        .phone_number{
+          margin-top: 20px;
+          font-size: 15px;
+        }
+      }
+    }
+    .form_message , .form_review{
+       margin-top: 20px;
+      padding: 0 5%;
+      textarea{
+        width: 100%;
+      }
+      input{
+        margin-bottom: 10px;
+      }
+      button{
+        margin-top:10px;
+      }
+      label{
+        margin-bottom: 0;
+      }
+    }
+  }
+}
