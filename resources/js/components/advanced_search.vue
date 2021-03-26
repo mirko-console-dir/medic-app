@@ -4,7 +4,7 @@
     <form  class="col-lg-6 col-md-12"  autocomplete="off">
 
         <div class=" input_container no_blur">
-          <input class="form-control text-capitalize no_blur" type="text" name="" placeholder="Start typing a specialization"
+          <input class="form-control text-capitalize no_blur" type="text" name="searchbar" placeholder="Start typing a specialization"
             v-model="search"
             @keyup="specFilter(search)"
             @click="showList()"
@@ -28,7 +28,7 @@
     <div class="doctors_show">
       <div class="card_container d_flex">
 
-        <div class="card_wrapper" v-for="(user, index) in users.slice(items*(pages.current - 1), items*pages.current)" :key="index">
+        <div class="card_wrapper" v-for="(user, index) in filterUsers.slice(cards*(pages.current - 1), cards*pages.current)" :key="index">
           <a :href="'/doctor/'+user.slug" class="card">
 
             <div class="avatar" v-if="user.profile_img != null">
@@ -63,11 +63,10 @@
 
 <script>
     export default {
-      props: ["img", "api"],
+      props: ["img", "api", "users"],
       data: function () {
         return {
-          users: [],
-          filterDoctors: [],
+          filterUsers: [],
           filterSpec: [],
           doctor: [],
           specializations: [],
@@ -76,14 +75,14 @@
           show: false,
           list: null,
           search: '',
-          items: 12,
+          cards: 12,
           pages: {
             current: 1,
             total: 1,
           },
-          array: [],
-          }
+        }
       },
+
       methods: {
         specFilter: function(){
           let filter = [];
@@ -111,21 +110,33 @@
           return document.cookie = "search="+this.search;
         },
 
-        writeSpec: function(spec){
-          return this.search = spec;
+        writeSpec: function(selectedSpec){
+          this.search = selectedSpec;
+          if(selectedSpec.toLowerCase() === "all"){
+            this.filterUsers = this.users;
+          }
+          else{
+            this.filterUsers = [];
+            this.users.forEach(user =>{
+              user.specializations.forEach(spec => {
+                if(spec.name.toLowerCase() === selectedSpec.toLowerCase()){
+                  this.filterUsers.push(user);
+                }
+              });
+            });
+          }
+          console.log("this.filterUsers.length", this.filterUsers.length);
+          console.log("this.cards", this.cards)
+          this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
         },
 
         next: function() {
-          if(this.pages.current*this.items > this.users.length){
-            return console.log("page", this.pages.current);
-          }
+          if(this.pages.current >= this.pages.total){return;}
           return this.pages.current++
         },
 
         prev: function(){
-          if(this.pages.current < 2){
-            return console.log("page", this.pages.current);
-          }
+          if(this.pages.current <= 1){return;}
           return this.pages.current--
         }
       },
@@ -136,9 +147,6 @@
         .get(self.apiRequest) //.get('api/users')
         .then(response => {
               self.users = response.data.data;
-
-              
-
               //Creazione Elenco specializzazioni
               self.users.forEach(doctor=>{
                 doctor.specializations.forEach(spec=>{
@@ -147,8 +155,9 @@
                   }
                 });
               });
-              //Enumerazione pagine
-              self.pages.total = Math.ceil(self.users.length / self.items);
+              console.log(self.specializations);
+              self.specializations.unshift("all");
+              
 
         })
         .catch(error => {

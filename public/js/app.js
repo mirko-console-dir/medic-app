@@ -2052,11 +2052,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["img", "api"],
+  props: ["img", "api", "users"],
   data: function data() {
     return {
-      users: [],
-      filterDoctors: [],
+      filterUsers: [],
       filterSpec: [],
       doctor: [],
       specializations: [],
@@ -2065,12 +2064,11 @@ __webpack_require__.r(__webpack_exports__);
       show: false,
       list: null,
       search: '',
-      items: 12,
+      cards: 12,
       pages: {
         current: 1,
         total: 1
-      },
-      array: []
+      }
     };
   },
   methods: {
@@ -2102,26 +2100,45 @@ __webpack_require__.r(__webpack_exports__);
     cookie: function cookie() {
       return document.cookie = "search=" + this.search;
     },
-    writeSpec: function writeSpec(spec) {
-      return this.search = spec;
+    writeSpec: function writeSpec(selectedSpec) {
+      var _this2 = this;
+
+      this.search = selectedSpec;
+
+      if (selectedSpec.toLowerCase() === "all") {
+        this.filterUsers = this.users;
+      } else {
+        this.filterUsers = [];
+        this.users.forEach(function (user) {
+          user.specializations.forEach(function (spec) {
+            if (spec.name.toLowerCase() === selectedSpec.toLowerCase()) {
+              _this2.filterUsers.push(user);
+            }
+          });
+        });
+      }
+
+      console.log("this.filterUsers.length", this.filterUsers.length);
+      console.log("this.cards", this.cards);
+      this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
     },
     next: function next() {
-      if (this.pages.current * this.items > this.users.length) {
-        return console.log("page", this.pages.current);
+      if (this.pages.current >= this.pages.total) {
+        return;
       }
 
       return this.pages.current++;
     },
     prev: function prev() {
-      if (this.pages.current < 2) {
-        return console.log("page", this.pages.current);
+      if (this.pages.current <= 1) {
+        return;
       }
 
       return this.pages.current--;
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     self = this;
     axios.get(self.apiRequest) //.get('api/users')
@@ -2134,9 +2151,9 @@ __webpack_require__.r(__webpack_exports__);
             return self.specializations.push(spec.name.toLowerCase());
           }
         });
-      }); //Enumerazione pagine
-
-      self.pages.total = Math.ceil(self.users.length / self.items);
+      });
+      console.log(self.specializations);
+      self.specializations.unshift("all");
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2159,7 +2176,7 @@ __webpack_require__.r(__webpack_exports__);
 
     document.addEventListener('click', function (event) {
       if (!event.target.className.includes('no_blur')) {
-        return _this2.show = false;
+        return _this3.show = false;
       }
     });
     console.log('Component "Advanced-search" mounted');
@@ -38997,7 +39014,7 @@ var render = function() {
             staticClass: "form-control text-capitalize no_blur",
             attrs: {
               type: "text",
-              name: "",
+              name: "searchbar",
               placeholder: "Start typing a specialization"
             },
             domProps: { value: _vm.search },
@@ -39071,9 +39088,9 @@ var render = function() {
         "div",
         { staticClass: "card_container d_flex" },
         _vm._l(
-          _vm.users.slice(
-            _vm.items * (_vm.pages.current - 1),
-            _vm.items * _vm.pages.current
+          _vm.filterUsers.slice(
+            _vm.cards * (_vm.pages.current - 1),
+            _vm.cards * _vm.pages.current
           ),
           function(user, index) {
             return _c("div", { key: index, staticClass: "card_wrapper" }, [
