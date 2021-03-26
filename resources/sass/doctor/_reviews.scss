@@ -1,0 +1,17 @@
+#dashboard {
+    .tableList .objectBlock {
+        color: white;
+        
+            .star {
+               color: map-get($color-map, green_logo);
+            }
+
+            .empty_star{
+                color: map-get($color-map, blue_logo);
+            }
+
+        
+
+
+    }
+}

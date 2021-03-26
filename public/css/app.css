@@ -11104,8 +11104,7 @@ input {
 #dashboard #sidebar {
   width: 30%;
   padding: 0px 30px;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: transparent;
 }
 
 #dashboard #sidebar ul li {
@@ -11117,7 +11116,7 @@ input {
 }
 
 #dashboard #sidebar ul a {
-  color: black;
+  color: white;
 }
 
 #dashboard #sidebar ul a:hover {
@@ -11127,13 +11126,13 @@ input {
 #dashboard #account {
   width: 65%;
   padding: 0px 30px;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: transparent;
+  color: white;
 }
 
 #dashboard #account h2 {
   text-transform: uppercase;
-  color: rgba(36, 206, 121, 0.938);
+  color: #84be46;
 }
 
 #dashboard #account h4,
@@ -11152,8 +11151,9 @@ input {
 
 #dashboard #account .card_service {
   padding: 0px 10px;
-  border: 2px solid black;
+  border: 2px solid white;
   margin: 5px 0px;
+  border-radius: 1px;
 }
 
 #dashboard #account .add_service {
@@ -11181,8 +11181,8 @@ input {
 
 #dashboard #sponsorship .form_sponsorship .btn {
   margin-left: 10px;
-  background-color: #3ED182;
-  border-color: #3ED182;
+  background-color: #84be46;
+  border-color: #84be46;
   color: white;
   height: 42px;
   width: 140px;
@@ -11334,6 +11334,10 @@ input {
   }
 }
 
+#account {
+  color: white;
+}
+
 #account .pagination {
   width: 100%;
   display: block;
@@ -11348,10 +11352,11 @@ input {
 }
 
 #account .tableList .objectBlock {
+  border-radius: 1px;
   color: black;
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 
 #account .tableList .objectBlock div {
@@ -11408,6 +11413,18 @@ input {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+#dashboard .tableList .objectBlock {
+  color: white;
+}
+
+#dashboard .tableList .objectBlock .star {
+  color: #84be46;
+}
+
+#dashboard .tableList .objectBlock .empty_star {
+  color: #2fa9eb;
 }
 
 /***************************

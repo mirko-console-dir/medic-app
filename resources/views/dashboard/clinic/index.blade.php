@@ -31,11 +31,13 @@
                         </a>
                     </button>
 
+                    @role('admin')
                     <form action="{{route('dashboard.clinics.destroy', $clinic->id)}}" method="post">
                         @METHOD('DELETE')
                         @csrf
                         <button class="btn btn-danger" type="submit"><i class="fas fa-trash fa-xs fa-fw"></i></button>
                     </form>
+                    @endrole
                 </div>
 
 
