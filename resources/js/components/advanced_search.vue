@@ -12,13 +12,13 @@
         </div>
 
         <ul id="spec_list" v-if="search.length === 0" :class="show?'active':''" >
-          <li v-for="spec in specializations" >
+          <li v-for="(spec, index) in specializations" :key="index">
             <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
           </li>
         </ul>
 
         <ul id="spec_list" v-else :class="show?'active':''" >
-          <li v-for="spec in filterSpec">
+          <li v-for="(spec, index) in filterSpec" :key="index">
             <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
           </li>
         </ul>
@@ -28,7 +28,7 @@
     <div class="doctors_show">
       <div class="card_container d_flex">
 
-        <div class="card_wrapper" v-for="user in users.slice(items*(page - 1), items*page)">
+        <div class="card_wrapper" v-for="(user, index) in users.slice(items*(pages.current - 1), items*pages.current)" :key="index">
           <a :href="'/doctor/'+user.slug" class="card">
 
             <div class="avatar" v-if="user.profile_img != null">
@@ -39,11 +39,10 @@
               <div class="profile" style="background-image:url(img/user-default.jpg)"></div>
             </div>
 
-
-            <h4 class="name">{{user.name+" "+user.id}} </h4>
-            <h4 class="specialization" >
-              <span v-for="spec in user.specializations">{{spec.name}} </span>
-            </h4>
+            <div class="name">{{user.name+" "+user.lastname}} </div>
+            <div class="specialization" >
+              <span v-for="(spec, index) in user.specializations" :key="index">{{spec.name}} </span>
+            </div>
             <div class="rating">*****</div>
             <p class="description">{{user.body}}</p>
           </a>
@@ -53,6 +52,7 @@
 
       <div class="page_controller">
         <div class="arrow left" @click="prev()"><i class="fas fa-chevron-left"></i></div>
+        <div class="arrow page"> {{pages.current}} of {{pages.total}}</div>
         <div class="arrow right" @click="next()"><i class="fas fa-chevron-right"></i></div>
       </div>
 
@@ -77,14 +77,12 @@
           list: null,
           search: '',
           items: 12,
-          page: 1,
+          pages: {
+            current: 1,
+            total: 1,
+          },
           array: [],
-
           }
-      },
-      computed: {
-
-
       },
       methods: {
         specFilter: function(){
@@ -118,61 +116,28 @@
         },
 
         next: function() {
-          if(this.page*this.items > this.users.length){
-            return console.log("page", this.page);
+          if(this.pages.current*this.items > this.users.length){
+            return console.log("page", this.pages.current);
           }
-          return this.page++
+          return this.pages.current++
         },
 
         prev: function(){
-          if(this.page < 2){
-            return console.log("page", this.page);
+          if(this.pages.current < 2){
+            return console.log("page", this.pages.current);
           }
-          return this.page--
+          return this.pages.current--
         }
       },
-      created(){
-        /**
-        * Creare dei fake user
-        */
-        const fakeUser =
-        {
-        id: 1,
-        name: "Marco",
-        lastname: "Marconi",
-        email: "marco.marconi@email.com",
-        address: "via degli indirizzi 11",
-        register_number_doc: "0000123456",
-        cv_img: null,
-        profile_img: "img/sponsored/profile_01.jpg",
-        phone_number: "0721 212223",
-        slug: null,
-        created_at: "2021-03-25T10:20:30.000000Z",
-        updated_at: "2021-03-25T10:20:30.000000Z",
-        prefix_id: "+39",
-        prefixes: null,
-        specializations: [
-          "Immunology",
-          "Neurology"
-          ],
-        sponsorships: [
-          "exclusive"
-          ],
-        }
-        //let newFakeUser = this.fakeUser;
-        for (let i = 0; i < 12; i++){
-          this.array.push(fakeUser);
-          this.array[i].id = i+1;
-          this.array[i].profile_img = "img/sponsored/profile_0"+(i+1)+".jpg";
-        }
-      },
+
       mounted() {
         self = this;
         axios
         .get(self.apiRequest) //.get('api/users')
         .then(response => {
               self.users = response.data.data;
-              console.log(self.users);
+
+              
 
               //Creazione Elenco specializzazioni
               self.users.forEach(doctor=>{
@@ -182,7 +147,8 @@
                   }
                 });
               });
-              //
+              //Enumerazione pagine
+              self.pages.total = Math.ceil(self.users.length / self.items);
 
         })
         .catch(error => {

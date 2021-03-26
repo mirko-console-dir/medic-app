@@ -2066,11 +2066,13 @@ __webpack_require__.r(__webpack_exports__);
       list: null,
       search: '',
       items: 12,
-      page: 1,
+      pages: {
+        current: 1,
+        total: 1
+      },
       array: []
     };
   },
-  computed: {},
   methods: {
     specFilter: function specFilter() {
       var _this = this;
@@ -2104,47 +2106,18 @@ __webpack_require__.r(__webpack_exports__);
       return this.search = spec;
     },
     next: function next() {
-      if (this.page * this.items > this.users.length) {
-        return console.log("page", this.page);
+      if (this.pages.current * this.items > this.users.length) {
+        return console.log("page", this.pages.current);
       }
 
-      return this.page++;
+      return this.pages.current++;
     },
     prev: function prev() {
-      if (this.page < 2) {
-        return console.log("page", this.page);
+      if (this.pages.current < 2) {
+        return console.log("page", this.pages.current);
       }
 
-      return this.page--;
-    }
-  },
-  created: function created() {
-    /**
-    * Creare dei fake user
-    */
-    var fakeUser = {
-      id: 1,
-      name: "Marco",
-      lastname: "Marconi",
-      email: "marco.marconi@email.com",
-      address: "via degli indirizzi 11",
-      register_number_doc: "0000123456",
-      cv_img: null,
-      profile_img: "img/sponsored/profile_01.jpg",
-      phone_number: "0721 212223",
-      slug: null,
-      created_at: "2021-03-25T10:20:30.000000Z",
-      updated_at: "2021-03-25T10:20:30.000000Z",
-      prefix_id: "+39",
-      prefixes: null,
-      specializations: ["Immunology", "Neurology"],
-      sponsorships: ["exclusive"]
-    }; //let newFakeUser = this.fakeUser;
-
-    for (var i = 0; i < 12; i++) {
-      this.array.push(fakeUser);
-      this.array[i].id = i + 1;
-      this.array[i].profile_img = "img/sponsored/profile_0" + (i + 1) + ".jpg";
+      return this.pages.current--;
     }
   },
   mounted: function mounted() {
@@ -2153,8 +2126,7 @@ __webpack_require__.r(__webpack_exports__);
     self = this;
     axios.get(self.apiRequest) //.get('api/users')
     .then(function (response) {
-      self.users = response.data.data;
-      console.log(self.users); //Creazione Elenco specializzazioni
+      self.users = response.data.data; //Creazione Elenco specializzazioni
 
       self.users.forEach(function (doctor) {
         doctor.specializations.forEach(function (spec) {
@@ -2162,7 +2134,9 @@ __webpack_require__.r(__webpack_exports__);
             return self.specializations.push(spec.name.toLowerCase());
           }
         });
-      }); //
+      }); //Enumerazione pagine
+
+      self.pages.total = Math.ceil(self.users.length / self.items);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -39048,8 +39022,8 @@ var render = function() {
           ? _c(
               "ul",
               { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-              _vm._l(_vm.specializations, function(spec) {
-                return _c("li", [
+              _vm._l(_vm.specializations, function(spec, index) {
+                return _c("li", { key: index }, [
                   _c(
                     "a",
                     {
@@ -39070,8 +39044,8 @@ var render = function() {
           : _c(
               "ul",
               { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-              _vm._l(_vm.filterSpec, function(spec) {
-                return _c("li", [
+              _vm._l(_vm.filterSpec, function(spec, index) {
+                return _c("li", { key: index }, [
                   _c(
                     "a",
                     {
@@ -39097,9 +39071,12 @@ var render = function() {
         "div",
         { staticClass: "card_container d_flex" },
         _vm._l(
-          _vm.users.slice(_vm.items * (_vm.page - 1), _vm.items * _vm.page),
-          function(user) {
-            return _c("div", { staticClass: "card_wrapper" }, [
+          _vm.users.slice(
+            _vm.items * (_vm.pages.current - 1),
+            _vm.items * _vm.pages.current
+          ),
+          function(user, index) {
+            return _c("div", { key: index, staticClass: "card_wrapper" }, [
               _c(
                 "a",
                 {
@@ -39126,15 +39103,17 @@ var render = function() {
                         })
                       ]),
                   _vm._v(" "),
-                  _c("h4", { staticClass: "name" }, [
-                    _vm._v(_vm._s(user.name + " " + user.id) + " ")
+                  _c("div", { staticClass: "name" }, [
+                    _vm._v(_vm._s(user.name + " " + user.lastname) + " ")
                   ]),
                   _vm._v(" "),
                   _c(
-                    "h4",
+                    "div",
                     { staticClass: "specialization" },
-                    _vm._l(user.specializations, function(spec) {
-                      return _c("span", [_vm._v(_vm._s(spec.name) + " ")])
+                    _vm._l(user.specializations, function(spec, index) {
+                      return _c("span", { key: index }, [
+                        _vm._v(_vm._s(spec.name) + " ")
+                      ])
                     }),
                     0
                   ),
@@ -39165,6 +39144,12 @@ var render = function() {
           },
           [_c("i", { staticClass: "fas fa-chevron-left" })]
         ),
+        _vm._v(" "),
+        _c("div", { staticClass: "arrow page" }, [
+          _vm._v(
+            " " + _vm._s(_vm.pages.current) + " of " + _vm._s(_vm.pages.total)
+          )
+        ]),
         _vm._v(" "),
         _c(
           "div",
@@ -52062,8 +52047,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

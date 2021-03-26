@@ -12082,25 +12082,30 @@ html body::-webkit-scrollbar-track {
 
 #advanced_search main .component .card_container .card_wrapper .card {
   display: flex;
-  height: 450px;
+  height: 500px;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  border: 1px solid white;
   border-radius: 10px;
   padding: 20px 10px;
 }
 
 #advanced_search main .component .card_container .card_wrapper .card .avatar .profile {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  background-image: url("/img/sponsored/profile_01.jpg");
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+#advanced_search main .component .card_container .card_wrapper .card .name,
+#advanced_search main .component .card_container .card_wrapper .card .specialization,
+#advanced_search main .component .card_container .card_wrapper .card .rating {
+  font-size: 18px;
+  margin-top: 5px;
 }
 
 #advanced_search main .component .card_container .card_wrapper .card .description {
@@ -12117,10 +12122,14 @@ html body::-webkit-scrollbar-track {
 }
 
 #advanced_search main .component .page_controller .arrow {
+  display: flex;
+  min-width: 60px;
+  min-height: 60px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
   background: rgba(0, 0, 0, 0.5);
   color: white;
-  padding: 30px;
-  border: 1px solid white;
   border-radius: 20px;
   margin: 50px 20px 20px 20px;
   transition: background 1s;
@@ -12131,8 +12140,13 @@ html body::-webkit-scrollbar-track {
   font-size: 24px;
 }
 
-#advanced_search main .component .page_controller .arrow:hover {
+#advanced_search main .component .page_controller .left:hover,
+#advanced_search main .component .page_controller .right:hover {
   background: rgba(50, 50, 50, 0.5);
+}
+
+#advanced_search main .component .page_controller .page {
+  font-size: 24px;
 }
 
 #profile_doctor {
