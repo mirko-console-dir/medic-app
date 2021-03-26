@@ -12161,36 +12161,113 @@ html body::-webkit-scrollbar-track {
   width: 100%;
 }
 
-#profile_doctor main .doctor_infos .img_profile_container img {
-  width: 70%;
-  display: block;
-  margin: 40px auto;
+#profile_doctor main .doctor_infos .img_profile_container .img_container {
+  width: 250px;
+  height: 250px;
+  margin: 80px auto;
   border-radius: 50%;
+  background-size: cover;
+}
+
+#profile_doctor main .doctor_infos .img_profile_container .img_null {
+  width: 250px;
+  height: 250px;
+  margin: 70px auto;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: 40%;
 }
 
 #profile_doctor main .doctor_infos .info_container h1 {
   margin-bottom: 0;
 }
 
-#profile_doctor main .doctor_infos .info_container .info_work {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+#profile_doctor main .doctor_infos .info_container .info_personal {
+  width: 100%;
   margin-top: 0;
   text-transform: uppercase;
-  padding: 10px 20px;
-  border: 2px solid #00aeef;
+  margin-bottom: 30px;
   border-radius: 10px;
 }
 
-#profile_doctor main .doctor_infos .info_container .description {
-  max-height: 150px;
-  overflow-y: auto;
+#profile_doctor main .doctor_infos .info_container .info_personal .specializations {
+  color: #00aeef;
+  margin: 0;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .specializations span:not(:last-child)::after {
+  content: " &";
+  color: white;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .specializations span:first-child::before {
+  content: "Specialist in ";
+  color: white;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .specializations .empty_message {
+  color: white;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .specializations .empty_message:not(:last-child) {
+  display: none;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .clinics {
+  color: #00aeef;
+  margin: 0;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .clinics span:not(:last-child)::after {
+  content: " &";
+  color: white;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .clinics span:first-child::before {
+  content: "Works at ";
+  color: white;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .clinics .empty_message {
+  color: white;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .clinics .empty_message:not(:last-child) {
+  display: none;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .no_bio {
+  margin-top: 15px;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .bio {
+  margin-top: 25px;
+  width: 100%;
   padding-right: 5%;
 }
 
-#profile_doctor main .doctor_infos .info_container .description p {
+#profile_doctor main .doctor_infos .info_container .info_personal .bio h4 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .bio .description {
+  max-height: 150px;
+  overflow-y: auto;
+  text-transform: none;
+  font-style: italic;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .bio .description p {
   font-size: 16px;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .bio .description p::before {
+  content: '" ';
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .bio .description p::after {
+  content: ' "';
 }
 
 #profile_doctor main .doctor_infos .info_container .phone_number {

@@ -15,69 +15,73 @@
     <div class="doctor_infos row">
 
       <div class="col-lg-4 col-md-12 img_profile_container">
-        <img src="{{asset('storage/' . $user->profile_img)}}" alt="">
+        @if ($user->profile_img == null)
+          <div class="img_null" style="background-image: url({{asset('img/user-default.jpg')}})">
+          </div>
+
+        @else
+          <div class="img_container" style="background-image: url({{asset('storage/' . $user->profile_img)}})">
+          </div>
+        @endif
       </div>
 
       <div class="col-lg-8 col-md-12 info_container">
         <h1>{{$user->name}} {{$user->lastname}}</h4>
-        <div class="info_work">
+        <div class="info_personal">
 
-
-            {{-- @if($user_has_specialization = $user->specialization()->where('id', $user_specialization)->exists()) --}}
-
-            @foreach ($specializations as $specialization)
-
+{{-- Stampa delle specializzazioni se esistono --}}
+          <h4 class="specializations">
+          @foreach ($specializations as $specialization)
               @if ($user->specializations()->where('id', $specialization->id)->exists())
-
-                <h4>
-                  Specialist in
-                      {{$specialization->name}}
-                </h4>
-
+                <span>{{$specialization->name}}</span>
               @endif
-
           @endforeach
+          </h4>
 
-
-
-
-
-
-
-
-
-            <h4>
-              Works at
-              @foreach($user_clinic as $clinic)
-              @if($clinic->id == $user->id)
-              @foreach($clinic->clinics as $user_has_clinic)
-              {{$user_has_clinic->name}}
-              @endforeach
+{{-- Stampa delle cliniche se esistono --}}
+          <h4 class="clinics">
+          @foreach ($clinics as $clinic)
+              @if ($user->clinics()->where('id', $clinic->id)->exists())
+                <span>{{$clinic->name}}</span>
               @endif
-              @endforeach
+          @endforeach
+          </h4>
 
-            </h4>
-          </div>
-        <p>BIO</p>
-        <div class="description">
-          <p>{{$user->body}}</p>
-        </div>
-
-        <p class="phone_number">
-          Phone Number:
-          @foreach($prefixes as $prefix)
-          @if($user->prefix_id == $prefix->id)
-          {{$prefix->dial_code}} {{$user->phone_number}}
+{{-- Stampa della descrizione se esiste --}}
+          @if ($user->body !== null)
+            <div class="bio">
+              <h4>About this Doctor</h4>
+              <div class="description">
+                <p>{{$user->body}}</p>
+              </div>
+            </div>
+          @else
+            <h3 class="no_bio">Isn't there enough information on this doctor?
+                <a href="#">Send a message</a>
+              </h3>
           @endif
-          @endforeach
-        </p>
+
+        </div>
+      </div>
+
+      <div class="services col-lg-12 d_flex">
+
 
       </div>
 
+      <p class="phone_number">
+        @foreach($prefixes as $prefix)
+          @if($user->prefix_id == $prefix->id && $user->phone_number !== 0)
+            Phone Number:  {{$prefix->dial_code}} {{$user->phone_number}}
+          @endif
+        @endforeach
+      </p>
 
 
 
     <!-- FORM MESSAGES -->
+    <div class="row">
+
 
     <form method="post" action="{{ route('message.store', [ 'user_id' => $user->id]) }}" class="col-lg-6 form_message">
         <h2>Send a Message</h2>
@@ -103,16 +107,11 @@
 
         <button type="submit" class="btn btn-success">Send</button>
 
-
-
     </form>
 
 
 
-
-
     <!-- FORM REVIEWS -->
-
 
     <form method="post" action="{{ route('review.store', [ 'user_id' => $user->id]) }}" class="col-lg-6 form_review">
       <h2>Write a Review</h2>
@@ -141,6 +140,7 @@
 
 
     </form>
+  </div>
 
   </div>
 

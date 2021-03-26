@@ -15,31 +15,106 @@
       margin-left: 0;
       .img_profile_container{
         width: 100%;
-        img{
-          width: 70%;
-          display: block;
-          margin: 40px auto;
+        .img_container{
+          width: 250px;
+          height: 250px;
+          margin: 80px auto;
           border-radius: 50%;
+          background-size: cover;
+        }
+        .img_null{
+          width: 250px;
+          height: 250px;
+          margin: 70px auto;
+          border-radius: 50%;
+          background-size: cover;
+          background-position: 40%;
         }
       }
       .info_container{
         h1{
           margin-bottom: 0;
         }
-        .info_work{
-          width: max-content;
+
+        .info_personal{
+          width: 100%;
           margin-top: 0;
           text-transform: uppercase;
-          padding: 10px 20px;
-          border: 2px solid map-get($color-map, primary_color_light);
+          margin-bottom: 30px;
           border-radius: 10px;
-        }
-        .description{
-          max-height: 150px;
-          overflow-y: auto;
-          padding-right: 5%;
-          p{
-            font-size: 16px;
+          .specializations{
+            color: map-get($color-map, primary_color_light);
+            margin: 0;
+            span:not(:last-child){
+              &::after{
+                content: " &";
+                color: white;
+              }
+            }
+            span:first-child{
+              &::before{
+                content: "Specialist in ";
+                color: white;
+              }
+            }
+            .empty_message{
+              color: white;
+            }
+            .empty_message:not(:last-child){
+              display: none;
+            }
+          }
+
+
+          .clinics{
+            color: map-get($color-map, primary_color_light);
+            margin: 0;
+            span:not(:last-child){
+              &::after{
+                content: " &";
+                color: white;
+              }
+            }
+            span:first-child{
+              &::before{
+                content: "Works at ";
+                color: white;
+              }
+            }
+            .empty_message{
+              color: white;
+            }
+            .empty_message:not(:last-child){
+              display: none;
+            }
+          }
+
+          .no_bio{
+            margin-top: 15px;
+          }
+          .bio{
+            margin-top: 25px;
+            width: 100%;
+            padding-right: 5%;
+            h4{
+              font-size: 20px;
+              margin-bottom: 5px;
+            }
+            .description{
+              max-height: 150px;
+              overflow-y: auto;
+              text-transform: none;
+              font-style: italic;
+              p{
+                font-size: 16px;
+              }
+              p::before{
+                content: '" ';
+              }
+              p::after{
+                content: ' "';
+              }
+            }
           }
         }
         .phone_number{
