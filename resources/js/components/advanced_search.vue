@@ -1,8 +1,7 @@
 <template>
 
   <div class="component">
-    <form  class="col-lg-6 col-md-12"  autocomplete="off">
-
+    <div class="form col-lg-6 col-md-12">
         <div class=" input_container no_blur">
           <input class="form-control text-capitalize no_blur" type="text" name="searchbar" placeholder="Start typing a specialization"
             v-model="search"
@@ -22,8 +21,7 @@
             <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
           </li>
         </ul>
-
-    </form>
+    </div>
 
     <div class="doctors_show">
       <div class="card_container d_flex">
@@ -157,8 +155,6 @@
               });
               console.log(self.specializations);
               self.specializations.unshift("all");
-              
-
         })
         .catch(error => {
             console.log(error);
@@ -175,6 +171,8 @@
           document.cookie = "search=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
 
+        writeSpec(this.search); //******************************** */
+
         /**
         * Funzione che permette di nascondere la visualizzazione della lista
         * delle specializzazioni quando si clicca su elementi senza classe 'no_blur'
@@ -189,6 +187,7 @@
 
       destroyed(){
         document.removeEventListener('click');
+        document.cookie;
       },
     }
 </script>

@@ -2049,8 +2049,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["img", "api", "users"],
   data: function data() {
@@ -2168,11 +2166,13 @@ __webpack_require__.r(__webpack_exports__);
       }).split('=')[1];
       document.cookie = "search=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     }
+
+    writeSpec(this.search); //******************************** */
+
     /**
     * Funzione che permette di nascondere la visualizzazione della lista
     * delle specializzazioni quando si clicca su elementi senza classe 'no_blur'
     */
-
 
     document.addEventListener('click', function (event) {
       if (!event.target.className.includes('no_blur')) {
@@ -2183,6 +2183,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   destroyed: function destroyed() {
     document.removeEventListener('click');
+    document.cookie;
   }
 });
 
@@ -38997,91 +38998,87 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "component" }, [
-    _c(
-      "form",
-      { staticClass: "col-lg-6 col-md-12", attrs: { autocomplete: "off" } },
-      [
-        _c("div", { staticClass: " input_container no_blur" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.search,
-                expression: "search"
-              }
-            ],
-            staticClass: "form-control text-capitalize no_blur",
-            attrs: {
-              type: "text",
-              name: "searchbar",
-              placeholder: "Start typing a specialization"
-            },
-            domProps: { value: _vm.search },
-            on: {
-              keyup: function($event) {
-                return _vm.specFilter(_vm.search)
-              },
-              click: function($event) {
-                return _vm.showList()
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.search = $event.target.value
-              }
+    _c("div", { staticClass: "form col-lg-6 col-md-12" }, [
+      _c("div", { staticClass: " input_container no_blur" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
             }
-          })
-        ]),
-        _vm._v(" "),
-        _vm.search.length === 0
-          ? _c(
-              "ul",
-              { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-              _vm._l(_vm.specializations, function(spec, index) {
-                return _c("li", { key: index }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "no_blur",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          return _vm.writeSpec(spec)
-                        }
+          ],
+          staticClass: "form-control text-capitalize no_blur",
+          attrs: {
+            type: "text",
+            name: "searchbar",
+            placeholder: "Start typing a specialization"
+          },
+          domProps: { value: _vm.search },
+          on: {
+            keyup: function($event) {
+              return _vm.specFilter(_vm.search)
+            },
+            click: function($event) {
+              return _vm.showList()
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm.search.length === 0
+        ? _c(
+            "ul",
+            { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
+            _vm._l(_vm.specializations, function(spec, index) {
+              return _c("li", { key: index }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "no_blur",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.writeSpec(spec)
                       }
-                    },
-                    [_vm._v(_vm._s(spec))]
-                  )
-                ])
-              }),
-              0
-            )
-          : _c(
-              "ul",
-              { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-              _vm._l(_vm.filterSpec, function(spec, index) {
-                return _c("li", { key: index }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "no_blur",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          return _vm.writeSpec(spec)
-                        }
+                    }
+                  },
+                  [_vm._v(_vm._s(spec))]
+                )
+              ])
+            }),
+            0
+          )
+        : _c(
+            "ul",
+            { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
+            _vm._l(_vm.filterSpec, function(spec, index) {
+              return _c("li", { key: index }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "no_blur",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.writeSpec(spec)
                       }
-                    },
-                    [_vm._v(_vm._s(spec))]
-                  )
-                ])
-              }),
-              0
-            )
-      ]
-    ),
+                    }
+                  },
+                  [_vm._v(_vm._s(spec))]
+                )
+              ])
+            }),
+            0
+          )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "doctors_show" }, [
       _c(
@@ -39231,7 +39228,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "form",
+    "div",
     {
       staticClass: "form col-lg-6 col-sm-12",
       attrs: { autocomplete: "off", action: "/search" }

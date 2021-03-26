@@ -5,6 +5,7 @@
   background-size: cover;
   padding-top: 50px;
   main{
+    min-height: calc(100vh - 150px);
     padding-bottom: 50px;
     h1.title{
       color: white;
@@ -13,7 +14,7 @@
     }
     .component{
       width: 100%;
-      form{
+      .form{
         position: relative;
         margin: 40px auto;
         .input_container{
@@ -124,7 +125,7 @@
         color: white;
         border-radius: 20px;
         margin: 50px 20px 20px 20px; 
-        transition: background 1s;
+        transition: background 0.5s;
         cursor: pointer;
         i{
           font-size: $medium;

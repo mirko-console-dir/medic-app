@@ -1,5 +1,5 @@
 <template>
-  <form  class="form col-lg-6 col-sm-12"  autocomplete="off" action="/search">
+  <div class="form col-lg-6 col-sm-12"  autocomplete="off" action="/search">
 
       <div class="d_flex input_container">
         <input class="no_blur" type="text" name="search" placeholder="Start typing a specialization"
@@ -23,7 +23,7 @@
           <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
         </li>
       </ul>
-  </form>
+  </div>
 </template>
 
 <script>
