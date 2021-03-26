@@ -79,7 +79,6 @@ My profile
 
             <div class="crud d_flex">
 
-               @role('admin')
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#destroy-{{ $user->slug }}"><i class="fas fa-trash"></i></button>
                 {{-- Start Add Modal -  --}}
                 <div class="modal fade" id="destroy-{{ $user->slug }}" tabindex="-1" role="dialog" aria-labelledby="post-destroy-{{ $user->slug }}" aria-hidden="true">
@@ -106,7 +105,6 @@ My profile
                     </div>
                 </div>
                 {{-- End Add Model --}}
-                @endrole
                 <button class="btn btn-warning edit"><a href="{{route('dashboard.doctors.edit', $user->slug)}}"> <i class="fas fa-pencil-alt"></i></a></button>
 
 
