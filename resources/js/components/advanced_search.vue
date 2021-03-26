@@ -1,10 +1,9 @@
 <template>
 
   <div class="component">
-    <form  class="col-lg-6 col-md-12"  autocomplete="off">
-
+    <div class="form col-lg-6 col-md-12">
         <div class=" input_container no_blur">
-          <input class="form-control text-capitalize no_blur" type="text" name="" placeholder="Start typing a specialization"
+          <input class="form-control text-capitalize no_blur" type="text" name="searchbar" placeholder="Start typing a specialization"
             v-model="search"
             @keyup="specFilter(search)"
             @click="showList()"
@@ -12,23 +11,29 @@
         </div>
 
         <ul id="spec_list" v-if="search.length === 0" :class="show?'active':''" >
-          <li v-for="spec in specializations" >
+          <li v-for="(spec, index) in specializations" :key="index">
             <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
           </li>
         </ul>
 
         <ul id="spec_list" v-else :class="show?'active':''" >
-          <li v-for="spec in filterSpec">
+          <li v-for="(spec, index) in filterSpec" :key="index">
             <a class="no_blur" href="#" @click="writeSpec(spec)">{{spec}}</a>
           </li>
         </ul>
-
-    </form>
+    </div>
 
     <div class="doctors_show">
+
+      <div class="page_controller">
+        <div class="arrow left" @click="prev()"><i class="fas fa-chevron-left"></i></div>
+        <div class="arrow page"> {{pages.current}} of {{pages.total}}</div>
+        <div class="arrow right" @click="next()"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
       <div class="card_container d_flex">
 
-        <div class="card_wrapper" v-for="user in users.slice(items*(page - 1), items*page)">
+        <div class="card_wrapper" v-for="(user, index) in filterUsers.slice(cards*(pages.current - 1), cards*pages.current)" :key="index">
           <a :href="'/doctor/'+user.slug" class="card">
 
             <div class="avatar" v-if="user.profile_img != null">
@@ -39,22 +44,19 @@
               <div class="profile" style="background-image:url(img/user-default.jpg)"></div>
             </div>
 
-
-            <h4 class="name">{{user.name+" "+user.id}} </h4>
-            <h4 class="specialization" >
-              <span v-for="spec in user.specializations">{{spec.name}} </span>
-            </h4>
-            <div class="rating">*****</div>
+            <div class="name">{{user.name+" "+user.lastname}} </div>
+            <div class="specialization" >
+              <span v-for="(spec, index) in user.specializations" :key="index">{{spec.name}} </span>
+            </div>
+            <div class="rating">
+              <i v-for="(vote, index) in user.avgVote" :class="(vote === 1)?'fas fa-star':'far fa-star'" :key="index"></i>
+            </div>
             <p class="description">{{user.body}}</p>
           </a>
         </div>
 
       </div>
 
-      <div class="page_controller">
-        <div class="arrow left" @click="prev()"><i class="fas fa-chevron-left"></i></div>
-        <div class="arrow right" @click="next()"><i class="fas fa-chevron-right"></i></div>
-      </div>
 
     </div>
   </div>
@@ -63,30 +65,29 @@
 
 <script>
     export default {
-      props: ["img", "api"],
+      props: ["img", "api", "users"],
       data: function () {
         return {
-          users: [],
-          filterDoctors: [],
+          filterUsers: [],
           filterSpec: [],
           doctor: [],
           specializations: [],
-          apiRequest: this.api,
           imgPath: this.img,
           show: false,
           list: null,
           search: '',
-          items: 12,
-          page: 1,
-          array: [],
-
-          }
-      },
-      computed: {
-
-
+          cards: 12,
+          pages: {
+            current: 1,
+            total: 1,
+          },
+          rating: 0,
+        }
       },
       methods: {
+        /**
+         * Filtra le specializzazioni tra quelle rese disponibili dai medici iscritti al sito
+         */
         specFilter: function(){
           let filter = [];
           let specializations = this.specializations;
@@ -103,87 +104,115 @@
           return this.filterSpec = filter;
         },
 
+        /** 
+         * Mostra le lista delle specializzazioni quando viene cliccata la barra di ricerca 
+        */
         showList: function(){
           if(!this.show){
             return this.show = true;
           }
         },
 
+        /**
+         * Imposta il valore del cookie con il parametro di ricerca
+         */
         cookie: function() {
           return document.cookie = "search="+this.search;
         },
 
-        writeSpec: function(spec){
-          return this.search = spec;
-        },
-
-        next: function() {
-          if(this.page*this.items > this.users.length){
-            return console.log("page", this.page);
-          }
-          return this.page++
-        },
-
-        prev: function(){
-          if(this.page < 2){
-            return console.log("page", this.page);
-          }
-          return this.page--
-        }
-      },
-      created(){
         /**
-        * Creare dei fake user
+         * 1. Fa' coincidere il valore mostrato sulla barra di ricerca con una delle specializzazio mostrate nel menu a scomparsa
+         * 2. Filtra i medici selezionando quelli che presentano la specializzazione cercata.
+         * 3. Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
+         */
+        writeSpec: function(selectedSpec){
+          this.search = selectedSpec;
+          if(selectedSpec.toLowerCase() === "all"){
+            this.filterUsers = this.users;
+          }
+          else{
+            this.filterUsers = [];
+            this.users.forEach(user =>{
+              user.specializations.forEach(spec => {
+                if(spec.name.toLowerCase() === selectedSpec.toLowerCase()){
+                  this.filterUsers.push(user);
+                }
+              });
+            });
+          }
+          this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
+          if(this.pages.total === 0){this.pages.total = 1;}
+        },
+        /**
+         * Compila l'elenco delle specializzazioni sulla base degli "users" presenti
+         * Calcola la media dei voti ricevuti dagli utenti "*****"                
+         */ 
+        querySpec: function(users){
+          users.forEach(doctor=>{
+            let vote = 0;
+            let avgVote = 0;
+            let floorVote = 0;
+            let counter = 0;
+            doctor.specializations.forEach(spec=>{
+              if(!this.specializations.includes(spec.name.toLowerCase())){
+                return this.specializations.push(spec.name.toLowerCase());
+              }
+            });
+            doctor.reviews.forEach(review =>{
+              counter++;
+              vote += review.vote; 
+            });
+            avgVote = vote/counter;
+            floorVote = Math.floor(avgVote);
+            avgVote = [0,0,0,0,0];
+            for(let i = 0; i < floorVote; i++){
+              avgVote[i] = 1;
+            }
+            doctor.avgVote = avgVote;
+            console.log(doctor.name, doctor.avgVote); 
+          });
+        },
+
+        /** 
+         * Effettua il passaggio alla pagina successiva
         */
-        const fakeUser =
-        {
-        id: 1,
-        name: "Marco",
-        lastname: "Marconi",
-        email: "marco.marconi@email.com",
-        address: "via degli indirizzi 11",
-        register_number_doc: "0000123456",
-        cv_img: null,
-        profile_img: "img/sponsored/profile_01.jpg",
-        phone_number: "0721 212223",
-        slug: null,
-        created_at: "2021-03-25T10:20:30.000000Z",
-        updated_at: "2021-03-25T10:20:30.000000Z",
-        prefix_id: "+39",
-        prefixes: null,
-        specializations: [
-          "Immunology",
-          "Neurology"
-          ],
-        sponsorships: [
-          "exclusive"
-          ],
+        next: function() {
+          if(this.pages.current >= this.pages.total){return;}
+          return this.pages.current++
+        },
+        /**
+         * Effettua il passaggio alla pagina precedente
+         */
+        prev: function(){
+          if(this.pages.current <= 1){return;}
+          return this.pages.current--
         }
-        //let newFakeUser = this.fakeUser;
-        for (let i = 0; i < 12; i++){
-          this.array.push(fakeUser);
-          this.array[i].id = i+1;
-          this.array[i].profile_img = "img/sponsored/profile_0"+(i+1)+".jpg";
-        }
+
       },
+
       mounted() {
         self = this;
+        /**
+         * Chiamata al database per importare tutti gli "users"
+         */
         axios
-        .get(self.apiRequest) //.get('api/users')
+        .get(self.api) //.get('api/users')
         .then(response => {
               self.users = response.data.data;
-              console.log(self.users);
-
-              //Creazione Elenco specializzazioni
-              self.users.forEach(doctor=>{
-                doctor.specializations.forEach(spec=>{
-                  if(!self.specializations.includes(spec.name.toLowerCase())){
-                    return self.specializations.push(spec.name.toLowerCase());
-                  }
-                });
-              });
-              //
-
+              /**
+              * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
+              */
+              self.querySpec(self.users);
+              /** 
+              * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
+              */
+              self.specializations.unshift("all");
+              /**
+               * Trigger iniziale sul valore passato dalla pagina "home"
+              */
+              self.writeSpec((self.search != "")? self.search : "all"); 
+              
+              
         })
         .catch(error => {
             console.log(error);
@@ -213,7 +242,11 @@
       },
 
       destroyed(){
+        /**
+         * Rimozione dell'eventlistener alla chiusura della pagina
+         */
         document.removeEventListener('click');
+        document.cookie;
       },
     }
 </script>

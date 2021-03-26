@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <slideshow home-route="{{ route('home') }}"></slideshow>   
+                <slideshow home-route="{{ route('home') }}" api="{{route('api.users')}}"></slideshow>   
             </div>
             <div class="col-lg-5 col-md-12 col-sm-12"></div>
         </div>

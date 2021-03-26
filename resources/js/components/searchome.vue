@@ -1,5 +1,5 @@
 <template>
-  <form  class="form col-lg-6 col-sm-12"  autocomplete="off" action="/search">
+  <form class="form col-lg-6 col-sm-12"  autocomplete="off" action="/search">
 
       <div class="d_flex input_container">
         <input class="no_blur" type="text" name="search" placeholder="Start typing a specialization"
@@ -37,7 +37,6 @@
           filterSpec: [],
           doctor: [],
           specializations: [],
-          apiRequest: this.api,
           show: false,
           list: null,
         }
@@ -66,7 +65,10 @@
         },
 
         cookie: function() {
-          return document.cookie = "search=" + this.search;
+          if(this.search != ""){
+            return document.cookie = "search=" + this.search;
+          }
+          return document.cookie = "search=all"; 
         },
 
         writeSpec: function(spec){
@@ -78,7 +80,7 @@
       mounted() {
         self = this;
         axios
-        .get(self.apiRequest) //.get('api/users')
+        .get(self.api) //.get('api/users')
         .then(response => {
               self.users = response.data.data;
 

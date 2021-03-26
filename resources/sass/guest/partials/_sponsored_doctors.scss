@@ -46,6 +46,9 @@
                 .presentation{
                     text-align: justify;
                 }
+                .link::first-letter{
+                    text-transform: uppercase;
+                }
             }
             .card-complete-enter, .card-complete-leave-to{
                 opacity: 0;

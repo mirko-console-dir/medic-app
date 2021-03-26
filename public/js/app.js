@@ -2051,27 +2051,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["img", "api"],
+  props: ["img", "api", "users"],
   data: function data() {
     return {
-      users: [],
-      filterDoctors: [],
+      filterUsers: [],
       filterSpec: [],
       doctor: [],
       specializations: [],
-      apiRequest: this.api,
       imgPath: this.img,
       show: false,
       list: null,
       search: '',
-      items: 12,
-      page: 1,
-      array: []
+      cards: 12,
+      pages: {
+        current: 1,
+        total: 1
+      },
+      rating: 0
     };
   },
-  computed: {},
   methods: {
+    /**
+     * Filtra le specializzazioni tra quelle rese disponibili dai medici iscritti al sito
+     */
     specFilter: function specFilter() {
       var _this = this;
 
@@ -2092,77 +2097,135 @@ __webpack_require__.r(__webpack_exports__);
 
       return this.filterSpec = filter;
     },
+
+    /** 
+     * Mostra le lista delle specializzazioni quando viene cliccata la barra di ricerca 
+    */
     showList: function showList() {
       if (!this.show) {
         return this.show = true;
       }
     },
+
+    /**
+     * Imposta il valore del cookie con il parametro di ricerca
+     */
     cookie: function cookie() {
       return document.cookie = "search=" + this.search;
     },
-    writeSpec: function writeSpec(spec) {
-      return this.search = spec;
-    },
-    next: function next() {
-      if (this.page * this.items > this.users.length) {
-        return console.log("page", this.page);
-      }
 
-      return this.page++;
-    },
-    prev: function prev() {
-      if (this.page < 2) {
-        return console.log("page", this.page);
-      }
-
-      return this.page--;
-    }
-  },
-  created: function created() {
     /**
-    * Creare dei fake user
-    */
-    var fakeUser = {
-      id: 1,
-      name: "Marco",
-      lastname: "Marconi",
-      email: "marco.marconi@email.com",
-      address: "via degli indirizzi 11",
-      register_number_doc: "0000123456",
-      cv_img: null,
-      profile_img: "img/sponsored/profile_01.jpg",
-      phone_number: "0721 212223",
-      slug: null,
-      created_at: "2021-03-25T10:20:30.000000Z",
-      updated_at: "2021-03-25T10:20:30.000000Z",
-      prefix_id: "+39",
-      prefixes: null,
-      specializations: ["Immunology", "Neurology"],
-      sponsorships: ["exclusive"]
-    }; //let newFakeUser = this.fakeUser;
+     * 1. Fa' coincidere il valore mostrato sulla barra di ricerca con una delle specializzazio mostrate nel menu a scomparsa
+     * 2. Filtra i medici selezionando quelli che presentano la specializzazione cercata.
+     * 3. Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
+     */
+    writeSpec: function writeSpec(selectedSpec) {
+      var _this2 = this;
 
-    for (var i = 0; i < 12; i++) {
-      this.array.push(fakeUser);
-      this.array[i].id = i + 1;
-      this.array[i].profile_img = "img/sponsored/profile_0" + (i + 1) + ".jpg";
+      this.search = selectedSpec;
+
+      if (selectedSpec.toLowerCase() === "all") {
+        this.filterUsers = this.users;
+      } else {
+        this.filterUsers = [];
+        this.users.forEach(function (user) {
+          user.specializations.forEach(function (spec) {
+            if (spec.name.toLowerCase() === selectedSpec.toLowerCase()) {
+              _this2.filterUsers.push(user);
+            }
+          });
+        });
+      }
+
+      this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
+
+      if (this.pages.total === 0) {
+        this.pages.total = 1;
+      }
+    },
+
+    /**
+     * Compila l'elenco delle specializzazioni sulla base degli "users" presenti
+     * Calcola la media dei voti ricevuti dagli utenti "*****"                
+     */
+    querySpec: function querySpec(users) {
+      var _this3 = this;
+
+      users.forEach(function (doctor) {
+        var vote = 0;
+        var avgVote = 0;
+        var floorVote = 0;
+        var counter = 0;
+        doctor.specializations.forEach(function (spec) {
+          if (!_this3.specializations.includes(spec.name.toLowerCase())) {
+            return _this3.specializations.push(spec.name.toLowerCase());
+          }
+        });
+        doctor.reviews.forEach(function (review) {
+          counter++;
+          vote += review.vote;
+        });
+        avgVote = vote / counter;
+        floorVote = Math.floor(avgVote);
+        avgVote = [0, 0, 0, 0, 0];
+
+        for (var i = 0; i < floorVote; i++) {
+          avgVote[i] = 1;
+        }
+
+        doctor.avgVote = avgVote;
+        console.log(doctor.name, doctor.avgVote);
+      });
+    },
+
+    /** 
+     * Effettua il passaggio alla pagina successiva
+    */
+    next: function next() {
+      if (this.pages.current >= this.pages.total) {
+        return;
+      }
+
+      return this.pages.current++;
+    },
+
+    /**
+     * Effettua il passaggio alla pagina precedente
+     */
+    prev: function prev() {
+      if (this.pages.current <= 1) {
+        return;
+      }
+
+      return this.pages.current--;
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this4 = this;
 
     self = this;
-    axios.get(self.apiRequest) //.get('api/users')
+    /**
+     * Chiamata al database per importare tutti gli "users"
+     */
+
+    axios.get(self.api) //.get('api/users')
     .then(function (response) {
       self.users = response.data.data;
-      console.log(self.users); //Creazione Elenco specializzazioni
+      /**
+      * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
+      */
 
-      self.users.forEach(function (doctor) {
-        doctor.specializations.forEach(function (spec) {
-          if (!self.specializations.includes(spec.name.toLowerCase())) {
-            return self.specializations.push(spec.name.toLowerCase());
-          }
-        });
-      }); //
+      self.querySpec(self.users);
+      /** 
+      * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
+      */
+
+      self.specializations.unshift("all");
+      /**
+       * Trigger iniziale sul valore passato dalla pagina "home"
+      */
+
+      self.writeSpec(self.search != "" ? self.search : "all");
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2185,13 +2248,17 @@ __webpack_require__.r(__webpack_exports__);
 
     document.addEventListener('click', function (event) {
       if (!event.target.className.includes('no_blur')) {
-        return _this2.show = false;
+        return _this4.show = false;
       }
     });
     console.log('Component "Advanced-search" mounted');
   },
   destroyed: function destroyed() {
+    /**
+     * Rimozione dell'eventlistener alla chiusura della pagina
+     */
     document.removeEventListener('click');
+    document.cookie;
   }
 });
 
@@ -2284,7 +2351,6 @@ __webpack_require__.r(__webpack_exports__);
       filterSpec: [],
       doctor: [],
       specializations: [],
-      apiRequest: this.api,
       show: false,
       list: null
     };
@@ -2316,7 +2382,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     cookie: function cookie() {
-      return document.cookie = "search=" + this.search;
+      if (this.search != "") {
+        return document.cookie = "search=" + this.search;
+      }
+
+      return document.cookie = "search=all";
     },
     writeSpec: function writeSpec(spec) {
       return this.search = spec;
@@ -2326,7 +2396,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this2 = this;
 
     self = this;
-    axios.get(self.apiRequest) //.get('api/users')
+    axios.get(self.api) //.get('api/users')
     .then(function (response) {
       self.users = response.data.data; //Creazione Elenco specializzazioni
 
@@ -2363,9 +2433,11 @@ __webpack_require__.r(__webpack_exports__);
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/slideshow.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -2388,8 +2460,8 @@ __webpack_require__.r(__webpack_exports__);
 /** Il carosello così impostato può visualizzare fino a un massimo di 4 card.
 *
 */
-module.exports = {
-  props: ['homeRoute'],
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["homeRoute", "api", "profiles"],
   data: function data() {
     return {
       show: 0,
@@ -2416,92 +2488,105 @@ module.exports = {
         path: 'img/sponsored/profile_',
         ext: '.jpg'
       },
-      activeProfiles: [],
-      profiles: [{
-        id: '01',
-        name: 'laura',
-        lastname: 'sforza',
-        specialization: 'Neurologo',
-        sex: 'f',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '02',
-        name: 'Luca',
-        lastname: 'Giurato',
-        specialization: 'Logopedista',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '03',
-        name: 'Paolo',
-        lastname: 'Muti',
-        specialization: 'Dermatologo',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '04',
-        name: 'Mr.',
-        lastname: 'T',
-        specialization: 'Osteopata',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '05',
-        name: 'laura',
-        lastname: 'Impegno',
-        specialization: 'Ginecologo',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '06',
-        name: 'Gianluca',
-        lastname: 'Vacchi',
-        specialization: 'Esperto in tricologia',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '07',
-        name: 'Alfiero',
-        lastname: 'Marzi',
-        specialization: 'Psichiatra',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '08',
-        name: 'Maarishi',
-        lastname: 'Ajeje',
-        specialization: 'Ginecologo',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '09',
-        name: 'Gina',
-        lastname: 'Cugini',
-        specialization: 'Pediatra',
-        sex: 'f',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '10',
-        name: 'Marco',
-        lastname: 'Mitici',
-        specialization: 'Ginecologo',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '11',
-        name: 'Marta',
-        lastname: 'Formicola',
-        specialization: 'Sensitiva',
-        sex: 'f',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '12',
-        name: 'Laura',
-        lastname: 'Dinotte',
-        specialization: 'Oculista',
-        sex: 'f',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }]
+      activeProfiles: [] // profiles: [
+      //     {
+      //     id: '01',
+      //     name: 'laura',
+      //     lastname: 'sforza',
+      //     specialization: 'Neurologo',
+      //     sex: 'f',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '02',
+      //     name: 'Luca',
+      //     lastname: 'Giurato',
+      //     specialization: 'Logopedista',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '03',
+      //     name: 'Paolo',
+      //     lastname: 'Muti',
+      //     specialization: 'Dermatologo',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '04',
+      //     name: 'Mr.',
+      //     lastname: 'T',
+      //     specialization: 'Osteopata',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '05',
+      //     name: 'laura',
+      //     lastname: 'Impegno',
+      //     specialization: 'Ginecologo',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '06',
+      //     name: 'Gianluca',
+      //     lastname: 'Vacchi',
+      //     specialization: 'Esperto in tricologia',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '07',
+      //     name: 'Alfiero',
+      //     lastname: 'Marzi',
+      //     specialization: 'Psichiatra',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '08',
+      //     name: 'Maarishi',
+      //     lastname: 'Ajeje',
+      //     specialization: 'Ginecologo',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '09',
+      //     name: 'Gina',
+      //     lastname: 'Cugini',
+      //     specialization: 'Pediatra',
+      //     sex: 'f',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '10',
+      //     name: 'Marco',
+      //     lastname: 'Mitici',
+      //     specialization: 'Ginecologo',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '11',
+      //     name: 'Marta',
+      //     lastname: 'Formicola',
+      //     specialization: 'Sensitiva',
+      //     sex: 'f',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '12',
+      //     name: 'Laura',
+      //     lastname: 'Dinotte',
+      //     specialization: 'Oculista',
+      //     sex: 'f',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      // ],
+
     };
   },
   methods: {
@@ -2638,17 +2723,29 @@ module.exports = {
     this.cardMediaQuery();
   },
   mounted: function mounted() {
+    self = this;
+    /**
+     * Chiamata al database per importare tutti gli "users"
+     */
+
+    axios.get(self.api) //.get('api/users')
+    .then(function (response) {
+      self.profiles = response.data.data;
+      console.log(response.data.data);
+      self.next(true);
+    })["catch"](function (error) {
+      console.log(error);
+    });
     this.i = 0;
     this.j = this.i + 1;
     this.k = this.i + 2;
     this.l = this.i + 3;
-    this.next(true);
     console.log('Component "Slideshow" mounted');
   },
   distroyed: function distroyed() {
     window.removeEventListener('resize', this.cardMediaQuery);
   }
-};
+});
 
 /***/ }),
 
@@ -39006,100 +39103,133 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "component" }, [
-    _c(
-      "form",
-      { staticClass: "col-lg-6 col-md-12", attrs: { autocomplete: "off" } },
-      [
-        _c("div", { staticClass: " input_container no_blur" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.search,
-                expression: "search"
-              }
-            ],
-            staticClass: "form-control text-capitalize no_blur",
-            attrs: {
-              type: "text",
-              name: "",
-              placeholder: "Start typing a specialization"
-            },
-            domProps: { value: _vm.search },
-            on: {
-              keyup: function($event) {
-                return _vm.specFilter(_vm.search)
-              },
-              click: function($event) {
-                return _vm.showList()
-              },
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.search = $event.target.value
-              }
+    _c("div", { staticClass: "form col-lg-6 col-md-12" }, [
+      _c("div", { staticClass: " input_container no_blur" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
             }
-          })
-        ]),
-        _vm._v(" "),
-        _vm.search.length === 0
-          ? _c(
-              "ul",
-              { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-              _vm._l(_vm.specializations, function(spec) {
-                return _c("li", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "no_blur",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          return _vm.writeSpec(spec)
-                        }
+          ],
+          staticClass: "form-control text-capitalize no_blur",
+          attrs: {
+            type: "text",
+            name: "searchbar",
+            placeholder: "Start typing a specialization"
+          },
+          domProps: { value: _vm.search },
+          on: {
+            keyup: function($event) {
+              return _vm.specFilter(_vm.search)
+            },
+            click: function($event) {
+              return _vm.showList()
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm.search.length === 0
+        ? _c(
+            "ul",
+            { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
+            _vm._l(_vm.specializations, function(spec, index) {
+              return _c("li", { key: index }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "no_blur",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.writeSpec(spec)
                       }
-                    },
-                    [_vm._v(_vm._s(spec))]
-                  )
-                ])
-              }),
-              0
-            )
-          : _c(
-              "ul",
-              { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
-              _vm._l(_vm.filterSpec, function(spec) {
-                return _c("li", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "no_blur",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          return _vm.writeSpec(spec)
-                        }
+                    }
+                  },
+                  [_vm._v(_vm._s(spec))]
+                )
+              ])
+            }),
+            0
+          )
+        : _c(
+            "ul",
+            { class: _vm.show ? "active" : "", attrs: { id: "spec_list" } },
+            _vm._l(_vm.filterSpec, function(spec, index) {
+              return _c("li", { key: index }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "no_blur",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.writeSpec(spec)
                       }
-                    },
-                    [_vm._v(_vm._s(spec))]
-                  )
-                ])
-              }),
-              0
-            )
-      ]
-    ),
+                    }
+                  },
+                  [_vm._v(_vm._s(spec))]
+                )
+              ])
+            }),
+            0
+          )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "doctors_show" }, [
+      _c("div", { staticClass: "page_controller" }, [
+        _c(
+          "div",
+          {
+            staticClass: "arrow left",
+            on: {
+              click: function($event) {
+                return _vm.prev()
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-chevron-left" })]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "arrow page" }, [
+          _vm._v(
+            " " + _vm._s(_vm.pages.current) + " of " + _vm._s(_vm.pages.total)
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "arrow right",
+            on: {
+              click: function($event) {
+                return _vm.next()
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-chevron-right" })]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "card_container d_flex" },
         _vm._l(
-          _vm.users.slice(_vm.items * (_vm.page - 1), _vm.items * _vm.page),
-          function(user) {
-            return _c("div", { staticClass: "card_wrapper" }, [
+          _vm.filterUsers.slice(
+            _vm.cards * (_vm.pages.current - 1),
+            _vm.cards * _vm.pages.current
+          ),
+          function(user, index) {
+            return _c("div", { key: index, staticClass: "card_wrapper" }, [
               _c(
                 "a",
                 {
@@ -39126,20 +39256,32 @@ var render = function() {
                         })
                       ]),
                   _vm._v(" "),
-                  _c("h4", { staticClass: "name" }, [
-                    _vm._v(_vm._s(user.name + " " + user.id) + " ")
+                  _c("div", { staticClass: "name" }, [
+                    _vm._v(_vm._s(user.name + " " + user.lastname) + " ")
                   ]),
                   _vm._v(" "),
                   _c(
-                    "h4",
+                    "div",
                     { staticClass: "specialization" },
-                    _vm._l(user.specializations, function(spec) {
-                      return _c("span", [_vm._v(_vm._s(spec.name) + " ")])
+                    _vm._l(user.specializations, function(spec, index) {
+                      return _c("span", { key: index }, [
+                        _vm._v(_vm._s(spec.name) + " ")
+                      ])
                     }),
                     0
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "rating" }, [_vm._v("*****")]),
+                  _c(
+                    "div",
+                    { staticClass: "rating" },
+                    _vm._l(user.avgVote, function(vote, index) {
+                      return _c("i", {
+                        key: index,
+                        class: vote === 1 ? "fas fa-star" : "far fa-star"
+                      })
+                    }),
+                    0
+                  ),
                   _vm._v(" "),
                   _c("p", { staticClass: "description" }, [
                     _vm._v(_vm._s(user.body))
@@ -39150,35 +39292,7 @@ var render = function() {
           }
         ),
         0
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "page_controller" }, [
-        _c(
-          "div",
-          {
-            staticClass: "arrow left",
-            on: {
-              click: function($event) {
-                return _vm.prev()
-              }
-            }
-          },
-          [_c("i", { staticClass: "fas fa-chevron-left" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "arrow right",
-            on: {
-              click: function($event) {
-                return _vm.next()
-              }
-            }
-          },
-          [_c("i", { staticClass: "fas fa-chevron-right" })]
-        )
-      ])
+      )
     ])
   ])
 }
@@ -39382,28 +39496,41 @@ var render = function() {
                   staticClass: "info avatar",
                   style: {
                     "background-image":
-                      "url(" + _vm.image.path + profile.id + _vm.image.ext + ")"
+                      "url(storage/" + profile.profile_img + ")"
                   }
                 }),
                 _vm._v(" "),
                 _c("h4", { staticClass: "info name" }, [
                   _vm._v(
-                    _vm._s(profile.sex === "m" ? "Dott." : "Dott.ssa") +
-                      " " +
+                    "Dr. " +
                       _vm._s(profile.name) +
                       " " +
                       _vm._s(profile.lastname)
                   )
                 ]),
                 _vm._v(" "),
-                _c("h4", { staticClass: "info specialization" }, [
-                  _vm._v(_vm._s(profile.specialization))
-                ]),
+                _vm._l(profile.specializations, function(spec, index) {
+                  return _c(
+                    "h4",
+                    { key: index, staticClass: "info specialization" },
+                    [_vm._v(_vm._s(spec.name) + " ")]
+                  )
+                }),
                 _vm._v(" "),
                 _c("p", { staticClass: "info presentation" }, [
-                  _vm._v(_vm._s(profile.presentation))
-                ])
-              ]
+                  _vm._v(_vm._s(profile.body))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "info presentation",
+                    attrs: { href: "/doctor/" + profile.slug }
+                  },
+                  [_vm._v(" show more ")]
+                )
+              ],
+              2
             )
           }),
           0
@@ -51976,15 +52103,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/js/components/slideshow.vue ***!
   \***********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slideshow_vue_vue_type_template_id_4b348b73___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slideshow.vue?vue&type=template&id=4b348b73& */ "./resources/js/components/slideshow.vue?vue&type=template&id=4b348b73&");
 /* harmony import */ var _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slideshow.vue?vue&type=script&lang=js& */ "./resources/js/components/slideshow.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -52014,15 +52140,13 @@ component.options.__file = "resources/js/components/slideshow.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/components/slideshow.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./slideshow.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/slideshow.vue?vue&type=script&lang=js&");
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -52062,8 +52186,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> AM-Frontend-20210326
 
 
 /***/ })
