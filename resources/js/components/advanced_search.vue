@@ -24,6 +24,13 @@
     </div>
 
     <div class="doctors_show">
+
+      <div class="page_controller">
+        <div class="arrow left" @click="prev()"><i class="fas fa-chevron-left"></i></div>
+        <div class="arrow page"> {{pages.current}} of {{pages.total}}</div>
+        <div class="arrow right" @click="next()"><i class="fas fa-chevron-right"></i></div>
+      </div>
+
       <div class="card_container d_flex">
 
         <div class="card_wrapper" v-for="(user, index) in filterUsers.slice(cards*(pages.current - 1), cards*pages.current)" :key="index">
@@ -48,11 +55,6 @@
 
       </div>
 
-      <div class="page_controller">
-        <div class="arrow left" @click="prev()"><i class="fas fa-chevron-left"></i></div>
-        <div class="arrow page"> {{pages.current}} of {{pages.total}}</div>
-        <div class="arrow right" @click="next()"><i class="fas fa-chevron-right"></i></div>
-      </div>
 
     </div>
   </div>
@@ -68,7 +70,6 @@
           filterSpec: [],
           doctor: [],
           specializations: [],
-          apiRequest: this.api,
           imgPath: this.img,
           show: false,
           list: null,
@@ -82,6 +83,9 @@
       },
 
       methods: {
+        /**
+         * Filtra le specializzazioni tra quelle rese disponibili dai medici iscritti al sito
+         */
         specFilter: function(){
           let filter = [];
           let specializations = this.specializations;
@@ -98,16 +102,27 @@
           return this.filterSpec = filter;
         },
 
+        /** 
+         * Mostra le lista delle specializzazioni quando viene cliccata la barra di ricerca 
+        */
         showList: function(){
           if(!this.show){
             return this.show = true;
           }
         },
 
+        /**
+         * Imposta il valore del cookie con il parametro di ricerca
+         */
         cookie: function() {
           return document.cookie = "search="+this.search;
         },
 
+        /**
+         * 1. Fa' coincidere il valore mostrato sulla barra di ricerca con una delle specializzazio mostrate nel menu a scomparsa
+         * 2. Filtra i medici selezionando quelli che presentano la specializzazione cercata.
+         * 3. Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
+         */
         writeSpec: function(selectedSpec){
           this.search = selectedSpec;
           if(selectedSpec.toLowerCase() === "all"){
@@ -123,16 +138,19 @@
               });
             });
           }
-          console.log("this.filterUsers.length", this.filterUsers.length);
-          console.log("this.cards", this.cards)
           this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
+          if(this.pages.total === 0){this.pages.total = 1;}
         },
-
+        /** 
+         * Effettua il passaggio alla pagina successiva
+        */
         next: function() {
           if(this.pages.current >= this.pages.total){return;}
           return this.pages.current++
         },
-
+        /**
+         * Effettua il passaggio alla pagina precedente
+         */
         prev: function(){
           if(this.pages.current <= 1){return;}
           return this.pages.current--
@@ -141,11 +159,16 @@
 
       mounted() {
         self = this;
+        /**
+         * Chiamata al database per importare tutti gli "users"
+         */
         axios
-        .get(self.apiRequest) //.get('api/users')
+        .get(self.api) //.get('api/users')
         .then(response => {
               self.users = response.data.data;
-              //Creazione Elenco specializzazioni
+              /**
+               * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
+               */ 
               self.users.forEach(doctor=>{
                 doctor.specializations.forEach(spec=>{
                   if(!self.specializations.includes(spec.name.toLowerCase())){
@@ -153,8 +176,15 @@
                   }
                 });
               });
-              console.log(self.specializations);
+              /** 
+              * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
+              */
               self.specializations.unshift("all");
+              /**
+               * Trigger iniziale sul valore passato dalla pagina "home"
+              */
+              self.writeSpec((self.search != "")? self.search : "all"); 
+              
         })
         .catch(error => {
             console.log(error);
@@ -171,8 +201,6 @@
           document.cookie = "search=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         }
 
-        writeSpec(this.search); //******************************** */
-
         /**
         * Funzione che permette di nascondere la visualizzazione della lista
         * delle specializzazioni quando si clicca su elementi senza classe 'no_blur'
@@ -186,6 +214,9 @@
       },
 
       destroyed(){
+        /**
+         * Rimozione dell'eventlistener alla chiusura della pagina
+         */
         document.removeEventListener('click');
         document.cookie;
       },

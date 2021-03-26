@@ -40,7 +40,6 @@
           width: 98%;
           display: none;
           background: white;
-          border-top: 1px solid lightgrey;
           padding-left: 0;
           margin-bottom: 0;
           max-height: 140px;
@@ -72,7 +71,6 @@
       .card_container{
         flex-wrap: wrap;
         justify-content: flex-start;
-        padding-top: 110px;
         .card_wrapper{
           width: calc(100% / 4);
           padding: 10px;
@@ -110,9 +108,10 @@
           }
         }
       }
+
     .page_controller{
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
 
       .arrow{
         display: flex;
@@ -129,6 +128,9 @@
         cursor: pointer;
         i{
           font-size: $medium;
+        }
+        &:first-child{
+          margin-left: 10px;
         }
       }
       .left:hover, .right:hover{

@@ -12035,7 +12035,6 @@ html body::-webkit-scrollbar-track {
   width: 98%;
   display: none;
   background: white;
-  border-top: 1px solid lightgrey;
   padding-left: 0;
   margin-bottom: 0;
   max-height: 140px;
@@ -12073,7 +12072,6 @@ html body::-webkit-scrollbar-track {
 #advanced_search main .component .card_container {
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding-top: 110px;
 }
 
 #advanced_search main .component .card_container .card_wrapper {
@@ -12119,7 +12117,7 @@ html body::-webkit-scrollbar-track {
 
 #advanced_search main .component .page_controller {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 #advanced_search main .component .page_controller .arrow {
@@ -12139,6 +12137,10 @@ html body::-webkit-scrollbar-track {
 
 #advanced_search main .component .page_controller .arrow i {
   font-size: 24px;
+}
+
+#advanced_search main .component .page_controller .arrow:first-child {
+  margin-left: 10px;
 }
 
 #advanced_search main .component .page_controller .left:hover,

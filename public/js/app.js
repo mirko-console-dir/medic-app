@@ -2049,6 +2049,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["img", "api", "users"],
   data: function data() {
@@ -2057,7 +2059,6 @@ __webpack_require__.r(__webpack_exports__);
       filterSpec: [],
       doctor: [],
       specializations: [],
-      apiRequest: this.api,
       imgPath: this.img,
       show: false,
       list: null,
@@ -2070,6 +2071,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    /**
+     * Filtra le specializzazioni tra quelle rese disponibili dai medici iscritti al sito
+     */
     specFilter: function specFilter() {
       var _this = this;
 
@@ -2090,14 +2094,28 @@ __webpack_require__.r(__webpack_exports__);
 
       return this.filterSpec = filter;
     },
+
+    /** 
+     * Mostra le lista delle specializzazioni quando viene cliccata la barra di ricerca 
+    */
     showList: function showList() {
       if (!this.show) {
         return this.show = true;
       }
     },
+
+    /**
+     * Imposta il valore del cookie con il parametro di ricerca
+     */
     cookie: function cookie() {
       return document.cookie = "search=" + this.search;
     },
+
+    /**
+     * 1. Fa' coincidere il valore mostrato sulla barra di ricerca con una delle specializzazio mostrate nel menu a scomparsa
+     * 2. Filtra i medici selezionando quelli che presentano la specializzazione cercata.
+     * 3. Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
+     */
     writeSpec: function writeSpec(selectedSpec) {
       var _this2 = this;
 
@@ -2116,10 +2134,16 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      console.log("this.filterUsers.length", this.filterUsers.length);
-      console.log("this.cards", this.cards);
       this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
+
+      if (this.pages.total === 0) {
+        this.pages.total = 1;
+      }
     },
+
+    /** 
+     * Effettua il passaggio alla pagina successiva
+    */
     next: function next() {
       if (this.pages.current >= this.pages.total) {
         return;
@@ -2127,6 +2151,10 @@ __webpack_require__.r(__webpack_exports__);
 
       return this.pages.current++;
     },
+
+    /**
+     * Effettua il passaggio alla pagina precedente
+     */
     prev: function prev() {
       if (this.pages.current <= 1) {
         return;
@@ -2139,9 +2167,16 @@ __webpack_require__.r(__webpack_exports__);
     var _this3 = this;
 
     self = this;
-    axios.get(self.apiRequest) //.get('api/users')
+    /**
+     * Chiamata al database per importare tutti gli "users"
+     */
+
+    axios.get(self.api) //.get('api/users')
     .then(function (response) {
-      self.users = response.data.data; //Creazione Elenco specializzazioni
+      self.users = response.data.data;
+      /**
+       * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
+       */
 
       self.users.forEach(function (doctor) {
         doctor.specializations.forEach(function (spec) {
@@ -2150,8 +2185,16 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       });
-      console.log(self.specializations);
+      /** 
+      * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
+      */
+
       self.specializations.unshift("all");
+      /**
+       * Trigger iniziale sul valore passato dalla pagina "home"
+      */
+
+      self.writeSpec(self.search != "" ? self.search : "all");
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2166,13 +2209,11 @@ __webpack_require__.r(__webpack_exports__);
       }).split('=')[1];
       document.cookie = "search=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     }
-
-    writeSpec(this.search); //******************************** */
-
     /**
     * Funzione che permette di nascondere la visualizzazione della lista
     * delle specializzazioni quando si clicca su elementi senza classe 'no_blur'
     */
+
 
     document.addEventListener('click', function (event) {
       if (!event.target.className.includes('no_blur')) {
@@ -2182,6 +2223,9 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Component "Advanced-search" mounted');
   },
   destroyed: function destroyed() {
+    /**
+     * Rimozione dell'eventlistener alla chiusura della pagina
+     */
     document.removeEventListener('click');
     document.cookie;
   }
@@ -2276,7 +2320,6 @@ __webpack_require__.r(__webpack_exports__);
       filterSpec: [],
       doctor: [],
       specializations: [],
-      apiRequest: this.api,
       show: false,
       list: null
     };
@@ -2308,7 +2351,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     cookie: function cookie() {
-      return document.cookie = "search=" + this.search;
+      if (this.search != "") {
+        return document.cookie = "search=" + this.search;
+      }
+
+      return document.cookie = "search=all";
     },
     writeSpec: function writeSpec(spec) {
       return this.search = spec;
@@ -2318,7 +2365,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this2 = this;
 
     self = this;
-    axios.get(self.apiRequest) //.get('api/users')
+    axios.get(self.api) //.get('api/users')
     .then(function (response) {
       self.users = response.data.data; //Creazione Elenco specializzazioni
 
@@ -39081,6 +39128,40 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "doctors_show" }, [
+      _c("div", { staticClass: "page_controller" }, [
+        _c(
+          "div",
+          {
+            staticClass: "arrow left",
+            on: {
+              click: function($event) {
+                return _vm.prev()
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-chevron-left" })]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "arrow page" }, [
+          _vm._v(
+            " " + _vm._s(_vm.pages.current) + " of " + _vm._s(_vm.pages.total)
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "arrow right",
+            on: {
+              click: function($event) {
+                return _vm.next()
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-chevron-right" })]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "card_container d_flex" },
@@ -39143,41 +39224,7 @@ var render = function() {
           }
         ),
         0
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "page_controller" }, [
-        _c(
-          "div",
-          {
-            staticClass: "arrow left",
-            on: {
-              click: function($event) {
-                return _vm.prev()
-              }
-            }
-          },
-          [_c("i", { staticClass: "fas fa-chevron-left" })]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "arrow page" }, [
-          _vm._v(
-            " " + _vm._s(_vm.pages.current) + " of " + _vm._s(_vm.pages.total)
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "arrow right",
-            on: {
-              click: function($event) {
-                return _vm.next()
-              }
-            }
-          },
-          [_c("i", { staticClass: "fas fa-chevron-right" })]
-        )
-      ])
+      )
     ])
   ])
 }
@@ -39228,7 +39275,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "form",
     {
       staticClass: "form col-lg-6 col-sm-12",
       attrs: { autocomplete: "off", action: "/search" }
