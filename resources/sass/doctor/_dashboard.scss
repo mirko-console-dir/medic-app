@@ -38,7 +38,7 @@
              }
              a:hover {
                 //  font-size: 22px;
-                 color: rgba(36, 206, 121, 0.938);
+                 color: map-get($color-map , green_logo );
              }
          }
 

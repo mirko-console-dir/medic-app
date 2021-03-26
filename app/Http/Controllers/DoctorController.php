@@ -200,7 +200,6 @@ class DoctorController extends Controller
     public function destroy($slug)
     {
         $user = User::where('slug', $slug)->first();
-        $user->sponsorships()->detach();
         Storage::delete('cv_img', $user->cv_img);
         Storage::delete('profile_img', $user->profile_img);
         $user->delete();
