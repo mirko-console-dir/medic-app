@@ -145,7 +145,7 @@
         },
         /**
          * Compila l'elenco delle specializzazioni sulla base degli "users" presenti
-         * Calcola la media dei voti ricevuti dagli utenti                
+         * Calcola la media dei voti ricevuti dagli utenti "*****"                
          */ 
         querySpec: function(users){
           users.forEach(doctor=>{

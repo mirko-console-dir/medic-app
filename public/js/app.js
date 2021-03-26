@@ -2146,7 +2146,7 @@ __webpack_require__.r(__webpack_exports__);
 
     /**
      * Compila l'elenco delle specializzazioni sulla base degli "users" presenti
-     * Calcola la media dei voti ricevuti dagli utenti                
+     * Calcola la media dei voti ricevuti dagli utenti "*****"                
      */
     querySpec: function querySpec(users) {
       var _this3 = this;
@@ -2461,7 +2461,7 @@ __webpack_require__.r(__webpack_exports__);
 *
 */
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['homeRoute'],
+  props: ["homeRoute", "api", "profiles"],
   data: function data() {
     return {
       show: 0,
@@ -2488,92 +2488,105 @@ __webpack_require__.r(__webpack_exports__);
         path: 'img/sponsored/profile_',
         ext: '.jpg'
       },
-      activeProfiles: [],
-      profiles: [{
-        id: '01',
-        name: 'laura',
-        lastname: 'sforza',
-        specialization: 'Neurologo',
-        sex: 'f',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '02',
-        name: 'Luca',
-        lastname: 'Giurato',
-        specialization: 'Logopedista',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '03',
-        name: 'Paolo',
-        lastname: 'Muti',
-        specialization: 'Dermatologo',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '04',
-        name: 'Mr.',
-        lastname: 'T',
-        specialization: 'Osteopata',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '05',
-        name: 'laura',
-        lastname: 'Impegno',
-        specialization: 'Ginecologo',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '06',
-        name: 'Gianluca',
-        lastname: 'Vacchi',
-        specialization: 'Esperto in tricologia',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '07',
-        name: 'Alfiero',
-        lastname: 'Marzi',
-        specialization: 'Psichiatra',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '08',
-        name: 'Maarishi',
-        lastname: 'Ajeje',
-        specialization: 'Ginecologo',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '09',
-        name: 'Gina',
-        lastname: 'Cugini',
-        specialization: 'Pediatra',
-        sex: 'f',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '10',
-        name: 'Marco',
-        lastname: 'Mitici',
-        specialization: 'Ginecologo',
-        sex: 'm',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '11',
-        name: 'Marta',
-        lastname: 'Formicola',
-        specialization: 'Sensitiva',
-        sex: 'f',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }, {
-        id: '12',
-        name: 'Laura',
-        lastname: 'Dinotte',
-        specialization: 'Oculista',
-        sex: 'f',
-        presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      }]
+      activeProfiles: [] // profiles: [
+      //     {
+      //     id: '01',
+      //     name: 'laura',
+      //     lastname: 'sforza',
+      //     specialization: 'Neurologo',
+      //     sex: 'f',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '02',
+      //     name: 'Luca',
+      //     lastname: 'Giurato',
+      //     specialization: 'Logopedista',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '03',
+      //     name: 'Paolo',
+      //     lastname: 'Muti',
+      //     specialization: 'Dermatologo',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '04',
+      //     name: 'Mr.',
+      //     lastname: 'T',
+      //     specialization: 'Osteopata',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '05',
+      //     name: 'laura',
+      //     lastname: 'Impegno',
+      //     specialization: 'Ginecologo',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '06',
+      //     name: 'Gianluca',
+      //     lastname: 'Vacchi',
+      //     specialization: 'Esperto in tricologia',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '07',
+      //     name: 'Alfiero',
+      //     lastname: 'Marzi',
+      //     specialization: 'Psichiatra',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '08',
+      //     name: 'Maarishi',
+      //     lastname: 'Ajeje',
+      //     specialization: 'Ginecologo',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '09',
+      //     name: 'Gina',
+      //     lastname: 'Cugini',
+      //     specialization: 'Pediatra',
+      //     sex: 'f',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '10',
+      //     name: 'Marco',
+      //     lastname: 'Mitici',
+      //     specialization: 'Ginecologo',
+      //     sex: 'm',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '11',
+      //     name: 'Marta',
+      //     lastname: 'Formicola',
+      //     specialization: 'Sensitiva',
+      //     sex: 'f',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      //     {
+      //     id: '12',
+      //     name: 'Laura',
+      //     lastname: 'Dinotte',
+      //     specialization: 'Oculista',
+      //     sex: 'f',
+      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
+      //     },
+      // ],
+
     };
   },
   methods: {
@@ -2710,11 +2723,23 @@ __webpack_require__.r(__webpack_exports__);
     this.cardMediaQuery();
   },
   mounted: function mounted() {
+    self = this;
+    /**
+     * Chiamata al database per importare tutti gli "users"
+     */
+
+    axios.get(self.api) //.get('api/users')
+    .then(function (response) {
+      self.profiles = response.data.data;
+      console.log(response.data.data);
+      self.next(true);
+    })["catch"](function (error) {
+      console.log(error);
+    });
     this.i = 0;
     this.j = this.i + 1;
     this.k = this.i + 2;
     this.l = this.i + 3;
-    this.next(true);
     console.log('Component "Slideshow" mounted');
   },
   distroyed: function distroyed() {
@@ -39471,28 +39496,41 @@ var render = function() {
                   staticClass: "info avatar",
                   style: {
                     "background-image":
-                      "url(" + _vm.image.path + profile.id + _vm.image.ext + ")"
+                      "url(storage/" + profile.profile_img + ")"
                   }
                 }),
                 _vm._v(" "),
                 _c("h4", { staticClass: "info name" }, [
                   _vm._v(
-                    _vm._s(profile.sex === "m" ? "Dott." : "Dott.ssa") +
-                      " " +
+                    "Dr. " +
                       _vm._s(profile.name) +
                       " " +
                       _vm._s(profile.lastname)
                   )
                 ]),
                 _vm._v(" "),
-                _c("h4", { staticClass: "info specialization" }, [
-                  _vm._v(_vm._s(profile.specialization))
-                ]),
+                _vm._l(profile.specializations, function(spec, index) {
+                  return _c(
+                    "h4",
+                    { key: index, staticClass: "info specialization" },
+                    [_vm._v(_vm._s(spec.name) + " ")]
+                  )
+                }),
                 _vm._v(" "),
                 _c("p", { staticClass: "info presentation" }, [
-                  _vm._v(_vm._s(profile.presentation))
-                ])
-              ]
+                  _vm._v(_vm._s(profile.body))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "info presentation",
+                    attrs: { href: "/doctor/" + profile.slug }
+                  },
+                  [_vm._v(" show more ")]
+                )
+              ],
+              2
             )
           }),
           0
@@ -52065,15 +52103,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/js/components/slideshow.vue ***!
   \***********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slideshow_vue_vue_type_template_id_4b348b73___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slideshow.vue?vue&type=template&id=4b348b73& */ "./resources/js/components/slideshow.vue?vue&type=template&id=4b348b73&");
 /* harmony import */ var _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slideshow.vue?vue&type=script&lang=js& */ "./resources/js/components/slideshow.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _slideshow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -52103,7 +52140,7 @@ component.options.__file = "resources/js/components/slideshow.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/components/slideshow.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
