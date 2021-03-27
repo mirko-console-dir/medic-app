@@ -4,12 +4,14 @@ My profile
 @endsection
 
 @section('content')
+
 @role('doctor')
 
 <div class="container d_flex" id="dashboard">
 
     @include('dashboard.partials.sidebar')
     <div class="d_flex_column detail" id="account">
+
         <div class="my_profile d_flex_column">
             <div class="detail d_flex_column">
                 <h2>Profile information</h2>
@@ -137,7 +139,29 @@ My profile
 
     @include('dashboard.partials.sidebar')
 
-    <div class="col-md-9">
+    <div class="d_flex_column detail" id="account">
+
+        <div class="my_profile d_flex_column">
+            <div class="detail d_flex_column">
+                <h2>Admin information</h2>
+
+                <div class="detail d_flex info">
+                  
+                    <div class="d_flex_column">
+                        <h4>Hi {{$user->name}} {{$user->lastname}}, you are the admin!</h4>
+                    </div>
+                </div>
+            </div>
+
+           
+
+
+            <!-- ModalDelete Crud -->
+
+        </div>
+
+
+
 
 
     </div>
