@@ -57,7 +57,6 @@
 
       </div>
 
-
     </div>
   </div>
 
@@ -111,7 +110,7 @@
         /** 
          * Mostra le lista delle specializzazioni quando viene cliccata la barra di ricerca 
         */
-        showList: function(){
+        showList: function(initial){
           if(!this.show){
             return this.show = true;
           }

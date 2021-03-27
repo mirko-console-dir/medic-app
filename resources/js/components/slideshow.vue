@@ -168,7 +168,29 @@ export default {
             }
             this.next(true);
             return this.cardWidth = (1/this.show);
-        }
+        },
+        sposoredDoctors: function(){ 
+            /***************************************/
+            //calcolare la data di scadenza
+            let lastSponsorship = [];
+            let currentData = new Date();
+            this.profiles.forEach(doctor =>{
+                doctor.sponsored = false;
+                lastSponsorship = [];
+                lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
+                console.log(doctor.name, lastSponsorship.name);
+                let sponsorshipData = new Date(lastSponsorship.created_at);
+                //console.log("current data ", currentData);
+                //console.log("js data ", data);
+                //console.log("php data ", lastSponsorship.created_at);
+                if(lastSponsorship.name != "free"){
+                    console.log("confronto ",currentData < sponsorshipData);
+                    //doctor.sponsored = true;
+                    console.log(doctor.name, doctor.sponsored);
+                    return doctor.sponsored;
+                }
+            });
+        },
     },
     created() {
             window.addEventListener('resize', this.cardMediaQuery);
@@ -188,6 +210,7 @@ export default {
             this.l = this.i + 3;
             this.next(true);
             this.cardMediaQuery();
+            this.sposoredDoctors(); /**************************/
 
         })
         .catch(error => {

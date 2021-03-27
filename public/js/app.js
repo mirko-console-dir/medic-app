@@ -2052,7 +2052,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["img", "api", "users"],
   data: function data() {
@@ -2106,7 +2105,7 @@ __webpack_require__.r(__webpack_exports__);
     /** 
      * Mostra le lista delle specializzazioni quando viene cliccata la barra di ricerca 
     */
-    showList: function showList() {
+    showList: function showList(initial) {
       if (!this.show) {
         return this.show = true;
       }
@@ -2647,6 +2646,28 @@ __webpack_require__.r(__webpack_exports__);
 
       this.next(true);
       return this.cardWidth = 1 / this.show;
+    },
+    sposoredDoctors: function sposoredDoctors() {
+      /***************************************/
+      //calcolare la data di scadenza
+      var lastSponsorship = [];
+      var currentData = new Date();
+      this.profiles.forEach(function (doctor) {
+        doctor.sponsored = false;
+        lastSponsorship = [];
+        lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
+        console.log(doctor.name, lastSponsorship.name);
+        var sponsorshipData = new Date(lastSponsorship.created_at); //console.log("current data ", currentData);
+        //console.log("js data ", data);
+        //console.log("php data ", lastSponsorship.created_at);
+
+        if (lastSponsorship.name != "free") {
+          console.log("confronto ", currentData < sponsorshipData); //doctor.sponsored = true;
+
+          console.log(doctor.name, doctor.sponsored);
+          return doctor.sponsored;
+        }
+      });
     }
   },
   created: function created() {
@@ -2670,6 +2691,10 @@ __webpack_require__.r(__webpack_exports__);
       _this.next(true);
 
       _this.cardMediaQuery();
+
+      _this.sposoredDoctors();
+      /**************************/
+
     })["catch"](function (error) {
       console.log(error);
     });
