@@ -21,9 +21,17 @@ Analytics
                 @endrole
 
                 @role('doctor')
-                
+
+                <h4>Messages per months
+                </h4>
                 <canvas id="doctorMessage"></canvas>
+                <h4>Reviews per months
+                </h4>
                 <canvas id="doctorReview"></canvas>
+                <h4>Reviews by votes &star;
+                </h4>
+                <canvas id="doctorVote"></canvas>
+
                 @include('dashboard.doctor.analytics.js_analytics')
 
                 @endrole

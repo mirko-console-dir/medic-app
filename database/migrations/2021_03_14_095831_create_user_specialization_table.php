@@ -17,7 +17,7 @@ class CreateUserSpecializationTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('specialization_id');
-            $table->foreign('specialization_id')->references('id')->on('specializations');
+            $table->foreign('specialization_id')->references('id')->on('specializations')->onDelete('cascade');
         });
     }
 

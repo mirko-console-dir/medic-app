@@ -28,12 +28,12 @@ class AnalyticController extends Controller
         
         $user_id = Auth::user()->id;
         // dd($user_id);
-        // ************GRAFICO REVIEWMESSAGGI
+// ************GRAFICO REVIEWMESSAGGI
 
         $reviews = Review::orderBy('created_at', 'ASC')->where('user_id', $user_id)->pluck('created_at');
 
 
-     if(!empty($reviews)){
+        if(!empty($reviews)){
 
 
             $reviews_dates = json_decode($reviews);
@@ -86,6 +86,7 @@ class AnalyticController extends Controller
             $review_start_date = array_key_first($h);
             $review_end_date = array_key_last($h);
 
+            // dd($review_start_date);
             $review_months_x_axes = array();
 
             if($review_start_date != null && $review_end_date != null){
@@ -106,7 +107,42 @@ class AnalyticController extends Controller
 
 }
 
-        // dd($reviews);
+// ************GRAFICO DOCTORTORTAVOTES
+
+        $votes = Review::orderBy('vote')->where('user_id', $user_id)->pluck('vote');
+        // dd($votes);
+
+        $v_1 = array();
+        $v_2 = array();
+        $v_3 = array();
+        $v_4 = array();
+        $v_5 = array();
+
+
+        foreach ($votes as $key => $value) {
+            if($value == 1){
+                array_push($v_1, $value);
+            }
+            if ($value == 2) {
+                array_push($v_2, $value);
+            }
+            if ($value == 3) {
+                array_push($v_3, $value);
+            }
+            if ($value == 4) {
+                array_push($v_4, $value);
+            }
+            if ($value == 5) {
+                array_push($v_5, $value);
+            }
+        }
+
+        $vote_1 = json_encode(array_count_values($v_1));
+        $vote_2 = json_encode(array_count_values($v_2));
+        $vote_3 = json_encode(array_count_values($v_3));
+        $vote_4 = json_encode(array_count_values($v_4));
+        $vote_5 = json_encode(array_count_values($v_5));
+
 
 // ************GRAFICO DOCTORMESSAGGI
 
@@ -183,14 +219,9 @@ class AnalyticController extends Controller
             $encode_date_array = json_encode($g);
             $encode_months_x_axes = json_encode($months_x_axes);
         
-
         }
 
-
-       
-
-    // 
-        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes'));
+        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes','vote_1','vote_2','vote_3','vote_4','vote_5'));
     }
 
     /**

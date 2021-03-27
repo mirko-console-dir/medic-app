@@ -202,6 +202,7 @@ class DoctorController extends Controller
         $user = User::where('slug', $slug)->first();
         Storage::delete('cv_img', $user->cv_img);
         Storage::delete('profile_img', $user->profile_img);
+        $user->specializations()->detach();
         $user->delete();
         return redirect()->route('dashboard.');
     }
