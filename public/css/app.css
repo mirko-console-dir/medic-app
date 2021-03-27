@@ -12139,29 +12139,30 @@ html body::-webkit-scrollbar-track {
 #advanced_search main .component .page_controller {
   display: flex;
   justify-content: flex-start;
+  width: calc(100% / 4);
+  padding: 50px 0 30px 10px;
 }
 
 #advanced_search main .component .page_controller .arrow {
   display: flex;
   min-width: 60px;
   min-height: 60px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   padding: 10px;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   color: white;
   border-radius: 20px;
-  margin: 50px 20px 20px 20px;
   transition: background 0.5s;
+  margin-right: 10px;
   cursor: pointer;
 }
 
 #advanced_search main .component .page_controller .arrow i {
   font-size: 24px;
-}
-
-#advanced_search main .component .page_controller .arrow:first-child {
-  margin-left: 10px;
 }
 
 #advanced_search main .component .page_controller .left:hover,
@@ -12170,7 +12171,7 @@ html body::-webkit-scrollbar-track {
 }
 
 #advanced_search main .component .page_controller .page {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 #profile_doctor {

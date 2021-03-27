@@ -258,46 +258,44 @@ export default {
             this.window.height = window.innerHeight;
             //tablet
             if(window.innerWidth <= 992 && window.innerWidth > 768) {
-                this.next(true);
                 this.show = this.size.md; //2
             }
             //mobile
             else if(window.innerWidth  <= 768){
-                this.next(true);
                 this.show = this.size.sm; //1
             }
             //desktop
             else if(window.innerWidth  > 992){
-                this.next(true);
                 this.show = this.size.lg; //3
             }
+            this.next(true);
             return this.cardWidth = (1/this.show);
         }
     },
     created() {
-        window.addEventListener('resize', this.cardMediaQuery);
-        this.cardMediaQuery();
-    },
+            window.addEventListener('resize', this.cardMediaQuery);
+        },
     mounted() {
-        self = this;
         /**
          * Chiamata al database per importare tutti gli "users"
          */
         axios
-        .get(self.api) //.get('api/users')
+        .get(this.api) //.get('api/users')
         .then(response => {
-            self.profiles = response.data.data;
-            console.log(response.data.data);
-            self.next(true);
+            this.profiles = response.data.data;
+            //console.log(this.profiles);
+            this.i = 0;
+            this.j = this.i + 1;
+            this.k = this.i + 2;
+            this.l = this.i + 3;
+            this.next(true);
+            this.cardMediaQuery();
+
         })
         .catch(error => {
             console.log(error);
         });
 
-        this.i = 0;
-        this.j = this.i + 1;
-        this.k = this.i + 2;
-        this.l = this.i + 3;
         console.log('Component "Slideshow" mounted');
     },
     distroyed() {

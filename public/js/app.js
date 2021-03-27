@@ -2395,15 +2395,14 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this2 = this;
 
-    self = this;
-    axios.get(self.api) //.get('api/users')
+    axios.get(this.api) //.get('api/users')
     .then(function (response) {
-      self.users = response.data.data; //Creazione Elenco specializzazioni
+      _this2.users = response.data.data; //Creazione Elenco specializzazioni
 
-      self.users.forEach(function (doctor) {
+      _this2.users.forEach(function (doctor) {
         doctor.specializations.forEach(function (spec) {
-          if (!self.specializations.includes(spec.name.toLowerCase())) {
-            return self.specializations.push(spec.name.toLowerCase());
+          if (!_this2.specializations.includes(spec.name.toLowerCase())) {
+            return _this2.specializations.push(spec.name.toLowerCase());
           }
         });
       });
@@ -2420,6 +2419,7 @@ __webpack_require__.r(__webpack_exports__);
         return _this2.show = false;
       }
     });
+    this.cookie();
     console.log('Component "Searchhome" mounted');
   },
   destroyed: function destroyed() {
@@ -2703,43 +2703,43 @@ __webpack_require__.r(__webpack_exports__);
       this.window.height = window.innerHeight; //tablet
 
       if (window.innerWidth <= 992 && window.innerWidth > 768) {
-        this.next(true);
         this.show = this.size.md; //2
       } //mobile
       else if (window.innerWidth <= 768) {
-          this.next(true);
           this.show = this.size.sm; //1
         } //desktop
         else if (window.innerWidth > 992) {
-            this.next(true);
             this.show = this.size.lg; //3
           }
 
+      this.next(true);
       return this.cardWidth = 1 / this.show;
     }
   },
   created: function created() {
     window.addEventListener('resize', this.cardMediaQuery);
-    this.cardMediaQuery();
   },
   mounted: function mounted() {
-    self = this;
+    var _this = this;
+
     /**
      * Chiamata al database per importare tutti gli "users"
      */
-
-    axios.get(self.api) //.get('api/users')
+    axios.get(this.api) //.get('api/users')
     .then(function (response) {
-      self.profiles = response.data.data;
-      console.log(response.data.data);
-      self.next(true);
+      _this.profiles = response.data.data; //console.log(this.profiles);
+
+      _this.i = 0;
+      _this.j = _this.i + 1;
+      _this.k = _this.i + 2;
+      _this.l = _this.i + 3;
+
+      _this.next(true);
+
+      _this.cardMediaQuery();
     })["catch"](function (error) {
       console.log(error);
     });
-    this.i = 0;
-    this.j = this.i + 1;
-    this.k = this.i + 2;
-    this.l = this.i + 3;
     console.log('Component "Slideshow" mounted');
   },
   distroyed: function distroyed() {
@@ -52186,13 +52186,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
 __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> AM-Frontend-20210326
 
 
 /***/ })
