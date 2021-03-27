@@ -12139,7 +12139,7 @@ html body::-webkit-scrollbar-track {
 #advanced_search main .component .page_controller {
   display: flex;
   justify-content: flex-start;
-  width: calc(100% / 4);
+  width: 240px;
   padding: 50px 0 30px 10px;
 }
 
@@ -12843,6 +12843,11 @@ html body::-webkit-scrollbar-track {
   #advanced_search main .component .card_container .card_wrapper {
     width: calc(100% / 1);
     max-width: 300px;
+  }
+
+  #advanced_search main .component .page_controller {
+    width: 100%;
+    justify-content: center;
   }
 }
 

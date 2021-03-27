@@ -189,7 +189,9 @@
         }
 
       },
-
+      created(){
+        
+      },
       mounted() {
         self = this;
         /**

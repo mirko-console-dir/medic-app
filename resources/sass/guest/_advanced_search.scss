@@ -108,11 +108,10 @@
           }
         }
       }
-
       .page_controller{
         display: flex;
         justify-content: flex-start;
-        width: calc(100% / 4);
+        width: 240px;
         padding: 50px 0 30px 10px;
 
         .arrow{
@@ -132,9 +131,6 @@
           i{
             font-size: $medium;
           }
-          // &:first-child{
-          //   margin-left: 10px;
-          // }
         }
         .left:hover, .right:hover{
           background: map-get($color-map, card_background_hover);

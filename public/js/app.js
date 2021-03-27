@@ -2200,6 +2200,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.pages.current--;
     }
   },
+  created: function created() {},
   mounted: function mounted() {
     var _this4 = this;
 
@@ -2389,7 +2390,7 @@ __webpack_require__.r(__webpack_exports__);
       return document.cookie = "search=all";
     },
     writeSpec: function writeSpec(spec) {
-      return this.search = spec;
+      return this.search = spec[0].toUpperCase() + spec.substring(1);
     }
   },
   mounted: function mounted() {
@@ -2484,109 +2485,7 @@ __webpack_require__.r(__webpack_exports__);
         width: 0,
         height: 0
       },
-      image: {
-        path: 'img/sponsored/profile_',
-        ext: '.jpg'
-      },
-      activeProfiles: [] // profiles: [
-      //     {
-      //     id: '01',
-      //     name: 'laura',
-      //     lastname: 'sforza',
-      //     specialization: 'Neurologo',
-      //     sex: 'f',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '02',
-      //     name: 'Luca',
-      //     lastname: 'Giurato',
-      //     specialization: 'Logopedista',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '03',
-      //     name: 'Paolo',
-      //     lastname: 'Muti',
-      //     specialization: 'Dermatologo',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '04',
-      //     name: 'Mr.',
-      //     lastname: 'T',
-      //     specialization: 'Osteopata',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '05',
-      //     name: 'laura',
-      //     lastname: 'Impegno',
-      //     specialization: 'Ginecologo',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '06',
-      //     name: 'Gianluca',
-      //     lastname: 'Vacchi',
-      //     specialization: 'Esperto in tricologia',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '07',
-      //     name: 'Alfiero',
-      //     lastname: 'Marzi',
-      //     specialization: 'Psichiatra',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '08',
-      //     name: 'Maarishi',
-      //     lastname: 'Ajeje',
-      //     specialization: 'Ginecologo',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '09',
-      //     name: 'Gina',
-      //     lastname: 'Cugini',
-      //     specialization: 'Pediatra',
-      //     sex: 'f',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '10',
-      //     name: 'Marco',
-      //     lastname: 'Mitici',
-      //     specialization: 'Ginecologo',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '11',
-      //     name: 'Marta',
-      //     lastname: 'Formicola',
-      //     specialization: 'Sensitiva',
-      //     sex: 'f',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '12',
-      //     name: 'Laura',
-      //     lastname: 'Dinotte',
-      //     specialization: 'Oculista',
-      //     sex: 'f',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      // ],
-
+      activeProfiles: []
     };
   },
   methods: {

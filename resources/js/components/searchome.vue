@@ -72,7 +72,7 @@
         },
 
         writeSpec: function(spec){
-          return this.search = spec;
+          return this.search = spec[0].toUpperCase() + spec.substring(1);
         }
 
       },
