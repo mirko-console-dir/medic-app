@@ -1,10 +1,8 @@
 @extends('layouts.guest.app')
 
-
 @section('title')
   {{$user->name}} {{$user->lastname}}
 @endsection
-
 
 @section('content')
 <div id="profile_doctor">
@@ -64,11 +62,22 @@
       </div>
 
       <div class="services_contacts row">
-
+{{-- Servizi offerti dal dottore --}}
         <div class="services col-lg-6 row">
           <h2 class="col-lg-12">Offered Services</h2>
           <div class="services_container d_flex col-lg-12">
-            <div class="services_pagination d_flex">
+{{-- Bottoni per scorrere tra i servizi rapidamente --}}
+            <div class="buttons">
+              <div class="btn_up_doctor" onclick="goUpServices()">
+                <i class="fas fa-chevron-up"></i>
+              </div>
+
+              <div class="btn_down_doctor" onclick="goDownServices()">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+
+            <div id="services_pagination" class="d_flex">
               @foreach($services as $service)
                 @if($service->user_id == $user->id)
                       <div class="service">
@@ -79,15 +88,7 @@
                   @endif
               @endforeach
             </div>
-            <div class="buttons">
-              <div id="btn_up_doctor">
-                <i class="fas fa-chevron-up"></i>
-              </div>
 
-              <div id="btn_down_doctor">
-                <i class="fas fa-chevron-down"></i>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -178,7 +179,23 @@
 @include('guest.partials.footer')
 
 <script type="application/javascript">
-  console.log("Ciao");
+
+var scrollPosition = document.getElementById('services_pagination').scrollTop;
+
+function goUpServices(){
+  document.getElementById('services_pagination').scrollTo({
+    top: scrollPosition - 200,
+    behavior: 'smooth'
+  });
+}
+
+function goDownServices(){
+      document.getElementById('services_pagination').scrollTo({
+        top: scrollPosition + 200,
+        behavior: 'smooth'
+      });
+}
+
 </script>
 
 @endsection

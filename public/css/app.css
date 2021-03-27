@@ -12324,7 +12324,7 @@ html body::-webkit-scrollbar-track {
   position: relative;
 }
 
-#profile_doctor main .doctor_infos .services_contacts .services .services_container .services_pagination {
+#profile_doctor main .doctor_infos .services_contacts .services .services_container #services_pagination {
   width: 85%;
   height: 200px;
   border-radius: 10px;
@@ -12336,32 +12336,33 @@ html body::-webkit-scrollbar-track {
   margin-top: 20px;
 }
 
-#profile_doctor main .doctor_infos .services_contacts .services .services_container .services_pagination::-webkit-scrollbar {
+#profile_doctor main .doctor_infos .services_contacts .services .services_container #services_pagination::-webkit-scrollbar {
   display: none;
 }
 
-#profile_doctor main .doctor_infos .services_contacts .services .services_container .services_pagination .service {
+#profile_doctor main .doctor_infos .services_contacts .services .services_container #services_pagination .service {
   width: 100%;
   height: 50%;
 }
 
-#profile_doctor main .doctor_infos .services_contacts .services .services_container .services_pagination .service h4 {
+#profile_doctor main .doctor_infos .services_contacts .services .services_container #services_pagination .service h4 {
   color: #00aeef;
   margin-bottom: 5px;
   margin-top: 0;
 }
 
-#profile_doctor main .doctor_infos .services_contacts .services .services_container .services_pagination .service p {
+#profile_doctor main .doctor_infos .services_contacts .services .services_container #services_pagination .service p {
   margin-top: 5px;
   margin-bottom: 0;
   padding: 0;
 }
 
-#profile_doctor main .doctor_infos .services_contacts .services .services_container .services_pagination .service .price::after {
+#profile_doctor main .doctor_infos .services_contacts .services .services_container #services_pagination .service .price::after {
   content: " \20AC";
 }
 
 #profile_doctor main .doctor_infos .services_contacts .services .services_container .buttons {
+  width: 30px;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
@@ -12370,7 +12371,29 @@ html body::-webkit-scrollbar-track {
   transform: translateY(-50%);
   font-size: 25px;
   color: #00aeef;
+  height: 100%;
+}
+
+#profile_doctor main .doctor_infos .services_contacts .services .services_container .buttons .btn_up_doctor {
+  position: absolute;
+  top: 30%;
+  transform: translateY(-50%);
   cursor: pointer;
+}
+
+#profile_doctor main .doctor_infos .services_contacts .services .services_container .buttons .btn_up_doctor:hover {
+  color: white;
+}
+
+#profile_doctor main .doctor_infos .services_contacts .services .services_container .buttons .btn_down_doctor {
+  position: absolute;
+  top: 70%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#profile_doctor main .doctor_infos .services_contacts .services .services_container .buttons .btn_down_doctor:hover {
+  color: white;
 }
 
 #profile_doctor main .doctor_infos .services_contacts .contacts h2 {

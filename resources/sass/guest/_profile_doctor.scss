@@ -130,7 +130,7 @@
           padding-left: 5%;
           padding-right: 5%;
           position: relative;
-          .services_pagination{
+          #services_pagination{
             width: 85%;
             height: 200px;
             border-radius: 10px;
@@ -162,13 +162,32 @@
             }
           }
           .buttons{
+            width: 30px;
             height: max-content;
             position: relative;
             top: 50%;
             transform: translateY(-50%);
             font-size: 25px;
             color:map-get($color-map, primary_color_light);
-            cursor: pointer;
+            height: 100%;
+            .btn_up_doctor{
+              position: absolute;
+              top:30%;
+              transform: translateY(-50%);
+              cursor: pointer;
+              &:hover{
+                color: white;
+              }
+            }
+            .btn_down_doctor{
+              position: absolute;
+              top:70%;
+              transform: translateY(-50%);
+              cursor: pointer;
+              &:hover{
+                color: white;
+              }
+            }
           }
         }
       }
