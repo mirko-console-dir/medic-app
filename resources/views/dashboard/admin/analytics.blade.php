@@ -23,6 +23,7 @@ Analytics
                 @role('doctor')
                 
                 <canvas id="doctorMessage"></canvas>
+                <canvas id="doctorReview"></canvas>
                 @include('dashboard.doctor.analytics.js_analytics')
 
                 @endrole
