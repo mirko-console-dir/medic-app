@@ -71,16 +71,29 @@
             <div class="services_pagination d_flex">
               @foreach($services as $service)
                 @if($service->user_id == $user->id)
-                      <div class="service">{{$service->name}}</div>
+                      <div class="service">
+                        <h4>{{$service->name}}</h4>
+                        <p>{{$service->description}}</p>
+                        <p class="price">Price: {{$service->price}}</p>
+                      </div>
                   @endif
               @endforeach
+            </div>
+            <div class="buttons">
+              <div id="btn_up_doctor">
+                <i class="fas fa-chevron-up"></i>
+              </div>
 
+              <div id="btn_down_doctor">
+                <i class="fas fa-chevron-down"></i>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="contacts col-lg-6">
           <h2>Contacts</h2>
+          <p>Email: {{$user->email}}</p>
           <p class="phone_number">
             @foreach($prefixes as $prefix)
               @if($user->prefix_id == $prefix->id && $user->phone_number !== 0)
