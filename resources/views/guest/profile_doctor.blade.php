@@ -109,7 +109,7 @@
 
         <!-- Guest vote -->
         <label for="vote">Insert vote</label>
-        <input type="number" name="vote" id="vote" class="form-control" placeholder="Insert your vote" min="0" max="5">
+        <input type="number" name="vote" id="vote" class="form-control" placeholder="Insert your vote" min="1" max="5">
         <!-- Guest title -->
         <label for="title">Insert a title</label>
         <input type="text" name="title" id="title" class="form-control" placeholder="Insert a title">

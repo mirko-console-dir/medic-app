@@ -48,7 +48,7 @@ class ReviewController extends Controller
 
             'name' => 'required',
             'lastname' => 'required',
-            'vote' => 'required | min:0 | max:5',
+            'vote' => 'required | min:1 | max:5',
             'title' => 'required',
             'body' => 'required',
 
