@@ -41,109 +41,7 @@ export default {
                 width: 0,
                 height: 0,
             },
-            image:{
-                path: 'img/sponsored/profile_',
-                ext: '.jpg'
-                },
             activeProfiles: [],
-            // profiles: [
-            //     {
-            //     id: '01',
-            //     name: 'laura',
-            //     lastname: 'sforza',
-            //     specialization: 'Neurologo',
-            //     sex: 'f',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '02',
-            //     name: 'Luca',
-            //     lastname: 'Giurato',
-            //     specialization: 'Logopedista',
-            //     sex: 'm',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '03',
-            //     name: 'Paolo',
-            //     lastname: 'Muti',
-            //     specialization: 'Dermatologo',
-            //     sex: 'm',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '04',
-            //     name: 'Mr.',
-            //     lastname: 'T',
-            //     specialization: 'Osteopata',
-            //     sex: 'm',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '05',
-            //     name: 'laura',
-            //     lastname: 'Impegno',
-            //     specialization: 'Ginecologo',
-            //     sex: 'm',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '06',
-            //     name: 'Gianluca',
-            //     lastname: 'Vacchi',
-            //     specialization: 'Esperto in tricologia',
-            //     sex: 'm',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '07',
-            //     name: 'Alfiero',
-            //     lastname: 'Marzi',
-            //     specialization: 'Psichiatra',
-            //     sex: 'm',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '08',
-            //     name: 'Maarishi',
-            //     lastname: 'Ajeje',
-            //     specialization: 'Ginecologo',
-            //     sex: 'm',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '09',
-            //     name: 'Gina',
-            //     lastname: 'Cugini',
-            //     specialization: 'Pediatra',
-            //     sex: 'f',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '10',
-            //     name: 'Marco',
-            //     lastname: 'Mitici',
-            //     specialization: 'Ginecologo',
-            //     sex: 'm',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '11',
-            //     name: 'Marta',
-            //     lastname: 'Formicola',
-            //     specialization: 'Sensitiva',
-            //     sex: 'f',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            //     {
-            //     id: '12',
-            //     name: 'Laura',
-            //     lastname: 'Dinotte',
-            //     specialization: 'Oculista',
-            //     sex: 'f',
-            //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-            //     },
-            // ],
         }
     },
    
@@ -258,46 +156,67 @@ export default {
             this.window.height = window.innerHeight;
             //tablet
             if(window.innerWidth <= 992 && window.innerWidth > 768) {
-                this.next(true);
                 this.show = this.size.md; //2
             }
             //mobile
             else if(window.innerWidth  <= 768){
-                this.next(true);
                 this.show = this.size.sm; //1
             }
             //desktop
             else if(window.innerWidth  > 992){
-                this.next(true);
                 this.show = this.size.lg; //3
             }
+            this.next(true);
             return this.cardWidth = (1/this.show);
-        }
+        },
+        sposoredDoctors: function(){ 
+            /***************************************/
+            //calcolare la data di scadenza
+            let lastSponsorship = [];
+            let currentData = new Date();
+            this.profiles.forEach(doctor =>{
+                doctor.sponsored = false;
+                lastSponsorship = [];
+                lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
+                console.log(doctor.name, lastSponsorship.name);
+                let sponsorshipData = new Date(lastSponsorship.created_at);
+                //console.log("current data ", currentData);
+                //console.log("js data ", data);
+                //console.log("php data ", lastSponsorship.created_at);
+                if(lastSponsorship.name != "free"){
+                    console.log("confronto ",currentData < sponsorshipData);
+                    //doctor.sponsored = true;
+                    console.log(doctor.name, doctor.sponsored);
+                    return doctor.sponsored;
+                }
+            });
+        },
     },
     created() {
-        window.addEventListener('resize', this.cardMediaQuery);
-        this.cardMediaQuery();
+            window.addEventListener('resize', this.cardMediaQuery);
     },
     mounted() {
-        self = this;
         /**
          * Chiamata al database per importare tutti gli "users"
          */
         axios
-        .get(self.api) //.get('api/users')
+        .get(this.api) //.get('api/users')
         .then(response => {
-            self.profiles = response.data.data;
-            console.log(response.data.data);
-            self.next(true);
+            this.profiles = response.data.data;
+            //console.log(this.profiles);
+            this.i = 0;
+            this.j = this.i + 1;
+            this.k = this.i + 2;
+            this.l = this.i + 3;
+            this.next(true);
+            this.cardMediaQuery();
+            this.sposoredDoctors(); /**************************/
+
         })
         .catch(error => {
             console.log(error);
         });
 
-        this.i = 0;
-        this.j = this.i + 1;
-        this.k = this.i + 2;
-        this.l = this.i + 3;
         console.log('Component "Slideshow" mounted');
     },
     distroyed() {

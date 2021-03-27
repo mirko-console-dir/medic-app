@@ -108,36 +108,35 @@
           }
         }
       }
-
       .page_controller{
         display: flex;
         justify-content: flex-start;
+        width: 240px;
+        padding: 50px 0 30px 10px;
 
         .arrow{
           display: flex;
           min-width: 60px;
           min-height: 60px;
+          width: max-content;
           padding: 10px;
           justify-content: center;
           align-items: center;
           background: map-get($color-map, card_background);
           color: white;
           border-radius: 20px;
-          margin: 50px 20px 20px 20px; 
           transition: background 0.5s;
+          margin-right: 10px;
           cursor: pointer;
           i{
             font-size: $medium;
-          }
-          &:first-child{
-            margin-left: 10px;
           }
         }
         .left:hover, .right:hover{
           background: map-get($color-map, card_background_hover);
         }
         .page{
-          font-size: $medium;
+          font-size: $small;
         }
 
       }

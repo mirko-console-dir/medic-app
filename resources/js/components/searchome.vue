@@ -72,23 +72,21 @@
         },
 
         writeSpec: function(spec){
-          return this.search = spec;
+          return this.search = spec[0].toUpperCase() + spec.substring(1);
         }
-
       },
 
       mounted() {
-        self = this;
         axios
-        .get(self.api) //.get('api/users')
+        .get(this.api) //.get('api/users')
         .then(response => {
-              self.users = response.data.data;
+              this.users = response.data.data;
 
               //Creazione Elenco specializzazioni
-              self.users.forEach(doctor=>{
+              this.users.forEach(doctor=>{
                 doctor.specializations.forEach(spec=>{
-                  if(!self.specializations.includes(spec.name.toLowerCase())){
-                    return self.specializations.push(spec.name.toLowerCase());
+                  if(!this.specializations.includes(spec.name.toLowerCase())){
+                    return this.specializations.push(spec.name.toLowerCase());
                   }
                 });
               });
@@ -106,7 +104,7 @@
             return this.show = false;
           }
         });
-
+        this.cookie();
         console.log('Component "Searchhome" mounted');
       },
       destroyed(){

@@ -2052,7 +2052,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["img", "api", "users"],
   data: function data() {
@@ -2070,7 +2069,12 @@ __webpack_require__.r(__webpack_exports__);
         current: 1,
         total: 1
       },
-      rating: 0
+      rating: 0,
+      window: {
+        // dichiarazione iniziale per la variabile window
+        width: 0,
+        height: 0
+      }
     };
   },
   methods: {
@@ -2101,7 +2105,7 @@ __webpack_require__.r(__webpack_exports__);
     /** 
      * Mostra le lista delle specializzazioni quando viene cliccata la barra di ricerca 
     */
-    showList: function showList() {
+    showList: function showList(initial) {
       if (!this.show) {
         return this.show = true;
       }
@@ -2117,7 +2121,6 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * 1. Fa' coincidere il valore mostrato sulla barra di ricerca con una delle specializzazio mostrate nel menu a scomparsa
      * 2. Filtra i medici selezionando quelli che presentano la specializzazione cercata.
-     * 3. Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
      */
     writeSpec: function writeSpec(selectedSpec) {
       var _this2 = this;
@@ -2135,12 +2138,6 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         });
-      }
-
-      this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
-
-      if (this.pages.total === 0) {
-        this.pages.total = 1;
       }
     },
 
@@ -2167,14 +2164,13 @@ __webpack_require__.r(__webpack_exports__);
         });
         avgVote = vote / counter;
         floorVote = Math.floor(avgVote);
-        avgVote = [0, 0, 0, 0, 0];
+        avgVote = [false, false, false, false, false];
 
         for (var i = 0; i < floorVote; i++) {
-          avgVote[i] = 1;
+          avgVote[i] = true;
         }
 
-        doctor.avgVote = avgVote;
-        console.log(doctor.name, doctor.avgVote);
+        doctor.avgVote = avgVote; //console.log(doctor.name, doctor.avgVote); 
       });
     },
 
@@ -2198,34 +2194,71 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return this.pages.current--;
+    },
+
+    /**
+     * Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
+    */
+    cardsMediaQuery: function cardsMediaQuery() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight; //tablet
+
+      if (window.innerWidth <= 992 && window.innerWidth > 768) {
+        this.cards = 8;
+        this.pages.current = 1;
+      } //mobile
+      else if (window.innerWidth <= 768) {
+          this.cards = 6;
+          this.pages.current = 1;
+        } //desktop
+        else if (window.innerWidth > 992) {
+            this.cards = 12;
+            this.pages.current = 1;
+          }
+
+      console.log("this.cards ", this.cards);
+      this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
+
+      if (this.pages.total === 0) {
+        this.pages.total = 1;
+      }
     }
+  },
+  created: function created() {
+    window.addEventListener('resize', this.cardsMediaQuery);
   },
   mounted: function mounted() {
     var _this4 = this;
 
-    self = this;
     /**
      * Chiamata al database per importare tutti gli "users"
      */
-
-    axios.get(self.api) //.get('api/users')
+    axios.get(this.api) //.get('api/users')
     .then(function (response) {
-      self.users = response.data.data;
+      _this4.users = response.data.data;
       /**
       * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
       */
 
-      self.querySpec(self.users);
+      _this4.querySpec(_this4.users);
       /** 
       * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
       */
 
-      self.specializations.unshift("all");
+
+      _this4.specializations.unshift("all");
       /**
        * Trigger iniziale sul valore passato dalla pagina "home"
       */
 
-      self.writeSpec(self.search != "" ? self.search : "all");
+
+      _this4.writeSpec(_this4.search != "" ? _this4.search : "all");
+      /**
+       * Trigger iniziale per determinare il numero di cards da mosttrare in base alla larghezza della finestra.
+       */
+
+
+      _this4.cardsMediaQuery();
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2257,6 +2290,7 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * Rimozione dell'eventlistener alla chiusura della pagina
      */
+    window.removeEventListener('resize', this.cardsMediaQuery);
     document.removeEventListener('click');
     document.cookie;
   }
@@ -2389,21 +2423,20 @@ __webpack_require__.r(__webpack_exports__);
       return document.cookie = "search=all";
     },
     writeSpec: function writeSpec(spec) {
-      return this.search = spec;
+      return this.search = spec[0].toUpperCase() + spec.substring(1);
     }
   },
   mounted: function mounted() {
     var _this2 = this;
 
-    self = this;
-    axios.get(self.api) //.get('api/users')
+    axios.get(this.api) //.get('api/users')
     .then(function (response) {
-      self.users = response.data.data; //Creazione Elenco specializzazioni
+      _this2.users = response.data.data; //Creazione Elenco specializzazioni
 
-      self.users.forEach(function (doctor) {
+      _this2.users.forEach(function (doctor) {
         doctor.specializations.forEach(function (spec) {
-          if (!self.specializations.includes(spec.name.toLowerCase())) {
-            return self.specializations.push(spec.name.toLowerCase());
+          if (!_this2.specializations.includes(spec.name.toLowerCase())) {
+            return _this2.specializations.push(spec.name.toLowerCase());
           }
         });
       });
@@ -2420,6 +2453,7 @@ __webpack_require__.r(__webpack_exports__);
         return _this2.show = false;
       }
     });
+    this.cookie();
     console.log('Component "Searchhome" mounted');
   },
   destroyed: function destroyed() {
@@ -2484,109 +2518,7 @@ __webpack_require__.r(__webpack_exports__);
         width: 0,
         height: 0
       },
-      image: {
-        path: 'img/sponsored/profile_',
-        ext: '.jpg'
-      },
-      activeProfiles: [] // profiles: [
-      //     {
-      //     id: '01',
-      //     name: 'laura',
-      //     lastname: 'sforza',
-      //     specialization: 'Neurologo',
-      //     sex: 'f',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '02',
-      //     name: 'Luca',
-      //     lastname: 'Giurato',
-      //     specialization: 'Logopedista',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '03',
-      //     name: 'Paolo',
-      //     lastname: 'Muti',
-      //     specialization: 'Dermatologo',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '04',
-      //     name: 'Mr.',
-      //     lastname: 'T',
-      //     specialization: 'Osteopata',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '05',
-      //     name: 'laura',
-      //     lastname: 'Impegno',
-      //     specialization: 'Ginecologo',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '06',
-      //     name: 'Gianluca',
-      //     lastname: 'Vacchi',
-      //     specialization: 'Esperto in tricologia',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '07',
-      //     name: 'Alfiero',
-      //     lastname: 'Marzi',
-      //     specialization: 'Psichiatra',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '08',
-      //     name: 'Maarishi',
-      //     lastname: 'Ajeje',
-      //     specialization: 'Ginecologo',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '09',
-      //     name: 'Gina',
-      //     lastname: 'Cugini',
-      //     specialization: 'Pediatra',
-      //     sex: 'f',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '10',
-      //     name: 'Marco',
-      //     lastname: 'Mitici',
-      //     specialization: 'Ginecologo',
-      //     sex: 'm',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '11',
-      //     name: 'Marta',
-      //     lastname: 'Formicola',
-      //     specialization: 'Sensitiva',
-      //     sex: 'f',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      //     {
-      //     id: '12',
-      //     name: 'Laura',
-      //     lastname: 'Dinotte',
-      //     specialization: 'Oculista',
-      //     sex: 'f',
-      //     presentation: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente blanditiis consectetur soluta magni ab officiis assumenda odit cum voluptate fuga, omnis ea laboriosam adipisci tempore?!'
-      //     },
-      // ],
-
+      activeProfiles: []
     };
   },
   methods: {
@@ -2703,43 +2635,69 @@ __webpack_require__.r(__webpack_exports__);
       this.window.height = window.innerHeight; //tablet
 
       if (window.innerWidth <= 992 && window.innerWidth > 768) {
-        this.next(true);
         this.show = this.size.md; //2
       } //mobile
       else if (window.innerWidth <= 768) {
-          this.next(true);
           this.show = this.size.sm; //1
         } //desktop
         else if (window.innerWidth > 992) {
-            this.next(true);
             this.show = this.size.lg; //3
           }
 
+      this.next(true);
       return this.cardWidth = 1 / this.show;
+    },
+    sposoredDoctors: function sposoredDoctors() {
+      /***************************************/
+      //calcolare la data di scadenza
+      var lastSponsorship = [];
+      var currentData = new Date();
+      this.profiles.forEach(function (doctor) {
+        doctor.sponsored = false;
+        lastSponsorship = [];
+        lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
+        console.log(doctor.name, lastSponsorship.name);
+        var sponsorshipData = new Date(lastSponsorship.created_at); //console.log("current data ", currentData);
+        //console.log("js data ", data);
+        //console.log("php data ", lastSponsorship.created_at);
+
+        if (lastSponsorship.name != "free") {
+          console.log("confronto ", currentData < sponsorshipData); //doctor.sponsored = true;
+
+          console.log(doctor.name, doctor.sponsored);
+          return doctor.sponsored;
+        }
+      });
     }
   },
   created: function created() {
     window.addEventListener('resize', this.cardMediaQuery);
-    this.cardMediaQuery();
   },
   mounted: function mounted() {
-    self = this;
+    var _this = this;
+
     /**
      * Chiamata al database per importare tutti gli "users"
      */
-
-    axios.get(self.api) //.get('api/users')
+    axios.get(this.api) //.get('api/users')
     .then(function (response) {
-      self.profiles = response.data.data;
-      console.log(response.data.data);
-      self.next(true);
+      _this.profiles = response.data.data; //console.log(this.profiles);
+
+      _this.i = 0;
+      _this.j = _this.i + 1;
+      _this.k = _this.i + 2;
+      _this.l = _this.i + 3;
+
+      _this.next(true);
+
+      _this.cardMediaQuery();
+
+      _this.sposoredDoctors();
+      /**************************/
+
     })["catch"](function (error) {
       console.log(error);
     });
-    this.i = 0;
-    this.j = this.i + 1;
-    this.k = this.i + 2;
-    this.l = this.i + 3;
     console.log('Component "Slideshow" mounted');
   },
   distroyed: function distroyed() {
@@ -39277,7 +39235,7 @@ var render = function() {
                     _vm._l(user.avgVote, function(vote, index) {
                       return _c("i", {
                         key: index,
-                        class: vote === 1 ? "fas fa-star" : "far fa-star"
+                        class: vote ? "fas fa-star" : "far fa-star"
                       })
                     }),
                     0
@@ -52186,8 +52144,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> AM-Frontend-20210327
 
 
 /***/ })
