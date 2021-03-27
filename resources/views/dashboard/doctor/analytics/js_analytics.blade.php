@@ -74,7 +74,7 @@ options:{
         xAxes:[{
             ticks: {
               
-                maxTicksLimit:'',
+                maxTicksLimit:'15',
                 // min:0,
                 max:10,
                 fontColor: '#ffffff',
@@ -101,6 +101,7 @@ var doctorReview = document.getElementById('doctorReview');
 
 var encode_review_date_array = {!!$encode_review_date_array!!};
 var encode_review_months_x_axes = {!!$encode_review_months_x_axes!!};
+// console.log(encode_review_months_x_axes);
 
 console.log(encode_review_date_array);
 console.log(encode_review_months_x_axes);
@@ -190,11 +191,11 @@ options:{
 
 var doctorVote = document.getElementById('doctorVote');
 
-var vote_1 = {!!$vote_1!!}
-var vote_2 = {!!$vote_2!!}
-var vote_3 = {!!$vote_3!!}
-var vote_4 = {!!$vote_4!!}
-var vote_5 = {!!$vote_5!!}
+var vote_1 = {!!$vote_1!!};
+var vote_2 = {!!$vote_2!!};
+var vote_3 = {!!$vote_3!!};
+var vote_4 = {!!$vote_4!!};
+var vote_5 = {!!$vote_5!!};
 
 var v_1 = Object.values(vote_1);
 var v_2 = Object.values(vote_2);

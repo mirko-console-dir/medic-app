@@ -27,7 +27,67 @@ class AnalyticController extends Controller
         $user_sponsorships = json_encode(User::with('sponsorships')->get());
         
         $user_id = Auth::user()->id;
-        // dd($user_id);
+
+        // ************ GRAFICO ADMINNUMBERDOCTORS
+
+        $doctors = json_decode(User::with('roles')->orderBy('created_at', 'ASC')->get());
+
+        $doctors_date_array = array();
+
+        if(!empty($doctors)){
+
+
+        
+        foreach($doctors as $doctor){
+            if($doctor->roles[0]->pivot->role_id != 1){
+                // dd($doctor->created_at);
+                $doctor_date = Carbon::parse($doctor->created_at);
+                // dd($doctor_date);
+                $doctor_year_date = $doctor_date->year;
+                $doctor_month_date = $doctor_date->month;
+                    // dd($doctor_year_date);
+                    if ($doctor_month_date >= 10) {
+                        $full_date = $doctor_year_date . '-' . $doctor_month_date;
+                        // dd($full_date);
+                    } else {
+                        $full_date = $doctor_year_date . '-' . '0' . $doctor_month_date;
+                        // dd($full_date);
+                    }
+
+
+                    $tot_doctors = User::whereMonth('created_at', $doctor_month_date)->whereYear('created_at', $doctor_year_date)->get()->count();
+                    // dd($tot_doctors);
+
+
+
+                    $doctors_date_array[$full_date] = $tot_doctors;
+
+            };
+        }
+
+                    // dd($doctors_date_array);
+
+                    $doctor_start_date = array_key_first($doctors_date_array);
+                    $doctor_end_date = array_key_last($doctors_date_array);
+
+                    
+                    $doctor_x_axes = array();
+
+                    if($doctor_start_date != null && $doctor_end_date != null){
+                        $doctor_period = CarbonPeriod::create($doctor_start_date, '1 month', $doctor_end_date);
+                        foreach ($doctor_period as $date) {
+                            $months_period = $date->format('Y-m');
+                            array_push($doctor_x_axes, $months_period);
+                        }
+                    }
+                    
+                    $encode_doctor_x_axes = json_encode($doctor_x_axes);
+                    // dd($encode_doctor_x_axes);
+                    $encode_doctor_date_array = json_encode($doctors_date_array);
+
+    }
+
+
 // ************GRAFICO REVIEWMESSAGGI
 
         $reviews = Review::orderBy('created_at', 'ASC')->where('user_id', $user_id)->pluck('created_at');
@@ -48,6 +108,7 @@ class AnalyticController extends Controller
                     $date_month_no = $date->month;
                     if ($date_month_no >= 10) {
                         $full_date = $date_month_no . ' ' . $date_year;
+                        // dd($full_date);
                     } else {
                         $full_date = '0' . $date_month_no . ' ' . $date_year;
                     }
@@ -60,6 +121,7 @@ class AnalyticController extends Controller
                     $tot_review = Review::whereMonth('created_at', $date_month_no)->whereYear('created_at', $date_year)->where('user_id', $user_id)->get()->count();
 
                     // dd($tot_message);
+                    
 
                     $review_date_array[$full_date] = $tot_review;
                 }
@@ -78,6 +140,7 @@ class AnalyticController extends Controller
 
                 array_push($c_d_array, $c_d_date);
             }
+            // dd($c_d_array);
 
             $h = array_combine($c_d_array, $review_date_array);
             // dd($h);
@@ -96,7 +159,7 @@ class AnalyticController extends Controller
                 $j = $date->format('Y-m');
                 array_push($review_months_x_axes, $j);
             }
-        }
+            }
             $encode_review_date_array = json_encode($h);
             $encode_review_months_x_axes = json_encode($review_months_x_axes);
         
@@ -218,10 +281,10 @@ class AnalyticController extends Controller
             // dd($months_x_axes);
             $encode_date_array = json_encode($g);
             $encode_months_x_axes = json_encode($months_x_axes);
-        
+            // dd($encode_months_x_axes);
         }
 
-        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes','vote_1','vote_2','vote_3','vote_4','vote_5'));
+        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes','vote_1','vote_2','vote_3','vote_4','vote_5', 'encode_doctor_x_axes','encode_doctor_date_array'));
     }
 
     /**
