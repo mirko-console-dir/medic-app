@@ -1,4 +1,3 @@
-
 @extends('layouts.guest.app')
 
 
@@ -64,18 +63,34 @@
         </div>
       </div>
 
-      <div class="services col-lg-12 d_flex">
+      <div class="services_contacts row">
 
+        <div class="services col-lg-6 row">
+          <h2 class="col-lg-12">Offered Services</h2>
+          <div class="services_container d_flex col-lg-12">
+            <div class="services_pagination d_flex">
+              @foreach($services as $service)
+                @if($service->user_id == $user->id)
+                      <div class="service">{{$service->name}}</div>
+                  @endif
+              @endforeach
+
+            </div>
+          </div>
+        </div>
+
+        <div class="contacts col-lg-6">
+          <h2>Contacts</h2>
+          <p class="phone_number">
+            @foreach($prefixes as $prefix)
+              @if($user->prefix_id == $prefix->id && $user->phone_number !== 0)
+                Phone Number:  {{$prefix->dial_code}} {{$user->phone_number}}
+              @endif
+            @endforeach
+          </p>
+        </div>
 
       </div>
-
-      <p class="phone_number">
-        @foreach($prefixes as $prefix)
-          @if($user->prefix_id == $prefix->id && $user->phone_number !== 0)
-            Phone Number:  {{$prefix->dial_code}} {{$user->phone_number}}
-          @endif
-        @endforeach
-      </p>
 
 
 
@@ -138,7 +153,6 @@
         <button type="submit" class="btn btn-success">Send</button>
 
 
-
     </form>
   </div>
 
@@ -149,5 +163,9 @@
 </div>
 
 @include('guest.partials.footer')
+
+<script type="application/javascript">
+  console.log("Ciao");
+</script>
 
 @endsection

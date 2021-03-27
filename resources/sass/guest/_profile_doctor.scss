@@ -117,9 +117,40 @@
             }
           }
         }
+      }
+      .services_contacts{
+        width: 100%;
+        margin: auto;
+      .services{
+        h2{
+          padding-left: 5%;
+          margin-top: 0;
+        }
+        .services_container{
+          padding-left: 5%;
+          padding-right: 5%;
+          .services_pagination{
+            width: 100%;
+            height: 200px;
+            border: 2px solid map-get($color-map, primary_color_light);
+            border-radius: 10px;
+            flex-wrap: wrap;
+            .service{
+              width: 50%;
+              height: 50%;
+              padding: 5%;
+            }
+          }
+        }
+      }
+      .contacts{
+        h2{
+          margin-top: 0;
+        }
         .phone_number{
           margin-top: 20px;
           font-size: 15px;
+          }
         }
       }
     }
