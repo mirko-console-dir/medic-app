@@ -2070,7 +2070,12 @@ __webpack_require__.r(__webpack_exports__);
         current: 1,
         total: 1
       },
-      rating: 0
+      rating: 0,
+      window: {
+        // dichiarazione iniziale per la variabile window
+        width: 0,
+        height: 0
+      }
     };
   },
   methods: {
@@ -2117,7 +2122,6 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * 1. Fa' coincidere il valore mostrato sulla barra di ricerca con una delle specializzazio mostrate nel menu a scomparsa
      * 2. Filtra i medici selezionando quelli che presentano la specializzazione cercata.
-     * 3. Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
      */
     writeSpec: function writeSpec(selectedSpec) {
       var _this2 = this;
@@ -2135,12 +2139,6 @@ __webpack_require__.r(__webpack_exports__);
             }
           });
         });
-      }
-
-      this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
-
-      if (this.pages.total === 0) {
-        this.pages.total = 1;
       }
     },
 
@@ -2167,14 +2165,13 @@ __webpack_require__.r(__webpack_exports__);
         });
         avgVote = vote / counter;
         floorVote = Math.floor(avgVote);
-        avgVote = [0, 0, 0, 0, 0];
+        avgVote = [false, false, false, false, false];
 
         for (var i = 0; i < floorVote; i++) {
-          avgVote[i] = 1;
+          avgVote[i] = true;
         }
 
-        doctor.avgVote = avgVote;
-        console.log(doctor.name, doctor.avgVote);
+        doctor.avgVote = avgVote; //console.log(doctor.name, doctor.avgVote); 
       });
     },
 
@@ -2198,35 +2195,71 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return this.pages.current--;
+    },
+
+    /**
+     * Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
+    */
+    cardsMediaQuery: function cardsMediaQuery() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight; //tablet
+
+      if (window.innerWidth <= 992 && window.innerWidth > 768) {
+        this.cards = 8;
+        this.pages.current = 1;
+      } //mobile
+      else if (window.innerWidth <= 768) {
+          this.cards = 6;
+          this.pages.current = 1;
+        } //desktop
+        else if (window.innerWidth > 992) {
+            this.cards = 12;
+            this.pages.current = 1;
+          }
+
+      console.log("this.cards ", this.cards);
+      this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
+
+      if (this.pages.total === 0) {
+        this.pages.total = 1;
+      }
     }
   },
-  created: function created() {},
+  created: function created() {
+    window.addEventListener('resize', this.cardsMediaQuery);
+  },
   mounted: function mounted() {
     var _this4 = this;
 
-    self = this;
     /**
      * Chiamata al database per importare tutti gli "users"
      */
-
-    axios.get(self.api) //.get('api/users')
+    axios.get(this.api) //.get('api/users')
     .then(function (response) {
-      self.users = response.data.data;
+      _this4.users = response.data.data;
       /**
       * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
       */
 
-      self.querySpec(self.users);
+      _this4.querySpec(_this4.users);
       /** 
       * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
       */
 
-      self.specializations.unshift("all");
+
+      _this4.specializations.unshift("all");
       /**
        * Trigger iniziale sul valore passato dalla pagina "home"
       */
 
-      self.writeSpec(self.search != "" ? self.search : "all");
+
+      _this4.writeSpec(_this4.search != "" ? _this4.search : "all");
+      /**
+       * Trigger iniziale per determinare il numero di cards da mosttrare in base alla larghezza della finestra.
+       */
+
+
+      _this4.cardsMediaQuery();
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2258,6 +2291,7 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * Rimozione dell'eventlistener alla chiusura della pagina
      */
+    window.removeEventListener('resize', this.cardsMediaQuery);
     document.removeEventListener('click');
     document.cookie;
   }
@@ -39176,7 +39210,7 @@ var render = function() {
                     _vm._l(user.avgVote, function(vote, index) {
                       return _c("i", {
                         key: index,
-                        class: vote === 1 ? "fas fa-star" : "far fa-star"
+                        class: vote ? "fas fa-star" : "far fa-star"
                       })
                     }),
                     0

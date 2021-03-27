@@ -30,12 +30,13 @@ $color-map: (
 @mixin scrollbar {
   html {
     // For Firefox
-    scrollbar-color: rgb(47, 169, 235) #01336e;
-
+    scrollbar-color: rgb(20, 20, 48);
+    
     // For IE
     body {
-      scrollbar-face-color: map-get($color-map, blue_logo);
-      scrollbar-track-color: #01336e;
+      background-color: rgb(20, 20, 48);
+      scrollbar-face-color: rgb(20, 20, 48);
+      scrollbar-track-color: rgba(50, 50, 50, 0.5);
     }
 
     // For Chrome and Safari
@@ -44,15 +45,15 @@ $color-map: (
       height: 16px;
     }
     body::-webkit-scrollbar-thumb {
-      background: map-get($color-map, blue_logo);
+      background: rgba(50, 50, 50, 0.5);
       border-radius: 10px;
-      box-shadow: outset 2px 5px 12px map-get($color-map, primary_gray_light);
+      //box-shadow: outset 2px 5px 12px map-get($color-map, primary_gray_light);
     }
     body::-webkit-scrollbar-thumb:hover{
-      background: map-get($color-map, button_blue_hover);
+      background: rgba(50, 50, 50, 0.5);
     }
     body::-webkit-scrollbar-track{
-      background: #01336e;
+      background: rgba(50, 50, 50, 0.5);
       border-radius: 8px;
       // box-shadow: inset 1px 10px 12px map-get($color-map, primary_gray_light);
     }
