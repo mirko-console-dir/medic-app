@@ -38,7 +38,14 @@
                     'rgba(46, 168, 233, 1)',
                      'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)',
-                    'rgba(46, 168, 233, 1)', 'rgba(46, 168, 233, 1)',
+                    'rgba(46, 168, 233, 1)',
+                    'rgba(46, 168, 233, 1)',
+                    'rgba(46, 168, 233, 1)',
+                    'rgba(46, 168, 233, 1)',
+                    'rgba(46, 168, 233, 1)',
+                    'rgba(46, 168, 233, 1)',
+                    'rgba(46, 168, 233, 1)',
+                    'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)', 'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)',
@@ -48,11 +55,8 @@
                     'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)', 'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)',
-                    'rgba(46, 168, 233, 1)', 'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)',
-                    'rgba(46, 168, 233, 1)', 'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)',
-                    'rgba(46, 168, 233, 1)', 'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)',
                     'rgba(46, 168, 233, 1)',
                 ],
@@ -84,7 +88,10 @@
                     ticks: {
                         min: 0,
                         max: 10,
-                    }
+                    },
+                    gridLines: {
+                    zeroLineColor: '#84BE46',
+                    },
                 }]
             }
         }
@@ -97,13 +104,15 @@
 
     // ADMINSPONSORSHIPS
 
-    var cty = document.getElementById('adminSponsorship');
+    var ctw = document.getElementById('adminSponsorship');
 
+    var encode_sponsorship_x_axes = {!!$encode_sponsorship_x_axes!!};
+    console.log(encode_sponsorship_x_axes);
 
-    var adminSponsorship = new Chart(cty, {
+    var adminSponsorship = new Chart(ctw, {
         type: 'bar',
         data: {
-            labels: [],
+            labels: encode_sponsorship_x_axes,
             datasets: [{
                 label: 'Standard',
                 data: [],
