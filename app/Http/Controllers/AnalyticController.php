@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Message;
 use App\Review;
+use App\Sponsorship;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AnalyticController extends Controller
 {
@@ -17,18 +19,83 @@ class AnalyticController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user, Message $message, Review $review)
+    public function index(User $user, Message $message, Review $review, Sponsorship $sponsorship)
     {
         // $users_month = User::orderBy('created_at', 'ASC')->pluck('created_at');  
 
         $user = Auth::user();
         $users = User::all();
         
-        $user_sponsorships = json_encode(User::with('sponsorships')->get());
+        $user_sponsorships = json_decode(User::has('sponsorships')->with('sponsorships')->get());
         
+        // dd($user_sponsorships);
         $user_id = Auth::user()->id;
 
-        // ************ GRAFICO ADMINNUMBERDOCTORS
+        // dd($user_sponsorships);
+        $sponsorship_date_array = array();
+
+        foreach($user_sponsorships as $user_has_relation){
+            
+            // dd($user_has_relation->sponsorships);
+
+            foreach($user_has_relation->sponsorships as $sponsorship){
+                // dd($sponsorship);
+                if($sponsorship->id != 1){
+
+                   $sponsorship_date = Carbon::parse($sponsorship->pivot->created_at);
+                   $sponsorship_year_date = $sponsorship_date->year;
+                   $sponsorship_month_date = $sponsorship_date->month;
+
+                    if ($sponsorship_month_date >= 10) {
+                        $full_date = $sponsorship_year_date . '-' . $sponsorship_month_date;
+                        // dd($full_date);
+                    } else {
+                        $full_date = $sponsorship_year_date . '-' . '0' . $sponsorship_month_date;
+                        // dd($full_date);
+                    }
+
+                    // $tot_sponsorships = User::has('sponsorships')->with('sponsorships')->whereMonth('created_at', $sponsorship_month_date)->whereYear('created_at', $sponsorship_year_date)->get()->count();
+                    // dd($tot_sponsorships);
+                    $tot_sponsorships = DB::table('user_sponsorship')->whereMonth('created_at', $sponsorship_month_date)->whereYear('created_at', $sponsorship_year_date)->where('sponsorship_id', '>', 1)->get()->count();
+
+                    // dd($tot_sponsorships);
+                    $sponsorship_date_array[$full_date] = $tot_sponsorships;
+
+                    $standard[$full_date] = DB::table('user_sponsorship')->whereMonth('created_at', $sponsorship_month_date)->whereYear('created_at', $sponsorship_year_date)->where('sponsorship_id', '=', 2)->get();
+
+                    $premium[$full_date] = DB::table('user_sponsorship')->whereMonth('created_at', $sponsorship_month_date)->whereYear('created_at', $sponsorship_year_date)->where('sponsorship_id', '=', 3)->get();
+
+                    $exclusive[$full_date] = DB::table('user_sponsorship')->whereMonth('created_at', $sponsorship_month_date)->whereYear('created_at', $sponsorship_year_date)->where('sponsorship_id', '=', 4)->get();
+                    
+                }
+            }
+
+        }
+        // dd($standard);
+        $encode_standard = json_encode($standard);
+        $encode_premium = json_encode($premium);
+        $encode_exclusive = json_encode($exclusive);
+        // dd($sponsorship_date_array);
+
+        // $standard_sponsorships = DB::table('user_sponsorship')->
+
+        $sponsorship_start_date = array_key_first($sponsorship_date_array);
+        $sponsorship_end_date = array_key_last($sponsorship_date_array);
+        $sponsorship_x_axes = array();
+
+        if ($sponsorship_start_date != null && $sponsorship_end_date != null) {
+            $sponsorship_period = CarbonPeriod::create($sponsorship_start_date, '1 month', $sponsorship_end_date);
+            foreach ($sponsorship_period as $date) {
+                $months_period = $date->format('Y-m');
+                array_push($sponsorship_x_axes, $months_period);
+            }
+        }
+
+        // dd($sponsorship_x_axes);
+        $encode_sponsorship_x_axes = json_encode($sponsorship_x_axes);
+
+
+// ************ GRAFICO ADMINNUMBERDOCTORS
 
         $doctors = json_decode(User::with('roles')->orderBy('created_at', 'ASC')->get());
 
@@ -284,7 +351,7 @@ class AnalyticController extends Controller
             // dd($encode_months_x_axes);
         }
 
-        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes','vote_1','vote_2','vote_3','vote_4','vote_5', 'encode_doctor_x_axes','encode_doctor_date_array'));
+        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes','vote_1','vote_2','vote_3','vote_4','vote_5', 'encode_doctor_x_axes','encode_doctor_date_array', 'encode_sponsorship_x_axes','encode_standard','encode_premium','encode_exclusive'));
     }
 
     /**
