@@ -1,11 +1,8 @@
-
 @extends('layouts.guest.app')
-
 
 @section('title')
   {{$user->name}} {{$user->lastname}}
 @endsection
-
 
 @section('content')
 <div id="profile_doctor">
@@ -64,18 +61,70 @@
         </div>
       </div>
 
-      <div class="services col-lg-12 d_flex">
+      <div class="services_contacts row">
 
+{{-- Sezione con i servizi offerti dal dottore --}}
+
+        {{-- Codice in php che filtra trova i servizi del dottore e li inserisce in un array --}}
+        @php
+          $services_list = [];
+        foreach ($services as $service){
+          if($service->user_id == $user->id){
+            $services_list[] = $service;
+          }
+        }
+        @endphp
+
+          @if (count($services_list)>0)
+
+          <div class="services col-lg-6 row">
+            <h2 class="col-lg-12">Offered Services</h2>
+            <div class="services_container d_flex col-lg-12">
+              {{-- Bottoni per scorrere tra i servizi rapidamente --}}
+              <div class="buttons">
+                <div class="btn_up_doctor" onclick="goUpServices()">
+                  <i class="fas fa-chevron-up"></i>
+                </div>
+
+                <div class="btn_down_doctor" onclick="goDownServices()">
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+
+              <div id="services_pagination" class="d_flex">
+
+                @foreach ($services_list as $service)
+                  <div class="service">
+                    <h4>{{$service->name}}</h4>
+                    <p>{{$service->description}}</p>
+                    <p class="price">Price: {{$service->price}}</p>
+                  </div>
+                @endforeach
+              </div>
+
+            </div>
+          </div>
+        @endif
+
+{{-- Sezione con i dati di contatto del medico --}}
+        <div class="contacts col-lg-6">
+          <h2>Contacts</h2>
+          <div class="info_contact">
+            <p>Email: {{$user->email}}</p>
+            <p class="phone_number">
+              @foreach($prefixes as $prefix)
+                @if($user->prefix_id == $prefix->id && $user->phone_number !== 0)
+                  Phone Number:  {{$prefix->dial_code}} {{$user->phone_number}}
+                @endif
+              @endforeach
+            </p>
+            <button type="button" name="button">
+              Send a message to {{$user->name}} {{$user->lastname}}
+            </button>
+          </div>
+        </div>
 
       </div>
-
-      <p class="phone_number">
-        @foreach($prefixes as $prefix)
-          @if($user->prefix_id == $prefix->id && $user->phone_number !== 0)
-            Phone Number:  {{$prefix->dial_code}} {{$user->phone_number}}
-          @endif
-        @endforeach
-      </p>
 
 
 
@@ -138,7 +187,6 @@
         <button type="submit" class="btn btn-success">Send</button>
 
 
-
     </form>
   </div>
 
@@ -149,5 +197,25 @@
 </div>
 
 @include('guest.partials.footer')
+
+<script type="application/javascript">
+
+var scrollPosition = document.getElementById('services_pagination').scrollTop;
+
+function goUpServices(){
+  document.getElementById('services_pagination').scrollTo({
+    top: scrollPosition - 200,
+    behavior: 'smooth'
+  });
+}
+
+function goDownServices(){
+      document.getElementById('services_pagination').scrollTo({
+        top: scrollPosition + 200,
+        behavior: 'smooth'
+      });
+}
+
+</script>
 
 @endsection

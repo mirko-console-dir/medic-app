@@ -19,6 +19,8 @@ Home
 
 @include('guest.partials.footer')
 {{-- <style> with js plane --}}
+<script type="application/javascript">
 @include('guest.partials.js.jumbo_home')
+</script>
 
 @endsection
