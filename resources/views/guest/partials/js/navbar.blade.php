@@ -1,6 +1,10 @@
 <script type="application/javascript">
 
+ var path = window.location.pathname;
+
 // Animazione sulla navbar a seconda dello scroll verticale
+if (path == "/") {
+
 window.addEventListener('scroll', (event) => {
   var scroll = this.scrollY;
 
@@ -10,6 +14,8 @@ window.addEventListener('scroll', (event) => {
     document.getElementById('navbar').classList.remove('fixed_top');
   }
 });
+
+};
 
 // Animazione sulla navbar quando viene aperta tramite il tasto hamburger in visualizzazione mobile
 
