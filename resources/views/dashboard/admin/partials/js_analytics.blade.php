@@ -293,10 +293,16 @@
         },
         options: {
             scales: {
-                yAxes: [{
+                xAxes: [{
                     ticks: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        maxTicksLimit: '15',
+                        max: 10,
+                        fontColor: '#ffffff',
                     },
+                     gridLines: {
+                        zeroLineColor: '#84BE46',
+                    }
                 }],
                 yAxes: [{
                     ticks: {
@@ -305,6 +311,9 @@
                         },
                         min: 0,
                         max: 100,
+                    },
+                     gridLines: {
+                        zeroLineColor: '#84BE46',
                     }
                 }]
             }
