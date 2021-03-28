@@ -118,7 +118,7 @@
                 @endif
               @endforeach
             </p>
-            <button type="button" name="button">
+            <button type="button" name="button" onclick="appearMessage()">
               Send a message to {{$user->name}} {{$user->lastname}}
             </button>
           </div>
@@ -126,96 +126,75 @@
 
       </div>
 
-
-
-    <!-- FORM MESSAGES -->
-    <div class="row">
-
-
-    <form method="post" action="{{ route('message.store', [ 'user_id' => $user->id]) }}" class="col-lg-6 form_message">
-        <h2>Send a Message</h2>
-        @csrf
-        <!-- Guest name -->
-        <label for="name">Insert Your name</label>
-        <input type="text" name="name" id="name" class="form-control" placeholder="Insert a name">
-
-        <!-- Guest lastname -->
-        <label for="lastname">Insert Your lastname</label>
-        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Insert your lastname">
-
-        <!-- Guest email -->
-        <label for="name">Insert Your email</label>
-        <input type="email" name="email" id="email" class="form-control" placeholder="Insert your email">
-        <!-- Guest title -->
-        <label for="title">Insert a title</label>
-        <input type="text" name="title" id="title" class="form-control" placeholder="Insert a title">
-        <!-- Guest message -->
-        <label for="body">Write your message here</label>
-        <textarea name="body" id="body" cols="40" rows="4"></textarea>
-
-
-        <button type="submit" class="btn btn-success">Send</button>
-
-    </form>
-
-
-
-    <!-- FORM REVIEWS -->
-
-    <form method="post" action="{{ route('review.store', [ 'user_id' => $user->id]) }}" class="col-lg-6 form_review">
-      <h2>Write a Review</h2>
-        @csrf
-        <!-- Guest name -->
-        <label for="name">Insert your name</label>
-        <input type="text" name="name" id="name" class="form-control" placeholder="Insert a name">
-
-        <!-- Guest lastname -->
-        <label for="lastname">Insert your lastname</label>
-        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Insert your lastname">
-
-        <!-- Guest vote -->
-        <label for="vote">Insert vote</label>
-        <input type="number" name="vote" id="vote" class="form-control" placeholder="Insert your vote" min="1" max="5">
-        <!-- Guest title -->
-        <label for="title">Insert a title</label>
-        <input type="text" name="title" id="title" class="form-control" placeholder="Insert a title">
-        <!-- Guest message -->
-        <label for="body">Write your review here</label>
-        <textarea name="body" id="body" cols="40" rows="4"></textarea>
-
-
-        <button type="submit" class="btn btn-success">Send</button>
-
-
-    </form>
-  </div>
-
-  </div>
+    </div>
 
   </main>
 
+  <div class="forms">
+{{-- Form per messages --}}
+    <div id="form_message">
+      <form method="post" action="{{ route('message.store', [ 'user_id' => $user->id]) }}">
+          <h2>Message to {{$user->name}} {{$user->lastname}}</h2>
+          @csrf
+          <!-- Guest name -->
+          <label for="name">name</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Your name here">
+
+          <!-- Guest lastname -->
+          <label for="lastname">lastname</label>
+          <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Your lastname here">
+
+          <!-- Guest email -->
+          <label for="name">email</label>
+          <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+          <!-- Guest title -->
+          <label for="title">title</label>
+          <input type="text" name="title" id="title" class="form-control" placeholder="Title for your message">
+          <!-- Guest message -->
+          <label for="body">Write your message</label>
+          <textarea name="body" id="body" cols="40" rows="4" placeholder="Ask for something to this doctor"></textarea>
+
+
+          <button type="submit">Send this Message</button>
+
+      </form>
+    </div>
+
+{{-- Form for reviews --}}
+    <div id="form_review">
+
+      <form method="post" action="{{ route('review.store', [ 'user_id' => $user->id]) }}">
+        <h2>Review about {{$user->name}} {{$user->lastname}}</h2>
+          @csrf
+          <!-- Guest name -->
+          <label for="name">name</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Your name here">
+
+          <!-- Guest lastname -->
+          <label for="lastname">lastname</label>
+          <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Your lastname here">
+
+          <!-- Guest vote -->
+          <label for="vote">vote</label>
+          <input type="number" name="vote" id="vote" class="form-control" placeholder="Vote from 1 to 5" min="1" max="5">
+          <!-- Guest title -->
+          <label for="title">title</label>
+          <input type="text" name="title" id="title" class="form-control" placeholder="Title for your review">
+          <!-- Guest message -->
+          <label for="body">Write your review</label>
+          <textarea name="body" id="body" cols="40" rows="4" placeholder="Tell about your experience with this doctor"></textarea>
+
+
+          <button type="submit">Post this Review</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  @include('guest.partials.footer')
+
+  @include('guest.partials.js.profile_doctor')
 </div>
-
-@include('guest.partials.footer')
-
-<script type="application/javascript">
-
-var scrollPosition = document.getElementById('services_pagination').scrollTop;
-
-function goUpServices(){
-  document.getElementById('services_pagination').scrollTo({
-    top: scrollPosition - 200,
-    behavior: 'smooth'
-  });
-}
-
-function goDownServices(){
-      document.getElementById('services_pagination').scrollTo({
-        top: scrollPosition + 200,
-        behavior: 'smooth'
-      });
-}
-
-</script>
 
 @endsection

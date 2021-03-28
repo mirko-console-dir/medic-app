@@ -12189,8 +12189,16 @@ html body::-webkit-scrollbar-track {
   margin-top: 50px;
 }
 
+#profile_doctor footer {
+  position: relative;
+  z-index: 0;
+}
+
 #profile_doctor main {
-  margin-top: 80px;
+  position: relative;
+  z-index: 0;
+  margin-top: 100px;
+  margin-bottom: 100px;
   color: white;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
@@ -12430,30 +12438,59 @@ html body::-webkit-scrollbar-track {
   background-color: #5f8a32;
 }
 
-#profile_doctor main .form_message,
-#profile_doctor main .form_review {
-  margin-top: 20px;
-  padding: 0 5%;
+#profile_doctor .forms #form_message,
+#profile_doctor .forms #form_review {
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0 30px;
+  display: none;
+  border-radius: 10px;
+  margin: 220px auto;
+  width: 50%;
 }
 
-#profile_doctor main .form_message textarea,
-#profile_doctor main .form_review textarea {
+#profile_doctor .forms #form_message h2,
+#profile_doctor .forms #form_review h2 {
+  padding-top: 20px;
+}
+
+#profile_doctor .forms #form_message textarea,
+#profile_doctor .forms #form_review textarea {
   width: 100%;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  color: #141430;
+  padding: 10px;
 }
 
-#profile_doctor main .form_message input,
-#profile_doctor main .form_review input {
-  margin-bottom: 10px;
-}
-
-#profile_doctor main .form_message button,
-#profile_doctor main .form_review button {
+#profile_doctor .forms #form_message label,
+#profile_doctor .forms #form_review label {
+  color: #00aeef;
+  text-transform: uppercase;
+  margin-bottom: 0;
   margin-top: 10px;
 }
 
-#profile_doctor main .form_message label,
-#profile_doctor main .form_review label {
-  margin-bottom: 0;
+#profile_doctor .forms #form_message input,
+#profile_doctor .forms #form_review input {
+  color: #141430;
+}
+
+#profile_doctor .forms #form_message button,
+#profile_doctor .forms #form_review button {
+  border-radius: 5px;
+  margin: 25px 0;
+  background-color: #84be46;
+  color: black;
+  font-weight: 600;
+  transition: background-color 0.4s ease;
+  padding: 12px;
+}
+
+#profile_doctor .forms #form_message button:hover,
+#profile_doctor .forms #form_review button:hover {
+  background-color: #5f8a32;
 }
 
 @media (max-width: 991.98px) {
