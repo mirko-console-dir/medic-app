@@ -109,7 +109,7 @@
 {{-- Sezione con i dati di contatto del medico --}}
         <div class="contacts col-lg-6">
           <h2>Contacts</h2>
-          <div class="info_contact">      
+          <div class="info_contact">
             <p>Email: {{$user->email}}</p>
             <p class="phone_number">
               @foreach($prefixes as $prefix)
@@ -118,6 +118,9 @@
                 @endif
               @endforeach
             </p>
+            <button type="button" name="button">
+              Send a message to {{$user->name}} {{$user->lastname}}
+            </button>
           </div>
         </div>
 

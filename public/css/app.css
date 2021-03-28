@@ -12401,10 +12401,27 @@ html body::-webkit-scrollbar-track {
   margin-top: 0;
 }
 
-#profile_doctor main .doctor_infos .services_contacts .contacts .info_contact p {
+#profile_doctor main .doctor_infos .services_contacts .contacts .info_contact {
   padding-left: 5%;
-  margin-top: 20px;
+}
+
+#profile_doctor main .doctor_infos .services_contacts .contacts .info_contact p {
+  margin: 0 5px;
   font-size: 15px;
+}
+
+#profile_doctor main .doctor_infos .services_contacts .contacts .info_contact button {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #84be46;
+  transition: background-color 0.4s ease;
+}
+
+#profile_doctor main .doctor_infos .services_contacts .contacts .info_contact button:hover {
+  background-color: #5f8a32;
 }
 
 #profile_doctor main .form_message,

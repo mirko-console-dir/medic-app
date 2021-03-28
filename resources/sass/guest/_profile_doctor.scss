@@ -197,10 +197,22 @@
             margin-top: 0;
           }
           .info_contact{
+            padding-left: 5%;
             p{
-              padding-left: 5%;
-              margin-top: 20px;
+              margin: 0 5px;
               font-size: 15px;
+            }
+            button{
+              font-size: 18px;
+              font-weight: 600;
+              margin-top: 8px;
+              padding: 10px;
+              border-radius: 5px;
+              background-color: map-get($color-map, green_logo);
+              transition: background-color 0.4s ease;
+              &:hover{
+                background-color: #5f8a32;
+              }
             }
           }
         }
