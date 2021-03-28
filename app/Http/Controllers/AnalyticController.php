@@ -61,12 +61,23 @@ class AnalyticController extends Controller
                     // dd($tot_sponsorships);
                     $sponsorship_date_array[$full_date] = $tot_sponsorships;
 
+                    $standard[$full_date] = DB::table('user_sponsorship')->whereMonth('created_at', $sponsorship_month_date)->whereYear('created_at', $sponsorship_year_date)->where('sponsorship_id', '=', 2)->get();
+
+                    $premium[$full_date] = DB::table('user_sponsorship')->whereMonth('created_at', $sponsorship_month_date)->whereYear('created_at', $sponsorship_year_date)->where('sponsorship_id', '=', 3)->get();
+
+                    $exclusive[$full_date] = DB::table('user_sponsorship')->whereMonth('created_at', $sponsorship_month_date)->whereYear('created_at', $sponsorship_year_date)->where('sponsorship_id', '=', 4)->get();
+                    
                 }
             }
 
         }
-
+        // dd($standard);
+        $encode_standard = json_encode($standard);
+        $encode_premium = json_encode($premium);
+        $encode_exclusive = json_encode($exclusive);
         // dd($sponsorship_date_array);
+
+        // $standard_sponsorships = DB::table('user_sponsorship')->
 
         $sponsorship_start_date = array_key_first($sponsorship_date_array);
         $sponsorship_end_date = array_key_last($sponsorship_date_array);
@@ -340,7 +351,7 @@ class AnalyticController extends Controller
             // dd($encode_months_x_axes);
         }
 
-        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes','vote_1','vote_2','vote_3','vote_4','vote_5', 'encode_doctor_x_axes','encode_doctor_date_array', 'encode_sponsorship_x_axes'));
+        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes','vote_1','vote_2','vote_3','vote_4','vote_5', 'encode_doctor_x_axes','encode_doctor_date_array', 'encode_sponsorship_x_axes','encode_standard','encode_premium','encode_exclusive'));
     }
 
     /**
