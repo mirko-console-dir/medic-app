@@ -12397,10 +12397,12 @@ html body::-webkit-scrollbar-track {
 }
 
 #profile_doctor main .doctor_infos .services_contacts .contacts h2 {
+  padding-left: 5%;
   margin-top: 0;
 }
 
-#profile_doctor main .doctor_infos .services_contacts .contacts .phone_number {
+#profile_doctor main .doctor_infos .services_contacts .contacts .info_contact p {
+  padding-left: 5%;
   margin-top: 20px;
   font-size: 15px;
 }
