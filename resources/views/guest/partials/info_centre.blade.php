@@ -61,7 +61,7 @@
         <!-- Row info_staff -->
         <div class="row third_info_row">
             <div class="col-lg-12 col-md-12 col-sm-12 info_staff">
-                <p>Want more information? <a href="">See the whole staff</a></p>
+                <p>Want more information? <a href="{{asset('search')}}">See the whole staff</a></p>
             </div>
         </div>
         <!-- End row info_staff -->

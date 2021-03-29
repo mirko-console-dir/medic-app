@@ -2798,7 +2798,8 @@ __webpack_require__.r(__webpack_exports__);
     */
     cardMediaQuery: function cardMediaQuery() {
       this.window.width = window.innerWidth;
-      this.window.height = window.innerHeight; //tablet
+      this.window.height = window.innerHeight;
+      var width = 0; //tablet
 
       if (window.innerWidth <= 992 && window.innerWidth > 768) {
         this.show = this.size.md; //2
@@ -2811,7 +2812,10 @@ __webpack_require__.r(__webpack_exports__);
           }
 
       this.next(true);
-      return this.cardWidth = 1 / this.show;
+      width = 100 / this.show;
+      this.cardWidth = width.toString() + '%'; //console.log(this.cardWidth);
+
+      return this.cardWidth;
     },
 
     /** 
@@ -2851,8 +2855,7 @@ __webpack_require__.r(__webpack_exports__);
      */
     axios.get(this.api) //.get('api/users')
     .then(function (response) {
-      _this.profiles = response.data.data; //console.log(this.profiles);
-
+      _this.profiles = response.data.data;
       _this.i = 0;
       _this.j = _this.i + 1;
       _this.k = _this.i + 2;
@@ -2860,9 +2863,9 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.sposoredDoctors(_this.profiles);
 
-      _this.next(true);
-
       _this.cardMediaQuery();
+
+      _this.next(true);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -77454,7 +77457,7 @@ var render = function() {
               {
                 key: profile.id,
                 staticClass: "card-complete-item",
-                style: { width: _vm.cardWidth }
+                style: { "flex-basis": _vm.cardWidth }
               },
               [
                 _c("div", {
@@ -77489,7 +77492,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "info presentation",
+                    staticClass: "info showmore",
                     attrs: { href: "/doctor/" + profile.slug }
                   },
                   [_vm._v(" show more ")]
@@ -89913,15 +89916,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ./resources/js/components/covid.vue ***!
   \*******************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _covid_vue_vue_type_template_id_5219db2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./covid.vue?vue&type=template&id=5219db2c&scoped=true& */ "./resources/js/components/covid.vue?vue&type=template&id=5219db2c&scoped=true&");
 /* harmony import */ var _covid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./covid.vue?vue&type=script&lang=js& */ "./resources/js/components/covid.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _covid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _covid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _covid_vue_vue_type_style_index_0_id_5219db2c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./covid.vue?vue&type=style&index=0&id=5219db2c&lang=scss&scoped=true& */ "./resources/js/components/covid.vue?vue&type=style&index=0&id=5219db2c&lang=scss&scoped=true&");
+/* empty/unused harmony star reexport *//* harmony import */ var _covid_vue_vue_type_style_index_0_id_5219db2c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./covid.vue?vue&type=style&index=0&id=5219db2c&lang=scss&scoped=true& */ "./resources/js/components/covid.vue?vue&type=style&index=0&id=5219db2c&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -89953,7 +89955,7 @@ component.options.__file = "resources/js/components/covid.vue"
 /*!********************************************************************!*\
   !*** ./resources/js/components/covid.vue?vue&type=script&lang=js& ***!
   \********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -90240,8 +90242,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
