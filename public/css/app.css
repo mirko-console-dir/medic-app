@@ -11733,6 +11733,16 @@ input {
   right: 0;
 }
 
+#boxes_features_home .first_row .site_services canvas {
+  width: 90% !important;
+  max-width: 770px;
+  height: auto !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 #boxes_features_home .second_row {
   height: 320px;
 }
@@ -12929,6 +12939,31 @@ footer .container_80 .second_row .copyright {
 
   #jumbo_home .container_searchbar form button:hover {
     background: #00aeef;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #boxes_features_home .first_row .intro_description span {
+    margin: 0 40px;
+    font-size: larger;
+    color: white;
+    font-weight: 300;
+  }
+
+  #boxes_features_home .first_row .intro_description h3 {
+    font-size: 40px;
+    margin: 0 40px;
+    font-weight: 600;
+  }
+
+  #boxes_features_home .first_row .site_services {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    height: 580px;
+    background-color: white;
+    bottom: 0;
+    right: 0;
   }
 }
 

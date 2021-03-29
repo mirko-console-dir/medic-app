@@ -77306,8 +77306,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", [_c("canvas", { attrs: { id: "covid" } })])
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "position-relative" }, [
+            _c("canvas", { attrs: { id: "covid" } })
+          ])
         ])
       ])
     ])
@@ -90305,8 +90307,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
