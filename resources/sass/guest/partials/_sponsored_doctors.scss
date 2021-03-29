@@ -24,8 +24,10 @@
             height: 100%;
             .card-complete-item{
                 display: flex;
+                height: 600px;
                 flex-direction: column;
                 align-items: center;
+                justify-content: space-between;
                 border: none;
                 padding: 20px;
                 border-right: 1px solid #ddd;
@@ -41,7 +43,15 @@
                     text-transform: capitalize;
                 }
                 .info{
-                    margin-bottom: 5px;
+                    margin-bottom: 10px;
+                }
+                .rating{
+                    display: flex;
+                    justify-content: center;
+                    i{
+                        margin-right: 15px;
+                        font-size: $small;
+                    }
                 }
                 .presentation{
                     height: 7rem;

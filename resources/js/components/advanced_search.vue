@@ -44,11 +44,11 @@
               <div class="profile" style="background-image:url(img/user-default.jpg)"></div>
             </div>
 
-            <div class="name">{{user.name+" "+user.lastname}} </div>
-            <div class="specialization" >
-              <span v-for="(spec, index) in user.specializations" :key="index">{{spec.name}} </span>
+            <div class="info name">{{user.name+" "+user.lastname}} </div>
+            <div class="info specializations">
+              <div class="specialization" v-for="(spec, index) in user.specializations" :key="index">{{spec.name}} </div>
             </div>
-            <div class="rating">
+            <div class="info rating">
               <i v-for="(vote, index) in user.avgVote" :class="(vote)?'fas fa-star':'far fa-star'" :key="index"></i>
             </div>
             <p class="description">{{user.body}}</p>
@@ -208,7 +208,6 @@
               this.cards = 12;
               this.pages.current = 1;
             }
-            console.log("this.cards ", this.cards);
             this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
             if(this.pages.total === 0){this.pages.total = 1;}
         },
@@ -237,6 +236,13 @@
             });
         },
 
+        /**
+         * Rimuove l'admin dall'array users
+        */
+        adminRemove: function(users){
+         return users.shift()
+        },
+
       },
       created(){
         window.addEventListener('resize', this.cardsMediaQuery);
@@ -249,6 +255,7 @@
         .get(this.api) //.get('api/users')
         .then(response => {
               this.users = response.data.data;
+              this.adminRemove(this.users);
               /**
               * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
               */

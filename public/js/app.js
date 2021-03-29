@@ -2216,7 +2216,6 @@ __webpack_require__.r(__webpack_exports__);
             this.pages.current = 1;
           }
 
-      console.log("this.cards ", this.cards);
       this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
 
       if (this.pages.total === 0) {
@@ -2248,6 +2247,13 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
+    },
+
+    /**
+     * Rimuove l'admin dall'array users
+    */
+    adminRemove: function adminRemove(users) {
+      return users.shift();
     }
   },
   created: function created() {
@@ -2262,9 +2268,12 @@ __webpack_require__.r(__webpack_exports__);
     axios.get(this.api) //.get('api/users')
     .then(function (response) {
       _this4.users = response.data.data;
+
+      _this4.adminRemove(_this4.users);
       /**
       * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
       */
+
 
       _this4.querySpec(_this4.users);
       /** 
@@ -2656,6 +2665,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /** Il carosello così impostato può visualizzare fino a un massimo di 4 card.
 *
@@ -2831,17 +2842,47 @@ __webpack_require__.r(__webpack_exports__);
         var lastSponsorshipData = new Date(lastSponsorship.created_at);
 
         if (lastSponsorship.name != "free") {
-          //console.log("C'è la sponsorizzazione")
           expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
 
           if (today < expire) {
-            //console.log("la sponsorizzazione è ancora attiva")
             users.splice(index, 1);
             users.unshift(doctor);
             return doctor.sponsored = true;
           }
         }
       });
+    },
+
+    /**
+     * Calcolo della media dei voti
+    */
+    avgVote: function avgVote(users) {
+      users.forEach(function (doctor) {
+        var vote = 0;
+        var avgVote = 0;
+        var floorVote = 0;
+        var counter = 0;
+        doctor.reviews.forEach(function (review) {
+          counter++;
+          vote += review.vote;
+        });
+        avgVote = vote / counter;
+        floorVote = Math.floor(avgVote);
+        avgVote = [false, false, false, false, false];
+
+        for (var i = 0; i < floorVote; i++) {
+          avgVote[i] = true;
+        }
+
+        doctor.avgVote = avgVote; //console.log(doctor.name, doctor.avgVote); 
+      });
+    },
+
+    /**
+     * Rimuove l'admin dall'array users
+    */
+    adminRemove: function adminRemove(users) {
+      return users.shift();
     }
   },
   created: function created() {
@@ -2860,6 +2901,11 @@ __webpack_require__.r(__webpack_exports__);
       _this.j = _this.i + 1;
       _this.k = _this.i + 2;
       _this.l = _this.i + 3;
+
+      _this.adminRemove(_this.profiles);
+
+      _this.avgVote(_this.profiles); //console.log(this.profiles);
+
 
       _this.sposoredDoctors(_this.profiles);
 
@@ -77187,24 +77233,26 @@ var render = function() {
                         })
                       ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "name" }, [
+                  _c("div", { staticClass: "info name" }, [
                     _vm._v(_vm._s(user.name + " " + user.lastname) + " ")
                   ]),
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "specialization" },
+                    { staticClass: "info specializations" },
                     _vm._l(user.specializations, function(spec, index) {
-                      return _c("span", { key: index }, [
-                        _vm._v(_vm._s(spec.name) + " ")
-                      ])
+                      return _c(
+                        "div",
+                        { key: index, staticClass: "specialization" },
+                        [_vm._v(_vm._s(spec.name) + " ")]
+                      )
                     }),
                     0
                   ),
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "rating" },
+                    { staticClass: "info rating" },
                     _vm._l(user.avgVote, function(vote, index) {
                       return _c("i", {
                         key: index,
@@ -77477,7 +77525,22 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._l(profile.specializations, function(spec, index) {
+                _c(
+                  "div",
+                  { staticClass: "info rating" },
+                  _vm._l(profile.avgVote, function(vote, index) {
+                    return _c("i", {
+                      key: index,
+                      class: vote ? "fas fa-star" : "far fa-star"
+                    })
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _vm._l(profile.specializations.slice(0, 1), function(
+                  spec,
+                  index
+                ) {
                   return _c(
                     "h4",
                     { key: index, staticClass: "info specialization" },
