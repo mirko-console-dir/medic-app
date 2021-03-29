@@ -12202,6 +12202,7 @@ html body::-webkit-scrollbar-track {
   color: white;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
+  padding-bottom: 50px;
 }
 
 #profile_doctor main .doctor_infos {
@@ -12436,6 +12437,14 @@ html body::-webkit-scrollbar-track {
 
 #profile_doctor main .doctor_infos .services_contacts .contacts .info_contact button:hover {
   background-color: #5f8a32;
+}
+
+#profile_doctor #reviews_box {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 600px;
+  margin-top: 50px;
+  margin-bottom: 80px;
+  border-radius: 10px;
 }
 
 #profile_doctor .forms #form_message,

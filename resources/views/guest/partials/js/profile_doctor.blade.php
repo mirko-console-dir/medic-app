@@ -27,5 +27,8 @@ function appearMessage(){
   document.getElementById('form_message').scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
  }
 
+// Pagination per le reviews
+var user = {!!$user!!};
+console.log(user);
 
 </script>

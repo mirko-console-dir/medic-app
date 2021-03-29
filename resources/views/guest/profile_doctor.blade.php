@@ -129,6 +129,18 @@
     </div>
 
   </main>
+  
+  <div id="reviews_box" class="container_80">
+    <div class="pagination">
+      <div class="tableList d_flex_column" id="listingTable"></div>
+      <div class="pagination-block">
+        <span class="pageButton outline-none hidden" id="button_prev">Prev</span>
+        <span id="page_number" class="outline-none"></span>
+        <span class="pageButton outline-none hidden" id="button_next">Next</span>
+      </div>
+    </div>
+  </div>
+
 
   <div class="forms">
 {{-- Form per messages --}}

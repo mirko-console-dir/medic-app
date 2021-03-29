@@ -17,6 +17,7 @@
     color: white;
     background: map-get($color-map, card_background);
     border-radius: 10px;
+    padding-bottom: 50px;
     .doctor_infos{
       width: 100%;
       margin-left: 0;
@@ -225,6 +226,13 @@
         }
       }
     }
+  }
+  #reviews_box{
+    background-color: map-get($color-map, card_background);
+    height: 600px;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    border-radius: 10px;
   }
   .forms{
     #form_message, #form_review{
