@@ -119,8 +119,9 @@
               @endforeach
             </p>
             <button type="button" name="button" onclick="appearMessage()">
-              Send a message to {{$user->name}} {{$user->lastname}}
+              Message to {{$user->name}} {{$user->lastname}}
             </button>
+            {{-- <a href="{{asset('storage/' . $user->cv_img)}}" download>we</a> --}}
           </div>
         </div>
 
@@ -129,18 +130,43 @@
     </div>
 
   </main>
-  
-  <div id="reviews_box" class="container_80">
-    <div class="pagination">
-      <div class="tableList d_flex_column" id="listingTable"></div>
-      <div class="pagination-block">
-        <span class="pageButton outline-none hidden" id="button_prev">Prev</span>
-        <span id="page_number" class="outline-none"></span>
-        <span class="pageButton outline-none hidden" id="button_next">Next</span>
+
+  {{-- Codice in php che filtra trova le recensioni del dottore e li inserisce in un array --}}
+  @php
+    $reviews_list = [];
+  foreach ($reviews as $review){
+    if($review->user_id == $user->id){
+      $reviews_list[] = $review;
+    }
+  }
+  @endphp
+
+  @if (count($services_list)>0)
+    {{-- Box delle recensioni --}}
+    <div id="reviews_box" class="container_80">
+      <div class="pagination">
+        <h2 class="title_reviews_section">Reviews for {{$user->name}} {{$user->lastname}}</h2>
+        <div class="tableList d_flex_column" id="listingTable"></div>
+        <button type="button" name="button" onclick="appearReview()">
+          Write a review
+        </button>
+        <div class="pagination-block">
+          <span class="pageButton outline-none hidden" id="button_prev">Prev</span>
+          <span id="page_number" class="outline-none"></span>
+          <span class="pageButton outline-none hidden" id="button_next">Next</span>
+        </div>
       </div>
     </div>
-  </div>
-
+  @else
+    <div id="reviews_box" class="container_80">
+      <div class="pagination">
+        <h2 class="title_reviews_section">There is no review for {{$user->name}} {{$user->lastname}}</h2>
+        <button type="button" name="button" onclick="appearReview()">
+          Write a review
+        </button>
+      </div>
+    </div>
+  @endif
 
   <div class="forms">
 {{-- Form per messages --}}

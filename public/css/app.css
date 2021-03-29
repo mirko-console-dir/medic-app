@@ -12441,10 +12441,80 @@ html body::-webkit-scrollbar-track {
 
 #profile_doctor #reviews_box {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 600px;
+  padding: 25px 40px;
   margin-top: 50px;
   margin-bottom: 80px;
   border-radius: 10px;
+}
+
+#profile_doctor #reviews_box .pagination {
+  flex-direction: column;
+}
+
+#profile_doctor #reviews_box .pagination h2 {
+  color: white;
+  margin: 0;
+}
+
+#profile_doctor #reviews_box .pagination button {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #84be46;
+  transition: background-color 0.4s ease;
+}
+
+#profile_doctor #reviews_box .pagination button:hover {
+  background-color: #5f8a32;
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock {
+  color: white;
+  margin-top: 20px;
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock .header_message {
+  margin-bottom: 0;
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock .body_message {
+  font-style: italic;
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock .body_message::before {
+  content: '"';
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock .body_message::after {
+  content: '"';
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock .title_vote {
+  height: 40px;
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock .title_vote .title {
+  margin-bottom: 5px;
+  color: #00aeef;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 10px;
+  text-transform: uppercase;
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock .title_vote #vote {
+  font-size: 13px;
+  color: #ffc200;
+  align-self: center;
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock .review .header_message {
+  margin-top: 0;
 }
 
 #profile_doctor .forms #form_message,

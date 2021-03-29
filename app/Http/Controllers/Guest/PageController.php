@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Sponsorship;
 use App\User;
 use App\Prefix;
 use App\Clinic;
 use App\Specialization;
 use App\Service;
+use App\Review;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -39,16 +41,17 @@ class PageController extends Controller
         return view('payment.checkout', compact('sponsorships','user'));
     }
 
-    public function doctor(User $user, $slug, Prefix $prefix, Clinic $clinic, Specialization $specialization, Service $service)
+    public function doctor(User $user, $slug, Prefix $prefix, Clinic $clinic, Specialization $specialization, Service $service, Review $review)
     {
         $user = User::where('slug', $slug)->first();
         $clinics = Clinic::all();
         $prefixes = Prefix::all();
         $specializations = Specialization::all();
         $services = Service::all();
+        $reviews = Review::latest()->get();
         $user_clinic = User::with('clinics')->get();
         $user_specialization = User::with('specializations')->get();
 
-        return view('guest.profile_doctor', compact('user','prefixes','clinics','specializations','services','user_clinic','user_specialization'));
+        return view('guest.profile_doctor', compact('user','prefixes','clinics','specializations','services','user_clinic','user_specialization','reviews'));
     }
 }

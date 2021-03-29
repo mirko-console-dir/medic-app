@@ -229,10 +229,69 @@
   }
   #reviews_box{
     background-color: map-get($color-map, card_background);
-    height: 600px;
+    padding: 25px 40px;
     margin-top: 50px;
     margin-bottom: 80px;
     border-radius: 10px;
+    .pagination{
+      flex-direction: column;
+      h2{
+        color: white;
+        margin: 0;
+      }
+      button{
+        width: max-content;
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 8px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: map-get($color-map, green_logo);
+        transition: background-color 0.4s ease;
+        &:hover{
+          background-color: #5f8a32;
+        }
+      }
+      .tableList{
+        .objectBlock{
+          color: white;
+          margin-top: 20px;
+          .header_message{
+            margin-bottom: 0;
+          }
+          .body_message{
+            font-style: italic;
+            &::before{
+              content: '"';
+            }
+            &::after{
+              content: '"';
+            }
+          }
+          .title_vote{
+            height: 40px;
+            .title{
+              margin-bottom: 5px;
+              color: map-get($color-map, primary_color_light);
+              margin-top: 0;
+              margin-bottom: 0;
+              margin-right: 10px;
+              text-transform: uppercase;
+            }
+            #vote{
+              font-size: 13px;
+              color: #ffc200;
+              align-self: center;
+            }
+          }
+          .review{
+            .header_message{
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
   }
   .forms{
     #form_message, #form_review{
