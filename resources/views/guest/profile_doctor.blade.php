@@ -133,29 +133,54 @@
 
   </main>
 
-  {{-- Codice in php che filtra trova le recensioni del dottore e li inserisce in un array --}}
+  {{-- Codice in php che sarà utile nel corso della pagina --}}
   @php
+
+    // Foreach che trova le recensioni del dottore e le inserisce in un array
     $reviews_list = [];
-  foreach ($reviews as $review){
-    if($review->user_id == $user->id){
-      $reviews_list[] = $review;
+    foreach ($reviews as $review){
+      if($review->user_id == $user->id){
+        $reviews_list[] = $review;
+      }
     }
-  }
+
+    // Ciclo for che pusha in un array i voti
+    $reviews_vote = [];
+    foreach ($reviews_list as $rev) {
+      $reviews_vote[] = $rev->vote;
+    }
+
+    // Funzione che somma i voti ricevuti dall'utente
+    $votes_sum = array_sum($reviews_vote);
+
+    // Funzione che trova la media dei voti arrotondata per l'utente
+    $average_votes = round($votes_sum/count($reviews_vote));
+
   @endphp
 
   @if (count($reviews_list)>0)
     {{-- Box delle recensioni --}}
     <div id="reviews_box" class="container_80">
       <div class="pagination">
-        <h2 class="title_reviews_section">Reviews for {{$user->name}} {{$user->lastname}}</h2>
+
+        <h2 class="title_reviews_section">Reviews for {{$user->name}} {{$user->lastname}}
+        </h2>
+
+        <p class="stars_title">@for ($i=0; $i < $average_votes; $i++)
+          <i class="fas fa-star"></i>
+        @endfor
+        @for ($i=0; $i < (5-$average_votes); $i++)
+          <i class="far fa-star"></i>
+        @endfor | average rating of {{count($reviews_vote)}} reviews</p>
+
         <div class="tableList d_flex_column" id="listingTable"></div>
         <div class="pagination-block">
           <span class="pageButton outline-none hidden" id="button_prev">
-            <i class="fas fa-chevron-left"></i>
+            {{-- <i class="fas fa-chevron-left"></i> --}}
           </span>
           <span id="page_number" class="outline-none"></span>
           <span class="pageButton outline-none hidden" id="button_next">
-            <i class="fas fa-chevron-right"></i>
+            {{-- <i class="fas fa-chevron-right"></i> --}}
           </span>
         </div>
         <button type="button" name="button" onclick="appearReview()">
