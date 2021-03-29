@@ -2,7 +2,9 @@
 
 // Funzione di scrolling con i tasti
 
-var scrollPosition = document.getElementById('services_pagination').scrollTop;
+if (document.getElementById('services_pagination') != undefined) {
+  var scrollPosition = document.getElementById('services_pagination').scrollTop;
+}
 
 function goUpServices(){
   document.getElementById('services_pagination').scrollTo({
@@ -62,7 +64,6 @@ var reviews = {!!$reviews!!};
             }
         });
 
-        console.log(reviews_user);
 
 
         const prevButton = document.getElementById('button_prev');
@@ -117,7 +118,6 @@ var reviews = {!!$reviews!!};
 
             var stars = reviews_user.forEach(element=>{
 
-                console.log(element.vote);
 
 
 
