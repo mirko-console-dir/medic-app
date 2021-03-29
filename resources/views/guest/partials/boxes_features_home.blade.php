@@ -3,6 +3,8 @@
   <div class="first_row position_relative d_flex">
 
     <div class="box intro_description">
+      <span>Statistic COVID-19</span>
+      <h3>Current situation on the global pandemic</h3>
     </div>
 
     <div id="app" class="box site_services position_absolute">
