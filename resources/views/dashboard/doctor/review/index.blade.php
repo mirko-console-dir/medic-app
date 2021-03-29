@@ -107,8 +107,8 @@ My Reviews
 
                 listingTable.innerHTML = "";
 
-                
-                var stars = reviews_user.forEach(element=>{
+
+                var stars = reviews_user.forEach(element => {
 
                     console.log(element.vote);
 
@@ -119,55 +119,52 @@ My Reviews
 
                 for (var i = (page - 1) * records_per_page; i < (page * records_per_page) && i < reviews_user.length; i++) {
 
-                    if(reviews_user[i].vote == 0){
+                    if (reviews_user[i].vote == 0) {
 
                         var stars = ``
                         var emptyStar = `<i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i>`
 
-                    }
-                    else if(reviews_user[i].vote == 1){
+                    } else if (reviews_user[i].vote == 1) {
 
                         var stars = `<i class="fas fa-star star"></i>`
                         var emptyStar = `<i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i>`
 
-                    }
-                    else if(reviews_user[i].vote == 2){
+                    } else if (reviews_user[i].vote == 2) {
 
                         var stars = `<i class="fas fa-star star"></i><i class="fas fa-star star"></i>`
                         var emptyStar = `<i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i>`
 
-                    }
-                    else if(reviews_user[i].vote == 3){
+                    } else if (reviews_user[i].vote == 3) {
 
                         var stars = `<i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>`
                         var emptyStar = `<i class="far fa-star empty_star"></i><i class="far fa-star empty_star"></i>`
 
-                    }
-                    else if(reviews_user[i].vote == 4){
+                    } else if (reviews_user[i].vote == 4) {
 
-                        var stars =  `<i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>`
+                        var stars = `<i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>`
                         var emptyStar = `<i class="far fa-star empty_star"></i>`
-                    }
-                     else if(reviews_user[i].vote == 5){
+                    } else if (reviews_user[i].vote == 5) {
 
-                        var stars =  `<i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>`
+                        var stars = `<i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i><i class="fas fa-star star"></i>`
                         var emptyStar = ``
                     }
 
 
                     listingTable.innerHTML += `
                 <div class='objectBlock d_flex_column'>
-                <div class='d_flex'>
-                <p class='header_message'> ${reviews_user[i].name} ${reviews_user[i].lastname} </p>
-                
-                <p id="vote">| ${stars}${emptyStar}</p>
-
-                </div>
+                    <div class='d_flex review'>
+                        <div class="review_name d_flex">
+                            <span class='header_message'>${reviews_user[i].name} ${reviews_user[i].lastname} </span>
+                         </div>
+                         <div class="review_vote d_flex">
+                            <span id="vote">${stars}${emptyStar}</span>
+                         </div>
+                    </div>
                 
                 <div class="d_flex">
                 <h4>${reviews_user[i].title}</h4>
                 </div>
-                <p class="body_message"> ${reviews_user[i].body}</p>
+                <span class="body_message">${reviews_user[i].body}</span>
 
                 </div>
                 `;
@@ -184,7 +181,7 @@ My Reviews
                 }
             }
 
-             let numPages = function() {
+            let numPages = function() {
                 return Math.ceil(reviews_user.length / records_per_page);
             }
 
@@ -213,7 +210,7 @@ My Reviews
                 }
             }
 
-           
+
         }
         let pagination = new Pagination();
         pagination.init();
