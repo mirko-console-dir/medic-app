@@ -13,7 +13,7 @@ Home
 
   @include('guest.partials.sponsored_doctors')
 
-  @include('guest.partials.info_centre')
+  {{-- @include('guest.partials.info_centre') --}}
 
 </main>
 
