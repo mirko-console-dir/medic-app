@@ -12460,6 +12460,18 @@ footer .container_80 .second_row .copyright {
   margin: 0;
 }
 
+#profile_doctor #reviews_box .pagination .stars_title {
+  font-size: 18px;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 25px;
+}
+
+#profile_doctor #reviews_box .pagination .stars_title i {
+  color: #84be46;
+  margin: 0 1px;
+}
+
 #profile_doctor #reviews_box .pagination button {
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -12516,6 +12528,10 @@ footer .container_80 .second_row .copyright {
   font-size: 13px;
   color: #ffc200;
   align-self: center;
+}
+
+#profile_doctor #reviews_box .pagination .tableList .objectBlock .title_vote #vote i {
+  margin: 0 2px;
 }
 
 #profile_doctor #reviews_box .pagination .tableList .objectBlock .review .header_message {

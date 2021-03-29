@@ -258,6 +258,16 @@
         color: white;
         margin: 0;
       }
+      .stars_title{
+        font-size: 18px;
+        text-transform: uppercase;
+        color: white;
+        margin-bottom: 25px;
+        i{
+          color: map-get($color-map, green_logo);
+          margin: 0 1px;
+        }
+      }
       button{
         width: max-content;
         font-size: 18px;
@@ -302,6 +312,9 @@
               font-size: 13px;
               color: #ffc200;
               align-self: center;
+              i{
+                margin: 0 2px;
+              }
             }
           }
           .review{
