@@ -24,6 +24,7 @@ Vue.component('slideshow', require('./components/slideshow.vue').default);
 Vue.component('searchome', require('./components/searchome.vue').default);
 Vue.component('advanced_search', require('./components/advanced_search.vue').default);
 Vue.component('doctors_api', require('./components/doctors_api.vue').default);
+Vue.component('covid', require('./components/covid.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

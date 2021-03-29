@@ -5,8 +5,8 @@
     <div class="box intro_description">
     </div>
 
-    <div class="box site_services position_absolute">
-
+    <div id="app" class="box site_services position_absolute">
+      <covid></covid>
     </div>
 
   </div>
