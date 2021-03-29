@@ -12174,12 +12174,14 @@ footer .container_80 .second_row .copyright {
 
 #profile_doctor main .doctor_infos .img_profile_container {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #profile_doctor main .doctor_infos .img_profile_container .img_container {
   width: 250px;
   height: 250px;
-  margin: 80px auto;
   border-radius: 50%;
   background-size: cover;
 }
@@ -12266,6 +12268,26 @@ footer .container_80 .second_row .copyright {
   margin-bottom: 5px;
 }
 
+#profile_doctor main .doctor_infos .info_container .info_personal .bio a {
+  display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  text-transform: capitalize;
+  background-color: #00aeef;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.4s ease;
+}
+
+#profile_doctor main .doctor_infos .info_container .info_personal .bio a:hover {
+  background-color: #0188BB;
+}
+
 #profile_doctor main .doctor_infos .info_container .info_personal .bio .description {
   max-height: 150px;
   overflow-y: auto;
@@ -12288,6 +12310,7 @@ footer .container_80 .second_row .copyright {
 #profile_doctor main .doctor_infos .services_contacts {
   width: 100%;
   margin: auto;
+  margin-top: 30px;
 }
 
 #profile_doctor main .doctor_infos .services_contacts .services h2 {
@@ -12424,7 +12447,8 @@ footer .container_80 .second_row .copyright {
   width: max-content;
   font-size: 18px;
   font-weight: 600;
-  margin-top: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   background-color: #84be46;
@@ -12477,6 +12501,34 @@ footer .container_80 .second_row .copyright {
 
 #profile_doctor #reviews_box .pagination .tableList .objectBlock .review .header_message {
   margin-top: 0;
+}
+
+#profile_doctor #reviews_box .pagination .pagination-block {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 10px auto;
+  color: white;
+  transition: color 0.3 ease;
+  font-size: 20px;
+}
+
+#profile_doctor #reviews_box .pagination .pagination-block #page_number span {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#profile_doctor #reviews_box .pagination .pagination-block #page_number span:hover {
+  color: #00aeef;
+}
+
+#profile_doctor #reviews_box .pagination .pagination-block span {
+  margin: 0 15px;
+}
+
+#profile_doctor #reviews_box .pagination .pagination-block span i:hover {
+  cursor: pointer;
+  color: #00aeef;
 }
 
 #profile_doctor .forms #form_message,

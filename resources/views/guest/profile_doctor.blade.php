@@ -51,6 +51,9 @@
               <div class="description">
                 <p>{{$user->body}}</p>
               </div>
+              @if ($user->cv_img !== null)
+                <a href="{{asset('storage/' . $user->cv_img)}}" download>Download CV</a>
+              @endif
             </div>
           @else
             <h3 class="no_bio">Isn't there enough information on this doctor?
@@ -113,7 +116,7 @@
             <p>Email: {{$user->email}}</p>
             <p class="phone_number">
               @foreach($prefixes as $prefix)
-                @if($user->prefix_id == $prefix->id && $user->phone_number !== 0)
+                @if($user->prefix_id == $prefix->id && $user->phone_number !== null)
                   Phone Number:  {{$prefix->dial_code}} {{$user->phone_number}}
                 @endif
               @endforeach
@@ -121,7 +124,6 @@
             <button type="button" name="button" onclick="appearMessage()">
               Message to {{$user->name}} {{$user->lastname}}
             </button>
-            {{-- <a href="{{asset('storage/' . $user->cv_img)}}" download>we</a> --}}
           </div>
         </div>
 
@@ -141,20 +143,24 @@
   }
   @endphp
 
-  @if (count($services_list)>0)
+  @if (count($reviews_list)>0)
     {{-- Box delle recensioni --}}
     <div id="reviews_box" class="container_80">
       <div class="pagination">
         <h2 class="title_reviews_section">Reviews for {{$user->name}} {{$user->lastname}}</h2>
         <div class="tableList d_flex_column" id="listingTable"></div>
+        <div class="pagination-block">
+          <span class="pageButton outline-none hidden" id="button_prev">
+            <i class="fas fa-chevron-left"></i>
+          </span>
+          <span id="page_number" class="outline-none"></span>
+          <span class="pageButton outline-none hidden" id="button_next">
+            <i class="fas fa-chevron-right"></i>
+          </span>
+        </div>
         <button type="button" name="button" onclick="appearReview()">
           Write a review
         </button>
-        <div class="pagination-block">
-          <span class="pageButton outline-none hidden" id="button_prev">Prev</span>
-          <span id="page_number" class="outline-none"></span>
-          <span class="pageButton outline-none hidden" id="button_next">Next</span>
-        </div>
       </div>
     </div>
   @else
