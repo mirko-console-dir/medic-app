@@ -7,9 +7,8 @@
                 <div class="card-complete-item" :style="{ 'flex-basis': cardWidth }" v-for="profile in activeProfiles" :key="profile.id">
                     <div class="info avatar" :style="{ 'background-image': 'url(storage/'+profile.profile_img+')' }"></div>
                     <h4 class="info name">Dr. {{profile.name}} {{profile.lastname}}</h4>
-                    <h4 class="info specialization" v-for="(spec, index) in profile.specializations" :key="index">{{spec.name}} </h4>
+                    <h4 class="info specialization" v-for="(spec, index) in profile.specializations.slice(0,1)" :key="index">{{spec.name}} </h4>
                     <p class="info presentation">{{profile.body}}</p>
-                    <!-- <p>{{profile.id}}</p> -->
                     <a class="info showmore" :href="'/doctor/'+profile.slug"> show more </a>
                 </div>
             </transition-group>
@@ -196,6 +195,14 @@ export default {
                 }
             });
         },
+
+        /**
+         * Rimuove l'admin dall'array users
+        */
+        adminRemove: function(users){
+         return users.shift()
+        },
+
     },
     created() {
             window.addEventListener('resize', this.cardMediaQuery);
@@ -208,10 +215,12 @@ export default {
         .get(this.api) //.get('api/users')
         .then(response => {
             this.profiles = response.data.data;
+
             this.i = 0;
             this.j = this.i + 1;
             this.k = this.i + 2;
             this.l = this.i + 3;
+            this.adminRemove(this.profiles);
             this.sposoredDoctors(this.profiles);
             this.cardMediaQuery();
             this.next(true);

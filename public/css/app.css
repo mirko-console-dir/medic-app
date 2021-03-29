@@ -11763,6 +11763,7 @@ input {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   border: none;
   padding: 20px;
   border-right: 1px solid #ddd;
@@ -11782,7 +11783,7 @@ input {
 }
 
 #slideshow .card_container #card-complete .card-complete-item .info {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 #slideshow .card_container #card-complete .card-complete-item .presentation {
@@ -12611,9 +12612,10 @@ footer .container_80 .second_row .copyright {
   }
 
   #navbar .row #links_container .links li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 50px;
-    line-height: 50px;
-    display: block;
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 22px;

@@ -2248,6 +2248,13 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
+    },
+
+    /**
+     * Rimuove l'admin dall'array users
+    */
+    adminRemove: function adminRemove(users) {
+      return users.shift();
     }
   },
   created: function created() {
@@ -2262,9 +2269,12 @@ __webpack_require__.r(__webpack_exports__);
     axios.get(this.api) //.get('api/users')
     .then(function (response) {
       _this4.users = response.data.data;
+
+      _this4.adminRemove(_this4.users);
       /**
       * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
       */
+
 
       _this4.querySpec(_this4.users);
       /** 
@@ -2655,7 +2665,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /** Il carosello così impostato può visualizzare fino a un massimo di 4 card.
 *
@@ -2842,6 +2851,13 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
+    },
+
+    /**
+     * Rimuove l'admin dall'array users
+    */
+    adminRemove: function adminRemove(users) {
+      return users.shift();
     }
   },
   created: function created() {
@@ -2860,6 +2876,8 @@ __webpack_require__.r(__webpack_exports__);
       _this.j = _this.i + 1;
       _this.k = _this.i + 2;
       _this.l = _this.i + 3;
+
+      _this.adminRemove(_this.profiles);
 
       _this.sposoredDoctors(_this.profiles);
 
@@ -77477,7 +77495,10 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._l(profile.specializations, function(spec, index) {
+                _vm._l(profile.specializations.slice(0, 1), function(
+                  spec,
+                  index
+                ) {
                   return _c(
                     "h4",
                     { key: index, staticClass: "info specialization" },

@@ -237,6 +237,13 @@
             });
         },
 
+        /**
+         * Rimuove l'admin dall'array users
+        */
+        adminRemove: function(users){
+         return users.shift()
+        },
+
       },
       created(){
         window.addEventListener('resize', this.cardsMediaQuery);
@@ -249,6 +256,7 @@
         .get(this.api) //.get('api/users')
         .then(response => {
               this.users = response.data.data;
+              this.adminRemove(this.users);
               /**
               * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
               */
