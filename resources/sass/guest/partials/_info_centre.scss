@@ -6,7 +6,7 @@
         .info_title {
             text-align: center;
             p:nth-child(2) {
-                font-size: 1.4rem;
+                font-size: $small;
                 margin: 0;
             }
         }
@@ -21,9 +21,10 @@
             .info_text {
                 padding: 20px;
                 flex-direction: column;
-
-                &:hover {
-                    background-color: map-get($color-map, button_blue_hover);
+                transition: background 0.5s;
+                cursor: pointer;
+                &:hover {   
+                    background: map-get($color-map, button_blue_hover);
                 }
 
                 p:nth-child(1) {
@@ -47,7 +48,7 @@
         .info_staff {
             text-align: center;
             p {
-                font-size: 1rem;
+                font-size: $xsmall;
                 margin-top: 20px;
                 a {
                     color: map-get($color-map , primary_color_light);

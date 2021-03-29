@@ -15,7 +15,7 @@
       <div class="col-lg-5 col-md-4 col-sm-8 col-xs-12 menu_footer">
         <div class="links_footer">
           
-          <p class="title_footer"> Nullam wisi ultricies a <br> gravida vitae </p> 
+          <p class="title_footer"> Nullam wisi ultricies a gravida vitae </p> 
           
           <div class="d_flex adjustment">
             

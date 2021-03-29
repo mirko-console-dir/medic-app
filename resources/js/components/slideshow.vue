@@ -10,7 +10,7 @@
                     <h4 class="info specialization" v-for="(spec, index) in profile.specializations" :key="index">{{spec.name}} </h4>
                     <p class="info presentation">{{profile.body}}</p>
                     <!-- <p>{{profile.id}}</p> -->
-                    <a class="info presentation" :href="'/doctor/'+profile.slug"> show more </a>
+                    <a class="info showmore" :href="'/doctor/'+profile.slug"> show more </a>
                 </div>
             </transition-group>
         </div>
@@ -170,7 +170,7 @@ export default {
             this.next(true);
             width = (100/this.show);
             this.cardWidth = width.toString() + '%';
-            console.log(this.cardWidth);
+            //console.log(this.cardWidth);
             return this.cardWidth;
         },
         /** 

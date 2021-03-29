@@ -2813,8 +2813,8 @@ __webpack_require__.r(__webpack_exports__);
 
       this.next(true);
       width = 100 / this.show;
-      this.cardWidth = width.toString() + '%';
-      console.log(this.cardWidth);
+      this.cardWidth = width.toString() + '%'; //console.log(this.cardWidth);
+
       return this.cardWidth;
     },
 
@@ -77492,7 +77492,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "info presentation",
+                    staticClass: "info showmore",
                     attrs: { href: "/doctor/" + profile.slug }
                   },
                   [_vm._v(" show more ")]

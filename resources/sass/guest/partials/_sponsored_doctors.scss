@@ -44,10 +44,10 @@
                     margin-bottom: 5px;
                 }
                 .presentation{
-                    height: 8rem;
+                    height: 7rem;
                     text-align: justify;
                     padding-right: 15px;
-                    overflow-y: scroll;
+                    overflow-y: auto;
                 }
                 .link::first-letter{
                     text-transform: uppercase;
