@@ -98,7 +98,8 @@ class AnalyticController extends Controller
 // ************ GRAFICO ADMINNUMBERDOCTORS
 
         $doctors = json_decode(User::with('roles')->orderBy('created_at', 'ASC')->get());
-
+        $tot_doctors_n = json_decode(User::with('roles')->orderBy('created_at', 'ASC')->get()->count());
+        // dd($tot_doctors_n);
         $doctors_date_array = array();
 
         if(!empty($doctors)){
@@ -351,7 +352,7 @@ class AnalyticController extends Controller
             // dd($encode_months_x_axes);
         }
 
-        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes','vote_1','vote_2','vote_3','vote_4','vote_5', 'encode_doctor_x_axes','encode_doctor_date_array', 'encode_sponsorship_x_axes','encode_standard','encode_premium','encode_exclusive'));
+        return view('dashboard.admin.analytics',compact('user','users','user_sponsorships','encode_months_x_axes','encode_date_array','encode_review_date_array', 'encode_review_months_x_axes','vote_1','vote_2','vote_3','vote_4','vote_5', 'encode_doctor_x_axes','encode_doctor_date_array', 'encode_sponsorship_x_axes','encode_standard','encode_premium','encode_exclusive','tot_doctors_n'));
     }
 
     /**

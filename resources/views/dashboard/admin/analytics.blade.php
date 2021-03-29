@@ -14,8 +14,10 @@ Analytics
             <div class="detail d_flex_column">
                 <h2>Website Analytics</h2>
                 @role('admin')
+                <h4>Registered doctors: {{$tot_doctors_n - 1}}</h4>
                 <canvas id="adminNumberDoctors"></canvas>
 
+                <h4>Sponsorships incomes by month</h4>
                 <canvas id="adminSponsorship"></canvas>
                 @include('dashboard.admin.partials.js_analytics')
                 @endrole
