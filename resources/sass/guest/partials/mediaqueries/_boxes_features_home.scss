@@ -1,5 +1,31 @@
 // MD - Medium devices (tablets, 992px and down)
 @media (max-width: 991.98px) {
+  #boxes_features_home{
+    .first_row{
+      .intro_description{
+        span{
+          margin: 0 40px;
+          font-size: larger;
+          color: white;
+          font-weight: 300;
+        }
+        h3{
+          font-size: 40px;
+          margin: 0 40px;
+          font-weight: 600;
+        }
+      }
+      .site_services{
+        display: flex;
+        align-items: center;
+        width: 60%;
+        height: 580px;
+        background-color: white;
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
 }
 
 // SM - Small devices (landscape phones, 768 and down)

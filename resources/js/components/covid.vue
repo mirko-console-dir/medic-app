@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-               <div>
+            <div class="col-md-12">
+               <div class="position-relative">
                      <canvas id="covid"></canvas>
                </div>
             </div>
@@ -25,7 +25,7 @@ import Chart from "chart.js";
             }
         },
         mounted() {
-           
+
             axios.get(`https://api.covid19api.com/world?from=${this.sevenDaysAgo}00:00:00Z&to=${this.now}00:00:00Z`)
             .then(response => {
                 console.log(this.now);
@@ -35,7 +35,7 @@ import Chart from "chart.js";
                 // console.log(this.covid);
 
 
-                
+
            var covid_graph = document.getElementById('covid');
            var covid_array = JSON.parse(JSON.stringify(this.covid))
            console.log(covid_array);
@@ -78,7 +78,7 @@ import Chart from "chart.js";
                 data: this.covid_recovered,
                 backgroundColor: [
                     'rgba(255, 255, 255, 0)',
-                   
+
                 ],
                 borderColor: [
                    'rgba(0, 29, 63, 1)',
@@ -145,11 +145,11 @@ import Chart from "chart.js";
 
 
 
-                
+
             }).catch(function (error) {
                 console.error(error);
             });
-            
+
 
 
 

@@ -27,6 +27,15 @@
       background-color: white;
       bottom: 0;
       right: 0;
+      canvas{
+        width: 90% !important;
+        max-width: 770px;
+        height: auto !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
   }
 
