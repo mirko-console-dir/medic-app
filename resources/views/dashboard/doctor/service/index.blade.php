@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-  My Services
+My Services
 @endsection
 
 @section('content')
@@ -22,18 +22,23 @@
                     <h4>{{$service->description}}</h4>
                     <h4>&euro; {{$service->price}}</h4>
 
-                    <button class="btn btn-dark">
-                        <a href="{{route('dashboard.services.edit', $service->id)}}"> Edit
-                            <i class="fas fa-edit"></i>
-                        </a>
-                    </button>
+              
+                    <div class="d_flex buttons">
 
-                    <form action="{{route('dashboard.services.destroy', $service->id)}}" method="post">
-                        @METHOD('DELETE')
-                        @csrf
-                        <button class="btn btn-danger" type="submit"><i class="fas fa-trash fa-xs fa-fw"></i></button>
-                    </form>
+                        <button class="btn btn-dark edit_button">
+                            <a href="{{route('dashboard.services.edit', $service->id)}}"> Edit
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </button>
 
+                        <form action="{{route('dashboard.services.destroy', $service->id)}}" method="post">
+                            @METHOD('DELETE')
+                            @csrf
+                            <button class="btn btn-danger delete_button" type="submit"><i class="fas fa-trash fa-xs fa-fw"></i></button>
+                        </form>
+
+
+                    </div>
 
 
                 </div>

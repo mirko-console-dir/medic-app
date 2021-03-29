@@ -11161,6 +11161,18 @@ input {
   border-radius: 1px;
 }
 
+#dashboard #account .card_service .buttons {
+  align-items: center;
+}
+
+#dashboard #account .card_service .buttons .edit_button,
+#dashboard #account .card_service .buttons .delete_button {
+  width: 100px;
+  height: 50px;
+  margin: 0px 5px;
+  padding: 0px 0px;
+}
+
 #dashboard #account .add_service {
   width: 100px;
   margin: 0px 20px;
