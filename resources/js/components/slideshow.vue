@@ -4,7 +4,7 @@
         <i class="fa fa-chevron-left" @click="prev()"></i>
         <div class="card_container">
             <transition-group id="card-complete" name="card-complete" tag="div">
-                <div class="card-complete-item" :style="{'width': cardWidth}" v-for="profile in activeProfiles" :key="profile.id">
+                <div class="card-complete-item" :style="{ 'flex-basis': cardWidth }" v-for="profile in activeProfiles" :key="profile.id">
                     <div class="info avatar" :style="{ 'background-image': 'url(storage/'+profile.profile_img+')' }"></div>
                     <h4 class="info name">Dr. {{profile.name}} {{profile.lastname}}</h4>
                     <h4 class="info specialization" v-for="(spec, index) in profile.specializations" :key="index">{{spec.name}} </h4>
@@ -154,6 +154,7 @@ export default {
         cardMediaQuery: function() {
             this.window.width = window.innerWidth;
             this.window.height = window.innerHeight;
+            let width = 0;
             //tablet
             if(window.innerWidth <= 992 && window.innerWidth > 768) {
                 this.show = this.size.md; //2
@@ -167,7 +168,10 @@ export default {
                 this.show = this.size.lg; //3
             }
             this.next(true);
-            return this.cardWidth = (1/this.show);
+            width = (100/this.show);
+            this.cardWidth = width.toString() + '%';
+            console.log(this.cardWidth);
+            return this.cardWidth;
         },
         /** 
          * Se il dottore ha sottoscritto una sponsorizzazione, il suo profilo viene caricato tra i primi all'interno del carosello.
@@ -204,14 +208,13 @@ export default {
         .get(this.api) //.get('api/users')
         .then(response => {
             this.profiles = response.data.data;
-            //console.log(this.profiles);
             this.i = 0;
             this.j = this.i + 1;
             this.k = this.i + 2;
             this.l = this.i + 3;
             this.sposoredDoctors(this.profiles);
-            this.next(true);
             this.cardMediaQuery();
+            this.next(true);
 
         })
         .catch(error => {

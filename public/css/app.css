@@ -11786,7 +11786,10 @@ input {
 }
 
 #slideshow .card_container #card-complete .card-complete-item .presentation {
+  height: 8rem;
   text-align: justify;
+  padding-right: 15px;
+  overflow-y: scroll;
 }
 
 #slideshow .card_container #card-complete .card-complete-item .link::first-letter {
