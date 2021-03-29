@@ -11365,7 +11365,6 @@ input {
 
 #account .pagination .tableList {
   min-height: 250px;
-  text-indent: 20px;
 }
 
 #account .tableList .objectBlock {
@@ -11389,6 +11388,18 @@ input {
 #account .tableList .objectBlock div p {
   margin: 0;
   font-size: 18px;
+}
+
+#account .tableList .objectBlock .message {
+  flex-wrap: wrap;
+}
+
+#account .tableList .objectBlock .message .message_name {
+  width: 50%;
+}
+
+#account .tableList .objectBlock .message .message_email {
+  width: 60%;
 }
 
 #account .hidden {
@@ -11442,6 +11453,23 @@ input {
 
 #dashboard .tableList .objectBlock .empty_star {
   color: #2fa9eb;
+}
+
+#dashboard .tableList .objectBlock .review {
+  flex-wrap: wrap;
+}
+
+#dashboard .tableList .objectBlock .review .review_name {
+  width: 50%;
+  justify-content: start;
+}
+
+#dashboard .tableList .objectBlock .review .review_vote {
+  width: 50%;
+}
+
+#dashboard .tableList .objectBlock .review .review_vote i {
+  margin: 0px 2px;
 }
 
 /***************************

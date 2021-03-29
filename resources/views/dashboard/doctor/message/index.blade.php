@@ -107,17 +107,19 @@ My Messages
                 for (var i = (page - 1) * records_per_page; i < (page * records_per_page) && i < messages_user.length; i++) {
                     listingTable.innerHTML += `
                 <div class='objectBlock d_flex_column'>
-                <div class='d_flex'>
-                <p class='header_message'> ${messages_user[i].name} ${messages_user[i].lastname} </p>
-                
-                <p>| ${messages_user[i].email}</p>
-
+                    <div class='d_flex message'>
+                         <div class="message_name">
+                            <p class='header_message'>${messages_user[i].name} ${messages_user[i].lastname} </p>
+                        </div>
+                    <div class="message_email">
+                            <p>${messages_user[i].email}</p>
+                    </div>
                 </div>
                 
                 <div class="d_flex">
                 <h4>${messages_user[i].title}</h4>
                 </div>
-                <p class="body_message"> ${messages_user[i].body}</p>
+                <p class="body_message">${messages_user[i].body}</p>
 
                 </div>
                 `;
@@ -140,7 +142,7 @@ My Messages
                 }
             }
 
-             let numPages = function() {
+            let numPages = function() {
                 return Math.ceil(messages_user.length / records_per_page);
             }
 
@@ -169,7 +171,7 @@ My Messages
                 }
             }
 
-           
+
         }
         let pagination = new Pagination();
         pagination.init();

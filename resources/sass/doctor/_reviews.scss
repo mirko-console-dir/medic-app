@@ -10,6 +10,22 @@
                 color: map-get($color-map, blue_logo);
             }
 
+             .review {
+
+                 flex-wrap: wrap;
+
+                 .review_name {
+                     width: 50%;
+                     justify-content: start;
+                 }
+
+                 .review_vote {
+                     width: 50%;
+                     i{
+                         margin: 0px 2px;
+                     }
+                 }
+             }
         
 
 
