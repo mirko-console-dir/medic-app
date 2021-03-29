@@ -213,6 +213,30 @@
             if(this.pages.total === 0){this.pages.total = 1;}
         },
 
+        /** 
+         * Se il dottore ha sottoscritto una sponsorizzazione, il suo profilo viene caricato tra i primi all'interno del carosello.
+        */
+        sposoredDoctors: function(users){ 
+            let lastSponsorship = [];
+            const today = new Date();
+            let expire = new Date();
+            users.forEach((doctor, index) =>{
+                doctor.sponsored = false;
+                lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
+                let lastSponsorshipData = new Date(lastSponsorship.created_at);
+                if(lastSponsorship.name != "free"){
+                    //console.log("C'è la sponsorizzazione")
+                    expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
+                    if(today < expire){
+                        //console.log("la sponsorizzazione è ancora attiva")
+                        users.splice(index, 1);
+                        users.unshift(doctor);
+                        return doctor.sponsored = true;
+                    }
+                }
+            });
+        },
+
       },
       created(){
         window.addEventListener('resize', this.cardsMediaQuery);
@@ -233,6 +257,10 @@
               * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
               */
               this.specializations.unshift("all");
+               /** 
+               * Riordina gli utenti sulla base della sposorizzazione sottoscritta.
+               */
+               this.sposoredDoctors(this.users);
               /**
                * Trigger iniziale sul valore passato dalla pagina "home"
               */
@@ -241,6 +269,7 @@
                * Trigger iniziale per determinare il numero di cards da mosttrare in base alla larghezza della finestra.
                */
               this.cardsMediaQuery();
+
         })
         .catch(error => {
             console.log(error);

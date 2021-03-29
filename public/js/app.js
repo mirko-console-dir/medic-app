@@ -2222,6 +2222,32 @@ __webpack_require__.r(__webpack_exports__);
       if (this.pages.total === 0) {
         this.pages.total = 1;
       }
+    },
+
+    /** 
+     * Se il dottore ha sottoscritto una sponsorizzazione, il suo profilo viene caricato tra i primi all'interno del carosello.
+    */
+    sposoredDoctors: function sposoredDoctors(users) {
+      var lastSponsorship = [];
+      var today = new Date();
+      var expire = new Date();
+      users.forEach(function (doctor, index) {
+        doctor.sponsored = false;
+        lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
+        var lastSponsorshipData = new Date(lastSponsorship.created_at);
+
+        if (lastSponsorship.name != "free") {
+          //console.log("C'è la sponsorizzazione")
+          expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
+
+          if (today < expire) {
+            //console.log("la sponsorizzazione è ancora attiva")
+            users.splice(index, 1);
+            users.unshift(doctor);
+            return doctor.sponsored = true;
+          }
+        }
+      });
     }
   },
   created: function created() {
@@ -2247,6 +2273,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
       _this4.specializations.unshift("all");
+      /** 
+      * Riordina gli utenti sulla base della sposorizzazione sottoscritta.
+      */
+
+
+      _this4.sposoredDoctors(_this4.users);
       /**
        * Trigger iniziale sul valore passato dalla pagina "home"
       */
@@ -2628,8 +2660,8 @@ __webpack_require__.r(__webpack_exports__);
       return this.activeProfiles = activeProfiles;
     },
 
-    /** Shows the window width and height 
-    *   
+    /**  
+    * Cambia il numero di cards da mostrare in base alla larghezza della finestra.   
     */
     cardMediaQuery: function cardMediaQuery() {
       this.window.width = window.innerWidth;
@@ -2652,16 +2684,12 @@ __webpack_require__.r(__webpack_exports__);
     /** 
      * Se il dottore ha sottoscritto una sponsorizzazione, il suo profilo viene caricato tra i primi all'interno del carosello.
     */
-    sposoredDoctors: function sposoredDoctors() {
-      var _this = this;
-
+    sposoredDoctors: function sposoredDoctors(users) {
       var lastSponsorship = [];
       var today = new Date();
       var expire = new Date();
-      this.profiles.forEach(function (doctor, index) {
+      users.forEach(function (doctor, index) {
         doctor.sponsored = false;
-        lastSponsorship = [];
-        var sponsoredDoctor = {};
         lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
         var lastSponsorshipData = new Date(lastSponsorship.created_at);
 
@@ -2671,42 +2699,37 @@ __webpack_require__.r(__webpack_exports__);
 
           if (today < expire) {
             //console.log("la sponsorizzazione è ancora attiva")
-            doctor.sponsored = true;
-
-            _this.profiles.splice(index, 1);
-
-            _this.profiles.unshift(doctor);
+            users.splice(index, 1);
+            users.unshift(doctor);
+            return doctor.sponsored = true;
           }
         }
-
-        console.log("doctor", doctor.name, "sponsored", doctor.sponsored);
       });
-      console.log(this.profiles);
     }
   },
   created: function created() {
     window.addEventListener('resize', this.cardMediaQuery);
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     /**
      * Chiamata al database per importare tutti gli "users"
      */
     axios.get(this.api) //.get('api/users')
     .then(function (response) {
-      _this2.profiles = response.data.data; //console.log(this.profiles);
+      _this.profiles = response.data.data; //console.log(this.profiles);
 
-      _this2.i = 0;
-      _this2.j = _this2.i + 1;
-      _this2.k = _this2.i + 2;
-      _this2.l = _this2.i + 3;
+      _this.i = 0;
+      _this.j = _this.i + 1;
+      _this.k = _this.i + 2;
+      _this.l = _this.i + 3;
 
-      _this2.next(true);
+      _this.sposoredDoctors(_this.profiles);
 
-      _this2.sposoredDoctors();
+      _this.next(true);
 
-      _this2.cardMediaQuery();
+      _this.cardMediaQuery();
     })["catch"](function (error) {
       console.log(error);
     });
@@ -39490,8 +39513,6 @@ var render = function() {
                 _c("p", { staticClass: "info presentation" }, [
                   _vm._v(_vm._s(profile.body))
                 ]),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(profile.id))]),
                 _vm._v(" "),
                 _c(
                   "a",
