@@ -11873,7 +11873,8 @@ footer .container_80 .first_row {
 }
 
 footer .container_80 .first_row .logo_row img {
-  height: 150px;
+  height: 100px;
+  margin: 0 20px;
 }
 
 footer .container_80 .first_row .menu_footer .links_footer .title_footer {
@@ -12805,7 +12806,12 @@ footer .container_80 .second_row .copyright {
 }
 
 @media (max-width: 767.98px) {
-  footer .first_row .logo_row img {
+  footer .first_row .logo_row .logo_footer {
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  footer .first_row .logo_row .logo_footer img {
     height: 100px !important;
   }
 

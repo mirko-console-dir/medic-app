@@ -45,7 +45,6 @@ export default {
             activeProfiles: [],
         }
     },
-   
     methods: {
         prev: function(initial) {
             let i = this.i;
