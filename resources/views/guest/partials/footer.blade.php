@@ -6,8 +6,8 @@
     <div class="row first_row">
       
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 logo_row">
-        <div class="logo_footer d_flex_center">
-          <img src="{{asset('img/logo.png')}}" alt="logo brutto">
+        <div class="logo_footer d_flex">
+          <img src="{{asset('img/logo_footer.png')}}" alt="logo">
         </div>
       </div>
      
@@ -56,7 +56,7 @@
     <!-- Second footer row -->
     <div class="row second_row">
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 social_icons d_flex_center">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 social_icons d_flex">
         <div class="social d_flex">
           <a href=""> <i class="fab fa-facebook-square"></i> </a>
           <a href=""> <i class="fab fa-twitter-square"></i> </a>

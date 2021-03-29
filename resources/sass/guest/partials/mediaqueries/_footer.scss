@@ -21,8 +21,12 @@
 
             // Logo row 
             .logo_row {
-                img {
-                  height: 100px !important;
+                .logo_footer{
+                    justify-content: center;
+                    margin-bottom: 30px;
+                    img {
+                      height: 100px !important;
+                    }
                 }
             }
     

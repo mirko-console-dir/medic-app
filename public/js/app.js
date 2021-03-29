@@ -2222,6 +2222,32 @@ __webpack_require__.r(__webpack_exports__);
       if (this.pages.total === 0) {
         this.pages.total = 1;
       }
+    },
+
+    /** 
+     * Se il dottore ha sottoscritto una sponsorizzazione, il suo profilo viene caricato tra i primi all'interno del carosello.
+    */
+    sposoredDoctors: function sposoredDoctors(users) {
+      var lastSponsorship = [];
+      var today = new Date();
+      var expire = new Date();
+      users.forEach(function (doctor, index) {
+        doctor.sponsored = false;
+        lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
+        var lastSponsorshipData = new Date(lastSponsorship.created_at);
+
+        if (lastSponsorship.name != "free") {
+          //console.log("C'è la sponsorizzazione")
+          expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
+
+          if (today < expire) {
+            //console.log("la sponsorizzazione è ancora attiva")
+            users.splice(index, 1);
+            users.unshift(doctor);
+            return doctor.sponsored = true;
+          }
+        }
+      });
     }
   },
   created: function created() {
@@ -2247,6 +2273,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
       _this4.specializations.unshift("all");
+      /** 
+      * Riordina gli utenti sulla base della sposorizzazione sottoscritta.
+      */
+
+
+      _this4.sposoredDoctors(_this4.users);
       /**
        * Trigger iniziale sul valore passato dalla pagina "home"
       */
@@ -2564,6 +2596,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /** Il carosello così impostato può visualizzare fino a un massimo di 4 card.
 *
@@ -2701,8 +2734,8 @@ __webpack_require__.r(__webpack_exports__);
       return this.activeProfiles = activeProfiles;
     },
 
-    /** Shows the window width and height 
-    *   
+    /**  
+    * Cambia il numero di cards da mostrare in base alla larghezza della finestra.   
     */
     cardMediaQuery: function cardMediaQuery() {
       this.window.width = window.innerWidth;
@@ -2721,25 +2754,29 @@ __webpack_require__.r(__webpack_exports__);
       this.next(true);
       return this.cardWidth = 1 / this.show;
     },
-    sposoredDoctors: function sposoredDoctors() {
-      /***************************************/
-      //calcolare la data di scadenza
+
+    /** 
+     * Se il dottore ha sottoscritto una sponsorizzazione, il suo profilo viene caricato tra i primi all'interno del carosello.
+    */
+    sposoredDoctors: function sposoredDoctors(users) {
       var lastSponsorship = [];
-      var currentData = new Date();
-      this.profiles.forEach(function (doctor) {
+      var today = new Date();
+      var expire = new Date();
+      users.forEach(function (doctor, index) {
         doctor.sponsored = false;
-        lastSponsorship = [];
         lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
-        console.log(doctor.name, lastSponsorship.name);
-        var sponsorshipData = new Date(lastSponsorship.created_at); //console.log("current data ", currentData);
-        //console.log("js data ", data);
-        //console.log("php data ", lastSponsorship.created_at);
+        var lastSponsorshipData = new Date(lastSponsorship.created_at);
 
         if (lastSponsorship.name != "free") {
-          console.log("confronto ", currentData < sponsorshipData); //doctor.sponsored = true;
+          //console.log("C'è la sponsorizzazione")
+          expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
 
-          console.log(doctor.name, doctor.sponsored);
-          return doctor.sponsored;
+          if (today < expire) {
+            //console.log("la sponsorizzazione è ancora attiva")
+            users.splice(index, 1);
+            users.unshift(doctor);
+            return doctor.sponsored = true;
+          }
         }
       });
     }
@@ -2762,13 +2799,11 @@ __webpack_require__.r(__webpack_exports__);
       _this.k = _this.i + 2;
       _this.l = _this.i + 3;
 
+      _this.sposoredDoctors(_this.profiles);
+
       _this.next(true);
 
       _this.cardMediaQuery();
-
-      _this.sposoredDoctors();
-      /**************************/
-
     })["catch"](function (error) {
       console.log(error);
     });
@@ -52396,8 +52431,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! /Users/luigitroiano/Desktop/Final Project/medicUs/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /Users/luigitroiano/Desktop/Final Project/medicUs/resources/sass/app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> AM-Frontend-20210329
 
 
 /***/ })

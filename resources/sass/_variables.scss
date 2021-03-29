@@ -28,36 +28,36 @@ $color-map: (
 }
 
 @mixin scrollbar {
-  html {
-    // For Firefox
-    scrollbar-color: rgb(20, 20, 48);
+//   html {
+//     // For Firefox
+//     scrollbar-color: rgb(20, 20, 48);
     
-    // For IE
-    body {
-      background-color: rgb(20, 20, 48);
-      scrollbar-face-color: rgb(20, 20, 48);
-      scrollbar-track-color: rgba(50, 50, 50, 0.5);
-    }
+//     // For IE
+//     body {
+//       background-color: rgb(20, 20, 48);
+//       scrollbar-face-color: rgb(20, 20, 48);
+//       scrollbar-track-color: rgba(50, 50, 50, 0.5);
+//     }
 
-    // For Chrome and Safari
-    body::-webkit-scrollbar {
-      width: 16px;
-      height: 16px;
-    }
-    body::-webkit-scrollbar-thumb {
-      background: rgba(50, 50, 50, 0.5);
-      border-radius: 10px;
-      //box-shadow: outset 2px 5px 12px map-get($color-map, primary_gray_light);
-    }
-    body::-webkit-scrollbar-thumb:hover{
-      background: rgba(50, 50, 50, 0.5);
-    }
-    body::-webkit-scrollbar-track{
-      background: rgba(50, 50, 50, 0.5);
-      border-radius: 8px;
-      // box-shadow: inset 1px 10px 12px map-get($color-map, primary_gray_light);
-    }
-  }
+//     // For Chrome and Safari
+//     body::-webkit-scrollbar {
+//       width: 16px;
+//       height: 16px;
+//     }
+//     body::-webkit-scrollbar-thumb {
+//       background: rgba(50, 50, 50, 0.5);
+//       border-radius: 10px;
+//       //box-shadow: outset 2px 5px 12px map-get($color-map, primary_gray_light);
+//     }
+//     body::-webkit-scrollbar-thumb:hover{
+//       background: rgba(50, 50, 50, 0.5);
+//     }
+//     body::-webkit-scrollbar-track{
+//       background: rgba(50, 50, 50, 0.5);
+//       border-radius: 8px;
+//       // box-shadow: inset 1px 10px 12px map-get($color-map, primary_gray_light);
+//     }
+//   }
 }
 
 

@@ -9,6 +9,7 @@
                     <h4 class="info name">Dr. {{profile.name}} {{profile.lastname}}</h4>
                     <h4 class="info specialization" v-for="(spec, index) in profile.specializations" :key="index">{{spec.name}} </h4>
                     <p class="info presentation">{{profile.body}}</p>
+                    <!-- <p>{{profile.id}}</p> -->
                     <a class="info presentation" :href="'/doctor/'+profile.slug"> show more </a>
                 </div>
             </transition-group>
@@ -44,7 +45,6 @@ export default {
             activeProfiles: [],
         }
     },
-   
     methods: {
         prev: function(initial) {
             let i = this.i;
@@ -148,8 +148,8 @@ export default {
 
             return this.activeProfiles = activeProfiles;
         },
-        /** Shows the window width and height 
-        *   
+        /**  
+        * Cambia il numero di cards da mostrare in base alla larghezza della finestra.   
         */
         cardMediaQuery: function() {
             this.window.width = window.innerWidth;
@@ -169,25 +169,26 @@ export default {
             this.next(true);
             return this.cardWidth = (1/this.show);
         },
-        sposoredDoctors: function(){ 
-            /***************************************/
-            //calcolare la data di scadenza
+        /** 
+         * Se il dottore ha sottoscritto una sponsorizzazione, il suo profilo viene caricato tra i primi all'interno del carosello.
+        */
+        sposoredDoctors: function(users){ 
             let lastSponsorship = [];
-            let currentData = new Date();
-            this.profiles.forEach(doctor =>{
+            const today = new Date();
+            let expire = new Date();
+            users.forEach((doctor, index) =>{
                 doctor.sponsored = false;
-                lastSponsorship = [];
                 lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
-                console.log(doctor.name, lastSponsorship.name);
-                let sponsorshipData = new Date(lastSponsorship.created_at);
-                //console.log("current data ", currentData);
-                //console.log("js data ", data);
-                //console.log("php data ", lastSponsorship.created_at);
+                let lastSponsorshipData = new Date(lastSponsorship.created_at);
                 if(lastSponsorship.name != "free"){
-                    console.log("confronto ",currentData < sponsorshipData);
-                    //doctor.sponsored = true;
-                    console.log(doctor.name, doctor.sponsored);
-                    return doctor.sponsored;
+                    //console.log("C'è la sponsorizzazione")
+                    expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
+                    if(today < expire){
+                        //console.log("la sponsorizzazione è ancora attiva")
+                        users.splice(index, 1);
+                        users.unshift(doctor);
+                        return doctor.sponsored = true;
+                    }
                 }
             });
         },
@@ -208,9 +209,9 @@ export default {
             this.j = this.i + 1;
             this.k = this.i + 2;
             this.l = this.i + 3;
+            this.sposoredDoctors(this.profiles);
             this.next(true);
             this.cardMediaQuery();
-            this.sposoredDoctors(); /**************************/
 
         })
         .catch(error => {
