@@ -2303,9 +2303,72 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/covid.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/luigitroiano/Desktop/Final Project/medicUs/resources/js/components/covid.vue: Unexpected token, expected \",\" (23:4)\n\n\u001b[0m \u001b[90m 21 |\u001b[39m         \u001b[32m'covid'\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 22 |\u001b[39m     ]\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     data(){\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 24 |\u001b[39m         \u001b[36mreturn\u001b[39m{\u001b[0m\n\u001b[0m \u001b[90m 25 |\u001b[39m             covid\u001b[33m:\u001b[39m []\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 26 |\u001b[39m         }\u001b[0m\n    at Parser._raise (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:776:17)\n    at Parser.raiseWithData (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:769:17)\n    at Parser.raise (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:737:17)\n    at Parser.unexpected (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:9686:16)\n    at Parser.expect (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:9672:28)\n    at Parser.parseObjectLike (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:11426:14)\n    at Parser.parseExprAtom (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:10994:23)\n    at Parser.parseExprSubscripts (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:10655:23)\n    at Parser.parseUpdate (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:10635:21)\n    at Parser.parseMaybeUnary (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:10613:23)\n    at Parser.parseExprOps (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:10474:23)\n    at Parser.parseMaybeConditional (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:10448:23)\n    at Parser.parseMaybeAssign (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:10411:21)\n    at /Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:10378:39\n    at Parser.allowInAnd (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:12045:16)\n    at Parser.parseMaybeAssignAllowIn (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:10378:17)\n    at Parser.parseExportDefaultExpression (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:13407:24)\n    at Parser.parseExport (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:13317:31)\n    at Parser.parseStatementContent (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:12308:27)\n    at Parser.parseStatement (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:12202:17)\n    at Parser.parseBlockOrModuleBlockBody (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:12782:25)\n    at Parser.parseBlockBody (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:12773:10)\n    at Parser.parseProgram (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:12137:10)\n    at Parser.parseTopLevel (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:12128:25)\n    at Parser.parse (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:13836:10)\n    at parse (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/parser/lib/index.js:13888:38)\n    at parser (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/core/lib/parser/index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/core/lib/transformation/normalize-file.js:59:38)\n    at normalizeFile.next (<anonymous>)\n    at run (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/core/lib/transformation/index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/@babel/core/lib/transform.js:19:41)\n    at transform.next (<anonymous>)\n    at step (/Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/gensync/index.js:261:32)\n    at /Users/luigitroiano/Desktop/Final Project/medicUs/node_modules/gensync/index.js:273:13");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      covid: {},
+      now: new Date().toISOString().slice(0, 11),
+      sevenDaysAgo: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 11)
+    };
+  },
+  computed: {// date: function (){
+    //     var now = new Date();
+    //     console.log(now.toISOString());
+    //     return now.toISOString();
+    // } 
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    https: //api.covid19api.com/world?from=2021-03-01T00:00:00Z&to=2021-03-28T00:00:00Z
+    // const options = {
+    //     method: 'GET',
+    //     url: 'https://covid-19-statistics.p.rapidapi.com/reports/total',
+    //     headers: {
+    //         'x-rapidapi-key': 'd3fb627121mshecec64432a2390fp1a9e45jsn8911f56064b9',
+    //         'x-rapidapi-host': 'covid-19-statistics.p.rapidapi.com'
+    //     }
+    // };
+    // axios.request(options).then(response => {
+    //     console.log(response.data.data);
+    //     this.covid = (response.data.data);
+    // }).catch(function (error) {
+    //     console.error(error);
+    // });
+    // var options = {
+    //     method: 'GET',
+    //     url: `https://api.covid19api.com/world?from=2021-03-01T00:00:00Z&to=${this.date}Z`,
+    // };
+    axios.get("https://api.covid19api.com/world?from=".concat(this.sevenDaysAgo, "00:00:00Z&to=").concat(this.now, "00:00:00Z")).then(function (response) {
+      console.log(_this.now);
+      console.log(_this.sevenDaysAgo);
+      console.log(response.data); //this.covid = (response.data.data);
+    })["catch"](function (error) {
+      console.error(error);
+    });
+  }
+});
 
 /***/ }),
 
