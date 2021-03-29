@@ -42,3 +42,14 @@
     border: 0;
 }
 
+.form_label_input {
+    margin: 10px 0px;
+    .label {
+        width: 100px;
+        align-items: center;
+    }
+
+    .input {
+        width: 280px;
+    }
+}

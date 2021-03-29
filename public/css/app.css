@@ -13112,6 +13112,19 @@ html body::-webkit-scrollbar-track {
   border: 0;
 }
 
+.form_label_input {
+  margin: 10px 0px;
+}
+
+.form_label_input .label {
+  width: 100px;
+  align-items: center;
+}
+
+.form_label_input .input {
+  width: 280px;
+}
+
 .btn_register {
   justify-content: center;
 }
