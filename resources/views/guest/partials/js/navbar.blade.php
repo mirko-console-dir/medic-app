@@ -1,6 +1,6 @@
 <script type="application/javascript">
 
- var path = window.location.pathname;
+var path = window.location.pathname;
 
 // Animazione sulla navbar a seconda dello scroll verticale
 if (path == "/") {
@@ -25,7 +25,7 @@ window.addEventListener('scroll', (event) => {
     document.getElementById('links_container').classList.add('menuopen');
     document.getElementById('links_container').style.left = "0";
     document.getElementById('button_hamburger').style.display = "none";
-  }
+  };
 
 // Chiusura da tasto x
   function closeHamburger(){
@@ -33,7 +33,7 @@ window.addEventListener('scroll', (event) => {
     document.getElementById('links_container').classList.add('menuclose');
     document.getElementById('links_container').style.left = "100vw";
     document.getElementById('button_hamburger').style.display = "block";
-  }
+  };
 
   //Riapparizione della navbar in desktop
   window.addEventListener('resize', resize);
@@ -49,6 +49,6 @@ window.addEventListener('scroll', (event) => {
       document.getElementById('links_container').classList.remove('menuopen');
       document.getElementById('button_hamburger').style.display = "block";
     }
-  }
+  };
 
 </script>
