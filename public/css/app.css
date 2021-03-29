@@ -11877,69 +11877,6 @@ input {
   border: none;
 }
 
-#info_centre {
-  background-color: white;
-}
-
-#info_centre .first_info_row {
-  margin: 0;
-}
-
-#info_centre .first_info_row .info_title {
-  text-align: center;
-}
-
-#info_centre .first_info_row .info_title p:nth-child(2) {
-  font-size: 18px;
-  margin: 0;
-}
-
-#info_centre .second_info_row {
-  margin: 15px 0 0 0;
-}
-
-#info_centre .second_info_row .info_box {
-  min-height: 100px;
-}
-
-#info_centre .second_info_row .info_box .info_text {
-  padding: 20px;
-  flex-direction: column;
-  transition: background 0.5s;
-  cursor: pointer;
-}
-
-#info_centre .second_info_row .info_box .info_text:hover {
-  background: #0083b3;
-}
-
-#info_centre .second_info_row .info_box .info_text p:nth-child(1) {
-  color: #00aeef;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-#info_centre .second_info_row .info_box .info_text p:nth-child(2) {
-  margin: 0;
-}
-
-#info_centre .third_info_row {
-  margin: 0;
-}
-
-#info_centre .third_info_row .info_staff {
-  text-align: center;
-}
-
-#info_centre .third_info_row .info_staff p {
-  font-size: 14px;
-  margin-top: 20px;
-}
-
-#info_centre .third_info_row .info_staff p a {
-  color: #00aeef;
-}
-
 footer {
   background-color: #141430;
   color: white;
@@ -13013,42 +12950,6 @@ footer .container_80 .second_row .copyright {
   #slideshow .card_container #card-complete .card-complete-item .avatar {
     width: 150px;
     height: 150px;
-  }
-}
-
-@media (max-width: 991.98px) {
-  #info_centre .first_info_row {
-    margin-bottom: 15px;
-  }
-
-  #info_centre .second_info_row {
-    margin-top: -5px;
-    width: 100%;
-  }
-
-  #info_centre .second_info_row .info_row {
-    width: 100%;
-  }
-}
-
-@media (max-width: 767.98px) {
-  #info_centre .first_info_row {
-    margin-bottom: 15px;
-  }
-
-  #info_centre .second_info_row {
-    margin-top: -5px;
-    width: 100%;
-  }
-
-  #info_centre .second_info_row .info_row {
-    width: 100%;
-  }
-}
-
-@media (max-width: 576px) {
-  #info_centre .logo_footer img {
-    width: 50%;
   }
 }
 
