@@ -2490,6 +2490,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /** Il carosello così impostato può visualizzare fino a un massimo di 4 card.
 *
@@ -2647,54 +2648,65 @@ __webpack_require__.r(__webpack_exports__);
       this.next(true);
       return this.cardWidth = 1 / this.show;
     },
+
+    /** 
+     * Se il dottore ha sottoscritto una sponsorizzazione, il suo profilo viene caricato tra i primi all'interno del carosello.
+    */
     sposoredDoctors: function sposoredDoctors() {
-      /***************************************/
-      //calcolare la data di scadenza
+      var _this = this;
+
       var lastSponsorship = [];
-      var currentData = new Date();
-      this.profiles.forEach(function (doctor) {
+      var today = new Date();
+      var expire = new Date();
+      this.profiles.forEach(function (doctor, index) {
         doctor.sponsored = false;
         lastSponsorship = [];
+        var sponsoredDoctor = {};
         lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
-        console.log(doctor.name, lastSponsorship.name);
-        var sponsorshipData = new Date(lastSponsorship.created_at); //console.log("current data ", currentData);
-        //console.log("js data ", data);
-        //console.log("php data ", lastSponsorship.created_at);
+        var lastSponsorshipData = new Date(lastSponsorship.created_at);
 
         if (lastSponsorship.name != "free") {
-          console.log("confronto ", currentData < sponsorshipData); //doctor.sponsored = true;
+          //console.log("C'è la sponsorizzazione")
+          expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
 
-          console.log(doctor.name, doctor.sponsored);
-          return doctor.sponsored;
+          if (today < expire) {
+            //console.log("la sponsorizzazione è ancora attiva")
+            doctor.sponsored = true;
+
+            _this.profiles.splice(index, 1);
+
+            _this.profiles.unshift(doctor);
+          }
         }
+
+        console.log("doctor", doctor.name, "sponsored", doctor.sponsored);
       });
+      console.log(this.profiles);
     }
   },
   created: function created() {
     window.addEventListener('resize', this.cardMediaQuery);
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     /**
      * Chiamata al database per importare tutti gli "users"
      */
     axios.get(this.api) //.get('api/users')
     .then(function (response) {
-      _this.profiles = response.data.data; //console.log(this.profiles);
+      _this2.profiles = response.data.data; //console.log(this.profiles);
 
-      _this.i = 0;
-      _this.j = _this.i + 1;
-      _this.k = _this.i + 2;
-      _this.l = _this.i + 3;
+      _this2.i = 0;
+      _this2.j = _this2.i + 1;
+      _this2.k = _this2.i + 2;
+      _this2.l = _this2.i + 3;
 
-      _this.next(true);
+      _this2.next(true);
 
-      _this.cardMediaQuery();
+      _this2.sposoredDoctors();
 
-      _this.sposoredDoctors();
-      /**************************/
-
+      _this2.cardMediaQuery();
     })["catch"](function (error) {
       console.log(error);
     });
@@ -39479,6 +39491,8 @@ var render = function() {
                   _vm._v(_vm._s(profile.body))
                 ]),
                 _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(profile.id))]),
+                _vm._v(" "),
                 _c(
                   "a",
                   {
@@ -52144,13 +52158,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> AI_backend
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

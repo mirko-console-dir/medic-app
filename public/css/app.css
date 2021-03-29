@@ -11945,64 +11945,6 @@ footer .container_80 .second_row .copyright {
   justify-content: space-around;
 }
 
-html {
-  scrollbar-color: #141430;
-}
-
-html body {
-  background-color: #141430;
-  scrollbar-face-color: #141430;
-  scrollbar-track-color: rgba(50, 50, 50, 0.5);
-}
-
-html body::-webkit-scrollbar {
-  width: 16px;
-  height: 16px;
-}
-
-html body::-webkit-scrollbar-thumb {
-  background: rgba(50, 50, 50, 0.5);
-  border-radius: 10px;
-}
-
-html body::-webkit-scrollbar-thumb:hover {
-  background: rgba(50, 50, 50, 0.5);
-}
-
-html body::-webkit-scrollbar-track {
-  background: rgba(50, 50, 50, 0.5);
-  border-radius: 8px;
-}
-
-html {
-  scrollbar-color: #141430;
-}
-
-html body {
-  background-color: #141430;
-  scrollbar-face-color: #141430;
-  scrollbar-track-color: rgba(50, 50, 50, 0.5);
-}
-
-html body::-webkit-scrollbar {
-  width: 16px;
-  height: 16px;
-}
-
-html body::-webkit-scrollbar-thumb {
-  background: rgba(50, 50, 50, 0.5);
-  border-radius: 10px;
-}
-
-html body::-webkit-scrollbar-thumb:hover {
-  background: rgba(50, 50, 50, 0.5);
-}
-
-html body::-webkit-scrollbar-track {
-  background: rgba(50, 50, 50, 0.5);
-  border-radius: 8px;
-}
-
 #advanced_search {
   background-image: url("/img/bg_jumbo.jpg");
   background-size: cover;
