@@ -58,7 +58,7 @@
                         @foreach($sponsorships as $key => $sponsorship)
                         @if ($key > 0)
                         <option value="{{$sponsorship->id}}" name="sponsorship_id">
-                            {{$sponsorship->name}} &euro; {{$sponsorship->price}}
+                            {{$sponsorship->name}} &euro; {{$sponsorship->price}} ({{$sponsorship->duration}} hours)
                         </option>
                         @endif
                         @endforeach
