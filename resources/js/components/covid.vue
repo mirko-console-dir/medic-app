@@ -163,5 +163,8 @@ import Chart from "chart.js";
 </script>
 
 <style lang="scss" scoped>
-    //inserisci qui lo stile per QUESTO component 
+    #covid{
+        width: 600px !important;
+        height: 332px !important;
+    }
 </style>

@@ -23511,7 +23511,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "#covid[data-v-5219db2c] {\n  width: 600px !important;\n  height: 332px !important;\n}", ""]);
 
 // exports
 
@@ -89913,15 +89913,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************!*\
   !*** ./resources/js/components/covid.vue ***!
   \*******************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _covid_vue_vue_type_template_id_5219db2c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./covid.vue?vue&type=template&id=5219db2c&scoped=true& */ "./resources/js/components/covid.vue?vue&type=template&id=5219db2c&scoped=true&");
 /* harmony import */ var _covid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./covid.vue?vue&type=script&lang=js& */ "./resources/js/components/covid.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _covid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _covid_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _covid_vue_vue_type_style_index_0_id_5219db2c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./covid.vue?vue&type=style&index=0&id=5219db2c&lang=scss&scoped=true& */ "./resources/js/components/covid.vue?vue&type=style&index=0&id=5219db2c&lang=scss&scoped=true&");
+/* empty/unused harmony star reexport *//* harmony import */ var _covid_vue_vue_type_style_index_0_id_5219db2c_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./covid.vue?vue&type=style&index=0&id=5219db2c&lang=scss&scoped=true& */ "./resources/js/components/covid.vue?vue&type=style&index=0&id=5219db2c&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -89953,7 +89952,7 @@ component.options.__file = "resources/js/components/covid.vue"
 /*!********************************************************************!*\
   !*** ./resources/js/components/covid.vue?vue&type=script&lang=js& ***!
   \********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -90240,8 +90239,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\tomma\Desktop\Boolean\PROGETTO FINALE REPO\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/luigitroiano/Desktop/Final Project/medicUs/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/luigitroiano/Desktop/Final Project/medicUs/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
