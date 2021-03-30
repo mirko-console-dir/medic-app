@@ -13515,6 +13515,48 @@ footer .container_80 .second_row .copyright {
   background-color: #006DB2;
 }
 
+@media (max-width: 767.98px) {
+  #navbar_auth {
+    padding: 0;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+  }
+
+  #navbar_auth .navbar-brand {
+    padding: 0;
+  }
+
+  #navbar_auth #navbarSupportedContent {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    text-align: right;
+  }
+
+  #navbar_auth #navbarSupportedContent .navbar-nav .nav-item {
+    border-radius: 5px;
+  }
+
+  #navbar_auth #navbarSupportedContent .navbar-nav .nav-item .dropdown-menu-right {
+    min-width: 0;
+  }
+
+  #navbar_auth #navbarSupportedContent .navbar-nav .dropdown {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    background-color: #00aeef;
+    position: relative;
+    right: -73%;
+    top: -30px;
+  }
+
+  #navbar_auth #navbarSupportedContent .navbar-nav .dropdown #navbarDropdown {
+    padding: 8px;
+  }
+}
+
 .card-custom {
   font-family: "poppins", sans-serif;
   font-weight: bolder;
