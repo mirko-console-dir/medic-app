@@ -12110,6 +12110,9 @@ footer .container_80 .second_row .copyright {
 
 #advanced_search main .component .card_container .card_wrapper .card .specializations {
   height: 54px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   padding-right: 10px;
   overflow-y: auto;
 }

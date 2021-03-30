@@ -34,17 +34,13 @@
       <div class="card_container d_flex">
 
         <div class="card_wrapper" v-for="(user, index) in filterUsers.slice(cards*(pages.current - 1), cards*pages.current)" :key="index">
-          <a :href="'/doctor/'+user.slug" class="card">
+          <a :href="`/doctor/${user.slug}`" class="card">
 
-            <div class="avatar" v-if="user.profile_img != null">
-              <div class="profile" v-bind:style="{ 'background-image': 'url( storage/' + user.profile_img + ')' }"></div>
-            </div>
-            <!-- Fallback image -->
-            <div class="avatar" v-else>
-              <div class="profile" style="background-image:url(img/user-default.jpg)"></div>
+            <div class="avatar">
+              <div class="profile" :style="`background-image:url(storage/${user.profile_img? user.profile_img: '../img/user-default.jpg'})`"></div>
             </div>
 
-            <div class="info name">{{user.name+" "+user.lastname}} </div>
+            <div class="info name">{{user.name}} {{user.lastname}}</div>
             <div class="info specializations">
               <div class="specialization" v-for="(spec, index) in user.specializations" :key="index">{{spec.name}} </div>
             </div>
@@ -170,6 +166,16 @@
             }
             doctor.avgVote = avgVote;
             //console.log(doctor.name, doctor.avgVote); 
+          });
+        },
+
+        queryVote: function(users){
+          let vote = 0;
+          let avgVote = 0;
+          let floorVote = 0;
+          let counter = 0;
+          users.forEach(doctor=>{
+
           });
         },
 

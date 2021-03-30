@@ -2048,10 +2048,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["img", "api", "users"],
   data: function data() {
@@ -2172,6 +2168,13 @@ __webpack_require__.r(__webpack_exports__);
 
         doctor.avgVote = avgVote; //console.log(doctor.name, doctor.avgVote); 
       });
+    },
+    queryVote: function queryVote(users) {
+      var vote = 0;
+      var avgVote = 0;
+      var floorVote = 0;
+      var counter = 0;
+      users.forEach(function (doctor) {});
     },
 
     /** 
@@ -2646,7 +2649,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -77216,27 +77218,20 @@ var render = function() {
                   attrs: { href: "/doctor/" + user.slug }
                 },
                 [
-                  user.profile_img != null
-                    ? _c("div", { staticClass: "avatar" }, [
-                        _c("div", {
-                          staticClass: "profile",
-                          style: {
-                            "background-image":
-                              "url( storage/" + user.profile_img + ")"
-                          }
-                        })
-                      ])
-                    : _c("div", { staticClass: "avatar" }, [
-                        _c("div", {
-                          staticClass: "profile",
-                          staticStyle: {
-                            "background-image": "url(img/user-default.jpg)"
-                          }
-                        })
-                      ]),
+                  _c("div", { staticClass: "avatar" }, [
+                    _c("div", {
+                      staticClass: "profile",
+                      style:
+                        "background-image:url(storage/" +
+                        (user.profile_img
+                          ? user.profile_img
+                          : "../img/user-default.jpg") +
+                        ")"
+                    })
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "info name" }, [
-                    _vm._v(_vm._s(user.name + " " + user.lastname) + " ")
+                    _vm._v(_vm._s(user.name) + " " + _vm._s(user.lastname))
                   ]),
                   _vm._v(" "),
                   _c(
@@ -77514,10 +77509,12 @@ var render = function() {
               [
                 _c("div", {
                   staticClass: "info avatar",
-                  style: {
-                    "background-image":
-                      "url(storage/" + profile.profile_img + ")"
-                  }
+                  style:
+                    "background-image:url(storage/" +
+                    (profile.profile_img
+                      ? profile.profile_img
+                      : "../img/user-default.jpg") +
+                    ")"
                 }),
                 _vm._v(" "),
                 _c("h4", { staticClass: "info name" }, [
