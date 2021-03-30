@@ -22,5 +22,5 @@ Home
 
 @include('guest.partials.js.jumbo_home')
 
-
+<cookie></cookie> 
 @endsection

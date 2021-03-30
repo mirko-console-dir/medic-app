@@ -4,7 +4,7 @@
         <div class="card_container">
             <transition-group id="card-complete" name="card-complete" tag="div">
                 <div class="card-complete-item" :style="{ 'flex-basis': cardWidth }" v-for="profile in activeProfiles" :key="profile.id">
-                    <div class="info avatar" :style="`background-image:url(storage/${profile.profile_img? profile.profile_img: '../img/user-default.jpg'})`"></div>
+                    <div class="info avatar" :style="`background-image:url(storage/${profile.profile_img != null? profile.profile_img: '../img/user-default.jpg'})`"></div>
                     <h4 class="info name">Dr. {{profile.name}} {{profile.lastname}}</h4>
                     <div class="info rating">
                         <i v-for="(vote, index) in profile.avgVote" :class="(vote)?'fas fa-star':'far fa-star'" :key="index"></i>
@@ -238,7 +238,8 @@ export default {
         .get(this.api) //.get('api/users')
         .then(response => {
             this.profiles = response.data.data;
-
+        })
+        .then(()=>{
             this.i = 0;
             this.j = this.i + 1;
             this.k = this.i + 2;
@@ -248,7 +249,6 @@ export default {
             this.sposoredDoctors(this.profiles);
             this.cardMediaQuery();
             this.next(true);
-
         })
         .catch(error => {
             console.log(error);
