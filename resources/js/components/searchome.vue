@@ -2,7 +2,7 @@
   <form class="form col-lg-6 col-sm-12"  autocomplete="off" action="/search">
 
       <div class="d_flex input_container">
-        <input class="no_blur" type="text" name="search" placeholder="Start typing a specialization"
+        <input class="no_blur text-capitalize" type="text" name="search" placeholder="Start typing a specialization"
           v-model="search"
           @keyup="specFilter(search)"
           @click="showList()"

@@ -11,7 +11,7 @@
                     </div>
                     <h4 class="info specialization" v-for="(spec, index) in profile.specializations.slice(0,1)" :key="index">{{spec.name}} </h4>
                     <p class="info presentation">{{profile.body}}</p>
-                    <a class="info showmore" :href="'/doctor/'+profile.slug"> show more </a>
+                    <a class="info showmore" :href="`/doctor/${profile.slug}`"> show more </a>
                 </div>
             </transition-group>
         </div>

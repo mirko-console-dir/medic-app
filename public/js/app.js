@@ -2046,8 +2046,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["img", "api", "users"],
   data: function data() {
@@ -77106,7 +77104,7 @@ var render = function() {
               expression: "search"
             }
           ],
-          staticClass: "form-control text-capitalize no_blur",
+          staticClass: "text-capitalize no_blur",
           attrs: {
             type: "text",
             name: "searchbar",
@@ -77385,7 +77383,7 @@ var render = function() {
               expression: "search"
             }
           ],
-          staticClass: "no_blur",
+          staticClass: "no_blur text-capitalize",
           attrs: {
             type: "text",
             name: "search",

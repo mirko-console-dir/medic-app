@@ -3,7 +3,7 @@
   <div class="component">
     <div class="form col-lg-6 col-md-12">
         <div class=" input_container no_blur">
-          <input class="form-control text-capitalize no_blur" type="text" name="searchbar" placeholder="Start typing a specialization"
+          <input class="text-capitalize no_blur" type="text" name="searchbar" placeholder="Start typing a specialization"
             v-model="search"
             @keyup="specFilter(search)"
             @click="showList()"
@@ -35,7 +35,6 @@
 
         <div class="card_wrapper" v-for="(user, index) in filterUsers.slice(cards*(pages.current - 1), cards*pages.current)" :key="index">
           <a :href="`/doctor/${user.slug}`" class="card">
-
             <div class="avatar">
               <div class="profile" :style="`background-image:url(storage/${user.profile_img? user.profile_img: '../img/user-default.jpg'})`"></div>
             </div>
@@ -50,7 +49,6 @@
             <p class="description">{{user.body}}</p>
           </a>
         </div>
-
       </div>
 
     </div>
@@ -97,7 +95,7 @@
               }
             });
             if(filter.length === 0){
-              filter = ["No results found"]
+              filter = ["No results found"];
             }
           }
           return this.filterSpec = filter;
@@ -220,7 +218,6 @@
             }
             this.totalPages();
         },
-
         /** 
          * Se il dottore ha sottoscritto una sponsorizzazione, il suo profilo viene caricato tra i primi all'interno del carosello.
         */
@@ -242,7 +239,6 @@
                 }
             });
         },
-
         /**
          * Rimuove l'admin dall'array users
         */
@@ -287,7 +283,6 @@
                * Trigger iniziale per determinare il numero di cards da mosttrare in base alla larghezza della finestra.
                */
               this.cardsMediaQuery();
-
         })
         .catch(error => {
             console.log(error);

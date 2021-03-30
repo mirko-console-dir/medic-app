@@ -11649,6 +11649,18 @@ input {
   text-transform: uppercase;
 }
 
+#jumbo_home .container_searchbar .form .input_container input::-moz-placeholder {
+  text-transform: none;
+}
+
+#jumbo_home .container_searchbar .form .input_container input:-ms-input-placeholder {
+  text-transform: none;
+}
+
+#jumbo_home .container_searchbar .form .input_container input::placeholder {
+  text-transform: none;
+}
+
 #jumbo_home .container_searchbar .form .input_container button {
   width: 15%;
   border-top-right-radius: 7px;
@@ -11998,8 +12010,8 @@ footer .container_80 .second_row .copyright {
 
 #advanced_search main .component .form .input_container input {
   height: 45px;
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
+  width: 100%;
+  border-radius: 7px;
   padding: 0 20px;
   border: 0;
 }
