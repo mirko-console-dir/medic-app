@@ -13164,7 +13164,7 @@ footer .container_80 .second_row .copyright {
   }
 
   #profile_doctor main .doctor_infos .info_container .info_personal .bio .description {
-    max-height: none;
+    max-height: 250px;
   }
 
   #profile_doctor main .doctor_infos .services_contacts {
@@ -13197,6 +13197,172 @@ footer .container_80 .second_row .copyright {
   #profile_doctor .forms #form_message h2,
   #profile_doctor .forms #form_review h2 {
     font-size: 33px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #profile_doctor main {
+    width: 90%;
+  }
+
+  #profile_doctor main .doctor_infos {
+    width: 100%;
+    padding: 10px;
+  }
+
+  #profile_doctor main .doctor_infos .img_profile_container {
+    margin: 40px 0;
+  }
+
+  #profile_doctor main .doctor_infos .info_container h1 {
+    margin-bottom: 0;
+    line-height: 1.1em;
+  }
+
+  #profile_doctor main .doctor_infos .info_container .info_personal .bio {
+    margin-top: 40px;
+    padding-right: 0;
+  }
+
+  #profile_doctor main .doctor_infos .info_container .info_personal .bio .description {
+    max-height: 250px;
+  }
+
+  #profile_doctor main .doctor_infos .services_contacts {
+    width: 100%;
+    margin: auto;
+    margin-top: 30px;
+  }
+
+  #profile_doctor main .doctor_infos .services_contacts .services h2 {
+    padding-left: 0;
+    margin-top: 0;
+  }
+
+  #profile_doctor main .doctor_infos .services_contacts .services .services_container {
+    padding-left: 2%;
+    padding-right: 2%;
+    position: relative;
+  }
+
+  #profile_doctor main .doctor_infos .services_contacts .services .services_container #services_pagination {
+    width: 90%;
+    height: 250px;
+    padding-left: 2%;
+  }
+
+  #profile_doctor main .doctor_infos .services_contacts .contacts h2 {
+    padding-left: 0;
+  }
+
+  #profile_doctor main .doctor_infos .services_contacts .contacts .info_contact {
+    padding-left: 0;
+  }
+
+  #profile_doctor #reviews_box {
+    width: 90%;
+    padding: 20px 3%;
+  }
+
+  #profile_doctor #reviews_box .pagination button {
+    margin: auto;
+  }
+
+  #profile_doctor #reviews_box .pagination .tableList .objectBlock {
+    color: white;
+    margin-top: 20px;
+  }
+
+  #profile_doctor #reviews_box .pagination .tableList .objectBlock .header_message {
+    margin-bottom: 0;
+  }
+
+  #profile_doctor #reviews_box .pagination .tableList .objectBlock .title_vote {
+    height: 40px;
+  }
+
+  #profile_doctor #reviews_box .pagination .tableList .objectBlock .title_vote .title {
+    margin-bottom: 5px;
+    color: #00aeef;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+    text-transform: uppercase;
+  }
+
+  #profile_doctor #reviews_box .pagination .tableList .objectBlock .title_vote #vote {
+    font-size: 13px;
+    color: #ffc200;
+    align-self: center;
+  }
+
+  #profile_doctor #reviews_box .pagination .tableList .objectBlock .title_vote #vote i {
+    margin: 0 2px;
+  }
+
+  #profile_doctor #reviews_box .pagination .tableList .objectBlock .review .header_message {
+    margin-top: 0;
+  }
+
+  #profile_doctor #reviews_box .pagination .pagination-block {
+    margin: 10px auto;
+    font-size: 20px;
+  }
+
+  #profile_doctor #reviews_box .pagination .pagination-block span {
+    margin: 0 15px;
+  }
+
+  #profile_doctor #reviews_box .pagination .pagination-block span i:hover {
+    cursor: pointer;
+    color: #00aeef;
+  }
+
+  #profile_doctor .forms #form_message,
+  #profile_doctor .forms #form_review {
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0 30px;
+    display: none;
+    border-radius: 10px;
+    margin: 220px auto;
+    width: 90%;
+  }
+
+  #profile_doctor .forms #form_message h2,
+  #profile_doctor .forms #form_review h2 {
+    padding-top: 20px;
+    font-size: 30px;
+  }
+
+  #profile_doctor .forms #form_message textarea,
+  #profile_doctor .forms #form_review textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: 0;
+    outline: 0;
+    color: #141430;
+    padding: 10px;
+  }
+
+  #profile_doctor .forms #form_message label,
+  #profile_doctor .forms #form_review label {
+    color: #00aeef;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+
+  #profile_doctor .forms #form_message input,
+  #profile_doctor .forms #form_review input {
+    color: #141430;
+  }
+
+  #profile_doctor .forms #form_message button,
+  #profile_doctor .forms #form_review button {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
