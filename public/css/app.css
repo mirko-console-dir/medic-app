@@ -12271,6 +12271,7 @@ footer .container_80 .second_row .copyright {
   height: 250px;
   border-radius: 50%;
   background-size: cover;
+  background-position: center;
 }
 
 #profile_doctor main .doctor_infos .img_profile_container .img_null {
