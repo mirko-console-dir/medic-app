@@ -35,7 +35,7 @@
         .img_null{
           width: 250px;
           height: 250px;
-          margin: 70px auto;
+          // margin: 70px auto;
           border-radius: 50%;
           background-size: cover;
           background-position: 40%;
@@ -100,7 +100,15 @@
           }
 
           .no_bio{
-            margin-top: 15px;
+            margin-top: 40px;
+            padding:20px;
+            a{
+              color: map-get($color-map, primary_color_light);
+              cursor: pointer;
+              &:hover{
+                color: #0188BB;
+              }
+            }
           }
           .bio{
             margin-top: 25px;

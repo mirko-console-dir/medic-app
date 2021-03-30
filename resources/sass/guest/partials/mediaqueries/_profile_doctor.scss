@@ -1,0 +1,75 @@
+// MD - Medium devices (tablets, 992px and down)
+@media (max-width: 991.98px) {
+
+  #profile_doctor{
+    main{
+      .doctor_infos{
+        padding: 30px;
+        .img_profile_container{
+          margin: 60px 0;
+        }
+        .info_container{
+          h1{
+            margin-top: 0;
+          }
+          .info_personal{
+            .no_bio{
+              margin-top: 30px;
+              text-align: center;
+            }
+            .bio{
+              margin-top: 40px;
+              padding-right: 0;
+              a{
+                margin: 20px auto;
+              }
+              .description{
+                max-height: none;
+              }
+            }
+          }
+        }
+        .services_contacts{
+          margin-top: 20px;
+          .services{
+            h2{
+              padding-left: 0;
+            }
+          }
+          .contacts{
+            h2{
+              padding-left: 0;
+              margin-top: 40px;
+            }
+            .info_contact{
+              padding-left: 0;
+            }
+          }
+        }
+      }
+    }
+    #reviews_box{
+      .pagination{
+        h2{
+          font-size: 33px;
+        }
+      }
+    }
+    .forms{
+      #form_message, #form_review{
+        margin: 150px auto;
+        width: 80%;
+        h2{
+          font-size: 33px;
+        }
+      }
+    }
+  }
+
+
+
+}
+
+// SM - Small devices (landscape phones, 768 and down)
+@media (max-width: 767.98px) {
+}
