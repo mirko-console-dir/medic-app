@@ -11145,6 +11145,15 @@ input {
   margin: 0;
 }
 
+#dashboard #account .label {
+  font-weight: 300;
+  color: #00aeef;
+}
+
+#dashboard #account .edit_label {
+  color: #00aeef;
+}
+
 #dashboard #account .info {
   align-items: center;
 }
@@ -11174,7 +11183,7 @@ input {
 }
 
 #dashboard #account .card_service .buttons .edit_button a {
-  color: #84BE46;
+  color: #E0A800;
 }
 
 #dashboard #account .add_service {
@@ -13256,6 +13265,15 @@ footer .container_80 .second_row .copyright {
 
   #dashboard #account h2 {
     font-size: 30px;
+  }
+
+  #dashboard #account .label {
+    font-weight: 200;
+    color: #00aeef;
+  }
+
+  #dashboard #account .edit_label {
+    color: #00aeef;
   }
 }
 

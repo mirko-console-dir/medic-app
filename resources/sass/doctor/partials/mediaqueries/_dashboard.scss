@@ -11,14 +11,19 @@
             h2 {
                 font-size: 30px;
             }
+            .label{
+                font-weight: 200;
+                color: map-get($color-map,  primary_color_light );
+            }
+            .edit_label{
+                color: map-get($color-map,  primary_color_light );
+            }
         }
     }
-
 }
 
 // SM - Small devices (landscape phones, 768 and down)
 @media (max-width: 767.98px) {
-
 
 }
 
@@ -26,5 +31,5 @@
 // XS - Extra Small devices (phones, 572 and down)
 
 @media (max-width: 572px) {
-
+    
 }

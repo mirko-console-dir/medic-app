@@ -68,6 +68,7 @@
 
                     <button type="submit" class="btn"><i class="fas fa-shopping-cart"></i> Checkout</button>
                     <small class="text-muted">Choose a Subcription</small>
+                    <small class="text-muted">**Sponsorship allows you to showcase your profile and make it appear at the top in searches by users</small>
 
                 </form>
                 
