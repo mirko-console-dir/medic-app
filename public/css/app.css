@@ -11173,6 +11173,10 @@ input {
   padding: 0px 0px;
 }
 
+#dashboard #account .card_service .buttons .edit_button a {
+  color: #84BE46;
+}
+
 #dashboard #account .add_service {
   width: 100px;
   margin: 0px 20px;
@@ -11968,6 +11972,46 @@ footer .container_80 .second_row .social_icons .social i {
 footer .container_80 .second_row .copyright {
   font-size: 14px;
   justify-content: space-around;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(13deg, #002752 14%, #141430 64%);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(26deg, #84be46 5%, #141430 64%);
+}
+
+::-webkit-scrollbar-track {
+  background: #141430;
+  border-radius: 10px;
+  box-shadow: inset 7px 10px 12px #141430;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(13deg, #002752 14%, #141430 64%);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(26deg, #84be46 5%, #141430 64%);
+}
+
+::-webkit-scrollbar-track {
+  background: #141430;
+  border-radius: 10px;
+  box-shadow: inset 7px 10px 12px #141430;
 }
 
 #advanced_search {
