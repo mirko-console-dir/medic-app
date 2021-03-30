@@ -23,8 +23,8 @@ My profile
                     <img src="{{ asset('storage/' . $user->profile_img)}}" alt="">
                     @endif
                     <div class="d_flex_column">
-                        <h4>Full Name: {{$user->name}} {{$user->lastname}}</h4>
-                        <h4>Email: {{$user->email}}</h4>
+                        <h4><span class="label">Full Name:</span> {{$user->name}} {{$user->lastname}}</h4>
+                        <h4> <span class="label">Email:</span>  {{$user->email}}</h4>
                     </div>
                 </div>
             </div>
@@ -32,12 +32,12 @@ My profile
             <div class="detail d_flex_column">
                 <h2>Account information</h2>
                 <div class="d_flex_column">
-                    <h4>Description:</h4>
+                    <h4 class="label">Description:</h4>
                     <h4>{{$user->body}}</h4>
                 </div>
-                <h4>Address: {{$user->address}}</h4>
-                <h4>Register Doctor Number: {{$user->register_number_doc}}</h4>
-                <h4>Phone Number:
+                <h4><span class="label">Address:</span>  {{$user->address}}</h4>
+                <h4><span class="label">Register Doctor Number:</span>  {{$user->register_number_doc}}</h4>
+                <h4><span class="label">Phone Number:</span> 
                     @foreach($prefixes as $prefix)
                     @if($user->prefix_id == $prefix->id)
                     {{$prefix->dial_code}} {{$user->phone_number}}
@@ -46,7 +46,7 @@ My profile
 
                 </h4>
                 <div class="d_flex_column">
-                    <h4>Clinics where you operate:</h4>
+                    <h4><span class="label">Clinics where you operate:</span> </h4>
                     @foreach($user_clinic as $clinic)
                     @if($clinic->id == $user->id)
                     @foreach($clinic->clinics as $user_has_clinic)
@@ -56,7 +56,7 @@ My profile
                     @endforeach
                 </div>
                 <div class="d_flex_column">
-                    <h4>Specializations:</h4>
+                    <h4> <span class="label">Specializations:</span> </h4>
                     @foreach($user_specialization as $specialization)
                     @if($specialization->id == $user->id)
                     @foreach($specialization->specializations as $user_has_specialization)

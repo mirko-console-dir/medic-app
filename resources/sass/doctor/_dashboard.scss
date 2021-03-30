@@ -64,7 +64,13 @@
         h2 {
             margin: 0;
         }
-
+        .label{
+            font-weight: 300;
+            color: map-get($color-map,  primary_color_light );
+        }
+        .edit_label{
+            color: map-get($color-map,  primary_color_light );
+        }
         .info {
             align-items: center;
 

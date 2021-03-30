@@ -11145,6 +11145,15 @@ input {
   margin: 0;
 }
 
+#dashboard #account .label {
+  font-weight: 300;
+  color: #00aeef;
+}
+
+#dashboard #account .edit_label {
+  color: #00aeef;
+}
+
 #dashboard #account .info {
   align-items: center;
 }
@@ -13212,6 +13221,15 @@ footer .container_80 .second_row .copyright {
 
   #dashboard #account h2 {
     font-size: 30px;
+  }
+
+  #dashboard #account .label {
+    font-weight: 200;
+    color: #00aeef;
+  }
+
+  #dashboard #account .edit_label {
+    color: #00aeef;
   }
 }
 
