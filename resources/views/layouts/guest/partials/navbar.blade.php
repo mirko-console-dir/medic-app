@@ -35,15 +35,6 @@
           </a>
         </li>
 
-        <li class="link">
-          <a href="#">
-            <i class="fas fa-caret-right"></i>
-            link
-            <div class="hr">
-              <hr>
-            </div>
-          </a>
-        </li>
 
         @if (Route::has('login'))
           @auth
