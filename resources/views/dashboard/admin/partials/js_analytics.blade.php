@@ -87,7 +87,7 @@
                 yAxes: [{
                     ticks: {
                         min: 0,
-                        max: 10,
+                        max: 20,
                     },
                     gridLines: {
                         zeroLineColor: '#84BE46',

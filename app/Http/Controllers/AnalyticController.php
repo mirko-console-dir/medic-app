@@ -33,10 +33,14 @@ class AnalyticController extends Controller
 
         // dd($user_sponsorships);
         $sponsorship_date_array = array();
+        $standard = array();
+        $premium = array();
+        $exclusive = array();
 
         foreach($user_sponsorships as $user_has_relation){
             
             // dd($user_has_relation->sponsorships);
+   
 
             foreach($user_has_relation->sponsorships as $sponsorship){
                 // dd($sponsorship);
@@ -72,6 +76,7 @@ class AnalyticController extends Controller
 
         }
         // dd($standard);
+        
         $encode_standard = json_encode($standard);
         $encode_premium = json_encode($premium);
         $encode_exclusive = json_encode($exclusive);

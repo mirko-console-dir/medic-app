@@ -86,7 +86,7 @@ class RegisterController extends Controller
         // We assign the pivot link with sponsorship_id 0 even if it should be 1;
         $user->sponsorships()->attach('sponsorship_id' == 0);
         $user->assignRole('doctor');
-        $user->givePermissionTo(['edit_doctor', 'show_doctor', 'remove_doctor',]);
+        // $user->givePermissionTo(['edit_doctor', 'show_doctor', 'remove_doctor',]);
         //assign role to user
 
         // dd($user); 
