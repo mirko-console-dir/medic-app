@@ -186,8 +186,10 @@ export default {
                 doctor.sponsored = false;
                 lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
                 let lastSponsorshipData = new Date(lastSponsorship.created_at);
+                console.log(`lastSponsorshipData ${lastSponsorshipData}`);
                 if(lastSponsorship.name != "free"){
-                    expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
+                    expire.setDate(lastSponsorshipData.getDate() + lastSponsorship.duration/24);
+                    console.log(`${doctor.name}; expire date: ${expire}`);
                     if(today < expire){
                         users.splice(index, 1);
                         users.unshift(doctor);

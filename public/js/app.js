@@ -2840,9 +2840,11 @@ __webpack_require__.r(__webpack_exports__);
         doctor.sponsored = false;
         lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
         var lastSponsorshipData = new Date(lastSponsorship.created_at);
+        console.log("lastSponsorshipData ".concat(lastSponsorshipData));
 
         if (lastSponsorship.name != "free") {
-          expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
+          expire.setDate(lastSponsorshipData.getDate() + lastSponsorship.duration / 24);
+          console.log("".concat(doctor.name, "; expire date: ").concat(expire));
 
           if (today < expire) {
             users.splice(index, 1);
@@ -90307,8 +90309,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
