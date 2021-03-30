@@ -57,7 +57,7 @@
             </div>
           @else
             <h3 class="no_bio">Isn't there enough information on this doctor?
-                <a href="#">Send a message</a>
+                <a onclick="appearMessage()">Send a message</a>
               </h3>
           @endif
 
@@ -154,7 +154,9 @@
     $votes_sum = array_sum($reviews_vote);
 
     // Funzione che trova la media dei voti arrotondata per l'utente
-    $average_votes = round($votes_sum/count($reviews_vote));
+    if (count($reviews_vote) > 0) {
+      $average_votes = round($votes_sum/count($reviews_vote));
+    }
 
   @endphp
 
