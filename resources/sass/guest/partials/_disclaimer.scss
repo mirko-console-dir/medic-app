@@ -1,0 +1,40 @@
+#disclaimer{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+        width: 100%;
+        min-height: 15vh;
+        height: max-content;
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 30px 10px;
+        .content{
+            padding: 20px;
+            text-align: justify;
+        }
+        .buttons{
+            display: flex;
+            justify-content: center;
+            .button{
+                padding: 10px 20px;
+                text-decoration: none;
+                cursor: pointer;
+                &:first-child{
+                    margin-right: 30px;
+                }
+            }
+            .blue{
+                color: white;
+                background-color: #2fa9eb;
+            }
+            .green{
+                color: black;
+                background-color: #85be47; 
+                
+            }
+        }
+    }
+    .noactive{
+        display: none;
+    }

@@ -3,7 +3,7 @@
   <div class="component">
     <div class="form col-lg-6 col-md-12">
         <div class=" input_container no_blur">
-          <input class="text-capitalize no_blur" type="text" name="searchbar" placeholder="Start typing a specialization"
+          <input class="text-capitalize no_blur" type="text" name="searchbar" placeholder="Start typing a specialization" autocomplete="off"
             v-model="search"
             @keyup="specFilter(search)"
             @click="showList()"
@@ -36,7 +36,7 @@
         <div class="card_wrapper" v-for="(user, index) in filterUsers.slice(cards*(pages.current - 1), cards*pages.current)" :key="index">
           <a :href="`/doctor/${user.slug}`" class="card">
             <div class="avatar">
-              <div class="profile" :style="`background-image:url(storage/${user.profile_img? user.profile_img: '../img/user-default.jpg'})`"></div>
+              <div class="profile" :style="`background-image:url(storage/${user.profile_img != null ? user.profile_img: '../img/user-default.jpg'})`"></div>
             </div>
 
             <div class="info name">{{user.name}} {{user.lastname}}</div>
@@ -258,31 +258,36 @@
         .get(this.api) //.get('api/users')
         .then(response => {
               this.users = response.data.data;
-              this.adminRemove(this.users);
-              /**
-              * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
-              */
-              this.querySpec(this.users);
-              /** 
-               * Calcola la media dei voti ricevuti dagli utenti
-               */
-              this.queryVote(this.users);
-              /** 
-              * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
-              */
-              this.specializations.unshift("all");
-               /** 
-               * Riordina gli utenti sulla base della sposorizzazione sottoscritta.
-               */
-               this.sposoredDoctors(this.users);
-              /**
-               * Trigger iniziale sul valore passato dalla pagina "home"
-              */
-              this.writeSpec((this.search != "")? this.search : "all"); 
-              /**
-               * Trigger iniziale per determinare il numero di cards da mosttrare in base alla larghezza della finestra.
-               */
-              this.cardsMediaQuery();
+        })
+        .then(()=>{
+          /** 
+           * Rimuove l'admin
+          */
+          this.adminRemove(this.users);
+          /**
+          * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
+          */
+          this.querySpec(this.users);
+          /** 
+           * Calcola la media dei voti ricevuti dagli utenti
+           */
+          this.queryVote(this.users);
+          /** 
+          * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
+          */
+          this.specializations.unshift("all");
+           /** 
+           * Riordina gli utenti sulla base della sposorizzazione sottoscritta.
+           */
+           this.sposoredDoctors(this.users);
+          /**
+           * Trigger iniziale sul valore passato dalla pagina "home"
+          */
+          this.writeSpec((this.search != "")? this.search : "all"); 
+          /**
+           * Trigger iniziale per determinare il numero di cards da mosttrare in base alla larghezza della finestra.
+           */
+          this.cardsMediaQuery();
         })
         .catch(error => {
             console.log(error);
