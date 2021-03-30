@@ -13327,6 +13327,13 @@ footer .container_80 .second_row .copyright {
     padding-left: 0;
   }
 
+  #profile_doctor main .doctor_infos .services_contacts .contacts .info_contact button {
+    margin-top: 20px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   #profile_doctor #reviews_box {
     width: 90%;
     padding: 20px 3%;

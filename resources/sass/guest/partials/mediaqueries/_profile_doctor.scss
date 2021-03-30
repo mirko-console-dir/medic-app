@@ -123,6 +123,12 @@
             }
             .info_contact{
               padding-left: 0;
+              button{
+                margin-top: 20px;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+              }
             }
           }
         }
