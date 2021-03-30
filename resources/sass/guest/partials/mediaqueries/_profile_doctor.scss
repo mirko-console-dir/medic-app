@@ -24,7 +24,7 @@
                 margin: 20px auto;
               }
               .description{
-                max-height: none;
+                max-height: 250px;
               }
             }
           }
@@ -72,4 +72,155 @@
 
 // SM - Small devices (landscape phones, 768 and down)
 @media (max-width: 767.98px) {
+
+  #profile_doctor{
+    main{
+      width: 90%;
+      .doctor_infos{
+        width: 100%;
+        padding: 10px;
+        .img_profile_container{
+          margin: 40px 0;
+        }
+        .info_container{
+          h1{
+            margin-bottom: 0;
+            line-height: 1.1em;
+          }
+          .info_personal{
+            .bio{
+              margin-top: 40px;
+              padding-right: 0;
+              .description{
+                max-height: 250px;
+              }
+            }
+          }
+        }
+        .services_contacts{
+          width: 100%;
+          margin: auto;
+          margin-top: 30px;
+        .services{
+          h2{
+            padding-left: 0;
+            margin-top: 0;
+          }
+          .services_container{
+            padding-left: 2%;
+            padding-right: 2%;
+            position: relative;
+            #services_pagination{
+              width: 90%;
+              height: 250px;
+              padding-left: 2%;
+            }
+          }
+        }
+        .contacts{
+            h2{
+              padding-left: 0;
+            }
+            .info_contact{
+              padding-left: 0;
+            }
+          }
+        }
+      }
+    }
+    #reviews_box{
+      width: 90%;
+      padding: 20px 3%;
+      .pagination{
+        button{
+          margin: auto;
+        }
+        .tableList{
+          .objectBlock{
+            color: white;
+            margin-top: 20px;
+            .header_message{
+              margin-bottom: 0;
+            }
+            .title_vote{
+              height: 40px;
+              .title{
+                margin-bottom: 5px;
+                color: map-get($color-map, primary_color_light);
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-right: 10px;
+                text-transform: uppercase;
+              }
+              #vote{
+                font-size: 13px;
+                color: #ffc200;
+                align-self: center;
+                i{
+                  margin: 0 2px;
+                }
+              }
+            }
+            .review{
+              .header_message{
+                margin-top: 0;
+              }
+            }
+          }
+        }
+        .pagination-block{
+          margin: 10px auto;
+          font-size: 20px;
+          span{
+            margin: 0 15px;
+            i{
+              &:hover{
+                cursor: pointer;
+                color: map-get($color-map, primary_color_light);
+              }
+            }
+          }
+        }
+      }
+    }
+    .forms{
+      #form_message, #form_review{
+        color: white;
+        background: map-get($color-map, card_background);
+        padding: 0 30px;
+        display: none;
+        border-radius: 10px;
+        margin: 220px auto;
+        width: 90%;
+        h2{
+          padding-top: 20px;
+          font-size: 30px;
+        }
+        textarea{
+          width: 100%;
+          border-radius: 5px;
+          border: 0;
+          outline: 0;
+          color: map-get($color-map, primary_color_dark);
+          padding: 10px;
+        }
+        label{
+          color: map-get($color-map, primary_color_light);
+          text-transform: uppercase;
+          margin-bottom: 0;
+          margin-top: 10px;
+        }
+        input{
+          color: map-get($color-map, primary_color_dark);
+        }
+        button{
+          position: relative;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+
+
 }

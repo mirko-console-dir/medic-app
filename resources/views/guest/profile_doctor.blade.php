@@ -173,7 +173,7 @@
         @endfor
         @for ($i=0; $i < (5-$average_votes); $i++)
           <i class="far fa-star"></i>
-        @endfor | average rating of {{count($reviews_vote)}} reviews</p>
+        @endfor | average rating on {{count($reviews_vote)}} reviews</p>
 
         <div class="tableList d_flex_column" id="listingTable"></div>
         <div class="pagination-block">
