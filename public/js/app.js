@@ -2046,12 +2046,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["img", "api", "users"],
   data: function data() {
@@ -2139,6 +2133,8 @@ __webpack_require__.r(__webpack_exports__);
           });
         });
       }
+
+      this.totalPages();
     },
 
     /**
@@ -2149,15 +2145,23 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       users.forEach(function (doctor) {
-        var vote = 0;
-        var avgVote = 0;
-        var floorVote = 0;
-        var counter = 0;
         doctor.specializations.forEach(function (spec) {
           if (!_this3.specializations.includes(spec.name.toLowerCase())) {
             return _this3.specializations.push(spec.name.toLowerCase());
           }
         });
+      });
+    },
+
+    /**
+     * Calcolo della media dei voti
+    */
+    queryVote: function queryVote(users) {
+      users.forEach(function (doctor) {
+        var vote = 0;
+        var avgVote = 0;
+        var floorVote = 0;
+        var counter = 0;
         doctor.reviews.forEach(function (review) {
           counter++;
           vote += review.vote;
@@ -2170,7 +2174,7 @@ __webpack_require__.r(__webpack_exports__);
           avgVote[i] = true;
         }
 
-        doctor.avgVote = avgVote; //console.log(doctor.name, doctor.avgVote); 
+        doctor.avgVote = avgVote;
       });
     },
 
@@ -2197,6 +2201,17 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /**
+     * Ricalcola il numero di pagine da visualizzare
+     */
+    totalPages: function totalPages() {
+      this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
+
+      if (this.pages.total === 0) {
+        this.pages.total = 1;
+      }
+    },
+
+    /**
      * Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
     */
     cardsMediaQuery: function cardsMediaQuery() {
@@ -2216,11 +2231,7 @@ __webpack_require__.r(__webpack_exports__);
             this.pages.current = 1;
           }
 
-      this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
-
-      if (this.pages.total === 0) {
-        this.pages.total = 1;
-      }
+      this.totalPages();
     },
 
     /** 
@@ -2236,11 +2247,9 @@ __webpack_require__.r(__webpack_exports__);
         var lastSponsorshipData = new Date(lastSponsorship.created_at);
 
         if (lastSponsorship.name != "free") {
-          //console.log("C'è la sponsorizzazione")
-          expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
+          expire.setDate(lastSponsorshipData.getDate() + lastSponsorship.duration / 24);
 
           if (today < expire) {
-            //console.log("la sponsorizzazione è ancora attiva")
             users.splice(index, 1);
             users.unshift(doctor);
             return doctor.sponsored = true;
@@ -2276,6 +2285,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
       _this4.querySpec(_this4.users);
+      /** 
+       * Calcola la media dei voti ricevuti dagli utenti
+       */
+
+
+      _this4.queryVote(_this4.users);
       /** 
       * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
       */
@@ -2666,7 +2681,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /** Il carosello così impostato può visualizzare fino a un massimo di 4 card.
 *
@@ -2842,7 +2856,7 @@ __webpack_require__.r(__webpack_exports__);
         var lastSponsorshipData = new Date(lastSponsorship.created_at);
 
         if (lastSponsorship.name != "free") {
-          expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
+          expire.setDate(lastSponsorshipData.getDate() + lastSponsorship.duration / 24);
 
           if (today < expire) {
             users.splice(index, 1);
@@ -2856,7 +2870,7 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * Calcolo della media dei voti
     */
-    avgVote: function avgVote(users) {
+    queryVote: function queryVote(users) {
       users.forEach(function (doctor) {
         var vote = 0;
         var avgVote = 0;
@@ -2874,7 +2888,7 @@ __webpack_require__.r(__webpack_exports__);
           avgVote[i] = true;
         }
 
-        doctor.avgVote = avgVote; //console.log(doctor.name, doctor.avgVote); 
+        doctor.avgVote = avgVote;
       });
     },
 
@@ -2904,8 +2918,7 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.adminRemove(_this.profiles);
 
-      _this.avgVote(_this.profiles); //console.log(this.profiles);
-
+      _this.queryVote(_this.profiles);
 
       _this.sposoredDoctors(_this.profiles);
 
@@ -77091,7 +77104,7 @@ var render = function() {
               expression: "search"
             }
           ],
-          staticClass: "form-control text-capitalize no_blur",
+          staticClass: "text-capitalize no_blur",
           attrs: {
             type: "text",
             name: "searchbar",
@@ -77214,27 +77227,20 @@ var render = function() {
                   attrs: { href: "/doctor/" + user.slug }
                 },
                 [
-                  user.profile_img != null
-                    ? _c("div", { staticClass: "avatar" }, [
-                        _c("div", {
-                          staticClass: "profile",
-                          style: {
-                            "background-image":
-                              "url( storage/" + user.profile_img + ")"
-                          }
-                        })
-                      ])
-                    : _c("div", { staticClass: "avatar" }, [
-                        _c("div", {
-                          staticClass: "profile",
-                          staticStyle: {
-                            "background-image": "url(img/user-default.jpg)"
-                          }
-                        })
-                      ]),
+                  _c("div", { staticClass: "avatar" }, [
+                    _c("div", {
+                      staticClass: "profile",
+                      style:
+                        "background-image:url(storage/" +
+                        (user.profile_img
+                          ? user.profile_img
+                          : "../img/user-default.jpg") +
+                        ")"
+                    })
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "info name" }, [
-                    _vm._v(_vm._s(user.name + " " + user.lastname) + " ")
+                    _vm._v(_vm._s(user.name) + " " + _vm._s(user.lastname))
                   ]),
                   _vm._v(" "),
                   _c(
@@ -77377,7 +77383,7 @@ var render = function() {
               expression: "search"
             }
           ],
-          staticClass: "no_blur",
+          staticClass: "no_blur text-capitalize",
           attrs: {
             type: "text",
             name: "search",
@@ -77512,10 +77518,12 @@ var render = function() {
               [
                 _c("div", {
                   staticClass: "info avatar",
-                  style: {
-                    "background-image":
-                      "url(storage/" + profile.profile_img + ")"
-                  }
+                  style:
+                    "background-image:url(storage/" +
+                    (profile.profile_img
+                      ? profile.profile_img
+                      : "../img/user-default.jpg") +
+                    ")"
                 }),
                 _vm._v(" "),
                 _c("h4", { staticClass: "info name" }, [
@@ -90308,12 +90316,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! D:\Andrea\C0d1ng\Boolean.Career\Esercizi\Esercitazioni\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
 =======
 __webpack_require__(/*! /Users/luigitroiano/Desktop/Final Project/medicUs/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /Users/luigitroiano/Desktop/Final Project/medicUs/resources/sass/app.scss */"./resources/sass/app.scss");
 >>>>>>> LTbackend
+=======
+__webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\win7\Google Drive\Boolean\ProgettoFinale\medicUs\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> AM-Frontend-20210330
 
 
 /***/ })

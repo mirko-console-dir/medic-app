@@ -37,6 +37,9 @@
             &::first-letter{
               text-transform: uppercase;
             }
+            &::placeholder{
+              text-transform: none;
+            }
           }
           button{
             width: 15%;
