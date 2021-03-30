@@ -185,10 +185,8 @@ export default {
                 doctor.sponsored = false;
                 lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
                 let lastSponsorshipData = new Date(lastSponsorship.created_at);
-                console.log(`lastSponsorshipData ${lastSponsorshipData}`);
                 if(lastSponsorship.name != "free"){
                     expire.setDate(lastSponsorshipData.getDate() + lastSponsorship.duration/24);
-                    console.log(`${doctor.name}; expire date: ${expire}`);
                     if(today < expire){
                         users.splice(index, 1);
                         users.unshift(doctor);
@@ -201,7 +199,7 @@ export default {
         /**
          * Calcolo della media dei voti
         */
-        avgVote: function(users){
+        queryVote: function(users){
           users.forEach(doctor=>{
             let vote = 0;
             let avgVote = 0;
@@ -218,7 +216,6 @@ export default {
               avgVote[i] = true;
             }
             doctor.avgVote = avgVote;
-            //console.log(doctor.name, doctor.avgVote); 
           });
         },
 
@@ -247,8 +244,7 @@ export default {
             this.k = this.i + 2;
             this.l = this.i + 3;
             this.adminRemove(this.profiles);
-            this.avgVote(this.profiles);
-            //console.log(this.profiles);
+            this.queryVote(this.profiles);
             this.sposoredDoctors(this.profiles);
             this.cardMediaQuery();
             this.next(true);

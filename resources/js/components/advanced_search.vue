@@ -138,6 +138,7 @@
               });
             });
           }
+          this.totalPages();
         },
         /**
          * Compila l'elenco delle specializzazioni sulla base degli "users" presenti
@@ -145,15 +146,22 @@
          */ 
         querySpec: function(users){
           users.forEach(doctor=>{
-            let vote = 0;
-            let avgVote = 0;
-            let floorVote = 0;
-            let counter = 0;
             doctor.specializations.forEach(spec=>{
               if(!this.specializations.includes(spec.name.toLowerCase())){
                 return this.specializations.push(spec.name.toLowerCase());
               }
             });
+          });
+        },
+        /**
+         * Calcolo della media dei voti
+        */
+        queryVote: function(users){
+          users.forEach(doctor=>{
+            let vote = 0;
+            let avgVote = 0;
+            let floorVote = 0;
+            let counter = 0;
             doctor.reviews.forEach(review =>{
               counter++;
               vote += review.vote;
@@ -165,17 +173,6 @@
               avgVote[i] = true;
             }
             doctor.avgVote = avgVote;
-            //console.log(doctor.name, doctor.avgVote); 
-          });
-        },
-
-        queryVote: function(users){
-          let vote = 0;
-          let avgVote = 0;
-          let floorVote = 0;
-          let counter = 0;
-          users.forEach(doctor=>{
-
           });
         },
 
@@ -192,6 +189,13 @@
         prev: function(){
           if(this.pages.current <= 1){return;}
           return this.pages.current--
+        },
+        /**
+         * Ricalcola il numero di pagine da visualizzare
+         */
+        totalPages: function(){
+          this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
+          if(this.pages.total === 0){this.pages.total = 1;}
         },
         /**
          * Calcola il numero di "pages" che occorrono per mostrare un dato numero di "cards"
@@ -214,8 +218,7 @@
               this.cards = 12;
               this.pages.current = 1;
             }
-            this.pages.total = Math.ceil(this.filterUsers.length / this.cards);
-            if(this.pages.total === 0){this.pages.total = 1;}
+            this.totalPages();
         },
 
         /** 
@@ -230,10 +233,8 @@
                 lastSponsorship = doctor.sponsorships[doctor.sponsorships.length - 1];
                 let lastSponsorshipData = new Date(lastSponsorship.created_at);
                 if(lastSponsorship.name != "free"){
-                    //console.log("C'è la sponsorizzazione")
-                    expire.setHours(lastSponsorshipData.getHours() + lastSponsorship.duration);
+                    expire.setDate(lastSponsorshipData.getDate() + lastSponsorship.duration/24);
                     if(today < expire){
-                        //console.log("la sponsorizzazione è ancora attiva")
                         users.splice(index, 1);
                         users.unshift(doctor);
                         return doctor.sponsored = true;
@@ -266,6 +267,10 @@
               * Compila l'elenco delle specializzazioni sulla base degli "users" presenti                
               */
               this.querySpec(this.users);
+              /** 
+               * Calcola la media dei voti ricevuti dagli utenti
+               */
+              this.queryVote(this.users);
               /** 
               * Inserisce il valore "all" all'inizio dell'array contenente le specializzazioni
               */
