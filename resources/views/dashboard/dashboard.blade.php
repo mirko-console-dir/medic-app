@@ -74,7 +74,7 @@ My profile
                 @if($user->cv_img == "")
                 <h4>Curriculum Vitae not found</h4>
                 @else
-                <iframe src="{{asset('storage/' . $user->cv_img)}}" frameborder="0" width="450px" height="400px" allow="fullscreen" scroll="no"></iframe>
+                <iframe src="{{asset('storage/' . $user->cv_img)}}" frameborder="0" width="400px" height="400px" allow="fullscreen" scroll="no"></iframe>
             </div>
             @endif
 
